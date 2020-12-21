@@ -1,0 +1,27 @@
+{
+  "sahaApp": {
+    "hesabResi": {
+      "home": {
+        "title": "Hesab Resis",
+        "createLabel": "Create a new Hesab Resi",
+        "createOrEditLabel": "Create or edit a Hesab Resi",
+        "notFound": "No Hesab Resis found"
+      },
+      "created": "A new Hesab Resi is created with identifier {{ param }}",
+      "updated": "A Hesab Resi is updated with identifier {{ param }}",
+      "deleted": "A Hesab Resi is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Hesab Resi {{ id }}?"
+      },
+      "detail": {
+        "title": "Hesab Resi"
+      },
+      "sal": "Sal",
+      "vaziateHesabResi": "Vaziate Hesab Resi",
+      "gozaresh": "Gozaresh",
+      "barnameHesabResi": "Barname Hesab Resi",
+      "bargeMamooriat": "Barge Mamooriat",
+      "fileha": "Fileha"
+    }
+  }
+}

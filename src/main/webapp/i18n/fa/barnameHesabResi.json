@@ -1,0 +1,24 @@
+{
+  "sahaApp": {
+    "barnameHesabResi": {
+      "home": {
+        "title": "Barname Hesab Resis",
+        "createLabel": "Create a new Barname Hesab Resi",
+        "createOrEditLabel": "Create or edit a Barname Hesab Resi",
+        "notFound": "No Barname Hesab Resis found"
+      },
+      "created": "A new Barname Hesab Resi is created with identifier {{ param }}",
+      "updated": "A Barname Hesab Resi is updated with identifier {{ param }}",
+      "deleted": "A Barname Hesab Resi is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Barname Hesab Resi {{ id }}?"
+      },
+      "detail": {
+        "title": "Barname Hesab Resi"
+      },
+      "noeBarnameHesabResi": "Noe Barname Hesab Resi",
+      "failha": "Failha",
+      "hesabResi": "Hesab Resi"
+    }
+  }
+}

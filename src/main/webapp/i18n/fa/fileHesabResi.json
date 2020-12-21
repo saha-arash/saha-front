@@ -1,0 +1,28 @@
+{
+  "sahaApp": {
+    "fileHesabResi": {
+      "home": {
+        "title": "File Hesab Resis",
+        "createLabel": "Create a new File Hesab Resi",
+        "createOrEditLabel": "Create or edit a File Hesab Resi",
+        "notFound": "No File Hesab Resis found"
+      },
+      "created": "A new File Hesab Resi is created with identifier {{ param }}",
+      "updated": "A File Hesab Resi is updated with identifier {{ param }}",
+      "deleted": "A File Hesab Resi is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete File Hesab Resi {{ id }}?"
+      },
+      "detail": {
+        "title": "File Hesab Resi"
+      },
+      "file": "File",
+      "shomare": "Shomare",
+      "tarikhName": "Tarikh Name",
+      "mozoo": "Mozoo",
+      "fileType": "File Type",
+      "hesabResi": "Hesab Resi",
+      "barnameHesabResi": "Barname Hesab Resi"
+    }
+  }
+}

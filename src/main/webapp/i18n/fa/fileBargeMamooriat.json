@@ -1,0 +1,23 @@
+{
+  "sahaApp": {
+    "fileBargeMamooriat": {
+      "home": {
+        "title": "File Barge Mamooriats",
+        "createLabel": "Create a new File Barge Mamooriat",
+        "createOrEditLabel": "Create or edit a File Barge Mamooriat",
+        "notFound": "No File Barge Mamooriats found"
+      },
+      "created": "A new File Barge Mamooriat is created with identifier {{ param }}",
+      "updated": "A File Barge Mamooriat is updated with identifier {{ param }}",
+      "deleted": "A File Barge Mamooriat is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete File Barge Mamooriat {{ id }}?"
+      },
+      "detail": {
+        "title": "File Barge Mamooriat"
+      },
+      "madarek": "Madarek",
+      "bargeMamooriat": "Barge Mamooriat"
+    }
+  }
+}

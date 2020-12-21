@@ -1,0 +1,25 @@
+{
+  "sahaApp": {
+    "FileType": {
+      "null": "",
+      "MadarekBarnameHesabResi": "MadarekBarnameHesabResi",
+      "MohasebeHazineMamooriat": "MohasebeHazineMamooriat",
+      "VoroodiBilanSalGhabl": "VoroodiBilanSalGhabl",
+      "DastoorAmalEjraE": "DastoorAmalEjraE",
+      "GardeshkarBarnameHesabresi": "GardeshkarBarnameHesabresi",
+      "Madarek": "Madarek",
+      "KhoroojiBilanSalGhabl": "KhoroojiBilanSalGhabl",
+      "VoroodiBilanSeSalGhabl": "VoroodiBilanSeSalGhabl",
+      "KhoroojiBilanSeSalGhabl": "KhoroojiBilanSeSalGhabl",
+      "MadarekGozaresh": "MadarekGozaresh",
+      "MostaKhreje": "MostaKhreje",
+      "KholaseGozaresh": "KholaseGozaresh",
+      "BankEtelaati": "BankEtelaati",
+      "Nameh": "Nameh",
+      "RafeIradat": "RafeIradat",
+      "GardeshKar": "GardeshKar",
+      "NoeBarnameHesabResi": "NoeBarnameHesabResi",
+      "BarnameHesabResi": "BarnameHesabResi"
+    }
+  }
+}

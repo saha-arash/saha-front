@@ -1,0 +1,23 @@
+{
+  "sahaApp": {
+    "fileName": {
+      "home": {
+        "title": "File Names",
+        "createLabel": "Create a new File Name",
+        "createOrEditLabel": "Create or edit a File Name",
+        "notFound": "No File Names found"
+      },
+      "created": "A new File Name is created with identifier {{ param }}",
+      "updated": "A File Name is updated with identifier {{ param }}",
+      "deleted": "A File Name is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete File Name {{ id }}?"
+      },
+      "detail": {
+        "title": "File Name"
+      },
+      "madrak": "Madrak",
+      "name": "Name"
+    }
+  }
+}
