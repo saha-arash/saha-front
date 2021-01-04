@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
 import { connect } from 'react-redux';
-import { Row, Col, Alert } from 'reactstrap';
+import { Row, Col, Alert, Button } from 'reactstrap';
 
 import { IRootState } from 'app/shared/reducers';
 
@@ -14,9 +14,18 @@ export const Home = (props: IHomeProp) => {
   const { account } = props;
 
   return (
-    <Row>
-      <Col md="9">
 
+    <div>
+      <Row>
+      <Col className="horzontalList">
+        <span className="hipster rounded"/>
+        <span> ورود به سامانه حسابرسی</span>
+        <span className="hipster rounded"/>
+      </Col>
+      </Row>
+
+      <Row>
+      <Col md="9">
         {account && account.login ? (
           <div>
             <Alert color="success">
@@ -32,11 +41,16 @@ export const Home = (props: IHomeProp) => {
                 برای ورود به سیستم کلیک کنید:
               </span>
               
-              <div className="enterButton">
+              <div>
+              <Button color="white" type="submit">
               <Link to="/login" >
                 <div className="enterButton"> ورود</div>
               </Link>
+            </Button>
               </div>
+              
+              
+              
             </Alert>
 
           </div>
@@ -55,12 +69,11 @@ export const Home = (props: IHomeProp) => {
             در صورتی که نام کاربری و رمز عبور خود رار فراموش کرده اید.
           </li>
         </ul>
+      </Col>
         
-      </Col>
-        <Col md="3" className="pad">
-        <span className="hipster rounded"/>
-      </Col>
     </Row>
+    </div>
+    
   );
 };
 
