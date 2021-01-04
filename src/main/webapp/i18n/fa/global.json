@@ -72,7 +72,7 @@
         "authenticated": {
           "prefix": "اگر شما می‌خواهید",
           "link": "ورود",
-          "suffix": ", می‌توانید از حساب پایه:<br/>- مدیریت برتر (login=\"admin\" and password=\"admin\") <br/>- کاربر (login=\"user\" and password=\"user\")."
+          "suffix": "وارد سامانه شوید:"
         },
         "register": {
           "noaccount": "آیا هنوز حساب کاربری ندارید؟",
@@ -157,5 +157,5 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "این پاورقی است"
+  "footer": "امتیاز حقوقی این محصول برای سازمان حسابرسی ارتش محفوظ است."
 }

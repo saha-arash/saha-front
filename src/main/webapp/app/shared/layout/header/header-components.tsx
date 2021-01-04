@@ -1,6 +1,6 @@
 import React from 'react';
 import { Translate } from 'react-jhipster';
-
+import * as global from "main/webapp/i18n/fa/global.json";
 import { NavItem, NavLink, NavbarBrand } from 'reactstrap';
 import { NavLink as Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +9,7 @@ import appConfig from 'app/config/constants';
 
 export const BrandIcon = props => (
   <div {...props} className="brand-icon">
-    <img src="content/images/logo-jhipster.png" alt="Logo" />
+    <img src="content/images/logo.png" alt="لوگو" />
   </div>
 );
 
@@ -17,7 +17,7 @@ export const Brand = props => (
   <NavbarBrand tag={Link} to="/" className="brand-logo">
     <BrandIcon />
     <span className="brand-title">
-      <Translate contentKey="global.title">Saha</Translate>
+      <span contentKey="global.title">سامانه حسابرسی عملیاتی آجا</span>
     </span>
     <span className="navbar-version">{appConfig.VERSION}</span>
   </NavbarBrand>
