@@ -14,17 +14,9 @@ export const Home = (props: IHomeProp) => {
   const { account } = props;
 
   return (
-
-    <div>
-      <Row>
-      <Col className="horzontalList">
-        <span className="hipster rounded"/>
-        <span className="title"> ورود به سامانه حسابرسی</span>
-        <span className="hipster rounded"/>
-      </Col>
-      </Row>
-
-      <Row>
+    <div className="rtlConfig">
+    
+      <Row className="rtlConfig">
       <Col md="7">
         {account && account.login ? (
           <div>
@@ -33,9 +25,29 @@ export const Home = (props: IHomeProp) => {
                 You are logged in as user {account.login}.
               </Translate>
             </Alert>
+
+            <div className="horzontalList">
+              <button className="menuButton">برگه ماموریت </button>
+              <button className="menuButton">برنامه سالانه</button>
+              <button className="menuButton">فرایند انجام حسابرسی</button>
+              <button className="menuButton">فرم های مورد نیاز</button>
+              <button className="menuButton">پیام ها</button>
+              <button className="menuButton">لوح قوانین</button>
+              <button className="menuButton">دستور العمل  ها و بازبینه ها</button>
+            </div>
           </div>
+
+          
         ) : (
-          <div>
+          <div className="rtlConfig">
+
+            <Row className="rtlConfig">
+              <Col className="horzontalList">
+                <span className="hipster rounded"/>
+                <span className="title"> ورود به سامانه حسابرسی</span>
+                <span className="hipster rounded"/>
+              </Col>
+              </Row>
             <Alert color="success">
               <span>
                 برای ورود به سیستم کلیک کنید:
@@ -48,9 +60,6 @@ export const Home = (props: IHomeProp) => {
               </Link>
             </Button>
               </div>
-              
-              
-              
             </Alert>
 
           </div>
@@ -59,7 +68,7 @@ export const Home = (props: IHomeProp) => {
   
         <ul>
           <h4>:در موارد زیر با ادمین سامانه تماس بگیرید</h4>
-          <li dir>
+          <li className="rtlConfig">
             در صورتی که در ورود به سیستم دچار مشکل شده اید.
           </li>
           <li>

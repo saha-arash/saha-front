@@ -23,7 +23,7 @@ Main page styles
 
 .horzontalList {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: center;
   padding: 20px;
 }
@@ -37,4 +37,22 @@ Main page styles
 .row {
   justify-content: center;
   padding: 20px;
+}
+
+.rightFloat {
+  float: right;
+}
+
+[dir='rtl'] .rtlConfig {
+  margin-right: 20px;
+}
+
+.menuButton {
+  border-radius: 8px;
+  border-width: 2;
+  border-color: black;
+  margin: 20px;
+  height: 100px;
+  width: 300px;
+  border-collapse: separate;
 }

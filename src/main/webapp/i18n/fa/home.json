@@ -2,7 +2,7 @@
   "home": {
     "title": "سامانه حسابرسی عملیاتی آجا",
     "logged": {
-      "message": "شما وارد شدید با کاربر \"{{username}}\"."
+      "message": "\"{{username}}\" :با این کاربر وارد شدید"
     },
     "options": {
       "hesabresi": "حسابرسی",
