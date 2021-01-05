@@ -19,13 +19,13 @@ export const Home = (props: IHomeProp) => {
       <Row>
       <Col className="horzontalList">
         <span className="hipster rounded"/>
-        <span> ورود به سامانه حسابرسی</span>
+        <span className="title"> ورود به سامانه حسابرسی</span>
         <span className="hipster rounded"/>
       </Col>
       </Row>
 
       <Row>
-      <Col md="9">
+      <Col md="7">
         {account && account.login ? (
           <div>
             <Alert color="success">

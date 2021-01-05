@@ -166,6 +166,8 @@ describe('Notification Middleware', () => {
   });
   it('should trigger an error toast message and return promise error for 400 response code', async () => {
     await store.dispatch(VALIDATION_ERROR).catch(err => {
+      console.log('VALIDATION_ERROR dispatcheddddddddddd');
+
       expect(err.response.data.message).toEqual('error.validation');
     });
     const toastMsg = (toastify.toast as any).error.getCall(0).args[0];
