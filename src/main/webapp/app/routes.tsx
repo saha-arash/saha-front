@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
 import Login from 'app/modules/login/login';
@@ -14,6 +14,9 @@ import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 import PageNotFound from 'app/shared/error/page-not-found';
 import { AUTHORITIES } from 'app/config/constants';
+import BargeMamooriat from 'app/entities/barge-mamooriat'
+import BarnameHesabResi from 'app/entities/barname-hesab-resi'
+import Payam from 'app/entities/payam'
 
 const Account = Loadable({
   loader: () => import(/* webpackChunkName: "account" */ 'app/modules/account'),
@@ -39,6 +42,13 @@ const Routes = () => (
       <ErrorBoundaryRoute path="/" exact component={Home} />
       <PrivateRoute path="/" component={Entities} hasAnyAuthorities={[AUTHORITIES.USER]} />
       <ErrorBoundaryRoute component={PageNotFound} />
+      <Route path="/barge-mamooriat" component={BargeMamooriat}/>
+      <Route path="/barname-hesab-resi" component={BarnameHesabResi}/>
+      <Route path="/payam" component={Payam}/>
+      <Route path="/barge-mamooriat" component={BargeMamooriat}/>
+      <Route path="/barge-mamooriat" component={BargeMamooriat}/>
+      <Route path="/barge-mamooriat" component={BargeMamooriat}/>
+      <Route path="/barge-mamooriat" component={BargeMamooriat}/>
     </Switch>
   </div>
 );

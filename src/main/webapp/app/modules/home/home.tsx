@@ -1,17 +1,19 @@
 import './home.scss';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
 import { connect } from 'react-redux';
 import { Row, Col, Alert, Button } from 'reactstrap';
 
 import { IRootState } from 'app/shared/reducers';
+import bargeMamooriat from 'app/entities/barge-mamooriat/barge-mamooriat';
 
 export type IHomeProp = StateProps;
 
 export const Home = (props: IHomeProp) => {
   const { account } = props;
+  const history =  useHistory();
 
   return (
     <div className="rtlConfig">
@@ -27,13 +29,13 @@ export const Home = (props: IHomeProp) => {
             </Alert>
 
             <div className="horzontalList">
-              <button className="menuButton">برگه ماموریت </button>
-              <button className="menuButton">برنامه سالانه</button>
-              <button className="menuButton">فرایند انجام حسابرسی</button>
-              <button className="menuButton">فرم های مورد نیاز</button>
-              <button className="menuButton">پیام ها</button>
-              <button className="menuButton">لوح قوانین</button>
-              <button className="menuButton">دستور العمل  ها و بازبینه ها</button>
+              <button className="cardd-1" onClick={ () => history.push("/barge-mamooriat")} >برگه ماموریت </button>
+              <button className="cardd-1" onClick={ () => history.push("/barname-hesab-resi")} >برنامه سالانه</button>
+              <button className="cardd-1" onClick={ () => history.push("/barname-hesab-resi")} >فرایند انجام حسابرسی</button>
+              <button className="cardd-1" onClick={ () => history.push("/payam")} >پیام ها</button>
+              <button className="cardd-1" onClick={ () => history.push("/barge-mamooriat")} >فرم های مورد نیاز</button>
+              <button className="cardd-1" onClick={ () => history.push("/barge-mamooriat")} >لوح قوانین</button>
+              <button className="cardd-1" onClick={ () => history.push("/barge-mamooriat")} >دستور العمل  ها و بازبینه ها</button>
             </div>
           </div>
 
@@ -66,8 +68,8 @@ export const Home = (props: IHomeProp) => {
         )}
         
   
-        <ul>
-          <h4>:در موارد زیر با ادمین سامانه تماس بگیرید</h4>
+        <ul className= "rtlConfig">
+          <h4 className= "rtlConfig">:در موارد زیر با ادمین سامانه تماس بگیرید</h4>
           <li className="rtlConfig">
             در صورتی که در ورود به سیستم دچار مشکل شده اید.
           </li>

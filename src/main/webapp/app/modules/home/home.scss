@@ -1,6 +1,10 @@
 /* ==========================================================================
 Main page styles
 ========================================================================== */
+
+$shadowPx: 50px;
+$cardHeight: 180px;
+$primaryColor: #56cc9d;
 .hipster {
   display: flex;
   width: 200px;
@@ -39,20 +43,38 @@ Main page styles
   padding: 20px;
 }
 
-.rightFloat {
+.rtlConfig ul ui {
   float: right;
 }
 
-[dir='rtl'] .rtlConfig {
-  margin-right: 20px;
+// [dir='rtl'] .rtlConfig {
+//   margin-right: 20px;
+// }
+
+.cardd-1 {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  height: $cardHeight;
+  width: $cardHeight;
+  font-size: 18px;
+  position: relative;
 }
 
-.menuButton {
+.cardd-1 {
+  height: $cardHeight;
+  width: $cardHeight;
+  border-width: 0;
+  background: #fff;
   border-radius: 8px;
-  border-width: 2;
-  border-color: black;
-  margin: 20px;
-  height: 100px;
-  width: 300px;
-  border-collapse: separate;
+  display: inline-block;
+  margin: 14px;
+  box-shadow: 0 1px 3px $primaryColor, 0 1px 2px $primaryColor;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cardd-1:hover {
+  height: $cardHeight;
+  width: $cardHeight;
+  box-shadow: 0 8px 8px $primaryColor, 0 8px 8px $primaryColor;
 }
