@@ -21,11 +21,11 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
   return (
     <div>
       <h2 id="barge-mamooriat-heading">
-        <Translate contentKey="sahaApp.bargeMamooriat.home.title">Barge Mamooriats</Translate>
+        <span >برگه ماموریت ها</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.bargeMamooriat.home.createLabel">Create new Barge Mamooriat</Translate>
+          <span>ایجاد برگه ماموریت</span>
         </Link>
       </h2>
       <div className="table-responsive">

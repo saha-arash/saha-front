@@ -11,7 +11,7 @@ import LoadingBar from 'react-redux-loading-bar';
 import { isRTL } from 'app/config/translation';
 
 import { Home, Brand } from './header-components';
-import { AdminMenu, EntitiesMenu, AccountMenu, LocaleMenu } from '../menus';
+import { AdminMenu, EntitiesMenu, ManageMenu, AccountMenu, LocaleMenu } from '../menus';
 
 export interface IHeaderProps {
   isAuthenticated: boolean;
@@ -58,6 +58,7 @@ const Header = (props: IHeaderProps) => {
           <Nav id="header-tabs" className="ml-auto" navbar>
             <Home />
             {props.isAuthenticated && <EntitiesMenu />}
+            {/*{props.isAuthenticated && <EntitiesMenu />}*/}
             {props.isAuthenticated && props.isAdmin && <AdminMenu showSwagger={props.isSwaggerEnabled} />}
             <LocaleMenu currentLocale={props.currentLocale} onClick={handleLocaleChange} />
             <AccountMenu isAuthenticated={props.isAuthenticated} />

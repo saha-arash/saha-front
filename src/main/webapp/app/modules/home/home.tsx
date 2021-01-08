@@ -16,13 +16,13 @@ export const Home = (props: IHomeProp) => {
   const history =  useHistory();
 
   return (
-    <div className="rtlConfig">
+    <div className="">
     
-      <Row className="rtlConfig">
-      <Col md="7">
+      <Row className="">
+      <Col md="7" className="">
         {account && account.login ? (
           <div>
-            <Alert color="success">
+            <Alert color="success" className="">
               <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
                 You are logged in as user {account.login}.
               </Translate>
@@ -41,22 +41,22 @@ export const Home = (props: IHomeProp) => {
 
           
         ) : (
-          <div className="rtlConfig">
+          <div className="">
 
-            <Row className="rtlConfig">
+            <Row className="">
               <Col className="horzontalList">
-                <span className="hipster rounded"/>
+                <span className="arteshLogo"/>
                 <span className="title"> ورود به سامانه حسابرسی</span>
-                <span className="hipster rounded"/>
+                <span className="logo"/>
               </Col>
               </Row>
-            <Alert color="success">
+            <Alert color="success" className="">
               <span>
                 برای ورود به سیستم کلیک کنید:
               </span>
               
               <div>
-              <Button color="white" type="submit">
+              <Button color="white" type="submit" className="">
               <Link to="/login" >
                 <div className="enterButton"> ورود</div>
               </Link>
@@ -67,19 +67,21 @@ export const Home = (props: IHomeProp) => {
           </div>
         )}
         
-  
-        <ul className= "rtlConfig">
-          <h4 className= "rtlConfig">:در موارد زیر با ادمین سامانه تماس بگیرید</h4>
-          <li className="rtlConfig">
-            در صورتی که در ورود به سیستم دچار مشکل شده اید.
-          </li>
-          <li>
-            در صورتی که نام کاربری ندارید.
-          </li>
-          <li>
-            در صورتی که نام کاربری و رمز عبور خود رار فراموش کرده اید.
-          </li>
-        </ul>
+          <div className= "">
+            <ul className= "rightFloat">
+            <h4 className= "">:در موارد زیر با ادمین سامانه تماس بگیرید</h4>
+            <li className="">
+              در صورتی که در ورود به سیستم دچار مشکل شده اید.
+            </li>
+            <li>
+              در صورتی که نام کاربری ندارید.
+            </li>
+            <li>
+              در صورتی که نام کاربری و رمز عبور خود رار فراموش کرده اید.
+            </li>
+          </ul>
+        </div>
+        
       </Col>
         
     </Row>

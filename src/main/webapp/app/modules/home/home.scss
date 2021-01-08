@@ -5,12 +5,24 @@ Main page styles
 $shadowPx: 50px;
 $cardHeight: 180px;
 $primaryColor: #56cc9d;
-.hipster {
+.arteshLogo {
   display: flex;
   width: 200px;
-  height: 250px;
   background: url('../../../content/images/ artesh-logo.png') no-repeat center top;
-  //background-size: contain;
+}
+
+.logo {
+  display: flex;
+  width: 205px;
+  height: 250px;
+  background: url('../../../content/images/logo.png') no-repeat center top;
+}
+
+.logo,
+.arteshLogo {
+  display: flex;
+  background-size: contain;
+  height: 250px;
 }
 
 .enterButton {
@@ -43,7 +55,15 @@ $primaryColor: #56cc9d;
   padding: 20px;
 }
 
-.rtlConfig ul ui {
+// .rtlConfig ul ui {
+//   float: right;
+// }
+
+.rightFloat {
+  float: right;
+}
+
+#ann {
   float: right;
 }
 

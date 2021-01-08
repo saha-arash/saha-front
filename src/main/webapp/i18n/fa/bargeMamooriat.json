@@ -5,7 +5,7 @@
         "title": "Barge Mamooriats",
         "createLabel": "Create a new Barge Mamooriat",
         "createOrEditLabel": "Create or edit a Barge Mamooriat",
-        "notFound": "No Barge Mamooriats found"
+        "notFound": "برگه ماموریتی یافت نشد!"
       },
       "created": "A new Barge Mamooriat is created with identifier {{ param }}",
       "updated": "A Barge Mamooriat is updated with identifier {{ param }}",
