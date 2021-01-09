@@ -9,19 +9,19 @@ import { NavDropdown } from './menu-components';
 export const EntitiesMenu = props => (
   <NavDropdown
     icon="th-list"
-    name={translate('global.menu.entities.main')}
+    name="موجودیت ها"
     id="entity-menu"
     style={{ maxHeight: '80vh', overflow: 'auto' }}
   >
-    <MenuItem icon="asterisk" to="/yegan-code">
+    {/* <MenuItem icon="asterisk" to="/yegan-code">
       <Translate contentKey="global.menu.entities.yeganCode" />
-    </MenuItem>
+    </MenuItem> */}
     <MenuItem icon="asterisk" to="/payam">
       <Translate contentKey="global.menu.entities.payam" />
     </MenuItem>
-    <MenuItem icon="asterisk" to="/file-name">
+    {/* <MenuItem icon="asterisk" to="/file-name">
       <Translate contentKey="global.menu.entities.fileName" />
-    </MenuItem>
+    </MenuItem> */}
     <MenuItem icon="asterisk" to="/karbar">
       <Translate contentKey="global.menu.entities.karbar" />
     </MenuItem>
@@ -37,18 +37,18 @@ export const EntitiesMenu = props => (
     <MenuItem icon="asterisk" to="/negahbani">
       <Translate contentKey="global.menu.entities.negahbani" />
     </MenuItem>
-    <MenuItem icon="asterisk" to="/barge-mamooriat">
+    {/* <MenuItem icon="asterisk" to="/barge-mamooriat">
       <Translate contentKey="global.menu.entities.bargeMamooriat" />
-    </MenuItem>
+    </MenuItem> */}
     <MenuItem icon="asterisk" to="/hesab-resi">
       <Translate contentKey="global.menu.entities.hesabResi" />
     </MenuItem>
     <MenuItem icon="asterisk" to="/barname-hesab-resi">
       <Translate contentKey="global.menu.entities.barnameHesabResi" />
     </MenuItem>
-    <MenuItem icon="asterisk" to="/file-barge-mamooriat">
+    {/* <MenuItem icon="asterisk" to="/file-barge-mamooriat">
       <Translate contentKey="global.menu.entities.fileBargeMamooriat" />
-    </MenuItem>
+    </MenuItem> */}
     <MenuItem icon="asterisk" to="/daraje">
       <Translate contentKey="global.menu.entities.daraje" />
     </MenuItem>
@@ -61,12 +61,12 @@ export const EntitiesMenu = props => (
     <MenuItem icon="asterisk" to="/yegan">
       <Translate contentKey="global.menu.entities.yegan" />
     </MenuItem>
-    <MenuItem icon="asterisk" to="/file-hesab-resi">
+    {/* <MenuItem icon="asterisk" to="/file-hesab-resi">
       <Translate contentKey="global.menu.entities.fileHesabResi" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/file-gozaresh">
+    </MenuItem> */}
+    {/* <MenuItem icon="asterisk" to="/file-gozaresh">
       <Translate contentKey="global.menu.entities.fileGozaresh" />
-    </MenuItem>
+    </MenuItem> */}
     <MenuItem icon="asterisk" to="/mantaghe">
       <Translate contentKey="global.menu.entities.mantaghe" />
     </MenuItem>

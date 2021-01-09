@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { Translate, ICrudGetAllAction, TextFormat } from 'react-jhipster';
+import { Translate,ICrudGetAllAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -30,33 +30,34 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
       </h2>
       <div className="table-responsive">
         {bargeMamooriatList && bargeMamooriatList.length > 0 ? (
+          // a list of barge mamuraits
           <Table responsive>
             <thead>
               <tr>
                 <th>
-                  <Translate contentKey="global.field.id">ID</Translate>
+                  <span>شناسه</span>
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.bargeMamooriat.vaziat">Vaziat</Translate>
+                  <span>وضعیت</span>
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.bargeMamooriat.saleMamooriat">Sale Mamooriat</Translate>
+                <input type="text" size="8" placeholder="سال" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.bargeMamooriat.shorooMamooriat">Shoroo Mamooriat</Translate>
+                  <span>شروع ماموریت</span>
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.bargeMamooriat.payanMamooriat">Payan Mamooriat</Translate>
+                  <span>پایان</span>
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.bargeMamooriat.sarparast">Sarparast</Translate>
+                  <span>سرپرست</span>
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.bargeMamooriat.yegan">Yegan</Translate>
+                  <span>یگان</span>
                 </th>
-                <th>
-                  <Translate contentKey="sahaApp.bargeMamooriat.hesabResi">Hesab Resi</Translate>
-                </th>
+                {/* <th>
+                  <span>Hesab Resi</span>
+                </th> */}
                 <th />
               </tr>
             </thead>
@@ -98,19 +99,19 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
                       <Button tag={Link} to={`${match.url}/${bargeMamooriat.id}`} color="info" size="sm">
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.view">View</Translate>
+                          <span>مشاهده</span>
                         </span>
                       </Button>
                       <Button tag={Link} to={`${match.url}/${bargeMamooriat.id}/edit`} color="primary" size="sm">
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.edit">Edit</Translate>
+                          <span>ویرایش</span>
                         </span>
                       </Button>
                       <Button tag={Link} to={`${match.url}/${bargeMamooriat.id}/delete`} color="danger" size="sm">
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.delete">Delete</Translate>
+                          <span>حذف</span>
                         </span>
                       </Button>
                     </div>
@@ -120,9 +121,11 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
             </tbody>
           </Table>
         ) : (
+
+          // no barge mamuriat
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.bargeMamooriat.home.notFound">No Barge Mamooriats found</Translate>
+              <span>!برگه ماموریتی یافت نشد</span>
             </div>
           )
         )}

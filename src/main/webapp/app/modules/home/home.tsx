@@ -17,7 +17,6 @@ export const Home = (props: IHomeProp) => {
 
   return (
     <div className="">
-    
       <Row className="">
       <Col md="7" className="">
         {account && account.login ? (
@@ -42,7 +41,6 @@ export const Home = (props: IHomeProp) => {
           
         ) : (
           <div className="">
-
             <Row className="">
               <Col className="horzontalList">
                 <span className="arteshLogo"/>
@@ -51,10 +49,7 @@ export const Home = (props: IHomeProp) => {
               </Col>
               </Row>
             <Alert color="success" className="">
-              <span>
-                برای ورود به سیستم کلیک کنید:
-              </span>
-              
+              <span>برای ورود به سیستم کلیک کنید:</span>
               <div>
               <Button color="white" type="submit" className="">
               <Link to="/login" >
@@ -63,7 +58,6 @@ export const Home = (props: IHomeProp) => {
             </Button>
               </div>
             </Alert>
-
           </div>
         )}
         

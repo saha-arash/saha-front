@@ -82,5 +82,3 @@ export const ManageMenu = props => (
     {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
   </NavDropdown>
 );
-
-export default ManageMenu;

@@ -9,6 +9,7 @@ import { Navbar, Nav } from 'reactstrap';
 import { Home, Brand } from 'app/shared/layout/header/header-components';
 import { AdminMenu, EntitiesMenu, AccountMenu, LocaleMenu } from 'app/shared/layout/menus';
 import Header from 'app/shared/layout/header/header';
+import { ManageMenu } from 'app/shared/layout/menus/manage';
 
 describe('Header', () => {
   let mountedWrapper;
@@ -65,6 +66,7 @@ describe('Header', () => {
     expect(nav.find(Home).length).toEqual(1);
     expect(nav.find(AdminMenu).length).toEqual(1);
     expect(nav.find(EntitiesMenu).length).toEqual(1);
+    expect(nav.find(ManageMenu).length).toEqual(1);
     expect(nav.find(LocaleMenu).length).toEqual(1);
 
     expect(nav.find(AccountMenu).length).toEqual(1);
@@ -84,6 +86,7 @@ describe('Header', () => {
     expect(nav.find(Home).length).toEqual(1);
     expect(nav.find(AdminMenu).length).toEqual(1);
     expect(nav.find(EntitiesMenu).length).toEqual(1);
+    expect(nav.find(ManageMenu).length).toEqual(1);
     expect(nav.find(LocaleMenu).length).toEqual(1);
 
     expect(nav.find(AccountMenu).length).toEqual(1);
@@ -95,6 +98,7 @@ describe('Header', () => {
     const nav = wrapper(userProps).find(Nav);
     expect(nav.find(AdminMenu).length).toEqual(0);
     expect(nav.find(EntitiesMenu).length).toEqual(1);
+    expect(nav.find(ManageMenu).length).toEqual(1);
     const account = nav.find(AccountMenu);
     expect(account.first().props().isAuthenticated).toEqual(true);
   });
@@ -103,6 +107,7 @@ describe('Header', () => {
     const nav = wrapper(guestProps).find(Nav);
     expect(nav.find(AdminMenu).length).toEqual(0);
     expect(nav.find(EntitiesMenu).length).toEqual(0);
+    expect(nav.find(ManageMenu).length).toEqual(0);
     const account = nav.find(AccountMenu);
     expect(account.length).toEqual(1);
     expect(account.first().props().isAuthenticated).toEqual(false);
