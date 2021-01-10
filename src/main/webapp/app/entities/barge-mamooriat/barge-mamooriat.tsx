@@ -4,26 +4,45 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 import { Translate,ICrudGetAllAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import './barge-mamooriat.scss';
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './barge-mamooriat.reducer';
 import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import bargeMamuriatData from '../../../i18n/fa/vaziatBargeMamooriat.json'
 
 export interface IBargeMamooriatProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
-
 export const BargeMamooriat = (props: IBargeMamooriatProps) => {
+
   useEffect(() => {
     props.getEntities();
   }, []);
+  
+window.onclick = (event) => {
+  if (event.target.matches('.dropbtn')) {
+    return
+  } 
+  const dropDownMenu = document.getElementById("dropDownMenu")
+  dropDownMenu.style.display = "none"
+}
 
+const vaziatDropDownTapped = () => {
+  const dropDownMenu = document.getElementById("dropDownMenu")
+  const visibility = dropDownMenu.style.display === "none" ? "block" : "none"
+  dropDownMenu.style.display = visibility
+}
+
+const vaziateChanged = (selectedVaziat: string) => {
+  console.log("clicked");
+  console.log(selectedVaziat);
+}
   const { bargeMamooriatList, match, loading } = props;
   return (
     <div>
       <h2 id="barge-mamooriat-heading">
         <span >برگه ماموریت ها</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-          <FontAwesomeIcon icon="plus" />
+          <FontAwesomeIcon icon="plus"/>
           &nbsp;
           <span>ایجاد برگه ماموریت</span>
         </Link>
@@ -38,16 +57,27 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
                   <span>شناسه</span>
                 </th>
                 <th>
-                  <span>وضعیت</span>
+                    <div className="dropdown">
+                        <button onClick={vaziatDropDownTapped} className="dropbtn">وضعیت</button>
+                        <div id="dropDownMenu" >
+                          <button className="dropDownbtn" onClick={() => vaziateChanged("null")}>همه</button>
+                          <button className="dropDownbtn" onClick={() => vaziateChanged("SARPARAST_TIME_HESABRESI")}>سرپرست تیم حسابرسی</button>
+                          <button className="dropDownbtn" onClick={() => vaziateChanged("DAR_ENTEZAR_TAEED_MODIR_HESABRESI")}>در انتظار تایید مدیر حسابرسی</button>
+                          <button className="dropDownbtn" onClick={() => vaziateChanged("DAR_ENTEZAR_TAEED_MOAVEN_HESABRESI")}>در انتظار تایید معاون حسابرسی</button>
+                          <button className="dropDownbtn" onClick={() => vaziateChanged("DAR_ENTEZAR_TAEED_JANESHIN_SAZMAN")}>در انتظار تایید جانشین سازمان</button>
+                          <button className="dropDownbtn" onClick={() => vaziateChanged("DAR_ENTEZAR_TAEED_RIASATSAZMAN")}>در انتظار تایید ریاست سازمان</button>
+                          <button className="dropDownbtn" onClick={() => vaziateChanged("DAR_ENTEZAR_TAEED_HEYAT_RAESE_AJA")}>در انتظار تایید هیئت رئیسه آجا</button>
+                      </div>
+                    </div>
                 </th>
                 <th>
-                <input type="text" size="8" placeholder="سال" />
+                <input type="text" size="8" placeholder="سال" className="input"/>
                 </th>
                 <th>
                   <span>شروع ماموریت</span>
                 </th>
                 <th>
-                  <span>پایان</span>
+                  <span> پایان ماموریت</span>
                 </th>
                 <th>
                   <span>سرپرست</span>

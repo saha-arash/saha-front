@@ -62,8 +62,8 @@
       "currentpassword.placeholder": "Current password",
       "newpassword.label": "رمزعبور جدید",
       "newpassword.placeholder": "رمزعبور جدید",
-      "confirmpassword.label": "تصدیق رمزعبور جدید",
-      "confirmpassword.placeholder": "تصدیق رمزعبور جدید",
+      "confirmpassword.label": "تایید رمزعبور جدید",
+      "confirmpassword.placeholder": "تایید رمزعبور جدید",
       "email.label": "رایانامه",
       "email.placeholder": "آدرس رایانامه شما"
     },
@@ -80,7 +80,7 @@
         }
       },
       "error": {
-        "dontmatch": "رمزعبور و تصدیق رمزعبور یکی نیستند!"
+        "dontmatch": "رمزعبور و تایید رمزعبور یکی نیستند!"
       },
       "validate": {
         "newpassword": {
@@ -90,9 +90,9 @@
           "strength": "قدرتمندی رمزعبور:"
         },
         "confirmpassword": {
-          "required": "تصدیق رمزعبور شما ضروری است",
-          "minlength": "تصدیق رمزعبور شما باید حداقل ۴ کرکتر باشد",
-          "maxlength": "تصدیق رمز عبور شما نمی‌تواند بیش از ۵۰ کرکتر باشد."
+          "required": "تایید رمزعبور شما ضروری است",
+          "minlength": "تایید رمزعبور شما باید حداقل ۴ کرکتر باشد",
+          "maxlength": "تایید رمز عبور شما نمی‌تواند بیش از ۵۰ کرکتر باشد."
         },
         "email": {
           "required": "آدرس ایمیل شما ضروری است",
@@ -127,7 +127,7 @@
       "value": "مقدار"
     },
     "delete": {
-      "title": "تصدیق عملیات حذف"
+      "title": "تایید عملیات حذف"
     },
     "validation": {
       "required": "وارد کردن این فیلد ضروری است",

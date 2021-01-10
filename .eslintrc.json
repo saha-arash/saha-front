@@ -3,5 +3,5 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "rules": {}
+  "rules": { "no-console": 0 }
 }
