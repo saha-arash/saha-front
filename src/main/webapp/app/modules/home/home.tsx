@@ -48,22 +48,21 @@ export const Home = (props: IHomeProp) => {
                 <span className="logo"/>
               </Col>
               </Row>
-            <Alert color="success" className="">
+            <Alert color="success" className="alert-center">
               <span>برای ورود به سیستم کلیک کنید:</span>
               <div>
-              <Button color="white" type="submit" className="">
-              <Link to="/login" >
+              <Link to="/login" className="btn btn-white" >
                 <div className="enterButton"> ورود</div>
               </Link>
-            </Button>
               </div>
             </Alert>
           </div>
         )}
         
-          <div className= "">
+          <div className= "list">
+          <h4 className= "">:در موارد زیر با ادمین سامانه تماس بگیرید</h4>
+
             <ul className= "rightFloat">
-            <h4 className= "">:در موارد زیر با ادمین سامانه تماس بگیرید</h4>
             <li className="">
               در صورتی که در ورود به سیستم دچار مشکل شده اید.
             </li>

@@ -5,9 +5,9 @@ import { Translate } from 'react-jhipster';
 import { Col, Row } from 'reactstrap';
 
 const Footer = props => (
-  <div className="footer page-content">
-    <Row>
-      <Col md="12">
+  <div className="footer page-content container">
+    <Row className="d-flex align-items-center justify-content-center"> 
+      <Col md="12" className="d-flex align-items-center justify-content-center">
         <p>
           <Translate contentKey="footer">Your footer</Translate>
         </p>
