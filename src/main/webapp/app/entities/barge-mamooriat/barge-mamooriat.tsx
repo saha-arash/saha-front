@@ -10,10 +10,10 @@ import { getEntities } from './barge-mamooriat.reducer';
 import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import bargeMamuriatData from '../../../i18n/fa/vaziatBargeMamooriat.json'
-
+//TODO: add new header option besides mojudiatha
 export interface IBargeMamooriatProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 export const BargeMamooriat = (props: IBargeMamooriatProps) => {
-
+//TODO: filter ba sal va vazait
   useEffect(() => {
     props.getEntities();
   }, []);
@@ -32,8 +32,8 @@ const vaziatDropDownTapped = () => {
   dropDownMenu.style.display = visibility
 }
 
+//TODO: know axios calls and change their signature
 const vaziateChanged = (selectedVaziat: string) => {
-  console.log("clicked");
   console.log(selectedVaziat);
 }
   const { bargeMamooriatList, match, loading } = props;
@@ -60,6 +60,7 @@ const vaziateChanged = (selectedVaziat: string) => {
                     <div className="dropdown">
                         <button onClick={vaziatDropDownTapped} className="dropbtn">وضعیت</button>
                         <div id="dropDownMenu" >
+                          {/* TODO: use map and json file to make this list */}
                           <button className="dropDownbtn" onClick={() => vaziateChanged("null")}>همه</button>
                           <button className="dropDownbtn" onClick={() => vaziateChanged("SARPARAST_TIME_HESABRESI")}>سرپرست تیم حسابرسی</button>
                           <button className="dropDownbtn" onClick={() => vaziateChanged("DAR_ENTEZAR_TAEED_MODIR_HESABRESI")}>در انتظار تایید مدیر حسابرسی</button>

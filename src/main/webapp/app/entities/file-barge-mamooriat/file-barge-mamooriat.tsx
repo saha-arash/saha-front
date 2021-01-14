@@ -20,32 +20,33 @@ export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
   const { fileBargeMamooriatList, match, loading } = props;
   return (
     <div>
-      <h2 id="file-barge-mamooriat-heading">
-        <Translate contentKey="sahaApp.fileBargeMamooriat.home.title">File Barge Mamooriats</Translate>
+      <h3 id="file-barge-mamooriat-heading">
+        <span>فایل های برگه ماموریت</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.fileBargeMamooriat.home.createLabel">Create new File Barge Mamooriat</Translate>
+          <span>ایجاد فایل جدید</span>
         </Link>
-      </h2>
+      </h3>
       <div className="table-responsive">
         {fileBargeMamooriatList && fileBargeMamooriatList.length > 0 ? (
           <Table responsive>
             <thead>
               <tr>
                 <th>
-                  <Translate contentKey="global.field.id">ID</Translate>
+                  <span>شناسه</span>
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.fileBargeMamooriat.madarek">Madarek</Translate>
+                  {/* <Translate contentKey="sahaApp.fileBargeMamooriat.madarek">مدارک</Translate> */}
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.fileBargeMamooriat.bargeMamooriat">Barge Mamooriat</Translate>
+                  <span>شناسه برگه ماموریت</span>
                 </th>
                 <th />
               </tr>
             </thead>
             <tbody>
+              {/* HTU Map  */}
               {fileBargeMamooriatList.map((fileBargeMamooriat, i) => (
                 <tr key={`entity-${i}`}>
                   <td>
@@ -57,11 +58,12 @@ export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
                     {fileBargeMamooriat.madarek ? (
                       <div>
                         <a onClick={openFile(fileBargeMamooriat.madarekContentType, fileBargeMamooriat.madarek)}>
-                          <Translate contentKey="entity.action.open">Open</Translate>
+                          
+                          <span>باز کردن</span>
                           &nbsp;
                         </a>
                         <span>
-                          {fileBargeMamooriat.madarekContentType}, {byteSize(fileBargeMamooriat.madarek)}
+                          ({fileBargeMamooriat.madarekContentType}), {/*byteSize(fileBargeMamooriat.madarek)*/}
                         </span>
                       </div>
                     ) : null}

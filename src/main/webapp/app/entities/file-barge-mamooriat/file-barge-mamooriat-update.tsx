@@ -15,7 +15,8 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 
 export interface IFileBargeMamooriatUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
-
+//TODO: pass id to the entity
+//TODO: how props are sent
 export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) => {
   const [bargeMamooriatId, setBargeMamooriatId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
@@ -71,9 +72,9 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="sahaApp.fileBargeMamooriat.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.fileBargeMamooriat.home.createOrEditLabel">Create or edit a FileBargeMamooriat</Translate>
-          </h2>
+          <h3 id="sahaApp.fileBargeMamooriat.home.createOrEditLabel">
+            <span> ایجاد/ ویرایش برگه ماموریت</span>
+          </h3>
         </Col>
       </Row>
       <Row className="justify-content-center">
@@ -92,14 +93,10 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
               ) : null}
               <AvGroup>
                 <AvGroup>
-                  <Label id="madarekLabel" for="madarek">
-                    <Translate contentKey="sahaApp.fileBargeMamooriat.madarek">Madarek</Translate>
-                  </Label>
-                  <br />
                   {madarek ? (
                     <div>
                       <a onClick={openFile(madarekContentType, madarek)}>
-                        <Translate contentKey="entity.action.open">Open</Translate>
+                        <span>باز کردن</span>
                       </a>
                       <br />
                       <Row>

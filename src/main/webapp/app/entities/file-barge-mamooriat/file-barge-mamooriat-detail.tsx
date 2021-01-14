@@ -35,7 +35,7 @@ export const FileBargeMamooriatDetail = (props: IFileBargeMamooriatDetailProps) 
             {fileBargeMamooriatEntity.madarek ? (
               <div>
                 <a onClick={openFile(fileBargeMamooriatEntity.madarekContentType, fileBargeMamooriatEntity.madarek)}>
-                  <Translate contentKey="entity.action.open">Open</Translate>&nbsp;
+                  <span>باز کردن</span>&nbsp;
                 </a>
                 <span>
                   {fileBargeMamooriatEntity.madarekContentType}, {byteSize(fileBargeMamooriatEntity.madarek)}
