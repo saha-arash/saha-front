@@ -10,13 +10,14 @@ import { getEntities } from './barge-mamooriat.reducer';
 import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import bargeMamuriatData from '../../../i18n/fa/vaziatBargeMamooriat.json'
-//TODO: add new header option besides mojudiatha
+
 export interface IBargeMamooriatProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 export const BargeMamooriat = (props: IBargeMamooriatProps) => {
-//TODO: filter ba sal va vazait
+  const [vaziat, setVaziat] = useState(null);
+  const [sal, setSal] = useState(null);
   useEffect(() => {
-    props.getEntities();
-  }, []);
+    props.getEntities(0, 10, 10, vaziat);
+  }, [vaziat]);
   
 window.onclick = (event) => {
   if (event.target.matches('.dropbtn')) {
@@ -34,9 +35,12 @@ const vaziatDropDownTapped = () => {
 
 //TODO: know axios calls and change their signature
 const vaziateChanged = (selectedVaziat: string) => {
-  console.log(selectedVaziat);
+  setVaziat(selectedVaziat);
+
+  // history.push(`doctor/${udi}`, { date: at });
 }
   const { bargeMamooriatList, match, loading } = props;
+  console.log(props);
   return (
     <div>
       <h2 id="barge-mamooriat-heading">
@@ -60,14 +64,15 @@ const vaziateChanged = (selectedVaziat: string) => {
                     <div className="dropdown">
                         <button onClick={vaziatDropDownTapped} className="dropbtn">وضعیت</button>
                         <div id="dropDownMenu" >
-                          {/* TODO: use map and json file to make this list */}
-                          <button className="dropDownbtn" onClick={() => vaziateChanged("null")}>همه</button>
-                          <button className="dropDownbtn" onClick={() => vaziateChanged("SARPARAST_TIME_HESABRESI")}>سرپرست تیم حسابرسی</button>
-                          <button className="dropDownbtn" onClick={() => vaziateChanged("DAR_ENTEZAR_TAEED_MODIR_HESABRESI")}>در انتظار تایید مدیر حسابرسی</button>
-                          <button className="dropDownbtn" onClick={() => vaziateChanged("DAR_ENTEZAR_TAEED_MOAVEN_HESABRESI")}>در انتظار تایید معاون حسابرسی</button>
-                          <button className="dropDownbtn" onClick={() => vaziateChanged("DAR_ENTEZAR_TAEED_JANESHIN_SAZMAN")}>در انتظار تایید جانشین سازمان</button>
-                          <button className="dropDownbtn" onClick={() => vaziateChanged("DAR_ENTEZAR_TAEED_RIASATSAZMAN")}>در انتظار تایید ریاست سازمان</button>
-                          <button className="dropDownbtn" onClick={() => vaziateChanged("DAR_ENTEZAR_TAEED_HEYAT_RAESE_AJA")}>در انتظار تایید هیئت رئیسه آجا</button>
+                          {Object.keys(bargeMamuriatData.sahaApp.VaziatBargeMamooriat).map((item) => (
+                            <button
+                              key={item}
+                              className="dropDownbtn"
+                              onClick={() => vaziateChanged(item)}
+                            >
+                              {bargeMamuriatData.sahaApp.VaziatBargeMamooriat[item]}
+                            </button>
+                          ))}
                       </div>
                     </div>
                 </th>

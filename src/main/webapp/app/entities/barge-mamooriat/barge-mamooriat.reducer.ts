@@ -99,9 +99,9 @@ const apiUrl = 'api/barge-mamooriats';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IBargeMamooriat> = (page, size, sort) => ({
+export const getEntities: ICrudGetAllAction<IBargeMamooriat> = (page, size, sort, vaziat) => ({
   type: ACTION_TYPES.FETCH_BARGEMAMOORIAT_LIST,
-  payload: axios.get<IBargeMamooriat>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
+  payload: axios.get<IBargeMamooriat>(`${apiUrl}?cacheBuster=${new Date().getTime()}&page=${page}&vaziat=${vaziat}`)
 });
 
 export const getEntity: ICrudGetAction<IBargeMamooriat> = id => {

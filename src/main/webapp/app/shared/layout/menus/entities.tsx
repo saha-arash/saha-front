@@ -16,19 +16,37 @@ export const EntitiesMenu = props => (
     {/* <MenuItem icon="asterisk" to="/yegan-code">
       <Translate contentKey="global.menu.entities.yeganCode" />
     </MenuItem> */}
-    <MenuItem icon="asterisk" to="/payam">
-      <Translate contentKey="global.menu.entities.payam" />
+    <MenuItem icon="asterisk" to="/karbar">
+     کاربران
     </MenuItem>
+    <MenuItem icon="asterisk" to="/semat">
+      سمت ها
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/yegan">
+      یگان
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/yegan-type">
+      نوع یگان ها
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/daraje">
+      درجه ها
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/mantaghe">
+      منطقه
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/ostan">
+      استان
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/shahr">
+     شهر
+    </MenuItem>
+    {/* <MenuItem icon="asterisk" to="/payam">
+      <Translate contentKey="global.menu.entities.payam" />
+    </MenuItem> */}
     {/* <MenuItem icon="asterisk" to="/file-name">
       <Translate contentKey="global.menu.entities.fileName" />
     </MenuItem> */}
-    <MenuItem icon="asterisk" to="/karbar">
-      <Translate contentKey="global.menu.entities.karbar" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/semat">
-      <Translate contentKey="global.menu.entities.semat" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/morkhasi">
+    {/* <MenuItem icon="asterisk" to="/morkhasi">
       <Translate contentKey="global.menu.entities.morkhasi" />
     </MenuItem>
     <MenuItem icon="asterisk" to="/dore">
@@ -36,11 +54,11 @@ export const EntitiesMenu = props => (
     </MenuItem>
     <MenuItem icon="asterisk" to="/negahbani">
       <Translate contentKey="global.menu.entities.negahbani" />
-    </MenuItem>
+    </MenuItem> */}
     {/* <MenuItem icon="asterisk" to="/barge-mamooriat">
       <Translate contentKey="global.menu.entities.bargeMamooriat" />
     </MenuItem> */}
-    <MenuItem icon="asterisk" to="/hesab-resi">
+    {/* <MenuItem icon="asterisk" to="/hesab-resi">
       <Translate contentKey="global.menu.entities.hesabResi" />
     </MenuItem>
     <MenuItem icon="asterisk" to="/barname-hesab-resi">
@@ -48,37 +66,20 @@ export const EntitiesMenu = props => (
     </MenuItem>
      <MenuItem icon="asterisk" to="/file-barge-mamooriat">
       <Translate contentKey="global.menu.entities.fileBargeMamooriat" />
-    </MenuItem> 
-    <MenuItem icon="asterisk" to="/daraje">
-      <Translate contentKey="global.menu.entities.daraje" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/yegan-type">
-      <Translate contentKey="global.menu.entities.yeganType" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/niroo-code">
+    </MenuItem>  */}
+    {/* <MenuItem icon="asterisk" to="/niroo-code">
       <Translate contentKey="global.menu.entities.nirooCode" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/yegan">
-      <Translate contentKey="global.menu.entities.yegan" />
-    </MenuItem>
+    </MenuItem> */}
     {/* <MenuItem icon="asterisk" to="/file-hesab-resi">
       <Translate contentKey="global.menu.entities.fileHesabResi" />
     </MenuItem> */}
     {/* <MenuItem icon="asterisk" to="/file-gozaresh">
       <Translate contentKey="global.menu.entities.fileGozaresh" />
     </MenuItem> */}
-    <MenuItem icon="asterisk" to="/mantaghe">
-      <Translate contentKey="global.menu.entities.mantaghe" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/ostan">
-      <Translate contentKey="global.menu.entities.ostan" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/shahr">
-      <Translate contentKey="global.menu.entities.shahr" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/gozaresh">
+    
+    {/* <MenuItem icon="asterisk" to="/gozaresh">
       <Translate contentKey="global.menu.entities.gozaresh" />
-    </MenuItem>
+    </MenuItem> */}
     {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
   </NavDropdown>
 );

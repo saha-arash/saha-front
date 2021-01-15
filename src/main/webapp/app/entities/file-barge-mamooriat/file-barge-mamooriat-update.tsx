@@ -68,6 +68,8 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
     }
   };
 
+  console.log(props);
+
   return (
     <div>
       <Row className="justify-content-center">
@@ -117,11 +119,11 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
                   <AvInput type="hidden" name="madarek" value={madarek} />
                 </AvGroup>
               </AvGroup>
-              <AvGroup>
+              {/* <AvGroup>
                 <Label for="file-barge-mamooriat-bargeMamooriat">
                   <Translate contentKey="sahaApp.fileBargeMamooriat.bargeMamooriat">Barge Mamooriat</Translate>
                 </Label>
-                <AvInput id="file-barge-mamooriat-bargeMamooriat" type="select" className="form-control" name="bargeMamooriat.id">
+                <AvInput id="file-barge-mamooriat-bargeMamooriat" type="select" className="form-control" name="bargeMamooriat.id" value={props.location.state.id} type="hidden">
                   <option value="" key="0" />
                   {bargeMamooriats
                     ? bargeMamooriats.map(otherEntity => (
@@ -131,7 +133,7 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
                       ))
                     : null}
                 </AvInput>
-              </AvGroup>
+              </AvGroup> */}
               <Button tag={Link} id="cancel-save" to="/file-barge-mamooriat" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

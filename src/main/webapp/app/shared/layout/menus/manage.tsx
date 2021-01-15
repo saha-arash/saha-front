@@ -13,43 +13,43 @@ export const ManageMenu = props => (
     id="entity-menu"
     style={{ maxHeight: '80vh', overflow: 'auto' }}
   >
-    <MenuItem icon="asterisk" to="/yegan-code">
-      yeeeeegggg
-    </MenuItem>
+    {/* <MenuItem icon="asterisk" to="/yegan-code">
+      YeGancode
+    </MenuItem> */}
     <MenuItem icon="asterisk" to="/payam">
-      <Translate contentKey="global.menu.entities.payam" />
+      پیام ها
     </MenuItem>
-    <MenuItem icon="asterisk" to="/file-name">
+    {/* <MenuItem icon="asterisk" to="/file-name">
       <Translate contentKey="global.menu.entities.fileName" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/karbar">
+    </MenuItem> */}
+    {/* <MenuItem icon="asterisk" to="/karbar">
       <Translate contentKey="global.menu.entities.karbar" />
     </MenuItem>
     <MenuItem icon="asterisk" to="/semat">
       <Translate contentKey="global.menu.entities.semat" />
-    </MenuItem>
+    </MenuItem> */}
     <MenuItem icon="asterisk" to="/morkhasi">
-      <Translate contentKey="global.menu.entities.morkhasi" />
+     مرخصی ها
     </MenuItem>
     <MenuItem icon="asterisk" to="/dore">
-      <Translate contentKey="global.menu.entities.dore" />
+      دوره ها
     </MenuItem>
     <MenuItem icon="asterisk" to="/negahbani">
-      <Translate contentKey="global.menu.entities.negahbani" />
+     نگهبانی ها
     </MenuItem>
     <MenuItem icon="asterisk" to="/barge-mamooriat">
-      <Translate contentKey="global.menu.entities.bargeMamooriat" />
+      برگه ماموریت ها
     </MenuItem>
     <MenuItem icon="asterisk" to="/hesab-resi">
-      <Translate contentKey="global.menu.entities.hesabResi" />
+      برنامه های سالانه
     </MenuItem>
     <MenuItem icon="asterisk" to="/barname-hesab-resi">
-      <Translate contentKey="global.menu.entities.barnameHesabResi" />
+      برنامه حسابرسی
     </MenuItem>
-    <MenuItem icon="asterisk" to="/file-barge-mamooriat">
+    {/* <MenuItem icon="asterisk" to="/file-barge-mamooriat">
       <Translate contentKey="global.menu.entities.fileBargeMamooriat" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/daraje">
+    </MenuItem> */}
+    {/* <MenuItem icon="asterisk" to="/daraje">
       <Translate contentKey="global.menu.entities.daraje" />
     </MenuItem>
     <MenuItem icon="asterisk" to="/yegan-type">
@@ -66,8 +66,8 @@ export const ManageMenu = props => (
     </MenuItem>
     <MenuItem icon="asterisk" to="/file-gozaresh">
       <Translate contentKey="global.menu.entities.fileGozaresh" />
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/mantaghe">
+    </MenuItem> */}
+    {/* <MenuItem icon="asterisk" to="/mantaghe">
       <Translate contentKey="global.menu.entities.mantaghe" />
     </MenuItem>
     <MenuItem icon="asterisk" to="/ostan">
@@ -75,9 +75,9 @@ export const ManageMenu = props => (
     </MenuItem>
     <MenuItem icon="asterisk" to="/shahr">
       <Translate contentKey="global.menu.entities.shahr" />
-    </MenuItem>
+    </MenuItem> */}
     <MenuItem icon="asterisk" to="/gozaresh">
-      <Translate contentKey="global.menu.entities.gozaresh" />
+      گزارش ها
     </MenuItem>
     {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
   </NavDropdown>

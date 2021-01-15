@@ -4,16 +4,20 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
 import { Translate, ICrudGetAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import moment from 'jalali-moment';
+import moment from 'moment-jalaali';
 import { IRootState } from 'app/shared/reducers';
 import { getEntity } from './barge-mamooriat.reducer';
 import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import './barge-mamooriat-detail.scss';
+import fileBargeMamooriat from '../file-barge-mamooriat/file-barge-mamooriat';
 
 export interface IBargeMamooriatDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
+  const { bargeMamooriatEntity } = props;
+
+
   useEffect(() => {
     props.getEntity(props.match.params.id);
   }, []);
@@ -34,7 +38,7 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
     return '';
   }
 
-  const { bargeMamooriatEntity } = props;
+  console.log(new Date())
   return (
     <Row>
       <Col md="8">
@@ -67,10 +71,10 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={bargeMamooriatEntity.shorooMamooriat} type="date" format={APP_DATE_FORMAT} />
+            <TextFormat value={moment('2021/01/15', 'YYYY/MM/DD').format('jYYYY/jMM/jDD')} type="date" format={APP_DATE_FORMAT} />
           </dd>
           {/* TODO: convert date to jalali using momnet jalali also with persin digits what you suggest*/}
-          {/* <dd>{moment(bargeMamooriatEntity.shorooMamooriat, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')}</dd> */}
+          {/* <dd>{moment('2021/01/15', 'YYYY/MM/DD').format('jYYYY/jMM/jDD')}</dd> */}
           <dt>
             <span id="payanMamooriat">
               <span>پایان ماموریت</span>
@@ -93,7 +97,7 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
           {/* <dd>{bargeMamooriatEntity.hesabResi ? bargeMamooriatEntity.hesabResi.id : ''}</dd> */}
         </dl>
         <div>
-          <Button tag={Link} to="/file-barge-mamooriat" replace color="warning" className="margined">
+          <Button tag={Link} to={`/file-barge-mamooriat/${fileBargeMamooriat.id}`} replace color="warning" className="margined">
             <span className="d-none d-md-inline">
               <span>فایل ها</span>
             </span>

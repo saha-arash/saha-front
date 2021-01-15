@@ -29,3 +29,5 @@ export const Home = props => (
     </NavLink>
   </NavItem>
 );
+const ali = 'asas';
+export default ali

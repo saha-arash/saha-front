@@ -19,6 +19,7 @@ export const Home = (props: IHomeProp) => {
     <div className="">
       <Row className="">
       <Col md="7" className="">
+        {/* TODO: how to detect user is logged in an after loggin and reloading the page */}
         {account && account.login ? (
           <div>
             <Alert color="success" className="">

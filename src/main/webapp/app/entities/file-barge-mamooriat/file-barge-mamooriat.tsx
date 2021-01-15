@@ -16,13 +16,15 @@ export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
   useEffect(() => {
     props.getEntities();
   }, []);
+  console.log(props);
 
+  // TODO: get list of files by mamuriat id
   const { fileBargeMamooriatList, match, loading } = props;
   return (
     <div>
       <h3 id="file-barge-mamooriat-heading">
         <span>فایل های برگه ماموریت</span>
-        <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
+        <Link to={{ pathname: `${match.url}/new`, state: { id: '2' }}} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
           <span>ایجاد فایل جدید</span>

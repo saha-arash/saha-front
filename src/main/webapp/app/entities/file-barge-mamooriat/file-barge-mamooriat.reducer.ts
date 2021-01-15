@@ -116,6 +116,14 @@ export const getEntities: ICrudGetAllAction<IFileBargeMamooriat> = (page, size, 
   payload: axios.get<IFileBargeMamooriat>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
 });
 
+export const getEntitiesById: ICrudGetAllAction<IFileBargeMamooriat> = (page, size, sort, id) => async dispatch => {
+  const result = await dispatch({
+    type: ACTION_TYPES.FETCH_FILEBARGEMAMOORIAT_LIST,
+    payload: axios.get<IFileBargeMamooriat>(`${apiUrl}?cacheBuster=${new Date().getTime()}/${id}`)
+  });
+  return result;
+};
+
 export const getEntity: ICrudGetAction<IFileBargeMamooriat> = id => {
   const requestUrl = `${apiUrl}/${id}`;
   return {
