@@ -71,3 +71,9 @@ Main page styles
 .table-responsive {
   overflow: visible;
 }
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

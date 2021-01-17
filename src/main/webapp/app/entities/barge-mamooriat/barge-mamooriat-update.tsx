@@ -74,8 +74,8 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="sahaApp.bargeMamooriat.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.bargeMamooriat.home.createOrEditLabel">Create or edit a BargeMamooriat</Translate>
+          <h2>
+            <span>ایجاد/ویرایش برگه ماموریت</span>
           </h2>
         </Col>
       </Row>
@@ -88,14 +88,14 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
               {!isNew ? (
                 <AvGroup>
                   <Label for="barge-mamooriat-id">
-                    <Translate contentKey="global.field.id">ID</Translate>
+                    <span>شناسه</span>
                   </Label>
                   <AvInput id="barge-mamooriat-id" type="text" className="form-control" name="id" required readOnly />
                 </AvGroup>
               ) : null}
               <AvGroup>
                 <Label id="vaziatLabel" for="barge-mamooriat-vaziat">
-                  <Translate contentKey="sahaApp.bargeMamooriat.vaziat">Vaziat</Translate>
+                  <span>وضعیت</span>
                 </Label>
                 <AvInput
                   id="barge-mamooriat-vaziat"
@@ -124,13 +124,13 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
               </AvGroup>
               <AvGroup>
                 <Label id="saleMamooriatLabel" for="barge-mamooriat-saleMamooriat">
-                  <Translate contentKey="sahaApp.bargeMamooriat.saleMamooriat">Sale Mamooriat</Translate>
+                  <span>سال</span>
                 </Label>
                 <AvField id="barge-mamooriat-saleMamooriat" type="string" className="form-control" name="saleMamooriat" />
               </AvGroup>
               <AvGroup>
                 <Label id="shorooMamooriatLabel" for="barge-mamooriat-shorooMamooriat">
-                  <Translate contentKey="sahaApp.bargeMamooriat.shorooMamooriat">Shoroo Mamooriat</Translate>
+                  <span>شروع ماموریت</span>
                 </Label>
                 <AvInput
                   id="barge-mamooriat-shorooMamooriat"
@@ -143,7 +143,7 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
               </AvGroup>
               <AvGroup>
                 <Label id="payanMamooriatLabel" for="barge-mamooriat-payanMamooriat">
-                  <Translate contentKey="sahaApp.bargeMamooriat.payanMamooriat">Payan Mamooriat</Translate>
+                  <span>پایان ماموریت</span>
                 </Label>
                 <AvInput
                   id="barge-mamooriat-payanMamooriat"
@@ -156,7 +156,7 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
               </AvGroup>
               <AvGroup>
                 <Label for="barge-mamooriat-sarparast">
-                  <Translate contentKey="sahaApp.bargeMamooriat.sarparast">Sarparast</Translate>
+                  <span>انتخاب سرپرست</span>
                 </Label>
                 <AvInput id="barge-mamooriat-sarparast" type="select" className="form-control" name="sarparast.id">
                   <option value="" key="0" />
@@ -171,7 +171,7 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
               </AvGroup>
               <AvGroup>
                 <Label for="barge-mamooriat-yegan">
-                  <Translate contentKey="sahaApp.bargeMamooriat.yegan">Yegan</Translate>
+                  <span>انتخاب یگان</span>
                 </Label>
                 <AvInput id="barge-mamooriat-yegan" type="select" className="form-control" name="yegan.id">
                   <option value="" key="0" />
@@ -186,7 +186,7 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
               </AvGroup>
               <AvGroup>
                 <Label for="barge-mamooriat-hesabResi">
-                  <Translate contentKey="sahaApp.bargeMamooriat.hesabResi">Hesab Resi</Translate>
+                  <span>شناسه حسابرسی</span>
                 </Label>
                 <AvInput id="barge-mamooriat-hesabResi" type="select" className="form-control" name="hesabResi.id">
                   <option value="" key="0" />
@@ -203,14 +203,14 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
-                  <Translate contentKey="entity.action.back">Back</Translate>
+                  <span>بازگشت</span>
                 </span>
               </Button>
               &nbsp;
               <Button color="primary" id="save-entity" type="submit" disabled={updating}>
                 <FontAwesomeIcon icon="save" />
                 &nbsp;
-                <Translate contentKey="entity.action.save">Save</Translate>
+                <span>ذخیره</span>
               </Button>
             </AvForm>
           )}

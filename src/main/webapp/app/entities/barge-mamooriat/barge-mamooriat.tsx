@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { Button, Col, Row, Table } from 'reactstrap';
+import { Button, Col, Row, Table, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Translate, ICrudGetAllAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './barge-mamooriat.scss';
@@ -10,12 +10,15 @@ import { getEntities } from './barge-mamooriat.reducer';
 import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import bargeMamuriatData from '../../../i18n/fa/vaziatBargeMamooriat.json';
+import { stat } from 'fs';
 
 export interface IBargeMamooriatProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 export const BargeMamooriat = (props: IBargeMamooriatProps) => {
   const [vaziat, setVaziat] = useState(null);
   const [sal, setSal] = useState(null);
   const [hesabresiShode, setHesabresiShode] = useState(null);
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  const [isDropDownToggle, setDropDownToggle] = useState(false);
   useEffect(() => {
     console.log("***USE EFECT CALLED \n\n\n",0, 0,"", vaziat,sal, hesabresiShode,"\n\n\n\n");
     
@@ -36,9 +39,15 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
     dropDownMenu.style.display = visibility;
   };
 
+  const dropDownOpenChanged = (state: boolean) => {
+    setIsDropDownOpen(state);
+  };
+
+  const dropDownToggleChanged = (state: boolean) => {
+    setDropDownToggle(state);
+  };
+
   const vaziateChanged = (selectedVaziat: string) => {
-    console.log("HERE",selectedVaziat);
-    
     setVaziat(selectedVaziat);
   };
 
@@ -53,6 +62,40 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
   console.log(props);
   return (
     <div>
+          <Dropdown isOpen={isDropDownOpen} toggle={isDropDownToggle}>
+      <DropdownToggle>
+        وضعیت
+      </DropdownToggle>
+      <DropdownMenu
+        modifiers={{
+          setMaxHeight: {
+            enabled: true,
+            order: 890,
+            fn(data) {
+              return {
+                ...data,
+                styles: {
+                  ...data.styles,
+                  overflow: 'auto',
+                  maxHeight: '100px',
+                },
+              };
+            },
+          },
+        }}
+      >
+        <DropdownItem>Another Action</DropdownItem>
+        <DropdownItem>Another Action</DropdownItem>
+        <DropdownItem>Another Action</DropdownItem>
+        <DropdownItem>Another Action</DropdownItem>
+        <DropdownItem>Another Action</DropdownItem>
+        <DropdownItem>Another Action</DropdownItem>
+        <DropdownItem>Another Action</DropdownItem>
+        <DropdownItem>Another Action</DropdownItem>
+        <DropdownItem>Another Action</DropdownItem>
+        <DropdownItem>Another Action</DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
       <h2 id="barge-mamooriat-heading">
         <span>برگه ماموریت ها</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
@@ -168,8 +211,8 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
         ) : (
           // no barge mamuriat
           !loading && (
-            <div className="alert alert-warning">
-              <span>!برگه ماموریتی یافت نشد</span>
+            <div className="alert alert-warning centered">
+              !برگه ماموریتی یافت نشد
             </div>
           )
         )}
