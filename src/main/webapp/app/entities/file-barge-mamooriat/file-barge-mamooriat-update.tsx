@@ -68,13 +68,11 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
     }
   };
 
-  console.log(props);
-
   return (
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h3 id="sahaApp.fileBargeMamooriat.home.createOrEditLabel">
+          <h3>
             <span> ایجاد/ ویرایش برگه ماموریت</span>
           </h3>
         </Col>

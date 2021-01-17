@@ -6,7 +6,7 @@ import { Col, Row } from 'reactstrap';
 
 const Footer = props => (
   <div className="footer page-content container">
-    <Row className="d-flex align-items-center justify-content-center"> 
+    <Row className="d-flex align-items-center justify-content-center">
       <Col md="12" className="d-flex align-items-center justify-content-center">
         <p>
           <Translate contentKey="footer">Your footer</Translate>

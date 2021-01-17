@@ -5,6 +5,7 @@ import { cleanEntity } from 'app/shared/util/entity-utils';
 import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
 
 import { IBargeMamooriat, defaultValue } from 'app/shared/model/barge-mamooriat.model';
+import { isValidString } from 'app/shared/global methods/validators';
 
 export const ACTION_TYPES = {
   FETCH_BARGEMAMOORIAT_LIST: 'bargeMamooriat/FETCH_BARGEMAMOORIAT_LIST',
@@ -96,12 +97,34 @@ export default (state: BargeMamooriatState = initialState, action): BargeMamoori
 };
 
 const apiUrl = 'api/barge-mamooriats';
+const getUrl = (page, size, sort, vaziat, saleMamooriat, hesabresiShode) => {
+  let url = `${apiUrl}/user?cacheBuster=${new Date().getTime()}`;
+  console.log('\n NOWWW', page, size, sort, vaziat, saleMamooriat, hesabresiShode);
 
+  if (isValidString(page)) {
+    url = url + `&page=${page}`;
+  }
+  if (isValidString(size)) {
+    url = url + `&size=${size}`;
+  }
+  if (isValidString(vaziat)) {
+    url = url + `&vaziatBargeMamooriat=${vaziat}`;
+  }
+  if (isValidString(saleMamooriat)) {
+    url = url + `&saleMamooriat=${saleMamooriat}`;
+  }
+  if (isValidString(hesabresiShode)) {
+    url = url + `&hesabResiShode=${hesabresiShode}`;
+  }
+  console.log(url);
+
+  return url;
+};
 // Actions
-
-export const getEntities: ICrudGetAllAction<IBargeMamooriat> = (page, size, sort, vaziat) => ({
+export const getEntities: ICrudGetAllAction<IBargeMamooriat> = (page, size, sort, vaziat, saleMamooriat, hesabresiShode) => ({
   type: ACTION_TYPES.FETCH_BARGEMAMOORIAT_LIST,
-  payload: axios.get<IBargeMamooriat>(`${apiUrl}?cacheBuster=${new Date().getTime()}&page=${page}&vaziat=${vaziat}`)
+
+  payload: axios.get<IBargeMamooriat>(getUrl(0, 1000, sort, vaziat, saleMamooriat, hesabresiShode))
 });
 
 export const getEntity: ICrudGetAction<IBargeMamooriat> = id => {

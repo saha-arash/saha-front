@@ -6,7 +6,7 @@ import { openFile, byteSize, Translate, ICrudGetAllAction } from 'react-jhipster
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
-import { getEntities } from './file-barge-mamooriat.reducer';
+import { getFileBargeMamooriatsById, getEntities } from './file-barge-mamooriat.reducer';
 import { IFileBargeMamooriat } from 'app/shared/model/file-barge-mamooriat.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 
@@ -14,8 +14,11 @@ export interface IFileBargeMamooriatProps extends StateProps, DispatchProps, Rou
 
 export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
   useEffect(() => {
-    props.getEntities();
+    props.getFileBargeMamooriatsById(0,1000,"",props.location.state.id);
   }, []);
+  
+ 
+  
   console.log(props);
 
   // TODO: get list of files by mamuriat id
@@ -24,7 +27,11 @@ export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
     <div>
       <h3 id="file-barge-mamooriat-heading">
         <span>فایل های برگه ماموریت</span>
-        <Link to={{ pathname: `${match.url}/new`, state: { id: '2' }}} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
+        <Link
+          to={{ pathname: `${match.url}/new`, state: { id: '2' } }}
+          className="btn btn-primary float-right jh-create-entity"
+          id="jh-create-entity"
+        >
           <FontAwesomeIcon icon="plus" />
           &nbsp;
           <span>ایجاد فایل جدید</span>
@@ -38,9 +45,7 @@ export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
                 <th>
                   <span>شناسه</span>
                 </th>
-                <th>
-                  {/* <Translate contentKey="sahaApp.fileBargeMamooriat.madarek">مدارک</Translate> */}
-                </th>
+                <th>{/* <Translate contentKey="sahaApp.fileBargeMamooriat.madarek">مدارک</Translate> */}</th>
                 <th>
                   <span>شناسه برگه ماموریت</span>
                 </th>
@@ -60,7 +65,6 @@ export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
                     {fileBargeMamooriat.madarek ? (
                       <div>
                         <a onClick={openFile(fileBargeMamooriat.madarekContentType, fileBargeMamooriat.madarek)}>
-                          
                           <span>باز کردن</span>
                           &nbsp;
                         </a>
@@ -106,7 +110,7 @@ export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.fileBargeMamooriat.home.notFound">No File Barge Mamooriats found</Translate>
+              <span>فایلی برای این برگه ماموریت وجود ندارد</span>
             </div>
           )
         )}
@@ -121,7 +125,8 @@ const mapStateToProps = ({ fileBargeMamooriat }: IRootState) => ({
 });
 
 const mapDispatchToProps = {
-  getEntities
+  getEntities,
+  getFileBargeMamooriatsById
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;

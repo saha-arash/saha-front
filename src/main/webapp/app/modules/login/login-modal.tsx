@@ -79,8 +79,6 @@ class LoginModal extends React.Component<ILoginModalProps> {
               </Link>
             </Alert>
             */}
-            
-            
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={handleClose} tabIndex="1">

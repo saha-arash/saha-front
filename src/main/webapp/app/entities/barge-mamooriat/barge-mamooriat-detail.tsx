@@ -17,7 +17,6 @@ export interface IBargeMamooriatDetailProps extends StateProps, DispatchProps, R
 export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
   const { bargeMamooriatEntity } = props;
 
-
   useEffect(() => {
     props.getEntity(props.match.params.id);
   }, []);
@@ -38,7 +37,7 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
     return '';
   }
 
-  console.log(new Date())
+  console.log(new Date());
   return (
     <Row>
       <Col md="8">
@@ -97,13 +96,12 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
           {/* <dd>{bargeMamooriatEntity.hesabResi ? bargeMamooriatEntity.hesabResi.id : ''}</dd> */}
         </dl>
         <div>
-          <Button tag={Link} to={`/file-barge-mamooriat/${fileBargeMamooriat.id}`} replace color="warning" className="margined">
+          <Button tag={Link} to={{pathname: `/file-barge-mamooriat`, state:{id: bargeMamooriatEntity.id}}}   replace color="warning" className="margined">
             <span className="d-none d-md-inline">
               <span>فایل ها</span>
             </span>
           </Button>
         </div>
-  
         &nbsp;
         <Button tag={Link} to="/barge-mamooriat" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

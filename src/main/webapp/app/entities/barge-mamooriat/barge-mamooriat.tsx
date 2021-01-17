@@ -2,58 +2,68 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { Translate,ICrudGetAllAction, TextFormat } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './barge-mamooriat.scss';
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './barge-mamooriat.reducer';
 import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
-import bargeMamuriatData from '../../../i18n/fa/vaziatBargeMamooriat.json'
+import bargeMamuriatData from '../../../i18n/fa/vaziatBargeMamooriat.json';
 
 export interface IBargeMamooriatProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 export const BargeMamooriat = (props: IBargeMamooriatProps) => {
   const [vaziat, setVaziat] = useState(null);
   const [sal, setSal] = useState(null);
+  const [hesabresiShode, setHesabresiShode] = useState(null);
   useEffect(() => {
-    props.getEntities(0, 10, 10, vaziat);
-  }, [vaziat]);
-  
-window.onclick = (event) => {
-  if (event.target.matches('.dropbtn')) {
-    return
-  } 
-  const dropDownMenu = document.getElementById("dropDownMenu")
-  dropDownMenu.style.display = "none"
-}
+    console.log("***USE EFECT CALLED \n\n\n",0, 0,"", vaziat,sal, hesabresiShode,"\n\n\n\n");
+    
+    props.getEntities(0, 0,"", vaziat,sal, hesabresiShode);
+  }, [vaziat, sal, hesabresiShode]);
 
-const vaziatDropDownTapped = () => {
-  const dropDownMenu = document.getElementById("dropDownMenu")
-  const visibility = dropDownMenu.style.display === "none" ? "block" : "none"
-  dropDownMenu.style.display = visibility
-}
+  window.onclick = event => {
+    if (event.target.matches('.dropbtn')) {
+      return;
+    }
+    const dropDownMenu = document.getElementById('dropDownMenu');
+    dropDownMenu.style.display = 'none';
+  };
 
-//TODO: know axios calls and change their signature
-const vaziateChanged = (selectedVaziat: string) => {
-  setVaziat(selectedVaziat);
+  const vaziatDropDownTapped = () => {
+    const dropDownMenu = document.getElementById('dropDownMenu');
+    const visibility = dropDownMenu.style.display === 'none' ? 'block' : 'none';
+    dropDownMenu.style.display = visibility;
+  };
 
-  // history.push(`doctor/${udi}`, { date: at });
-}
+  const vaziateChanged = (selectedVaziat: string) => {
+    console.log("HERE",selectedVaziat);
+    
+    setVaziat(selectedVaziat);
+  };
+
+  const salChanged = (selectedSal: string) => {
+    setSal(selectedSal);
+  };
+
+  const hesabresiShodeChanged = (selectedState: boolean) => {
+    setHesabresiShode(selectedState);
+  };
   const { bargeMamooriatList, match, loading } = props;
   console.log(props);
   return (
     <div>
       <h2 id="barge-mamooriat-heading">
-        <span >برگه ماموریت ها</span>
+        <span>برگه ماموریت ها</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-          <FontAwesomeIcon icon="plus"/>
+          <FontAwesomeIcon icon="plus" />
           &nbsp;
           <span>ایجاد برگه ماموریت</span>
         </Link>
       </h2>
       <div className="table-responsive">
-        {bargeMamooriatList && bargeMamooriatList.length > 0 ? (
-          // a list of barge mamuraits
+        
+          {/*  a list of barge mamuraits */}
           <Table responsive>
             <thead>
               <tr>
@@ -61,23 +71,21 @@ const vaziateChanged = (selectedVaziat: string) => {
                   <span>شناسه</span>
                 </th>
                 <th>
-                    <div className="dropdown">
-                        <button onClick={vaziatDropDownTapped} className="dropbtn">وضعیت</button>
-                        <div id="dropDownMenu" >
-                          {Object.keys(bargeMamuriatData.sahaApp.VaziatBargeMamooriat).map((item) => (
-                            <button
-                              key={item}
-                              className="dropDownbtn"
-                              onClick={() => vaziateChanged(item)}
-                            >
-                              {bargeMamuriatData.sahaApp.VaziatBargeMamooriat[item]}
-                            </button>
-                          ))}
-                      </div>
+                  <div className="dropdown">
+                    <button onClick={vaziatDropDownTapped} className="dropbtn">
+                      وضعیت
+                    </button>
+                    <div id="dropDownMenu">
+                      {Object.keys(bargeMamuriatData.sahaApp.VaziatBargeMamooriat).map(item => (
+                        <button key={item} className="dropDownbtn" onClick={() => vaziateChanged(item)}>
+                          {bargeMamuriatData.sahaApp.VaziatBargeMamooriat[item]}
+                        </button>
+                      ))}
                     </div>
+                  </div>
                 </th>
                 <th>
-                <input type="text" size="8" placeholder="سال" className="input"/>
+                  <input type="text" size="8" placeholder="سال" className="input" />
                 </th>
                 <th>
                   <span>شروع ماموریت</span>
@@ -97,6 +105,7 @@ const vaziateChanged = (selectedVaziat: string) => {
                 <th />
               </tr>
             </thead>
+            {bargeMamooriatList && bargeMamooriatList.length > 0 ? (
             <tbody>
               {bargeMamooriatList.map((bargeMamooriat, i) => (
                 <tr key={`entity-${i}`}>
@@ -155,9 +164,8 @@ const vaziateChanged = (selectedVaziat: string) => {
                 </tr>
               ))}
             </tbody>
-          </Table>
+          
         ) : (
-
           // no barge mamuriat
           !loading && (
             <div className="alert alert-warning">
@@ -165,6 +173,7 @@ const vaziateChanged = (selectedVaziat: string) => {
             </div>
           )
         )}
+        </Table>
       </div>
     </div>
   );

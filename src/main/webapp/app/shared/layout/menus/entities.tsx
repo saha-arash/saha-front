@@ -7,17 +7,12 @@ import { NavLink as Link } from 'react-router-dom';
 import { NavDropdown } from './menu-components';
 
 export const EntitiesMenu = props => (
-  <NavDropdown
-    icon="th-list"
-    name="موجودیت ها"
-    id="entity-menu"
-    style={{ maxHeight: '80vh', overflow: 'auto' }}
-  >
+  <NavDropdown icon="th-list" name="موجودیت ها" id="entity-menu" style={{ maxHeight: '80vh', overflow: 'auto' }}>
     {/* <MenuItem icon="asterisk" to="/yegan-code">
       <Translate contentKey="global.menu.entities.yeganCode" />
     </MenuItem> */}
     <MenuItem icon="asterisk" to="/karbar">
-     کاربران
+      کاربران
     </MenuItem>
     <MenuItem icon="asterisk" to="/semat">
       سمت ها
@@ -38,7 +33,7 @@ export const EntitiesMenu = props => (
       استان
     </MenuItem>
     <MenuItem icon="asterisk" to="/shahr">
-     شهر
+      شهر
     </MenuItem>
     {/* <MenuItem icon="asterisk" to="/payam">
       <Translate contentKey="global.menu.entities.payam" />
@@ -76,7 +71,7 @@ export const EntitiesMenu = props => (
     {/* <MenuItem icon="asterisk" to="/file-gozaresh">
       <Translate contentKey="global.menu.entities.fileGozaresh" />
     </MenuItem> */}
-    
+
     {/* <MenuItem icon="asterisk" to="/gozaresh">
       <Translate contentKey="global.menu.entities.gozaresh" />
     </MenuItem> */}

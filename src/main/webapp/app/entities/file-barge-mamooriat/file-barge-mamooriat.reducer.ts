@@ -116,13 +116,10 @@ export const getEntities: ICrudGetAllAction<IFileBargeMamooriat> = (page, size, 
   payload: axios.get<IFileBargeMamooriat>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
 });
 
-export const getEntitiesById: ICrudGetAllAction<IFileBargeMamooriat> = (page, size, sort, id) => async dispatch => {
-  const result = await dispatch({
-    type: ACTION_TYPES.FETCH_FILEBARGEMAMOORIAT_LIST,
-    payload: axios.get<IFileBargeMamooriat>(`${apiUrl}?cacheBuster=${new Date().getTime()}/${id}`)
-  });
-  return result;
-};
+export const getFileBargeMamooriatsById: ICrudGetAllAction<IFileBargeMamooriat> = (page, size, sort, id) => ({
+  type: ACTION_TYPES.FETCH_FILEBARGEMAMOORIAT_LIST,
+  payload: axios.get<IFileBargeMamooriat>(`${apiUrl}/barge-mamooriat/${id}?cacheBuster=${new Date().getTime()}`)
+});
 
 export const getEntity: ICrudGetAction<IFileBargeMamooriat> = id => {
   const requestUrl = `${apiUrl}/${id}`;
@@ -137,7 +134,7 @@ export const createEntity: ICrudPutAction<IFileBargeMamooriat> = entity => async
     type: ACTION_TYPES.CREATE_FILEBARGEMAMOORIAT,
     payload: axios.post(apiUrl, cleanEntity(entity))
   });
-  dispatch(getEntities());
+  dispatch(getFileBargeMamooriatsById());
   return result;
 };
 
@@ -146,7 +143,7 @@ export const updateEntity: ICrudPutAction<IFileBargeMamooriat> = entity => async
     type: ACTION_TYPES.UPDATE_FILEBARGEMAMOORIAT,
     payload: axios.put(apiUrl, cleanEntity(entity))
   });
-  dispatch(getEntities());
+  dispatch(getFileBargeMamooriatsById());
   return result;
 };
 
@@ -156,7 +153,7 @@ export const deleteEntity: ICrudDeleteAction<IFileBargeMamooriat> = id => async 
     type: ACTION_TYPES.DELETE_FILEBARGEMAMOORIAT,
     payload: axios.delete(requestUrl)
   });
-  dispatch(getEntities());
+  dispatch(getFileBargeMamooriatsById());
   return result;
 };
 

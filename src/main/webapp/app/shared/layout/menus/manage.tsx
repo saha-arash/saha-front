@@ -7,12 +7,7 @@ import { NavLink as Link } from 'react-router-dom';
 import { NavDropdown } from './menu-components';
 
 export const ManageMenu = props => (
-  <NavDropdown
-    icon="th-list"
-    name="مدیریت"
-    id="entity-menu"
-    style={{ maxHeight: '80vh', overflow: 'auto' }}
-  >
+  <NavDropdown icon="th-list" name="مدیریت" id="entity-menu" style={{ maxHeight: '80vh', overflow: 'auto' }}>
     {/* <MenuItem icon="asterisk" to="/yegan-code">
       YeGancode
     </MenuItem> */}
@@ -29,13 +24,13 @@ export const ManageMenu = props => (
       <Translate contentKey="global.menu.entities.semat" />
     </MenuItem> */}
     <MenuItem icon="asterisk" to="/morkhasi">
-     مرخصی ها
+      مرخصی ها
     </MenuItem>
     <MenuItem icon="asterisk" to="/dore">
       دوره ها
     </MenuItem>
     <MenuItem icon="asterisk" to="/negahbani">
-     نگهبانی ها
+      نگهبانی ها
     </MenuItem>
     <MenuItem icon="asterisk" to="/barge-mamooriat">
       برگه ماموریت ها

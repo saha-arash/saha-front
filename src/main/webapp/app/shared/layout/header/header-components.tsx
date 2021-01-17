@@ -1,6 +1,6 @@
 import React from 'react';
 import { Translate } from 'react-jhipster';
-import * as global from "main/webapp/i18n/fa/global.json";
+import * as global from 'main/webapp/i18n/fa/global.json';
 import { NavItem, NavLink, NavbarBrand } from 'reactstrap';
 import { NavLink as Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,7 +16,7 @@ export const BrandIcon = props => (
 export const Brand = props => (
   <NavbarBrand tag={Link} to="/" className="brand-logo">
     <BrandIcon />
-      <span className="brand-title">سامانه حسابرسی عملیاتی آجا</span>
+    <span className="brand-title">سامانه حسابرسی عملیاتی آجا</span>
     <span className="navbar-version">{appConfig.VERSION}</span>
   </NavbarBrand>
 );
@@ -30,4 +30,4 @@ export const Home = props => (
   </NavItem>
 );
 const ali = 'asas';
-export default ali
+export default ali;
