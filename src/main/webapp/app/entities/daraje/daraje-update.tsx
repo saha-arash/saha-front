@@ -20,7 +20,7 @@ export const DarajeUpdate = (props: IDarajeUpdateProps) => {
   const { darajeEntity, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/daraje');
+    props.history.push('/daraje' + props.location.search);
   };
 
   useEffect(() => {

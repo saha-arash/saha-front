@@ -1,0 +1,42 @@
+{
+    "name": "GardeshKar",
+    "fields": [
+        {
+            "fieldName": "tarikh",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "mozoo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "shomare",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "fileHesabResi",
+            "otherEntityRelationshipName": "gardeshKar",
+            "relationshipName": "failha"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "hesabResi",
+            "otherEntityRelationshipName": "gardeshKar",
+            "relationshipName": "hesabResi",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20210117193300",
+    "entityTableName": "gardesh_kar",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

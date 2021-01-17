@@ -2,22 +2,50 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { byteSize, Translate, ICrudGetAllAction } from 'react-jhipster';
+import { byteSize, Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './payam.reducer';
 import { IPayam } from 'app/shared/model/payam.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IPayamProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const Payam = (props: IPayamProps) => {
-  useEffect(() => {
-    props.getEntities();
-  }, []);
+  const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
 
-  const { payamList, match, loading } = props;
+  const getAllEntities = () => {
+    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+  };
+
+  const sortEntities = () => {
+    getAllEntities();
+    props.history.push(
+      `${props.location.pathname}?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`
+    );
+  };
+
+  useEffect(() => {
+    sortEntities();
+  }, [paginationState.activePage, paginationState.order, paginationState.sort]);
+
+  const sort = p => () => {
+    setPaginationState({
+      ...paginationState,
+      order: paginationState.order === 'asc' ? 'desc' : 'asc',
+      sort: p
+    });
+  };
+
+  const handlePagination = currentPage =>
+    setPaginationState({
+      ...paginationState,
+      activePage: currentPage
+    });
+
+  const { payamList, match, loading, totalItems } = props;
   return (
     <div>
       <h2 id="payam-heading">
@@ -33,26 +61,28 @@ export const Payam = (props: IPayamProps) => {
           <Table responsive>
             <thead>
               <tr>
-                <th>
-                  <Translate contentKey="global.field.id">ID</Translate>
+                <th className="hand" onClick={sort('id')}>
+                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('onvan')}>
+                  <Translate contentKey="sahaApp.payam.onvan">Onvan</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('matn')}>
+                  <Translate contentKey="sahaApp.payam.matn">Matn</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.payam.onvan">Onvan</Translate>
+                  <Translate contentKey="sahaApp.payam.karbarErsalKonande">Karbar Ersal Konande</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.payam.matn">Matn</Translate>
+                  <Translate contentKey="sahaApp.payam.karbarDaryaftKonand">Karbar Daryaft Konand</Translate>{' '}
+                  <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.payam.karbarErsalKonande">Karbar Ersal Konande</Translate>
+                  <Translate contentKey="sahaApp.payam.yeganErsalKonanade">Yegan Ersal Konanade</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.payam.karbarDaryaftKonand">Karbar Daryaft Konand</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.payam.yeganErsalKonanade">Yegan Ersal Konanade</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.payam.yeganDaryaftKonanade">Yegan Daryaft Konanade</Translate>
+                  <Translate contentKey="sahaApp.payam.yeganDaryaftKonanade">Yegan Daryaft Konanade</Translate>{' '}
+                  <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -68,25 +98,25 @@ export const Payam = (props: IPayamProps) => {
                   <td>{payam.onvan}</td>
                   <td>{payam.matn}</td>
                   <td>
-                    {payam.karbarErsalKonande ? (
-                      <Link to={`karbar/${payam.karbarErsalKonande.id}`}>{payam.karbarErsalKonande.id}</Link>
+                    {payam.karbarErsalKonandeId ? (
+                      <Link to={`karbar/${payam.karbarErsalKonandeId}`}>{payam.karbarErsalKonandeId}</Link>
                     ) : (
                       ''
                     )}
                   </td>
                   <td>
-                    {payam.karbarDaryaftKonand ? (
-                      <Link to={`karbar/${payam.karbarDaryaftKonand.id}`}>{payam.karbarDaryaftKonand.id}</Link>
+                    {payam.karbarDaryaftKonandId ? (
+                      <Link to={`karbar/${payam.karbarDaryaftKonandId}`}>{payam.karbarDaryaftKonandId}</Link>
                     ) : (
                       ''
                     )}
                   </td>
                   <td>
-                    {payam.yeganErsalKonanade ? <Link to={`yegan/${payam.yeganErsalKonanade.id}`}>{payam.yeganErsalKonanade.id}</Link> : ''}
+                    {payam.yeganErsalKonanadeId ? <Link to={`yegan/${payam.yeganErsalKonanadeId}`}>{payam.yeganErsalKonanadeId}</Link> : ''}
                   </td>
                   <td>
-                    {payam.yeganDaryaftKonanade ? (
-                      <Link to={`yegan/${payam.yeganDaryaftKonanade.id}`}>{payam.yeganDaryaftKonanade.id}</Link>
+                    {payam.yeganDaryaftKonanadeId ? (
+                      <Link to={`yegan/${payam.yeganDaryaftKonanadeId}`}>{payam.yeganDaryaftKonanadeId}</Link>
                     ) : (
                       ''
                     )}
@@ -99,13 +129,23 @@ export const Payam = (props: IPayamProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${payam.id}/edit`} color="primary" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${payam.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="primary"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${payam.id}/delete`} color="danger" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${payam.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="danger"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -125,13 +165,28 @@ export const Payam = (props: IPayamProps) => {
           )
         )}
       </div>
+      <div className={payamList && payamList.length > 0 ? '' : 'd-none'}>
+        <Row className="justify-content-center">
+          <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
+        </Row>
+        <Row className="justify-content-center">
+          <JhiPagination
+            activePage={paginationState.activePage}
+            onSelect={handlePagination}
+            maxButtons={5}
+            itemsPerPage={paginationState.itemsPerPage}
+            totalItems={props.totalItems}
+          />
+        </Row>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = ({ payam }: IRootState) => ({
   payamList: payam.entities,
-  loading: payam.loading
+  loading: payam.loading,
+  totalItems: payam.totalItems
 });
 
 const mapDispatchToProps = {

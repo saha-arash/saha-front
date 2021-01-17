@@ -44,7 +44,7 @@ export const DoreDetail = (props: IDoreDetailProps) => {
           <dt>
             <Translate contentKey="sahaApp.dore.karbar">Karbar</Translate>
           </dt>
-          <dd>{doreEntity.karbar ? doreEntity.karbar.id : ''}</dd>
+          <dd>{doreEntity.karbarId ? doreEntity.karbarId : ''}</dd>
         </dl>
         <Button tag={Link} to="/dore" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

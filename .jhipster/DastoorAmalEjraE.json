@@ -1,0 +1,29 @@
+{
+    "name": "DastoorAmalEjraE",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "fileHesabResi",
+            "otherEntityRelationshipName": "dastoorAmalEjraE",
+            "relationshipName": "failha"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "hesabResi",
+            "otherEntityRelationshipName": "dastoorAmalEjraE",
+            "relationshipName": "hesabResi",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20210117192100",
+    "entityTableName": "dastoor_amal_ejra_e",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

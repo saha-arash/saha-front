@@ -21,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<IYeganType>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -63,7 +64,8 @@ export default (state: YeganTypeState = initialState, action): YeganTypeState =>
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_YEGANTYPE):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/yegan-types';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IYeganType> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_YEGANTYPE_LIST,
-  payload: axios.get<IYeganType>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<IYeganType> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_YEGANTYPE_LIST,
+    payload: axios.get<IYeganType>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<IYeganType> = id => {
   const requestUrl = `${apiUrl}/${id}`;

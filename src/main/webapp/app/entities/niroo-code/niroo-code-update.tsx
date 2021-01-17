@@ -20,7 +20,7 @@ export const NirooCodeUpdate = (props: INirooCodeUpdateProps) => {
   const { nirooCodeEntity, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/niroo-code');
+    props.history.push('/niroo-code' + props.location.search);
   };
 
   useEffect(() => {

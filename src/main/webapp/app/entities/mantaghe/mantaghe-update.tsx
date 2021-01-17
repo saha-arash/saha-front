@@ -20,7 +20,7 @@ export const MantagheUpdate = (props: IMantagheUpdateProps) => {
   const { mantagheEntity, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/mantaghe');
+    props.history.push('/mantaghe' + props.location.search);
   };
 
   useEffect(() => {

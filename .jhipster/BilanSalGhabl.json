@@ -1,0 +1,29 @@
+{
+    "name": "BilanSalGhabl",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "fileHesabResi",
+            "otherEntityRelationshipName": "bilanSalGhabl",
+            "relationshipName": "failha"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "hesabResi",
+            "otherEntityRelationshipName": "bilanSalGhabl",
+            "relationshipName": "hesabResi",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20210117192400",
+    "entityTableName": "bilan_sal_ghabl",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

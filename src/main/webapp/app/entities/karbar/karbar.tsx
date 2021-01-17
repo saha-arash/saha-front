@@ -2,22 +2,50 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { Translate, ICrudGetAllAction, TextFormat } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, TextFormat, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './karbar.reducer';
 import { IKarbar } from 'app/shared/model/karbar.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IKarbarProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const Karbar = (props: IKarbarProps) => {
-  useEffect(() => {
-    props.getEntities();
-  }, []);
+  const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
 
-  const { karbarList, match, loading } = props;
+  const getAllEntities = () => {
+    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+  };
+
+  const sortEntities = () => {
+    getAllEntities();
+    props.history.push(
+      `${props.location.pathname}?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`
+    );
+  };
+
+  useEffect(() => {
+    sortEntities();
+  }, [paginationState.activePage, paginationState.order, paginationState.sort]);
+
+  const sort = p => () => {
+    setPaginationState({
+      ...paginationState,
+      order: paginationState.order === 'asc' ? 'desc' : 'asc',
+      sort: p
+    });
+  };
+
+  const handlePagination = currentPage =>
+    setPaginationState({
+      ...paginationState,
+      activePage: currentPage
+    });
+
+  const { karbarList, match, loading, totalItems } = props;
   return (
     <div>
       <h2 id="karbar-heading">
@@ -33,50 +61,45 @@ export const Karbar = (props: IKarbarProps) => {
           <Table responsive>
             <thead>
               <tr>
-                <th>
-                  <Translate contentKey="global.field.id">ID</Translate>
+                <th className="hand" onClick={sort('id')}>
+                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('name')}>
+                  <Translate contentKey="sahaApp.karbar.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('shoghlSazmani')}>
+                  <Translate contentKey="sahaApp.karbar.shoghlSazmani">Shoghl Sazmani</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('shoghlAmali')}>
+                  <Translate contentKey="sahaApp.karbar.shoghlAmali">Shoghl Amali</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('codePerseneli')}>
+                  <Translate contentKey="sahaApp.karbar.codePerseneli">Code Perseneli</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('bezaneshate')}>
+                  <Translate contentKey="sahaApp.karbar.bezaneshate">Bezaneshate</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('sazmani')}>
+                  <Translate contentKey="sahaApp.karbar.sazmani">Sazmani</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('tarikhBazneshastegi')}>
+                  <Translate contentKey="sahaApp.karbar.tarikhBazneshastegi">Tarikh Bazneshastegi</Translate>{' '}
+                  <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('tarikhEstekhdam')}>
+                  <Translate contentKey="sahaApp.karbar.tarikhEstekhdam">Tarikh Estekhdam</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.karbar.name">Name</Translate>
+                  <Translate contentKey="sahaApp.karbar.yegan">Yegan</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.karbar.shoghlSazmani">Shoghl Sazmani</Translate>
+                  <Translate contentKey="sahaApp.karbar.yeganCode">Yegan Code</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.karbar.shoghlAmali">Shoghl Amali</Translate>
+                  <Translate contentKey="sahaApp.karbar.daraje">Daraje</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.karbar.codePerseneli">Code Perseneli</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.karbar.bezaneshate">Bezaneshate</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.karbar.sazmani">Sazmani</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.karbar.tarikhBazneshastegi">Tarikh Bazneshastegi</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.karbar.tarikhEstekhdam">Tarikh Estekhdam</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.karbar.bargeMamoorit">Barge Mamoorit</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.karbar.binanadeBargeMamoorit">Binanade Barge Mamoorit</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.karbar.yegan">Yegan</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.karbar.yeganCode">Yegan Code</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.karbar.daraje">Daraje</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.karbar.semat">Semat</Translate>
+                  <Translate contentKey="sahaApp.karbar.semat">Semat</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -101,30 +124,10 @@ export const Karbar = (props: IKarbarProps) => {
                   <td>
                     <TextFormat type="date" value={karbar.tarikhEstekhdam} format={APP_DATE_FORMAT} />
                   </td>
-                  <td>
-                    {karbar.bargeMamoorits
-                      ? karbar.bargeMamoorits.map((val, j) => (
-                          <span key={j}>
-                            <Link to={`barge-mamooriat/${val.id}`}>{val.id}</Link>
-                            {j === karbar.bargeMamoorits.length - 1 ? '' : ', '}
-                          </span>
-                        ))
-                      : null}
-                  </td>
-                  <td>
-                    {karbar.binanadeBargeMamoorits
-                      ? karbar.binanadeBargeMamoorits.map((val, j) => (
-                          <span key={j}>
-                            <Link to={`barge-mamooriat/${val.id}`}>{val.id}</Link>
-                            {j === karbar.binanadeBargeMamoorits.length - 1 ? '' : ', '}
-                          </span>
-                        ))
-                      : null}
-                  </td>
-                  <td>{karbar.yegan ? <Link to={`yegan/${karbar.yegan.id}`}>{karbar.yegan.id}</Link> : ''}</td>
-                  <td>{karbar.yeganCode ? <Link to={`yegan-code/${karbar.yeganCode.id}`}>{karbar.yeganCode.id}</Link> : ''}</td>
-                  <td>{karbar.daraje ? <Link to={`daraje/${karbar.daraje.id}`}>{karbar.daraje.id}</Link> : ''}</td>
-                  <td>{karbar.semat ? <Link to={`semat/${karbar.semat.id}`}>{karbar.semat.id}</Link> : ''}</td>
+                  <td>{karbar.yeganId ? <Link to={`yegan/${karbar.yeganId}`}>{karbar.yeganId}</Link> : ''}</td>
+                  <td>{karbar.yeganCodeId ? <Link to={`yegan-code/${karbar.yeganCodeId}`}>{karbar.yeganCodeId}</Link> : ''}</td>
+                  <td>{karbar.darajeId ? <Link to={`daraje/${karbar.darajeId}`}>{karbar.darajeId}</Link> : ''}</td>
+                  <td>{karbar.sematId ? <Link to={`semat/${karbar.sematId}`}>{karbar.sematId}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${karbar.id}`} color="info" size="sm">
@@ -133,13 +136,23 @@ export const Karbar = (props: IKarbarProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${karbar.id}/edit`} color="primary" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${karbar.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="primary"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${karbar.id}/delete`} color="danger" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${karbar.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="danger"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -159,13 +172,28 @@ export const Karbar = (props: IKarbarProps) => {
           )
         )}
       </div>
+      <div className={karbarList && karbarList.length > 0 ? '' : 'd-none'}>
+        <Row className="justify-content-center">
+          <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
+        </Row>
+        <Row className="justify-content-center">
+          <JhiPagination
+            activePage={paginationState.activePage}
+            onSelect={handlePagination}
+            maxButtons={5}
+            itemsPerPage={paginationState.itemsPerPage}
+            totalItems={props.totalItems}
+          />
+        </Row>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = ({ karbar }: IRootState) => ({
   karbarList: karbar.entities,
-  loading: karbar.loading
+  loading: karbar.loading,
+  totalItems: karbar.totalItems
 });
 
 const mapDispatchToProps = {

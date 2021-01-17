@@ -34,7 +34,7 @@ export const OstanDetail = (props: IOstanDetailProps) => {
           <dt>
             <Translate contentKey="sahaApp.ostan.mantaghe">Mantaghe</Translate>
           </dt>
-          <dd>{ostanEntity.mantaghe ? ostanEntity.mantaghe.id : ''}</dd>
+          <dd>{ostanEntity.mantagheId ? ostanEntity.mantagheId : ''}</dd>
         </dl>
         <Button tag={Link} to="/ostan" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

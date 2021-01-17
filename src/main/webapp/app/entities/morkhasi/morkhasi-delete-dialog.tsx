@@ -17,7 +17,7 @@ export const MorkhasiDeleteDialog = (props: IMorkhasiDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/morkhasi');
+    props.history.push('/morkhasi' + props.location.search);
   };
 
   useEffect(() => {

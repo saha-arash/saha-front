@@ -1,0 +1,23 @@
+{
+  "sahaApp": {
+    "kholaseGozaresh": {
+      "home": {
+        "title": "Kholase Gozareshes",
+        "createLabel": "Create a new Kholase Gozaresh",
+        "createOrEditLabel": "Create or edit a Kholase Gozaresh",
+        "notFound": "No Kholase Gozareshes found"
+      },
+      "created": "A new Kholase Gozaresh is created with identifier {{ param }}",
+      "updated": "A Kholase Gozaresh is updated with identifier {{ param }}",
+      "deleted": "A Kholase Gozaresh is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Kholase Gozaresh {{ id }}?"
+      },
+      "detail": {
+        "title": "Kholase Gozaresh"
+      },
+      "failha": "Failha",
+      "hesabResi": "Hesab Resi"
+    }
+  }
+}

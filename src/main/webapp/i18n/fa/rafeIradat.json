@@ -1,0 +1,23 @@
+{
+  "sahaApp": {
+    "rafeIradat": {
+      "home": {
+        "title": "Rafe Iradats",
+        "createLabel": "Create a new Rafe Iradat",
+        "createOrEditLabel": "Create or edit a Rafe Iradat",
+        "notFound": "No Rafe Iradats found"
+      },
+      "created": "A new Rafe Iradat is created with identifier {{ param }}",
+      "updated": "A Rafe Iradat is updated with identifier {{ param }}",
+      "deleted": "A Rafe Iradat is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Rafe Iradat {{ id }}?"
+      },
+      "detail": {
+        "title": "Rafe Iradat"
+      },
+      "failha": "Failha",
+      "hesabResi": "Hesab Resi"
+    }
+  }
+}

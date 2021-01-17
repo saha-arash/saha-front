@@ -17,7 +17,7 @@ export const YeganTypeDeleteDialog = (props: IYeganTypeDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/yegan-type');
+    props.history.push('/yegan-type' + props.location.search);
   };
 
   useEffect(() => {

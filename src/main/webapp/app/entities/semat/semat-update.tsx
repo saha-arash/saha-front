@@ -20,7 +20,7 @@ export const SematUpdate = (props: ISematUpdateProps) => {
   const { sematEntity, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/semat');
+    props.history.push('/semat' + props.location.search);
   };
 
   useEffect(() => {

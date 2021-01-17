@@ -17,7 +17,7 @@ export const SematDeleteDialog = (props: ISematDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/semat');
+    props.history.push('/semat' + props.location.search);
   };
 
   useEffect(() => {

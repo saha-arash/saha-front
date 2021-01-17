@@ -17,7 +17,7 @@ export const KarbarDeleteDialog = (props: IKarbarDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/karbar');
+    props.history.push('/karbar' + props.location.search);
   };
 
   useEffect(() => {

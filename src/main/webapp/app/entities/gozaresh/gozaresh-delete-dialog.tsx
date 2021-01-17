@@ -17,7 +17,7 @@ export const GozareshDeleteDialog = (props: IGozareshDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/gozaresh');
+    props.history.push('/gozaresh' + props.location.search);
   };
 
   useEffect(() => {

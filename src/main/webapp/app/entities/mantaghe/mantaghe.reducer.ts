@@ -21,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<IMantaghe>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -63,7 +64,8 @@ export default (state: MantagheState = initialState, action): MantagheState => {
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_MANTAGHE):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/mantaghes';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IMantaghe> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_MANTAGHE_LIST,
-  payload: axios.get<IMantaghe>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<IMantaghe> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_MANTAGHE_LIST,
+    payload: axios.get<IMantaghe>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<IMantaghe> = id => {
   const requestUrl = `${apiUrl}/${id}`;

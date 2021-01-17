@@ -2,22 +2,50 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { Translate, ICrudGetAllAction } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './gozaresh.reducer';
 import { IGozaresh } from 'app/shared/model/gozaresh.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IGozareshProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const Gozaresh = (props: IGozareshProps) => {
-  useEffect(() => {
-    props.getEntities();
-  }, []);
+  const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
 
-  const { gozareshList, match, loading } = props;
+  const getAllEntities = () => {
+    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+  };
+
+  const sortEntities = () => {
+    getAllEntities();
+    props.history.push(
+      `${props.location.pathname}?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`
+    );
+  };
+
+  useEffect(() => {
+    sortEntities();
+  }, [paginationState.activePage, paginationState.order, paginationState.sort]);
+
+  const sort = p => () => {
+    setPaginationState({
+      ...paginationState,
+      order: paginationState.order === 'asc' ? 'desc' : 'asc',
+      sort: p
+    });
+  };
+
+  const handlePagination = currentPage =>
+    setPaginationState({
+      ...paginationState,
+      activePage: currentPage
+    });
+
+  const { gozareshList, match, loading, totalItems } = props;
   return (
     <div>
       <h2 id="gozaresh-heading">
@@ -33,11 +61,11 @@ export const Gozaresh = (props: IGozareshProps) => {
           <Table responsive>
             <thead>
               <tr>
-                <th>
-                  <Translate contentKey="global.field.id">ID</Translate>
+                <th className="hand" onClick={sort('id')}>
+                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th>
-                  <Translate contentKey="sahaApp.gozaresh.vaziat">Vaziat</Translate>
+                <th className="hand" onClick={sort('vaziat')}>
+                  <Translate contentKey="sahaApp.gozaresh.vaziat">Vaziat</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -61,13 +89,23 @@ export const Gozaresh = (props: IGozareshProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${gozaresh.id}/edit`} color="primary" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${gozaresh.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="primary"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${gozaresh.id}/delete`} color="danger" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${gozaresh.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="danger"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -87,13 +125,28 @@ export const Gozaresh = (props: IGozareshProps) => {
           )
         )}
       </div>
+      <div className={gozareshList && gozareshList.length > 0 ? '' : 'd-none'}>
+        <Row className="justify-content-center">
+          <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
+        </Row>
+        <Row className="justify-content-center">
+          <JhiPagination
+            activePage={paginationState.activePage}
+            onSelect={handlePagination}
+            maxButtons={5}
+            itemsPerPage={paginationState.itemsPerPage}
+            totalItems={props.totalItems}
+          />
+        </Row>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = ({ gozaresh }: IRootState) => ({
   gozareshList: gozaresh.entities,
-  loading: gozaresh.loading
+  loading: gozaresh.loading,
+  totalItems: gozaresh.totalItems
 });
 
 const mapDispatchToProps = {

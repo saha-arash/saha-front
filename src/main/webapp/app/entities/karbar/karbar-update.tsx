@@ -37,7 +37,7 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
   const { karbarEntity, bargeMamooriats, yegans, yeganCodes, darajes, semats, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/karbar');
+    props.history.push('/karbar' + props.location.search);
   };
 
   useEffect(() => {
@@ -213,7 +213,7 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
                 <Label for="karbar-yegan">
                   <Translate contentKey="sahaApp.karbar.yegan">Yegan</Translate>
                 </Label>
-                <AvInput id="karbar-yegan" type="select" className="form-control" name="yegan.id">
+                <AvInput id="karbar-yegan" type="select" className="form-control" name="yeganId">
                   <option value="" key="0" />
                   {yegans
                     ? yegans.map(otherEntity => (
@@ -228,7 +228,7 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
                 <Label for="karbar-yeganCode">
                   <Translate contentKey="sahaApp.karbar.yeganCode">Yegan Code</Translate>
                 </Label>
-                <AvInput id="karbar-yeganCode" type="select" className="form-control" name="yeganCode.id">
+                <AvInput id="karbar-yeganCode" type="select" className="form-control" name="yeganCodeId">
                   <option value="" key="0" />
                   {yeganCodes
                     ? yeganCodes.map(otherEntity => (
@@ -243,7 +243,7 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
                 <Label for="karbar-daraje">
                   <Translate contentKey="sahaApp.karbar.daraje">Daraje</Translate>
                 </Label>
-                <AvInput id="karbar-daraje" type="select" className="form-control" name="daraje.id">
+                <AvInput id="karbar-daraje" type="select" className="form-control" name="darajeId">
                   <option value="" key="0" />
                   {darajes
                     ? darajes.map(otherEntity => (
@@ -258,7 +258,7 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
                 <Label for="karbar-semat">
                   <Translate contentKey="sahaApp.karbar.semat">Semat</Translate>
                 </Label>
-                <AvInput id="karbar-semat" type="select" className="form-control" name="semat.id">
+                <AvInput id="karbar-semat" type="select" className="form-control" name="sematId">
                   <option value="" key="0" />
                   {semats
                     ? semats.map(otherEntity => (

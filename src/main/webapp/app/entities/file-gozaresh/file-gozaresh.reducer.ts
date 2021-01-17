@@ -22,6 +22,7 @@ const initialState = {
   entities: [] as ReadonlyArray<IFileGozaresh>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -64,7 +65,8 @@ export default (state: FileGozareshState = initialState, action): FileGozareshSt
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_FILEGOZARESH):
       return {
@@ -111,10 +113,13 @@ const apiUrl = 'api/file-gozareshes';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IFileGozaresh> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_FILEGOZARESH_LIST,
-  payload: axios.get<IFileGozaresh>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<IFileGozaresh> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_FILEGOZARESH_LIST,
+    payload: axios.get<IFileGozaresh>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<IFileGozaresh> = id => {
   const requestUrl = `${apiUrl}/${id}`;

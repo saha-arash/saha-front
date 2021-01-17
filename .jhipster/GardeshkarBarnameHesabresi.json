@@ -1,0 +1,29 @@
+{
+    "name": "GardeshkarBarnameHesabresi",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "fileHesabResi",
+            "otherEntityRelationshipName": "gardeshkarBarnameHesabresi",
+            "relationshipName": "failha"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "hesabResi",
+            "otherEntityRelationshipName": "gardeshkarBarnameHesabresi",
+            "relationshipName": "hesabResi",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20210117192200",
+    "entityTableName": "gardeshkar_barname_hesabresi",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

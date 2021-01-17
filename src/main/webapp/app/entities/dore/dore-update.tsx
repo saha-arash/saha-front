@@ -23,7 +23,7 @@ export const DoreUpdate = (props: IDoreUpdateProps) => {
   const { doreEntity, karbars, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/dore');
+    props.history.push('/dore' + props.location.search);
   };
 
   useEffect(() => {
@@ -113,7 +113,7 @@ export const DoreUpdate = (props: IDoreUpdateProps) => {
                 <Label for="dore-karbar">
                   <Translate contentKey="sahaApp.dore.karbar">Karbar</Translate>
                 </Label>
-                <AvInput id="dore-karbar" type="select" className="form-control" name="karbar.id">
+                <AvInput id="dore-karbar" type="select" className="form-control" name="karbarId">
                   <option value="" key="0" />
                   {karbars
                     ? karbars.map(otherEntity => (

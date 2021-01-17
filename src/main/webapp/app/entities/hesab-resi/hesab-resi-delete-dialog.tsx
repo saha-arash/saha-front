@@ -17,7 +17,7 @@ export const HesabResiDeleteDialog = (props: IHesabResiDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/hesab-resi');
+    props.history.push('/hesab-resi' + props.location.search);
   };
 
   useEffect(() => {

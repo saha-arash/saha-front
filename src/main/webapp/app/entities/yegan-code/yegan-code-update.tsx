@@ -26,7 +26,7 @@ export const YeganCodeUpdate = (props: IYeganCodeUpdateProps) => {
   const { yeganCodeEntity, yegans, nirooCodes, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/yegan-code');
+    props.history.push('/yegan-code' + props.location.search);
   };
 
   useEffect(() => {
@@ -100,7 +100,7 @@ export const YeganCodeUpdate = (props: IYeganCodeUpdateProps) => {
                 <Label for="yegan-code-yegan">
                   <Translate contentKey="sahaApp.yeganCode.yegan">Yegan</Translate>
                 </Label>
-                <AvInput id="yegan-code-yegan" type="select" className="form-control" name="yegan.id">
+                <AvInput id="yegan-code-yegan" type="select" className="form-control" name="yeganId">
                   <option value="" key="0" />
                   {yegans
                     ? yegans.map(otherEntity => (
@@ -115,7 +115,7 @@ export const YeganCodeUpdate = (props: IYeganCodeUpdateProps) => {
                 <Label for="yegan-code-nirooCode">
                   <Translate contentKey="sahaApp.yeganCode.nirooCode">Niroo Code</Translate>
                 </Label>
-                <AvInput id="yegan-code-nirooCode" type="select" className="form-control" name="nirooCode.id">
+                <AvInput id="yegan-code-nirooCode" type="select" className="form-control" name="nirooCodeId">
                   <option value="" key="0" />
                   {nirooCodes
                     ? nirooCodes.map(otherEntity => (

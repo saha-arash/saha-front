@@ -17,7 +17,7 @@ export const FileBargeMamooriatDeleteDialog = (props: IFileBargeMamooriatDeleteD
   }, []);
 
   const handleClose = () => {
-    props.history.push('/file-barge-mamooriat');
+    props.history.push('/file-barge-mamooriat' + props.location.search);
   };
 
   useEffect(() => {

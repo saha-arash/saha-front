@@ -38,13 +38,111 @@
             "otherEntityRelationshipName": "failha",
             "relationshipName": "barnameHesabResi",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "bankEtelaati",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "bankEtelaati",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "rafeIradat",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "rafeIradat",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "mostaKhreje",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "mostaKhreje",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "bilanSeSalGhabl",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "bilanSeSalGhabl",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "mohasebeHazineMamooriat",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "mohasebeHazineMamooriat",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chekideGardeshKar",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "chekideGardeshKar",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "gozareshHozoor",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "gozareshHozoor",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "bilanSalGhabl",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "bilanSalGhabl",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "madarek",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "madarek",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "gardeshkarBarnameHesabresi",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "gardeshkarBarnameHesabresi",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "dastoorAmalEjraE",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "dastoorAmalEjraE",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "nameh",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "nameh",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "kholaseGozaresh",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "kholaseGozaresh",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "gardeshKar",
+            "otherEntityRelationshipName": "failha",
+            "relationshipName": "gardeshKar",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20201221184000",
     "entityTableName": "file_hesab_resi",
-    "dto": "no",
-    "pagination": "no",
-    "service": "no",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "readOnly": false,

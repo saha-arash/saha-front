@@ -40,11 +40,11 @@ export const YeganCodeDetail = (props: IYeganCodeDetailProps) => {
           <dt>
             <Translate contentKey="sahaApp.yeganCode.yegan">Yegan</Translate>
           </dt>
-          <dd>{yeganCodeEntity.yegan ? yeganCodeEntity.yegan.id : ''}</dd>
+          <dd>{yeganCodeEntity.yeganId ? yeganCodeEntity.yeganId : ''}</dd>
           <dt>
             <Translate contentKey="sahaApp.yeganCode.nirooCode">Niroo Code</Translate>
           </dt>
-          <dd>{yeganCodeEntity.nirooCode ? yeganCodeEntity.nirooCode.id : ''}</dd>
+          <dd>{yeganCodeEntity.nirooCodeId ? yeganCodeEntity.nirooCodeId : ''}</dd>
         </dl>
         <Button tag={Link} to="/yegan-code" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

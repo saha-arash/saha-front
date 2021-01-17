@@ -1,0 +1,23 @@
+{
+  "sahaApp": {
+    "bilanSeSalGhabl": {
+      "home": {
+        "title": "Bilan Se Sal Ghabls",
+        "createLabel": "Create a new Bilan Se Sal Ghabl",
+        "createOrEditLabel": "Create or edit a Bilan Se Sal Ghabl",
+        "notFound": "No Bilan Se Sal Ghabls found"
+      },
+      "created": "A new Bilan Se Sal Ghabl is created with identifier {{ param }}",
+      "updated": "A Bilan Se Sal Ghabl is updated with identifier {{ param }}",
+      "deleted": "A Bilan Se Sal Ghabl is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Bilan Se Sal Ghabl {{ id }}?"
+      },
+      "detail": {
+        "title": "Bilan Se Sal Ghabl"
+      },
+      "failha": "Failha",
+      "hesabResi": "Hesab Resi"
+    }
+  }
+}

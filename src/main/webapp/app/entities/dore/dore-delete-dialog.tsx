@@ -17,7 +17,7 @@ export const DoreDeleteDialog = (props: IDoreDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/dore');
+    props.history.push('/dore' + props.location.search);
   };
 
   useEffect(() => {

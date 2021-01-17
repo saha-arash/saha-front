@@ -1,0 +1,38 @@
+{
+    "name": "Nameh",
+    "fields": [
+        {
+            "fieldName": "shomare",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tarikhEblagh",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "fileHesabResi",
+            "otherEntityRelationshipName": "nameh",
+            "relationshipName": "failha"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "hesabResi",
+            "otherEntityRelationshipName": "nameh",
+            "relationshipName": "hesabResi",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20210117193100",
+    "entityTableName": "nameh",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

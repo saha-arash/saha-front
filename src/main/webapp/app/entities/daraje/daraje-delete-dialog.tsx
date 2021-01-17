@@ -17,7 +17,7 @@ export const DarajeDeleteDialog = (props: IDarajeDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/daraje');
+    props.history.push('/daraje' + props.location.search);
   };
 
   useEffect(() => {

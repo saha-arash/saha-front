@@ -21,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<IDaraje>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -63,7 +64,8 @@ export default (state: DarajeState = initialState, action): DarajeState => {
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_DARAJE):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/darajes';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IDaraje> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_DARAJE_LIST,
-  payload: axios.get<IDaraje>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<IDaraje> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_DARAJE_LIST,
+    payload: axios.get<IDaraje>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<IDaraje> = id => {
   const requestUrl = `${apiUrl}/${id}`;

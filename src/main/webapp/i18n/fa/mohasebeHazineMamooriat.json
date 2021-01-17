@@ -1,0 +1,23 @@
+{
+  "sahaApp": {
+    "mohasebeHazineMamooriat": {
+      "home": {
+        "title": "Mohasebe Hazine Mamooriats",
+        "createLabel": "Create a new Mohasebe Hazine Mamooriat",
+        "createOrEditLabel": "Create or edit a Mohasebe Hazine Mamooriat",
+        "notFound": "No Mohasebe Hazine Mamooriats found"
+      },
+      "created": "A new Mohasebe Hazine Mamooriat is created with identifier {{ param }}",
+      "updated": "A Mohasebe Hazine Mamooriat is updated with identifier {{ param }}",
+      "deleted": "A Mohasebe Hazine Mamooriat is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Mohasebe Hazine Mamooriat {{ id }}?"
+      },
+      "detail": {
+        "title": "Mohasebe Hazine Mamooriat"
+      },
+      "failha": "Failha",
+      "hesabResi": "Hesab Resi"
+    }
+  }
+}

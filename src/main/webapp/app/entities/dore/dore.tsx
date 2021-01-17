@@ -2,22 +2,50 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { Translate, ICrudGetAllAction, TextFormat } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, TextFormat, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './dore.reducer';
 import { IDore } from 'app/shared/model/dore.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IDoreProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const Dore = (props: IDoreProps) => {
-  useEffect(() => {
-    props.getEntities();
-  }, []);
+  const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
 
-  const { doreList, match, loading } = props;
+  const getAllEntities = () => {
+    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+  };
+
+  const sortEntities = () => {
+    getAllEntities();
+    props.history.push(
+      `${props.location.pathname}?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`
+    );
+  };
+
+  useEffect(() => {
+    sortEntities();
+  }, [paginationState.activePage, paginationState.order, paginationState.sort]);
+
+  const sort = p => () => {
+    setPaginationState({
+      ...paginationState,
+      order: paginationState.order === 'asc' ? 'desc' : 'asc',
+      sort: p
+    });
+  };
+
+  const handlePagination = currentPage =>
+    setPaginationState({
+      ...paginationState,
+      activePage: currentPage
+    });
+
+  const { doreList, match, loading, totalItems } = props;
   return (
     <div>
       <h2 id="dore-heading">
@@ -33,17 +61,17 @@ export const Dore = (props: IDoreProps) => {
           <Table responsive>
             <thead>
               <tr>
-                <th>
-                  <Translate contentKey="global.field.id">ID</Translate>
+                <th className="hand" onClick={sort('id')}>
+                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('begin')}>
+                  <Translate contentKey="sahaApp.dore.begin">Begin</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('end')}>
+                  <Translate contentKey="sahaApp.dore.end">End</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.dore.begin">Begin</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.dore.end">End</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.dore.karbar">Karbar</Translate>
+                  <Translate contentKey="sahaApp.dore.karbar">Karbar</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -62,7 +90,7 @@ export const Dore = (props: IDoreProps) => {
                   <td>
                     <TextFormat type="date" value={dore.end} format={APP_DATE_FORMAT} />
                   </td>
-                  <td>{dore.karbar ? <Link to={`karbar/${dore.karbar.id}`}>{dore.karbar.id}</Link> : ''}</td>
+                  <td>{dore.karbarId ? <Link to={`karbar/${dore.karbarId}`}>{dore.karbarId}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${dore.id}`} color="info" size="sm">
@@ -71,13 +99,23 @@ export const Dore = (props: IDoreProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${dore.id}/edit`} color="primary" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${dore.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="primary"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${dore.id}/delete`} color="danger" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${dore.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="danger"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -97,13 +135,28 @@ export const Dore = (props: IDoreProps) => {
           )
         )}
       </div>
+      <div className={doreList && doreList.length > 0 ? '' : 'd-none'}>
+        <Row className="justify-content-center">
+          <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
+        </Row>
+        <Row className="justify-content-center">
+          <JhiPagination
+            activePage={paginationState.activePage}
+            onSelect={handlePagination}
+            maxButtons={5}
+            itemsPerPage={paginationState.itemsPerPage}
+            totalItems={props.totalItems}
+          />
+        </Row>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = ({ dore }: IRootState) => ({
   doreList: dore.entities,
-  loading: dore.loading
+  loading: dore.loading,
+  totalItems: dore.totalItems
 });
 
 const mapDispatchToProps = {

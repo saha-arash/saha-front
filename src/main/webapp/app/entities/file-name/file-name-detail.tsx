@@ -45,7 +45,7 @@ export const FileNameDetail = (props: IFileNameDetailProps) => {
           <dt>
             <Translate contentKey="sahaApp.fileName.name">Name</Translate>
           </dt>
-          <dd>{fileNameEntity.name ? fileNameEntity.name.id : ''}</dd>
+          <dd>{fileNameEntity.nameId ? fileNameEntity.nameId : ''}</dd>
         </dl>
         <Button tag={Link} to="/file-name" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

@@ -17,7 +17,7 @@ export const FileNameDeleteDialog = (props: IFileNameDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/file-name');
+    props.history.push('/file-name' + props.location.search);
   };
 
   useEffect(() => {

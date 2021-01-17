@@ -2,22 +2,50 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { Translate, ICrudGetAllAction } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './yegan.reducer';
 import { IYegan } from 'app/shared/model/yegan.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IYeganProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const Yegan = (props: IYeganProps) => {
-  useEffect(() => {
-    props.getEntities();
-  }, []);
+  const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
 
-  const { yeganList, match, loading } = props;
+  const getAllEntities = () => {
+    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+  };
+
+  const sortEntities = () => {
+    getAllEntities();
+    props.history.push(
+      `${props.location.pathname}?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`
+    );
+  };
+
+  useEffect(() => {
+    sortEntities();
+  }, [paginationState.activePage, paginationState.order, paginationState.sort]);
+
+  const sort = p => () => {
+    setPaginationState({
+      ...paginationState,
+      order: paginationState.order === 'asc' ? 'desc' : 'asc',
+      sort: p
+    });
+  };
+
+  const handlePagination = currentPage =>
+    setPaginationState({
+      ...paginationState,
+      activePage: currentPage
+    });
+
+  const { yeganList, match, loading, totalItems } = props;
   return (
     <div>
       <h2 id="yegan-heading">
@@ -33,26 +61,23 @@ export const Yegan = (props: IYeganProps) => {
           <Table responsive>
             <thead>
               <tr>
-                <th>
-                  <Translate contentKey="global.field.id">ID</Translate>
+                <th className="hand" onClick={sort('id')}>
+                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('name')}>
+                  <Translate contentKey="sahaApp.yegan.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('code')}>
+                  <Translate contentKey="sahaApp.yegan.code">Code</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.yegan.name">Name</Translate>
+                  <Translate contentKey="sahaApp.yegan.nirooCode">Niroo Code</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.yegan.code">Code</Translate>
+                  <Translate contentKey="sahaApp.yegan.shahr">Shahr</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.yegan.zirYegan">Zir Yegan</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.yegan.nirooCode">Niroo Code</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.yegan.shahr">Shahr</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.yegan.yeganType">Yegan Type</Translate>
+                  <Translate contentKey="sahaApp.yegan.yeganType">Yegan Type</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -67,19 +92,9 @@ export const Yegan = (props: IYeganProps) => {
                   </td>
                   <td>{yegan.name}</td>
                   <td>{yegan.code}</td>
-                  <td>
-                    {yegan.zirYegans
-                      ? yegan.zirYegans.map((val, j) => (
-                          <span key={j}>
-                            <Link to={`yegan/${val.id}`}>{val.id}</Link>
-                            {j === yegan.zirYegans.length - 1 ? '' : ', '}
-                          </span>
-                        ))
-                      : null}
-                  </td>
-                  <td>{yegan.nirooCode ? <Link to={`niroo-code/${yegan.nirooCode.id}`}>{yegan.nirooCode.id}</Link> : ''}</td>
-                  <td>{yegan.shahr ? <Link to={`shahr/${yegan.shahr.id}`}>{yegan.shahr.id}</Link> : ''}</td>
-                  <td>{yegan.yeganType ? <Link to={`yegan-type/${yegan.yeganType.id}`}>{yegan.yeganType.id}</Link> : ''}</td>
+                  <td>{yegan.nirooCodeId ? <Link to={`niroo-code/${yegan.nirooCodeId}`}>{yegan.nirooCodeId}</Link> : ''}</td>
+                  <td>{yegan.shahrId ? <Link to={`shahr/${yegan.shahrId}`}>{yegan.shahrId}</Link> : ''}</td>
+                  <td>{yegan.yeganTypeId ? <Link to={`yegan-type/${yegan.yeganTypeId}`}>{yegan.yeganTypeId}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${yegan.id}`} color="info" size="sm">
@@ -88,13 +103,23 @@ export const Yegan = (props: IYeganProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${yegan.id}/edit`} color="primary" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${yegan.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="primary"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${yegan.id}/delete`} color="danger" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${yegan.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="danger"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -114,13 +139,28 @@ export const Yegan = (props: IYeganProps) => {
           )
         )}
       </div>
+      <div className={yeganList && yeganList.length > 0 ? '' : 'd-none'}>
+        <Row className="justify-content-center">
+          <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
+        </Row>
+        <Row className="justify-content-center">
+          <JhiPagination
+            activePage={paginationState.activePage}
+            onSelect={handlePagination}
+            maxButtons={5}
+            itemsPerPage={paginationState.itemsPerPage}
+            totalItems={props.totalItems}
+          />
+        </Row>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = ({ yegan }: IRootState) => ({
   yeganList: yegan.entities,
-  loading: yegan.loading
+  loading: yegan.loading,
+  totalItems: yegan.totalItems
 });
 
 const mapDispatchToProps = {

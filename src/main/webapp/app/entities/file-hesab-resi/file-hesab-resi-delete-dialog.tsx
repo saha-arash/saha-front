@@ -17,7 +17,7 @@ export const FileHesabResiDeleteDialog = (props: IFileHesabResiDeleteDialogProps
   }, []);
 
   const handleClose = () => {
-    props.history.push('/file-hesab-resi');
+    props.history.push('/file-hesab-resi' + props.location.search);
   };
 
   useEffect(() => {

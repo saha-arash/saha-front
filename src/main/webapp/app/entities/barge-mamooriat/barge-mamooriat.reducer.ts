@@ -5,7 +5,6 @@ import { cleanEntity } from 'app/shared/util/entity-utils';
 import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
 
 import { IBargeMamooriat, defaultValue } from 'app/shared/model/barge-mamooriat.model';
-import { appendQuery, isValidString } from 'app/shared/global methods/validators';
 
 export const ACTION_TYPES = {
   FETCH_BARGEMAMOORIAT_LIST: 'bargeMamooriat/FETCH_BARGEMAMOORIAT_LIST',
@@ -22,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<IBargeMamooriat>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -64,7 +64,8 @@ export default (state: BargeMamooriatState = initialState, action): BargeMamoori
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_BARGEMAMOORIAT):
       return {
@@ -97,20 +98,16 @@ export default (state: BargeMamooriatState = initialState, action): BargeMamoori
 };
 
 const apiUrl = 'api/barge-mamooriats';
-const getUrl = (page, size, sort, vaziat, saleMamooriat, hesabresiShode) => {
-  let url = `${apiUrl}/user?cacheBuster=${new Date().getTime()}`;
-  url = appendQuery(url, 'page', page);
-  url = appendQuery(url, 'size', size);
-  url = appendQuery(url, 'vaziatBargeMamooriat', vaziat);
-  url = appendQuery(url, 'saleMamooriat', saleMamooriat);
-  url = appendQuery(url, 'hesabResiShode', hesabresiShode);
-  return url;
-};
+
 // Actions
-export const getEntities: ICrudGetAllAction<IBargeMamooriat> = (page, size, sort, vaziat, saleMamooriat, hesabresiShode) => ({
-  type: ACTION_TYPES.FETCH_BARGEMAMOORIAT_LIST,
-  payload: axios.get<IBargeMamooriat>(getUrl(0, 1000, sort, vaziat, saleMamooriat, hesabresiShode))
-});
+
+export const getEntities: ICrudGetAllAction<IBargeMamooriat> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_BARGEMAMOORIAT_LIST,
+    payload: axios.get<IBargeMamooriat>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<IBargeMamooriat> = id => {
   const requestUrl = `${apiUrl}/${id}`;

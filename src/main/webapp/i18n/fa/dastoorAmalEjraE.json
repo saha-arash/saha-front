@@ -1,0 +1,23 @@
+{
+  "sahaApp": {
+    "dastoorAmalEjraE": {
+      "home": {
+        "title": "Dastoor Amal Ejra ES",
+        "createLabel": "Create a new Dastoor Amal Ejra E",
+        "createOrEditLabel": "Create or edit a Dastoor Amal Ejra E",
+        "notFound": "No Dastoor Amal Ejra ES found"
+      },
+      "created": "A new Dastoor Amal Ejra E is created with identifier {{ param }}",
+      "updated": "A Dastoor Amal Ejra E is updated with identifier {{ param }}",
+      "deleted": "A Dastoor Amal Ejra E is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Dastoor Amal Ejra E {{ id }}?"
+      },
+      "detail": {
+        "title": "Dastoor Amal Ejra E"
+      },
+      "failha": "Failha",
+      "hesabResi": "Hesab Resi"
+    }
+  }
+}

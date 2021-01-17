@@ -2,22 +2,60 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { openFile, byteSize, Translate, ICrudGetAllAction, TextFormat } from 'react-jhipster';
+import {
+  openFile,
+  byteSize,
+  Translate,
+  ICrudGetAllAction,
+  TextFormat,
+  getSortState,
+  IPaginationBaseState,
+  JhiPagination,
+  JhiItemCount
+} from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './file-hesab-resi.reducer';
 import { IFileHesabResi } from 'app/shared/model/file-hesab-resi.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IFileHesabResiProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const FileHesabResi = (props: IFileHesabResiProps) => {
-  useEffect(() => {
-    props.getEntities();
-  }, []);
+  const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
 
-  const { fileHesabResiList, match, loading } = props;
+  const getAllEntities = () => {
+    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+  };
+
+  const sortEntities = () => {
+    getAllEntities();
+    props.history.push(
+      `${props.location.pathname}?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`
+    );
+  };
+
+  useEffect(() => {
+    sortEntities();
+  }, [paginationState.activePage, paginationState.order, paginationState.sort]);
+
+  const sort = p => () => {
+    setPaginationState({
+      ...paginationState,
+      order: paginationState.order === 'asc' ? 'desc' : 'asc',
+      sort: p
+    });
+  };
+
+  const handlePagination = currentPage =>
+    setPaginationState({
+      ...paginationState,
+      activePage: currentPage
+    });
+
+  const { fileHesabResiList, match, loading, totalItems } = props;
   return (
     <div>
       <h2 id="file-hesab-resi-heading">
@@ -33,29 +71,77 @@ export const FileHesabResi = (props: IFileHesabResiProps) => {
           <Table responsive>
             <thead>
               <tr>
-                <th>
-                  <Translate contentKey="global.field.id">ID</Translate>
+                <th className="hand" onClick={sort('id')}>
+                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('file')}>
+                  <Translate contentKey="sahaApp.fileHesabResi.file">File</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('shomare')}>
+                  <Translate contentKey="sahaApp.fileHesabResi.shomare">Shomare</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('tarikhName')}>
+                  <Translate contentKey="sahaApp.fileHesabResi.tarikhName">Tarikh Name</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('mozoo')}>
+                  <Translate contentKey="sahaApp.fileHesabResi.mozoo">Mozoo</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('fileType')}>
+                  <Translate contentKey="sahaApp.fileHesabResi.fileType">File Type</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.file">File</Translate>
+                  <Translate contentKey="sahaApp.fileHesabResi.hesabResi">Hesab Resi</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.shomare">Shomare</Translate>
+                  <Translate contentKey="sahaApp.fileHesabResi.barnameHesabResi">Barname Hesab Resi</Translate>{' '}
+                  <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.tarikhName">Tarikh Name</Translate>
+                  <Translate contentKey="sahaApp.fileHesabResi.bankEtelaati">Bank Etelaati</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.mozoo">Mozoo</Translate>
+                  <Translate contentKey="sahaApp.fileHesabResi.rafeIradat">Rafe Iradat</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.fileType">File Type</Translate>
+                  <Translate contentKey="sahaApp.fileHesabResi.mostaKhreje">Mosta Khreje</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.hesabResi">Hesab Resi</Translate>
+                  <Translate contentKey="sahaApp.fileHesabResi.bilanSeSalGhabl">Bilan Se Sal Ghabl</Translate>{' '}
+                  <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.barnameHesabResi">Barname Hesab Resi</Translate>
+                  <Translate contentKey="sahaApp.fileHesabResi.mohasebeHazineMamooriat">Mohasebe Hazine Mamooriat</Translate>{' '}
+                  <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>
+                  <Translate contentKey="sahaApp.fileHesabResi.chekideGardeshKar">Chekide Gardesh Kar</Translate>{' '}
+                  <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>
+                  <Translate contentKey="sahaApp.fileHesabResi.gozareshHozoor">Gozaresh Hozoor</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>
+                  <Translate contentKey="sahaApp.fileHesabResi.bilanSalGhabl">Bilan Sal Ghabl</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>
+                  <Translate contentKey="sahaApp.fileHesabResi.madarek">Madarek</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>
+                  <Translate contentKey="sahaApp.fileHesabResi.gardeshkarBarnameHesabresi">Gardeshkar Barname Hesabresi</Translate>{' '}
+                  <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>
+                  <Translate contentKey="sahaApp.fileHesabResi.dastoorAmalEjraE">Dastoor Amal Ejra E</Translate>{' '}
+                  <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>
+                  <Translate contentKey="sahaApp.fileHesabResi.nameh">Nameh</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>
+                  <Translate contentKey="sahaApp.fileHesabResi.kholaseGozaresh">Kholase Gozaresh</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>
+                  <Translate contentKey="sahaApp.fileHesabResi.gardeshKar">Gardesh Kar</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -90,15 +176,105 @@ export const FileHesabResi = (props: IFileHesabResiProps) => {
                     <Translate contentKey={`sahaApp.FileType.${fileHesabResi.fileType}`} />
                   </td>
                   <td>
-                    {fileHesabResi.hesabResi ? (
-                      <Link to={`hesab-resi/${fileHesabResi.hesabResi.id}`}>{fileHesabResi.hesabResi.id}</Link>
+                    {fileHesabResi.hesabResiId ? (
+                      <Link to={`hesab-resi/${fileHesabResi.hesabResiId}`}>{fileHesabResi.hesabResiId}</Link>
                     ) : (
                       ''
                     )}
                   </td>
                   <td>
-                    {fileHesabResi.barnameHesabResi ? (
-                      <Link to={`barname-hesab-resi/${fileHesabResi.barnameHesabResi.id}`}>{fileHesabResi.barnameHesabResi.id}</Link>
+                    {fileHesabResi.barnameHesabResiId ? (
+                      <Link to={`barname-hesab-resi/${fileHesabResi.barnameHesabResiId}`}>{fileHesabResi.barnameHesabResiId}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
+                  <td>
+                    {fileHesabResi.bankEtelaatiId ? (
+                      <Link to={`bank-etelaati/${fileHesabResi.bankEtelaatiId}`}>{fileHesabResi.bankEtelaatiId}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
+                  <td>
+                    {fileHesabResi.rafeIradatId ? (
+                      <Link to={`rafe-iradat/${fileHesabResi.rafeIradatId}`}>{fileHesabResi.rafeIradatId}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
+                  <td>
+                    {fileHesabResi.mostaKhrejeId ? (
+                      <Link to={`mosta-khreje/${fileHesabResi.mostaKhrejeId}`}>{fileHesabResi.mostaKhrejeId}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
+                  <td>
+                    {fileHesabResi.bilanSeSalGhablId ? (
+                      <Link to={`bilan-se-sal-ghabl/${fileHesabResi.bilanSeSalGhablId}`}>{fileHesabResi.bilanSeSalGhablId}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
+                  <td>
+                    {fileHesabResi.mohasebeHazineMamooriatId ? (
+                      <Link to={`mohasebe-hazine-mamooriat/${fileHesabResi.mohasebeHazineMamooriatId}`}>
+                        {fileHesabResi.mohasebeHazineMamooriatId}
+                      </Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
+                  <td>
+                    {fileHesabResi.chekideGardeshKarId ? (
+                      <Link to={`chekide-gardesh-kar/${fileHesabResi.chekideGardeshKarId}`}>{fileHesabResi.chekideGardeshKarId}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
+                  <td>
+                    {fileHesabResi.gozareshHozoorId ? (
+                      <Link to={`gozaresh-hozoor/${fileHesabResi.gozareshHozoorId}`}>{fileHesabResi.gozareshHozoorId}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
+                  <td>
+                    {fileHesabResi.bilanSalGhablId ? (
+                      <Link to={`bilan-sal-ghabl/${fileHesabResi.bilanSalGhablId}`}>{fileHesabResi.bilanSalGhablId}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
+                  <td>{fileHesabResi.madarekId ? <Link to={`madarek/${fileHesabResi.madarekId}`}>{fileHesabResi.madarekId}</Link> : ''}</td>
+                  <td>
+                    {fileHesabResi.gardeshkarBarnameHesabresiId ? (
+                      <Link to={`gardeshkar-barname-hesabresi/${fileHesabResi.gardeshkarBarnameHesabresiId}`}>
+                        {fileHesabResi.gardeshkarBarnameHesabresiId}
+                      </Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
+                  <td>
+                    {fileHesabResi.dastoorAmalEjraEId ? (
+                      <Link to={`dastoor-amal-ejra-e/${fileHesabResi.dastoorAmalEjraEId}`}>{fileHesabResi.dastoorAmalEjraEId}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
+                  <td>{fileHesabResi.namehId ? <Link to={`nameh/${fileHesabResi.namehId}`}>{fileHesabResi.namehId}</Link> : ''}</td>
+                  <td>
+                    {fileHesabResi.kholaseGozareshId ? (
+                      <Link to={`kholase-gozaresh/${fileHesabResi.kholaseGozareshId}`}>{fileHesabResi.kholaseGozareshId}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
+                  <td>
+                    {fileHesabResi.gardeshKarId ? (
+                      <Link to={`gardesh-kar/${fileHesabResi.gardeshKarId}`}>{fileHesabResi.gardeshKarId}</Link>
                     ) : (
                       ''
                     )}
@@ -111,13 +287,23 @@ export const FileHesabResi = (props: IFileHesabResiProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${fileHesabResi.id}/edit`} color="primary" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${fileHesabResi.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="primary"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${fileHesabResi.id}/delete`} color="danger" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${fileHesabResi.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="danger"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -137,13 +323,28 @@ export const FileHesabResi = (props: IFileHesabResiProps) => {
           )
         )}
       </div>
+      <div className={fileHesabResiList && fileHesabResiList.length > 0 ? '' : 'd-none'}>
+        <Row className="justify-content-center">
+          <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
+        </Row>
+        <Row className="justify-content-center">
+          <JhiPagination
+            activePage={paginationState.activePage}
+            onSelect={handlePagination}
+            maxButtons={5}
+            itemsPerPage={paginationState.itemsPerPage}
+            totalItems={props.totalItems}
+          />
+        </Row>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = ({ fileHesabResi }: IRootState) => ({
   fileHesabResiList: fileHesabResi.entities,
-  loading: fileHesabResi.loading
+  loading: fileHesabResi.loading,
+  totalItems: fileHesabResi.totalItems
 });
 
 const mapDispatchToProps = {

@@ -22,6 +22,7 @@ const initialState = {
   entities: [] as ReadonlyArray<IFileBargeMamooriat>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -64,7 +65,8 @@ export default (state: FileBargeMamooriatState = initialState, action): FileBarg
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_FILEBARGEMAMOORIAT):
       return {
@@ -111,15 +113,13 @@ const apiUrl = 'api/file-barge-mamooriats';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IFileBargeMamooriat> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_FILEBARGEMAMOORIAT_LIST,
-  payload: axios.get<IFileBargeMamooriat>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
-
-export const getFileBargeMamooriatsById: ICrudGetAllAction<IFileBargeMamooriat> = (page, size, sort, id) => ({
-  type: ACTION_TYPES.FETCH_FILEBARGEMAMOORIAT_LIST,
-  payload: axios.get<IFileBargeMamooriat>(`${apiUrl}/barge-mamooriat/${id}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<IFileBargeMamooriat> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_FILEBARGEMAMOORIAT_LIST,
+    payload: axios.get<IFileBargeMamooriat>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<IFileBargeMamooriat> = id => {
   const requestUrl = `${apiUrl}/${id}`;
@@ -134,7 +134,7 @@ export const createEntity: ICrudPutAction<IFileBargeMamooriat> = entity => async
     type: ACTION_TYPES.CREATE_FILEBARGEMAMOORIAT,
     payload: axios.post(apiUrl, cleanEntity(entity))
   });
-  dispatch(getFileBargeMamooriatsById());
+  dispatch(getEntities());
   return result;
 };
 
@@ -143,7 +143,7 @@ export const updateEntity: ICrudPutAction<IFileBargeMamooriat> = entity => async
     type: ACTION_TYPES.UPDATE_FILEBARGEMAMOORIAT,
     payload: axios.put(apiUrl, cleanEntity(entity))
   });
-  dispatch(getFileBargeMamooriatsById());
+  dispatch(getEntities());
   return result;
 };
 
@@ -153,7 +153,7 @@ export const deleteEntity: ICrudDeleteAction<IFileBargeMamooriat> = id => async 
     type: ACTION_TYPES.DELETE_FILEBARGEMAMOORIAT,
     payload: axios.delete(requestUrl)
   });
-  dispatch(getFileBargeMamooriatsById());
+  dispatch(getEntities());
   return result;
 };
 

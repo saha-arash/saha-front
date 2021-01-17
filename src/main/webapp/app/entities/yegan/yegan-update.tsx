@@ -35,7 +35,7 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
   const { yeganEntity, yegans, yeganCodes, nirooCodes, shahrs, yeganTypes, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/yegan');
+    props.history.push('/yegan' + props.location.search);
   };
 
   useEffect(() => {
@@ -135,7 +135,7 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
                 <Label for="yegan-nirooCode">
                   <Translate contentKey="sahaApp.yegan.nirooCode">Niroo Code</Translate>
                 </Label>
-                <AvInput id="yegan-nirooCode" type="select" className="form-control" name="nirooCode.id">
+                <AvInput id="yegan-nirooCode" type="select" className="form-control" name="nirooCodeId">
                   <option value="" key="0" />
                   {nirooCodes
                     ? nirooCodes.map(otherEntity => (
@@ -150,7 +150,7 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
                 <Label for="yegan-shahr">
                   <Translate contentKey="sahaApp.yegan.shahr">Shahr</Translate>
                 </Label>
-                <AvInput id="yegan-shahr" type="select" className="form-control" name="shahr.id">
+                <AvInput id="yegan-shahr" type="select" className="form-control" name="shahrId">
                   <option value="" key="0" />
                   {shahrs
                     ? shahrs.map(otherEntity => (
@@ -165,7 +165,7 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
                 <Label for="yegan-yeganType">
                   <Translate contentKey="sahaApp.yegan.yeganType">Yegan Type</Translate>
                 </Label>
-                <AvInput id="yegan-yeganType" type="select" className="form-control" name="yeganType.id">
+                <AvInput id="yegan-yeganType" type="select" className="form-control" name="yeganTypeId">
                   <option value="" key="0" />
                   {yeganTypes
                     ? yeganTypes.map(otherEntity => (

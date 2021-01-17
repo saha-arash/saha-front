@@ -23,7 +23,7 @@ export const NegahbaniUpdate = (props: INegahbaniUpdateProps) => {
   const { negahbaniEntity, karbars, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/negahbani');
+    props.history.push('/negahbani' + props.location.search);
   };
 
   useEffect(() => {
@@ -113,7 +113,7 @@ export const NegahbaniUpdate = (props: INegahbaniUpdateProps) => {
                 <Label for="negahbani-karbar">
                   <Translate contentKey="sahaApp.negahbani.karbar">Karbar</Translate>
                 </Label>
-                <AvInput id="negahbani-karbar" type="select" className="form-control" name="karbar.id">
+                <AvInput id="negahbani-karbar" type="select" className="form-control" name="karbarId">
                   <option value="" key="0" />
                   {karbars
                     ? karbars.map(otherEntity => (

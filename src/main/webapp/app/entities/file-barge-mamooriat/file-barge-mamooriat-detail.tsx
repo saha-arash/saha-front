@@ -35,7 +35,7 @@ export const FileBargeMamooriatDetail = (props: IFileBargeMamooriatDetailProps) 
             {fileBargeMamooriatEntity.madarek ? (
               <div>
                 <a onClick={openFile(fileBargeMamooriatEntity.madarekContentType, fileBargeMamooriatEntity.madarek)}>
-                  <span>باز کردن</span>&nbsp;
+                  <Translate contentKey="entity.action.open">Open</Translate>&nbsp;
                 </a>
                 <span>
                   {fileBargeMamooriatEntity.madarekContentType}, {byteSize(fileBargeMamooriatEntity.madarek)}
@@ -46,7 +46,7 @@ export const FileBargeMamooriatDetail = (props: IFileBargeMamooriatDetailProps) 
           <dt>
             <Translate contentKey="sahaApp.fileBargeMamooriat.bargeMamooriat">Barge Mamooriat</Translate>
           </dt>
-          <dd>{fileBargeMamooriatEntity.bargeMamooriat ? fileBargeMamooriatEntity.bargeMamooriat.id : ''}</dd>
+          <dd>{fileBargeMamooriatEntity.bargeMamooriatId ? fileBargeMamooriatEntity.bargeMamooriatId : ''}</dd>
         </dl>
         <Button tag={Link} to="/file-barge-mamooriat" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

@@ -40,19 +40,19 @@ export const PayamDetail = (props: IPayamDetailProps) => {
           <dt>
             <Translate contentKey="sahaApp.payam.karbarErsalKonande">Karbar Ersal Konande</Translate>
           </dt>
-          <dd>{payamEntity.karbarErsalKonande ? payamEntity.karbarErsalKonande.id : ''}</dd>
+          <dd>{payamEntity.karbarErsalKonandeId ? payamEntity.karbarErsalKonandeId : ''}</dd>
           <dt>
             <Translate contentKey="sahaApp.payam.karbarDaryaftKonand">Karbar Daryaft Konand</Translate>
           </dt>
-          <dd>{payamEntity.karbarDaryaftKonand ? payamEntity.karbarDaryaftKonand.id : ''}</dd>
+          <dd>{payamEntity.karbarDaryaftKonandId ? payamEntity.karbarDaryaftKonandId : ''}</dd>
           <dt>
             <Translate contentKey="sahaApp.payam.yeganErsalKonanade">Yegan Ersal Konanade</Translate>
           </dt>
-          <dd>{payamEntity.yeganErsalKonanade ? payamEntity.yeganErsalKonanade.id : ''}</dd>
+          <dd>{payamEntity.yeganErsalKonanadeId ? payamEntity.yeganErsalKonanadeId : ''}</dd>
           <dt>
             <Translate contentKey="sahaApp.payam.yeganDaryaftKonanade">Yegan Daryaft Konanade</Translate>
           </dt>
-          <dd>{payamEntity.yeganDaryaftKonanade ? payamEntity.yeganDaryaftKonanade.id : ''}</dd>
+          <dd>{payamEntity.yeganDaryaftKonanadeId ? payamEntity.yeganDaryaftKonanadeId : ''}</dd>
         </dl>
         <Button tag={Link} to="/payam" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

@@ -75,6 +75,72 @@ export const EntitiesMenu = props => (
     {/* <MenuItem icon="asterisk" to="/gozaresh">
       <Translate contentKey="global.menu.entities.gozaresh" />
     </MenuItem> */}
+    <MenuItem icon="asterisk" to="/karbar">
+      <Translate contentKey="global.menu.entities.karbar" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/semat">
+      <Translate contentKey="global.menu.entities.semat" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/daraje">
+      <Translate contentKey="global.menu.entities.daraje" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/yegan-type">
+      <Translate contentKey="global.menu.entities.yeganType" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/yegan">
+      <Translate contentKey="global.menu.entities.yegan" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/mohasebe-hazine-mamooriat">
+      <Translate contentKey="global.menu.entities.mohasebeHazineMamooriat" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/dastoor-amal-ejra-e">
+      <Translate contentKey="global.menu.entities.dastoorAmalEjraE" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/gardeshkar-barname-hesabresi">
+      <Translate contentKey="global.menu.entities.gardeshkarBarnameHesabresi" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/madarek">
+      <Translate contentKey="global.menu.entities.madarek" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/bilan-sal-ghabl">
+      <Translate contentKey="global.menu.entities.bilanSalGhabl" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/gozaresh-hozoor">
+      <Translate contentKey="global.menu.entities.gozareshHozoor" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/chekide-gardesh-kar">
+      <Translate contentKey="global.menu.entities.chekideGardeshKar" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/bilan-se-sal-ghabl">
+      <Translate contentKey="global.menu.entities.bilanSeSalGhabl" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/mosta-khreje">
+      <Translate contentKey="global.menu.entities.mostaKhreje" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/rafe-iradat">
+      <Translate contentKey="global.menu.entities.rafeIradat" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/bank-etelaati">
+      <Translate contentKey="global.menu.entities.bankEtelaati" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/nameh">
+      <Translate contentKey="global.menu.entities.nameh" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/kholase-gozaresh">
+      <Translate contentKey="global.menu.entities.kholaseGozaresh" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/gardesh-kar">
+      <Translate contentKey="global.menu.entities.gardeshKar" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/mantaghe">
+      <Translate contentKey="global.menu.entities.mantaghe" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/ostan">
+      <Translate contentKey="global.menu.entities.ostan" />
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/shahr">
+      <Translate contentKey="global.menu.entities.shahr" />
+    </MenuItem>
     {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
   </NavDropdown>
 );

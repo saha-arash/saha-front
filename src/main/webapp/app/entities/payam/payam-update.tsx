@@ -30,7 +30,7 @@ export const PayamUpdate = (props: IPayamUpdateProps) => {
   const { matn } = payamEntity;
 
   const handleClose = () => {
-    props.history.push('/payam');
+    props.history.push('/payam' + props.location.search);
   };
 
   useEffect(() => {
@@ -112,7 +112,7 @@ export const PayamUpdate = (props: IPayamUpdateProps) => {
                 <Label for="payam-karbarErsalKonande">
                   <Translate contentKey="sahaApp.payam.karbarErsalKonande">Karbar Ersal Konande</Translate>
                 </Label>
-                <AvInput id="payam-karbarErsalKonande" type="select" className="form-control" name="karbarErsalKonande.id">
+                <AvInput id="payam-karbarErsalKonande" type="select" className="form-control" name="karbarErsalKonandeId">
                   <option value="" key="0" />
                   {karbars
                     ? karbars.map(otherEntity => (
@@ -127,7 +127,7 @@ export const PayamUpdate = (props: IPayamUpdateProps) => {
                 <Label for="payam-karbarDaryaftKonand">
                   <Translate contentKey="sahaApp.payam.karbarDaryaftKonand">Karbar Daryaft Konand</Translate>
                 </Label>
-                <AvInput id="payam-karbarDaryaftKonand" type="select" className="form-control" name="karbarDaryaftKonand.id">
+                <AvInput id="payam-karbarDaryaftKonand" type="select" className="form-control" name="karbarDaryaftKonandId">
                   <option value="" key="0" />
                   {karbars
                     ? karbars.map(otherEntity => (
@@ -142,7 +142,7 @@ export const PayamUpdate = (props: IPayamUpdateProps) => {
                 <Label for="payam-yeganErsalKonanade">
                   <Translate contentKey="sahaApp.payam.yeganErsalKonanade">Yegan Ersal Konanade</Translate>
                 </Label>
-                <AvInput id="payam-yeganErsalKonanade" type="select" className="form-control" name="yeganErsalKonanade.id">
+                <AvInput id="payam-yeganErsalKonanade" type="select" className="form-control" name="yeganErsalKonanadeId">
                   <option value="" key="0" />
                   {yegans
                     ? yegans.map(otherEntity => (
@@ -157,7 +157,7 @@ export const PayamUpdate = (props: IPayamUpdateProps) => {
                 <Label for="payam-yeganDaryaftKonanade">
                   <Translate contentKey="sahaApp.payam.yeganDaryaftKonanade">Yegan Daryaft Konanade</Translate>
                 </Label>
-                <AvInput id="payam-yeganDaryaftKonanade" type="select" className="form-control" name="yeganDaryaftKonanade.id">
+                <AvInput id="payam-yeganDaryaftKonanade" type="select" className="form-control" name="yeganDaryaftKonanadeId">
                   <option value="" key="0" />
                   {yegans
                     ? yegans.map(otherEntity => (

@@ -44,7 +44,7 @@ export const MorkhasiDetail = (props: IMorkhasiDetailProps) => {
           <dt>
             <Translate contentKey="sahaApp.morkhasi.karbar">Karbar</Translate>
           </dt>
-          <dd>{morkhasiEntity.karbar ? morkhasiEntity.karbar.id : ''}</dd>
+          <dd>{morkhasiEntity.karbarId ? morkhasiEntity.karbarId : ''}</dd>
         </dl>
         <Button tag={Link} to="/morkhasi" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

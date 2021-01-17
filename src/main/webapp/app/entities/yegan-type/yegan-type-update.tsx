@@ -20,7 +20,7 @@ export const YeganTypeUpdate = (props: IYeganTypeUpdateProps) => {
   const { yeganTypeEntity, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/yegan-type');
+    props.history.push('/yegan-type' + props.location.search);
   };
 
   useEffect(() => {

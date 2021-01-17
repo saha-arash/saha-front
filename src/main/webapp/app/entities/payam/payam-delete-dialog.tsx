@@ -17,7 +17,7 @@ export const PayamDeleteDialog = (props: IPayamDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/payam');
+    props.history.push('/payam' + props.location.search);
   };
 
   useEffect(() => {

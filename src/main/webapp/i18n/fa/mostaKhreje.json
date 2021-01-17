@@ -1,0 +1,23 @@
+{
+  "sahaApp": {
+    "mostaKhreje": {
+      "home": {
+        "title": "Mosta Khrejes",
+        "createLabel": "Create a new Mosta Khreje",
+        "createOrEditLabel": "Create or edit a Mosta Khreje",
+        "notFound": "No Mosta Khrejes found"
+      },
+      "created": "A new Mosta Khreje is created with identifier {{ param }}",
+      "updated": "A Mosta Khreje is updated with identifier {{ param }}",
+      "deleted": "A Mosta Khreje is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Mosta Khreje {{ id }}?"
+      },
+      "detail": {
+        "title": "Mosta Khreje"
+      },
+      "failha": "Failha",
+      "hesabResi": "Hesab Resi"
+    }
+  }
+}

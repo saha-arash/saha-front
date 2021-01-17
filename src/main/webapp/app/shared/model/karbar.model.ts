@@ -4,10 +4,6 @@ import { IDore } from 'app/shared/model/dore.model';
 import { INegahbani } from 'app/shared/model/negahbani.model';
 import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
 import { IPayam } from 'app/shared/model/payam.model';
-import { IYegan } from 'app/shared/model/yegan.model';
-import { IYeganCode } from 'app/shared/model/yegan-code.model';
-import { IDaraje } from 'app/shared/model/daraje.model';
-import { ISemat } from 'app/shared/model/semat.model';
 
 export interface IKarbar {
   id?: number;
@@ -27,10 +23,10 @@ export interface IKarbar {
   snadoghKhoroojis?: IPayam[];
   bargeMamoorits?: IBargeMamooriat[];
   binanadeBargeMamoorits?: IBargeMamooriat[];
-  yegan?: IYegan;
-  yeganCode?: IYeganCode;
-  daraje?: IDaraje;
-  semat?: ISemat;
+  yeganId?: number;
+  yeganCodeId?: number;
+  darajeId?: number;
+  sematId?: number;
 }
 
 export const defaultValue: Readonly<IKarbar> = {

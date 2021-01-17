@@ -23,7 +23,7 @@ export const OstanUpdate = (props: IOstanUpdateProps) => {
   const { ostanEntity, mantaghes, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/ostan');
+    props.history.push('/ostan' + props.location.search);
   };
 
   useEffect(() => {
@@ -90,7 +90,7 @@ export const OstanUpdate = (props: IOstanUpdateProps) => {
                 <Label for="ostan-mantaghe">
                   <Translate contentKey="sahaApp.ostan.mantaghe">Mantaghe</Translate>
                 </Label>
-                <AvInput id="ostan-mantaghe" type="select" className="form-control" name="mantaghe.id">
+                <AvInput id="ostan-mantaghe" type="select" className="form-control" name="mantagheId">
                   <option value="" key="0" />
                   {mantaghes
                     ? mantaghes.map(otherEntity => (

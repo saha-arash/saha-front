@@ -1,0 +1,23 @@
+{
+  "sahaApp": {
+    "gardeshkarBarnameHesabresi": {
+      "home": {
+        "title": "Gardeshkar Barname Hesabresis",
+        "createLabel": "Create a new Gardeshkar Barname Hesabresi",
+        "createOrEditLabel": "Create or edit a Gardeshkar Barname Hesabresi",
+        "notFound": "No Gardeshkar Barname Hesabresis found"
+      },
+      "created": "A new Gardeshkar Barname Hesabresi is created with identifier {{ param }}",
+      "updated": "A Gardeshkar Barname Hesabresi is updated with identifier {{ param }}",
+      "deleted": "A Gardeshkar Barname Hesabresi is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Gardeshkar Barname Hesabresi {{ id }}?"
+      },
+      "detail": {
+        "title": "Gardeshkar Barname Hesabresi"
+      },
+      "failha": "Failha",
+      "hesabResi": "Hesab Resi"
+    }
+  }
+}

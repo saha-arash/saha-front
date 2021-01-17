@@ -1,0 +1,23 @@
+{
+  "sahaApp": {
+    "madarek": {
+      "home": {
+        "title": "Madareks",
+        "createLabel": "Create a new Madarek",
+        "createOrEditLabel": "Create or edit a Madarek",
+        "notFound": "No Madareks found"
+      },
+      "created": "A new Madarek is created with identifier {{ param }}",
+      "updated": "A Madarek is updated with identifier {{ param }}",
+      "deleted": "A Madarek is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Madarek {{ id }}?"
+      },
+      "detail": {
+        "title": "Madarek"
+      },
+      "failha": "Failha",
+      "hesabResi": "Hesab Resi"
+    }
+  }
+}

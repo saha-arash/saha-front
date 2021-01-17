@@ -100,6 +100,62 @@ import shahr, {
 import gozaresh, {
   GozareshState
 } from 'app/entities/gozaresh/gozaresh.reducer';
+// prettier-ignore
+import mohasebeHazineMamooriat, {
+  MohasebeHazineMamooriatState
+} from 'app/entities/mohasebe-hazine-mamooriat/mohasebe-hazine-mamooriat.reducer';
+// prettier-ignore
+import dastoorAmalEjraE, {
+  DastoorAmalEjraEState
+} from 'app/entities/dastoor-amal-ejra-e/dastoor-amal-ejra-e.reducer';
+// prettier-ignore
+import gardeshkarBarnameHesabresi, {
+  GardeshkarBarnameHesabresiState
+} from 'app/entities/gardeshkar-barname-hesabresi/gardeshkar-barname-hesabresi.reducer';
+// prettier-ignore
+import madarek, {
+  MadarekState
+} from 'app/entities/madarek/madarek.reducer';
+// prettier-ignore
+import bilanSalGhabl, {
+  BilanSalGhablState
+} from 'app/entities/bilan-sal-ghabl/bilan-sal-ghabl.reducer';
+// prettier-ignore
+import gozareshHozoor, {
+  GozareshHozoorState
+} from 'app/entities/gozaresh-hozoor/gozaresh-hozoor.reducer';
+// prettier-ignore
+import chekideGardeshKar, {
+  ChekideGardeshKarState
+} from 'app/entities/chekide-gardesh-kar/chekide-gardesh-kar.reducer';
+// prettier-ignore
+import bilanSeSalGhabl, {
+  BilanSeSalGhablState
+} from 'app/entities/bilan-se-sal-ghabl/bilan-se-sal-ghabl.reducer';
+// prettier-ignore
+import mostaKhreje, {
+  MostaKhrejeState
+} from 'app/entities/mosta-khreje/mosta-khreje.reducer';
+// prettier-ignore
+import rafeIradat, {
+  RafeIradatState
+} from 'app/entities/rafe-iradat/rafe-iradat.reducer';
+// prettier-ignore
+import bankEtelaati, {
+  BankEtelaatiState
+} from 'app/entities/bank-etelaati/bank-etelaati.reducer';
+// prettier-ignore
+import nameh, {
+  NamehState
+} from 'app/entities/nameh/nameh.reducer';
+// prettier-ignore
+import kholaseGozaresh, {
+  KholaseGozareshState
+} from 'app/entities/kholase-gozaresh/kholase-gozaresh.reducer';
+// prettier-ignore
+import gardeshKar, {
+  GardeshKarState
+} from 'app/entities/gardesh-kar/gardesh-kar.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -135,6 +191,20 @@ export interface IRootState {
   readonly ostan: OstanState;
   readonly shahr: ShahrState;
   readonly gozaresh: GozareshState;
+  readonly mohasebeHazineMamooriat: MohasebeHazineMamooriatState;
+  readonly dastoorAmalEjraE: DastoorAmalEjraEState;
+  readonly gardeshkarBarnameHesabresi: GardeshkarBarnameHesabresiState;
+  readonly madarek: MadarekState;
+  readonly bilanSalGhabl: BilanSalGhablState;
+  readonly gozareshHozoor: GozareshHozoorState;
+  readonly chekideGardeshKar: ChekideGardeshKarState;
+  readonly bilanSeSalGhabl: BilanSeSalGhablState;
+  readonly mostaKhreje: MostaKhrejeState;
+  readonly rafeIradat: RafeIradatState;
+  readonly bankEtelaati: BankEtelaatiState;
+  readonly nameh: NamehState;
+  readonly kholaseGozaresh: KholaseGozareshState;
+  readonly gardeshKar: GardeshKarState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -173,6 +243,20 @@ const rootReducer = combineReducers<IRootState>({
   ostan,
   shahr,
   gozaresh,
+  mohasebeHazineMamooriat,
+  dastoorAmalEjraE,
+  gardeshkarBarnameHesabresi,
+  madarek,
+  bilanSalGhabl,
+  gozareshHozoor,
+  chekideGardeshKar,
+  bilanSeSalGhabl,
+  mostaKhreje,
+  rafeIradat,
+  bankEtelaati,
+  nameh,
+  kholaseGozaresh,
+  gardeshKar,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar
 });

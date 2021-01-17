@@ -22,6 +22,118 @@
         },
         {
             "relationshipType": "one-to-one",
+            "otherEntityName": "bankEtelaati",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "bankEtelaati",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "rafeIradat",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "rafeIradat",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "mostaKhreje",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "mostaKhreje",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "bilanSeSalGhabl",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "bilanSeSalGhabl",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "mohasebeHazineMamooriat",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "mohasebeHazineMamooriat",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "chekideGardeshKar",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "chekideGardeshKar",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "gozareshHozoor",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "gozareshHozoor",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "bilanSalGhabl",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "bilanSalGhabl",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "madarek",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "madarek",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "gardeshkarBarnameHesabresi",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "gardeshkarBarnameHesabresi",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "dastoorAmalEjraE",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "dastoorAmalEjraE",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "nameh",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "nameh",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "kholaseGozaresh",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "kholaseGozaresh",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "gardeshKar",
+            "otherEntityRelationshipName": "hesabResi",
+            "relationshipName": "gardeshKar",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
             "otherEntityName": "barnameHesabResi",
             "otherEntityRelationshipName": "hesabResi",
             "relationshipName": "barnameHesabResi",
@@ -43,9 +155,9 @@
     ],
     "changelogDate": "20201221183300",
     "entityTableName": "hesab_resi",
-    "dto": "no",
-    "pagination": "no",
-    "service": "no",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "readOnly": false,

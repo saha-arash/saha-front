@@ -17,7 +17,7 @@ export const OstanDeleteDialog = (props: IOstanDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/ostan');
+    props.history.push('/ostan' + props.location.search);
   };
 
   useEffect(() => {

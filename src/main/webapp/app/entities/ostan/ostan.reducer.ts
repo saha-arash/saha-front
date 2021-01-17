@@ -21,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<IOstan>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -63,7 +64,8 @@ export default (state: OstanState = initialState, action): OstanState => {
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_OSTAN):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/ostans';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IOstan> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_OSTAN_LIST,
-  payload: axios.get<IOstan>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<IOstan> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_OSTAN_LIST,
+    payload: axios.get<IOstan>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<IOstan> = id => {
   const requestUrl = `${apiUrl}/${id}`;

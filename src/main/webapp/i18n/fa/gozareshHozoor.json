@@ -1,0 +1,23 @@
+{
+  "sahaApp": {
+    "gozareshHozoor": {
+      "home": {
+        "title": "Gozaresh Hozoors",
+        "createLabel": "Create a new Gozaresh Hozoor",
+        "createOrEditLabel": "Create or edit a Gozaresh Hozoor",
+        "notFound": "No Gozaresh Hozoors found"
+      },
+      "created": "A new Gozaresh Hozoor is created with identifier {{ param }}",
+      "updated": "A Gozaresh Hozoor is updated with identifier {{ param }}",
+      "deleted": "A Gozaresh Hozoor is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Gozaresh Hozoor {{ id }}?"
+      },
+      "detail": {
+        "title": "Gozaresh Hozoor"
+      },
+      "failha": "Failha",
+      "hesabResi": "Hesab Resi"
+    }
+  }
+}

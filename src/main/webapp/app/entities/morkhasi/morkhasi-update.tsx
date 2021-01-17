@@ -23,7 +23,7 @@ export const MorkhasiUpdate = (props: IMorkhasiUpdateProps) => {
   const { morkhasiEntity, karbars, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/morkhasi');
+    props.history.push('/morkhasi' + props.location.search);
   };
 
   useEffect(() => {
@@ -113,7 +113,7 @@ export const MorkhasiUpdate = (props: IMorkhasiUpdateProps) => {
                 <Label for="morkhasi-karbar">
                   <Translate contentKey="sahaApp.morkhasi.karbar">Karbar</Translate>
                 </Label>
-                <AvInput id="morkhasi-karbar" type="select" className="form-control" name="karbar.id">
+                <AvInput id="morkhasi-karbar" type="select" className="form-control" name="karbarId">
                   <option value="" key="0" />
                   {karbars
                     ? karbars.map(otherEntity => (

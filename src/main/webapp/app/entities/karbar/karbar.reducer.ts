@@ -21,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<IKarbar>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -63,7 +64,8 @@ export default (state: KarbarState = initialState, action): KarbarState => {
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_KARBAR):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/karbars';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IKarbar> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_KARBAR_LIST,
-  payload: axios.get<IKarbar>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<IKarbar> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_KARBAR_LIST,
+    payload: axios.get<IKarbar>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<IKarbar> = id => {
   const requestUrl = `${apiUrl}/${id}`;

@@ -25,7 +25,7 @@ export const FileGozareshUpdate = (props: IFileGozareshUpdateProps) => {
   const { file, fileContentType } = fileGozareshEntity;
 
   const handleClose = () => {
-    props.history.push('/file-gozaresh');
+    props.history.push('/file-gozaresh' + props.location.search);
   };
 
   useEffect(() => {
@@ -124,7 +124,7 @@ export const FileGozareshUpdate = (props: IFileGozareshUpdateProps) => {
                 <Label for="file-gozaresh-hesabResi">
                   <Translate contentKey="sahaApp.fileGozaresh.hesabResi">Hesab Resi</Translate>
                 </Label>
-                <AvInput id="file-gozaresh-hesabResi" type="select" className="form-control" name="hesabResi.id">
+                <AvInput id="file-gozaresh-hesabResi" type="select" className="form-control" name="hesabResiId">
                   <option value="" key="0" />
                   {gozareshes
                     ? gozareshes.map(otherEntity => (

@@ -106,19 +106,19 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
           <dt>
             <Translate contentKey="sahaApp.karbar.yegan">Yegan</Translate>
           </dt>
-          <dd>{karbarEntity.yegan ? karbarEntity.yegan.id : ''}</dd>
+          <dd>{karbarEntity.yeganId ? karbarEntity.yeganId : ''}</dd>
           <dt>
             <Translate contentKey="sahaApp.karbar.yeganCode">Yegan Code</Translate>
           </dt>
-          <dd>{karbarEntity.yeganCode ? karbarEntity.yeganCode.id : ''}</dd>
+          <dd>{karbarEntity.yeganCodeId ? karbarEntity.yeganCodeId : ''}</dd>
           <dt>
             <Translate contentKey="sahaApp.karbar.daraje">Daraje</Translate>
           </dt>
-          <dd>{karbarEntity.daraje ? karbarEntity.daraje.id : ''}</dd>
+          <dd>{karbarEntity.darajeId ? karbarEntity.darajeId : ''}</dd>
           <dt>
             <Translate contentKey="sahaApp.karbar.semat">Semat</Translate>
           </dt>
-          <dd>{karbarEntity.semat ? karbarEntity.semat.id : ''}</dd>
+          <dd>{karbarEntity.sematId ? karbarEntity.sematId : ''}</dd>
         </dl>
         <Button tag={Link} to="/karbar" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

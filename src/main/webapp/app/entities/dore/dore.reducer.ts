@@ -21,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<IDore>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -63,7 +64,8 @@ export default (state: DoreState = initialState, action): DoreState => {
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_DORE):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/dores';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IDore> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_DORE_LIST,
-  payload: axios.get<IDore>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<IDore> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_DORE_LIST,
+    payload: axios.get<IDore>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<IDore> = id => {
   const requestUrl = `${apiUrl}/${id}`;

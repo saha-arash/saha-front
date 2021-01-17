@@ -2,22 +2,59 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { openFile, byteSize, Translate, ICrudGetAllAction } from 'react-jhipster';
+import {
+  openFile,
+  byteSize,
+  Translate,
+  ICrudGetAllAction,
+  getSortState,
+  IPaginationBaseState,
+  JhiPagination,
+  JhiItemCount
+} from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './file-gozaresh.reducer';
 import { IFileGozaresh } from 'app/shared/model/file-gozaresh.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IFileGozareshProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const FileGozaresh = (props: IFileGozareshProps) => {
-  useEffect(() => {
-    props.getEntities();
-  }, []);
+  const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
 
-  const { fileGozareshList, match, loading } = props;
+  const getAllEntities = () => {
+    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+  };
+
+  const sortEntities = () => {
+    getAllEntities();
+    props.history.push(
+      `${props.location.pathname}?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`
+    );
+  };
+
+  useEffect(() => {
+    sortEntities();
+  }, [paginationState.activePage, paginationState.order, paginationState.sort]);
+
+  const sort = p => () => {
+    setPaginationState({
+      ...paginationState,
+      order: paginationState.order === 'asc' ? 'desc' : 'asc',
+      sort: p
+    });
+  };
+
+  const handlePagination = currentPage =>
+    setPaginationState({
+      ...paginationState,
+      activePage: currentPage
+    });
+
+  const { fileGozareshList, match, loading, totalItems } = props;
   return (
     <div>
       <h2 id="file-gozaresh-heading">
@@ -33,14 +70,14 @@ export const FileGozaresh = (props: IFileGozareshProps) => {
           <Table responsive>
             <thead>
               <tr>
-                <th>
-                  <Translate contentKey="global.field.id">ID</Translate>
+                <th className="hand" onClick={sort('id')}>
+                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('file')}>
+                  <Translate contentKey="sahaApp.fileGozaresh.file">File</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.fileGozaresh.file">File</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileGozaresh.hesabResi">Hesab Resi</Translate>
+                  <Translate contentKey="sahaApp.fileGozaresh.hesabResi">Hesab Resi</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -67,7 +104,7 @@ export const FileGozaresh = (props: IFileGozareshProps) => {
                     ) : null}
                   </td>
                   <td>
-                    {fileGozaresh.hesabResi ? <Link to={`gozaresh/${fileGozaresh.hesabResi.id}`}>{fileGozaresh.hesabResi.id}</Link> : ''}
+                    {fileGozaresh.hesabResiId ? <Link to={`gozaresh/${fileGozaresh.hesabResiId}`}>{fileGozaresh.hesabResiId}</Link> : ''}
                   </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
@@ -77,13 +114,23 @@ export const FileGozaresh = (props: IFileGozareshProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${fileGozaresh.id}/edit`} color="primary" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${fileGozaresh.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="primary"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${fileGozaresh.id}/delete`} color="danger" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${fileGozaresh.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="danger"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -103,13 +150,28 @@ export const FileGozaresh = (props: IFileGozareshProps) => {
           )
         )}
       </div>
+      <div className={fileGozareshList && fileGozareshList.length > 0 ? '' : 'd-none'}>
+        <Row className="justify-content-center">
+          <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
+        </Row>
+        <Row className="justify-content-center">
+          <JhiPagination
+            activePage={paginationState.activePage}
+            onSelect={handlePagination}
+            maxButtons={5}
+            itemsPerPage={paginationState.itemsPerPage}
+            totalItems={props.totalItems}
+          />
+        </Row>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = ({ fileGozaresh }: IRootState) => ({
   fileGozareshList: fileGozaresh.entities,
-  loading: fileGozaresh.loading
+  loading: fileGozaresh.loading,
+  totalItems: fileGozaresh.totalItems
 });
 
 const mapDispatchToProps = {

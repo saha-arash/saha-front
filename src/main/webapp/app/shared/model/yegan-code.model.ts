@@ -1,14 +1,12 @@
-import { IYegan } from 'app/shared/model/yegan.model';
 import { IKarbar } from 'app/shared/model/karbar.model';
-import { INirooCode } from 'app/shared/model/niroo-code.model';
 
 export interface IYeganCode {
   id?: number;
   name?: string;
   code?: string;
-  yegan?: IYegan;
+  yeganId?: number;
   karbars?: IKarbar[];
-  nirooCode?: INirooCode;
+  nirooCodeId?: number;
 }
 
 export const defaultValue: Readonly<IYeganCode> = {};

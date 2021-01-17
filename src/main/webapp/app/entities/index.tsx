@@ -26,6 +26,20 @@ import Mantaghe from './mantaghe';
 import Ostan from './ostan';
 import Shahr from './shahr';
 import Gozaresh from './gozaresh';
+import MohasebeHazineMamooriat from './mohasebe-hazine-mamooriat';
+import DastoorAmalEjraE from './dastoor-amal-ejra-e';
+import GardeshkarBarnameHesabresi from './gardeshkar-barname-hesabresi';
+import Madarek from './madarek';
+import BilanSalGhabl from './bilan-sal-ghabl';
+import GozareshHozoor from './gozaresh-hozoor';
+import ChekideGardeshKar from './chekide-gardesh-kar';
+import BilanSeSalGhabl from './bilan-se-sal-ghabl';
+import MostaKhreje from './mosta-khreje';
+import RafeIradat from './rafe-iradat';
+import BankEtelaati from './bank-etelaati';
+import Nameh from './nameh';
+import KholaseGozaresh from './kholase-gozaresh';
+import GardeshKar from './gardesh-kar';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -54,6 +68,20 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}ostan`} component={Ostan} />
       <ErrorBoundaryRoute path={`${match.url}shahr`} component={Shahr} />
       <ErrorBoundaryRoute path={`${match.url}gozaresh`} component={Gozaresh} />
+      <ErrorBoundaryRoute path={`${match.url}mohasebe-hazine-mamooriat`} component={MohasebeHazineMamooriat} />
+      <ErrorBoundaryRoute path={`${match.url}dastoor-amal-ejra-e`} component={DastoorAmalEjraE} />
+      <ErrorBoundaryRoute path={`${match.url}gardeshkar-barname-hesabresi`} component={GardeshkarBarnameHesabresi} />
+      <ErrorBoundaryRoute path={`${match.url}madarek`} component={Madarek} />
+      <ErrorBoundaryRoute path={`${match.url}bilan-sal-ghabl`} component={BilanSalGhabl} />
+      <ErrorBoundaryRoute path={`${match.url}gozaresh-hozoor`} component={GozareshHozoor} />
+      <ErrorBoundaryRoute path={`${match.url}chekide-gardesh-kar`} component={ChekideGardeshKar} />
+      <ErrorBoundaryRoute path={`${match.url}bilan-se-sal-ghabl`} component={BilanSeSalGhabl} />
+      <ErrorBoundaryRoute path={`${match.url}mosta-khreje`} component={MostaKhreje} />
+      <ErrorBoundaryRoute path={`${match.url}rafe-iradat`} component={RafeIradat} />
+      <ErrorBoundaryRoute path={`${match.url}bank-etelaati`} component={BankEtelaati} />
+      <ErrorBoundaryRoute path={`${match.url}nameh`} component={Nameh} />
+      <ErrorBoundaryRoute path={`${match.url}kholase-gozaresh`} component={KholaseGozaresh} />
+      <ErrorBoundaryRoute path={`${match.url}gardesh-kar`} component={GardeshKar} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>

@@ -1,0 +1,26 @@
+{
+  "sahaApp": {
+    "gardeshKar": {
+      "home": {
+        "title": "Gardesh Kars",
+        "createLabel": "Create a new Gardesh Kar",
+        "createOrEditLabel": "Create or edit a Gardesh Kar",
+        "notFound": "No Gardesh Kars found"
+      },
+      "created": "A new Gardesh Kar is created with identifier {{ param }}",
+      "updated": "A Gardesh Kar is updated with identifier {{ param }}",
+      "deleted": "A Gardesh Kar is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Gardesh Kar {{ id }}?"
+      },
+      "detail": {
+        "title": "Gardesh Kar"
+      },
+      "tarikh": "Tarikh",
+      "mozoo": "Mozoo",
+      "shomare": "Shomare",
+      "failha": "Failha",
+      "hesabResi": "Hesab Resi"
+    }
+  }
+}

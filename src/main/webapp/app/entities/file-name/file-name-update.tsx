@@ -25,7 +25,7 @@ export const FileNameUpdate = (props: IFileNameUpdateProps) => {
   const { madrak, madrakContentType } = fileNameEntity;
 
   const handleClose = () => {
-    props.history.push('/file-name');
+    props.history.push('/file-name' + props.location.search);
   };
 
   useEffect(() => {
@@ -124,7 +124,7 @@ export const FileNameUpdate = (props: IFileNameUpdateProps) => {
                 <Label for="file-name-name">
                   <Translate contentKey="sahaApp.fileName.name">Name</Translate>
                 </Label>
-                <AvInput id="file-name-name" type="select" className="form-control" name="name.id">
+                <AvInput id="file-name-name" type="select" className="form-control" name="nameId">
                   <option value="" key="0" />
                   {payams
                     ? payams.map(otherEntity => (

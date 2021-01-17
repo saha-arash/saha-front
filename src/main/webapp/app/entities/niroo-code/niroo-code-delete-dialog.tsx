@@ -17,7 +17,7 @@ export const NirooCodeDeleteDialog = (props: INirooCodeDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/niroo-code');
+    props.history.push('/niroo-code' + props.location.search);
   };
 
   useEffect(() => {

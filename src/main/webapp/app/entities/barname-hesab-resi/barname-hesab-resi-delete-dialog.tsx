@@ -17,7 +17,7 @@ export const BarnameHesabResiDeleteDialog = (props: IBarnameHesabResiDeleteDialo
   }, []);
 
   const handleClose = () => {
-    props.history.push('/barname-hesab-resi');
+    props.history.push('/barname-hesab-resi' + props.location.search);
   };
 
   useEffect(() => {

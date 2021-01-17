@@ -17,7 +17,7 @@ export const MantagheDeleteDialog = (props: IMantagheDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/mantaghe');
+    props.history.push('/mantaghe' + props.location.search);
   };
 
   useEffect(() => {

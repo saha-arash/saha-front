@@ -23,7 +23,7 @@ export const GozareshUpdate = (props: IGozareshUpdateProps) => {
   const { gozareshEntity, hesabResis, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/gozaresh');
+    props.history.push('/gozaresh' + props.location.search);
   };
 
   useEffect(() => {

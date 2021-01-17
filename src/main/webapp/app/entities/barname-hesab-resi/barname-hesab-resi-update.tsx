@@ -23,7 +23,7 @@ export const BarnameHesabResiUpdate = (props: IBarnameHesabResiUpdateProps) => {
   const { barnameHesabResiEntity, hesabResis, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/barname-hesab-resi');
+    props.history.push('/barname-hesab-resi' + props.location.search);
   };
 
   useEffect(() => {

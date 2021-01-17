@@ -17,7 +17,7 @@ export const ShahrDeleteDialog = (props: IShahrDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/shahr');
+    props.history.push('/shahr' + props.location.search);
   };
 
   useEffect(() => {

@@ -52,7 +52,7 @@ export const ShahrDetail = (props: IShahrDetailProps) => {
           <dt>
             <Translate contentKey="sahaApp.shahr.ostan">Ostan</Translate>
           </dt>
-          <dd>{shahrEntity.ostan ? shahrEntity.ostan.id : ''}</dd>
+          <dd>{shahrEntity.ostanId ? shahrEntity.ostanId : ''}</dd>
         </dl>
         <Button tag={Link} to="/shahr" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

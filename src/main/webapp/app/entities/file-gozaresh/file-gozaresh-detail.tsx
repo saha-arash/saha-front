@@ -45,7 +45,7 @@ export const FileGozareshDetail = (props: IFileGozareshDetailProps) => {
           <dt>
             <Translate contentKey="sahaApp.fileGozaresh.hesabResi">Hesab Resi</Translate>
           </dt>
-          <dd>{fileGozareshEntity.hesabResi ? fileGozareshEntity.hesabResi.id : ''}</dd>
+          <dd>{fileGozareshEntity.hesabResiId ? fileGozareshEntity.hesabResiId : ''}</dd>
         </dl>
         <Button tag={Link} to="/file-gozaresh" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

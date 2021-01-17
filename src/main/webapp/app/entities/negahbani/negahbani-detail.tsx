@@ -44,7 +44,7 @@ export const NegahbaniDetail = (props: INegahbaniDetailProps) => {
           <dt>
             <Translate contentKey="sahaApp.negahbani.karbar">Karbar</Translate>
           </dt>
-          <dd>{negahbaniEntity.karbar ? negahbaniEntity.karbar.id : ''}</dd>
+          <dd>{negahbaniEntity.karbarId ? negahbaniEntity.karbarId : ''}</dd>
         </dl>
         <Button tag={Link} to="/negahbani" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

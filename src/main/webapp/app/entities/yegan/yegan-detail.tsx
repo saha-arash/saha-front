@@ -53,15 +53,15 @@ export const YeganDetail = (props: IYeganDetailProps) => {
           <dt>
             <Translate contentKey="sahaApp.yegan.nirooCode">Niroo Code</Translate>
           </dt>
-          <dd>{yeganEntity.nirooCode ? yeganEntity.nirooCode.id : ''}</dd>
+          <dd>{yeganEntity.nirooCodeId ? yeganEntity.nirooCodeId : ''}</dd>
           <dt>
             <Translate contentKey="sahaApp.yegan.shahr">Shahr</Translate>
           </dt>
-          <dd>{yeganEntity.shahr ? yeganEntity.shahr.id : ''}</dd>
+          <dd>{yeganEntity.shahrId ? yeganEntity.shahrId : ''}</dd>
           <dt>
             <Translate contentKey="sahaApp.yegan.yeganType">Yegan Type</Translate>
           </dt>
-          <dd>{yeganEntity.yeganType ? yeganEntity.yeganType.id : ''}</dd>
+          <dd>{yeganEntity.yeganTypeId ? yeganEntity.yeganTypeId : ''}</dd>
         </dl>
         <Button tag={Link} to="/yegan" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

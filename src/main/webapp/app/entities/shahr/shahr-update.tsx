@@ -23,7 +23,7 @@ export const ShahrUpdate = (props: IShahrUpdateProps) => {
   const { shahrEntity, ostans, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/shahr');
+    props.history.push('/shahr' + props.location.search);
   };
 
   useEffect(() => {
@@ -108,7 +108,7 @@ export const ShahrUpdate = (props: IShahrUpdateProps) => {
                 <Label for="shahr-ostan">
                   <Translate contentKey="sahaApp.shahr.ostan">Ostan</Translate>
                 </Label>
-                <AvInput id="shahr-ostan" type="select" className="form-control" name="ostan.id">
+                <AvInput id="shahr-ostan" type="select" className="form-control" name="ostanId">
                   <option value="" key="0" />
                   {ostans
                     ? ostans.map(otherEntity => (

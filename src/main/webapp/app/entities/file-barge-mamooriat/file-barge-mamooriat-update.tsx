@@ -15,8 +15,7 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 
 export interface IFileBargeMamooriatUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
-//TODO: pass id to the entity
-//TODO: how props are sent
+
 export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) => {
   const [bargeMamooriatId, setBargeMamooriatId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
@@ -26,7 +25,7 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
   const { madarek, madarekContentType } = fileBargeMamooriatEntity;
 
   const handleClose = () => {
-    props.history.push('/file-barge-mamooriat');
+    props.history.push('/file-barge-mamooriat' + props.location.search);
   };
 
   useEffect(() => {
@@ -72,9 +71,9 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h3>
-            <span> ایجاد/ ویرایش برگه ماموریت</span>
-          </h3>
+          <h2 id="sahaApp.fileBargeMamooriat.home.createOrEditLabel">
+            <Translate contentKey="sahaApp.fileBargeMamooriat.home.createOrEditLabel">Create or edit a FileBargeMamooriat</Translate>
+          </h2>
         </Col>
       </Row>
       <Row className="justify-content-center">
@@ -93,10 +92,14 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
               ) : null}
               <AvGroup>
                 <AvGroup>
+                  <Label id="madarekLabel" for="madarek">
+                    <Translate contentKey="sahaApp.fileBargeMamooriat.madarek">Madarek</Translate>
+                  </Label>
+                  <br />
                   {madarek ? (
                     <div>
                       <a onClick={openFile(madarekContentType, madarek)}>
-                        <span>باز کردن</span>
+                        <Translate contentKey="entity.action.open">Open</Translate>
                       </a>
                       <br />
                       <Row>
@@ -117,11 +120,11 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
                   <AvInput type="hidden" name="madarek" value={madarek} />
                 </AvGroup>
               </AvGroup>
-              {/* <AvGroup>
+              <AvGroup>
                 <Label for="file-barge-mamooriat-bargeMamooriat">
                   <Translate contentKey="sahaApp.fileBargeMamooriat.bargeMamooriat">Barge Mamooriat</Translate>
                 </Label>
-                <AvInput id="file-barge-mamooriat-bargeMamooriat" type="select" className="form-control" name="bargeMamooriat.id" value={props.location.state.id} type="hidden">
+                <AvInput id="file-barge-mamooriat-bargeMamooriat" type="select" className="form-control" name="bargeMamooriatId">
                   <option value="" key="0" />
                   {bargeMamooriats
                     ? bargeMamooriats.map(otherEntity => (
@@ -131,7 +134,7 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
                       ))
                     : null}
                 </AvInput>
-              </AvGroup> */}
+              </AvGroup>
               <Button tag={Link} id="cancel-save" to="/file-barge-mamooriat" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

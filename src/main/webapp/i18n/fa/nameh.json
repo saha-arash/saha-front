@@ -1,0 +1,25 @@
+{
+  "sahaApp": {
+    "nameh": {
+      "home": {
+        "title": "Namehs",
+        "createLabel": "Create a new Nameh",
+        "createOrEditLabel": "Create or edit a Nameh",
+        "notFound": "No Namehs found"
+      },
+      "created": "A new Nameh is created with identifier {{ param }}",
+      "updated": "A Nameh is updated with identifier {{ param }}",
+      "deleted": "A Nameh is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Nameh {{ id }}?"
+      },
+      "detail": {
+        "title": "Nameh"
+      },
+      "shomare": "Shomare",
+      "tarikhEblagh": "Tarikh Eblagh",
+      "failha": "Failha",
+      "hesabResi": "Hesab Resi"
+    }
+  }
+}

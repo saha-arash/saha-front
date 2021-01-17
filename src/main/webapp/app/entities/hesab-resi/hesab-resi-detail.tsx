@@ -40,11 +40,67 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
           <dt>
             <Translate contentKey="sahaApp.hesabResi.gozaresh">Gozaresh</Translate>
           </dt>
-          <dd>{hesabResiEntity.gozaresh ? hesabResiEntity.gozaresh.id : ''}</dd>
+          <dd>{hesabResiEntity.gozareshId ? hesabResiEntity.gozareshId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.bankEtelaati">Bank Etelaati</Translate>
+          </dt>
+          <dd>{hesabResiEntity.bankEtelaatiId ? hesabResiEntity.bankEtelaatiId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.rafeIradat">Rafe Iradat</Translate>
+          </dt>
+          <dd>{hesabResiEntity.rafeIradatId ? hesabResiEntity.rafeIradatId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.mostaKhreje">Mosta Khreje</Translate>
+          </dt>
+          <dd>{hesabResiEntity.mostaKhrejeId ? hesabResiEntity.mostaKhrejeId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.bilanSeSalGhabl">Bilan Se Sal Ghabl</Translate>
+          </dt>
+          <dd>{hesabResiEntity.bilanSeSalGhablId ? hesabResiEntity.bilanSeSalGhablId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.mohasebeHazineMamooriat">Mohasebe Hazine Mamooriat</Translate>
+          </dt>
+          <dd>{hesabResiEntity.mohasebeHazineMamooriatId ? hesabResiEntity.mohasebeHazineMamooriatId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.chekideGardeshKar">Chekide Gardesh Kar</Translate>
+          </dt>
+          <dd>{hesabResiEntity.chekideGardeshKarId ? hesabResiEntity.chekideGardeshKarId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.gozareshHozoor">Gozaresh Hozoor</Translate>
+          </dt>
+          <dd>{hesabResiEntity.gozareshHozoorId ? hesabResiEntity.gozareshHozoorId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.bilanSalGhabl">Bilan Sal Ghabl</Translate>
+          </dt>
+          <dd>{hesabResiEntity.bilanSalGhablId ? hesabResiEntity.bilanSalGhablId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.madarek">Madarek</Translate>
+          </dt>
+          <dd>{hesabResiEntity.madarekId ? hesabResiEntity.madarekId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.gardeshkarBarnameHesabresi">Gardeshkar Barname Hesabresi</Translate>
+          </dt>
+          <dd>{hesabResiEntity.gardeshkarBarnameHesabresiId ? hesabResiEntity.gardeshkarBarnameHesabresiId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.dastoorAmalEjraE">Dastoor Amal Ejra E</Translate>
+          </dt>
+          <dd>{hesabResiEntity.dastoorAmalEjraEId ? hesabResiEntity.dastoorAmalEjraEId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.nameh">Nameh</Translate>
+          </dt>
+          <dd>{hesabResiEntity.namehId ? hesabResiEntity.namehId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.kholaseGozaresh">Kholase Gozaresh</Translate>
+          </dt>
+          <dd>{hesabResiEntity.kholaseGozareshId ? hesabResiEntity.kholaseGozareshId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.hesabResi.gardeshKar">Gardesh Kar</Translate>
+          </dt>
+          <dd>{hesabResiEntity.gardeshKarId ? hesabResiEntity.gardeshKarId : ''}</dd>
           <dt>
             <Translate contentKey="sahaApp.hesabResi.barnameHesabResi">Barname Hesab Resi</Translate>
           </dt>
-          <dd>{hesabResiEntity.barnameHesabResi ? hesabResiEntity.barnameHesabResi.id : ''}</dd>
+          <dd>{hesabResiEntity.barnameHesabResiId ? hesabResiEntity.barnameHesabResiId : ''}</dd>
         </dl>
         <Button tag={Link} to="/hesab-resi" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

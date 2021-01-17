@@ -2,22 +2,50 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
-import { Translate, ICrudGetAllAction, TextFormat } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, TextFormat, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './negahbani.reducer';
 import { INegahbani } from 'app/shared/model/negahbani.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface INegahbaniProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const Negahbani = (props: INegahbaniProps) => {
-  useEffect(() => {
-    props.getEntities();
-  }, []);
+  const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
 
-  const { negahbaniList, match, loading } = props;
+  const getAllEntities = () => {
+    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+  };
+
+  const sortEntities = () => {
+    getAllEntities();
+    props.history.push(
+      `${props.location.pathname}?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`
+    );
+  };
+
+  useEffect(() => {
+    sortEntities();
+  }, [paginationState.activePage, paginationState.order, paginationState.sort]);
+
+  const sort = p => () => {
+    setPaginationState({
+      ...paginationState,
+      order: paginationState.order === 'asc' ? 'desc' : 'asc',
+      sort: p
+    });
+  };
+
+  const handlePagination = currentPage =>
+    setPaginationState({
+      ...paginationState,
+      activePage: currentPage
+    });
+
+  const { negahbaniList, match, loading, totalItems } = props;
   return (
     <div>
       <h2 id="negahbani-heading">
@@ -33,17 +61,17 @@ export const Negahbani = (props: INegahbaniProps) => {
           <Table responsive>
             <thead>
               <tr>
-                <th>
-                  <Translate contentKey="global.field.id">ID</Translate>
+                <th className="hand" onClick={sort('id')}>
+                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('begin')}>
+                  <Translate contentKey="sahaApp.negahbani.begin">Begin</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th className="hand" onClick={sort('end')}>
+                  <Translate contentKey="sahaApp.negahbani.end">End</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.negahbani.begin">Begin</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.negahbani.end">End</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.negahbani.karbar">Karbar</Translate>
+                  <Translate contentKey="sahaApp.negahbani.karbar">Karbar</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -62,7 +90,7 @@ export const Negahbani = (props: INegahbaniProps) => {
                   <td>
                     <TextFormat type="date" value={negahbani.end} format={APP_DATE_FORMAT} />
                   </td>
-                  <td>{negahbani.karbar ? <Link to={`karbar/${negahbani.karbar.id}`}>{negahbani.karbar.id}</Link> : ''}</td>
+                  <td>{negahbani.karbarId ? <Link to={`karbar/${negahbani.karbarId}`}>{negahbani.karbarId}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${negahbani.id}`} color="info" size="sm">
@@ -71,13 +99,23 @@ export const Negahbani = (props: INegahbaniProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${negahbani.id}/edit`} color="primary" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${negahbani.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="primary"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${negahbani.id}/delete`} color="danger" size="sm">
+                      <Button
+                        tag={Link}
+                        to={`${match.url}/${negahbani.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        color="danger"
+                        size="sm"
+                      >
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -97,13 +135,28 @@ export const Negahbani = (props: INegahbaniProps) => {
           )
         )}
       </div>
+      <div className={negahbaniList && negahbaniList.length > 0 ? '' : 'd-none'}>
+        <Row className="justify-content-center">
+          <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
+        </Row>
+        <Row className="justify-content-center">
+          <JhiPagination
+            activePage={paginationState.activePage}
+            onSelect={handlePagination}
+            maxButtons={5}
+            itemsPerPage={paginationState.itemsPerPage}
+            totalItems={props.totalItems}
+          />
+        </Row>
+      </div>
     </div>
   );
 };
 
 const mapStateToProps = ({ negahbani }: IRootState) => ({
   negahbaniList: negahbani.entities,
-  loading: negahbani.loading
+  loading: negahbani.loading,
+  totalItems: negahbani.totalItems
 });
 
 const mapDispatchToProps = {

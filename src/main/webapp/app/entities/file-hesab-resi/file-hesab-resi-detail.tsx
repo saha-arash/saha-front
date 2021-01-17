@@ -71,11 +71,67 @@ export const FileHesabResiDetail = (props: IFileHesabResiDetailProps) => {
           <dt>
             <Translate contentKey="sahaApp.fileHesabResi.hesabResi">Hesab Resi</Translate>
           </dt>
-          <dd>{fileHesabResiEntity.hesabResi ? fileHesabResiEntity.hesabResi.id : ''}</dd>
+          <dd>{fileHesabResiEntity.hesabResiId ? fileHesabResiEntity.hesabResiId : ''}</dd>
           <dt>
             <Translate contentKey="sahaApp.fileHesabResi.barnameHesabResi">Barname Hesab Resi</Translate>
           </dt>
-          <dd>{fileHesabResiEntity.barnameHesabResi ? fileHesabResiEntity.barnameHesabResi.id : ''}</dd>
+          <dd>{fileHesabResiEntity.barnameHesabResiId ? fileHesabResiEntity.barnameHesabResiId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.bankEtelaati">Bank Etelaati</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.bankEtelaatiId ? fileHesabResiEntity.bankEtelaatiId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.rafeIradat">Rafe Iradat</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.rafeIradatId ? fileHesabResiEntity.rafeIradatId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.mostaKhreje">Mosta Khreje</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.mostaKhrejeId ? fileHesabResiEntity.mostaKhrejeId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.bilanSeSalGhabl">Bilan Se Sal Ghabl</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.bilanSeSalGhablId ? fileHesabResiEntity.bilanSeSalGhablId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.mohasebeHazineMamooriat">Mohasebe Hazine Mamooriat</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.mohasebeHazineMamooriatId ? fileHesabResiEntity.mohasebeHazineMamooriatId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.chekideGardeshKar">Chekide Gardesh Kar</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.chekideGardeshKarId ? fileHesabResiEntity.chekideGardeshKarId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.gozareshHozoor">Gozaresh Hozoor</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.gozareshHozoorId ? fileHesabResiEntity.gozareshHozoorId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.bilanSalGhabl">Bilan Sal Ghabl</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.bilanSalGhablId ? fileHesabResiEntity.bilanSalGhablId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.madarek">Madarek</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.madarekId ? fileHesabResiEntity.madarekId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.gardeshkarBarnameHesabresi">Gardeshkar Barname Hesabresi</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.gardeshkarBarnameHesabresiId ? fileHesabResiEntity.gardeshkarBarnameHesabresiId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.dastoorAmalEjraE">Dastoor Amal Ejra E</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.dastoorAmalEjraEId ? fileHesabResiEntity.dastoorAmalEjraEId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.nameh">Nameh</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.namehId ? fileHesabResiEntity.namehId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.kholaseGozaresh">Kholase Gozaresh</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.kholaseGozareshId ? fileHesabResiEntity.kholaseGozareshId : ''}</dd>
+          <dt>
+            <Translate contentKey="sahaApp.fileHesabResi.gardeshKar">Gardesh Kar</Translate>
+          </dt>
+          <dd>{fileHesabResiEntity.gardeshKarId ? fileHesabResiEntity.gardeshKarId : ''}</dd>
         </dl>
         <Button tag={Link} to="/file-hesab-resi" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

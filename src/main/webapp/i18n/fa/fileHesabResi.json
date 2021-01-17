@@ -22,7 +22,21 @@
       "mozoo": "Mozoo",
       "fileType": "File Type",
       "hesabResi": "Hesab Resi",
-      "barnameHesabResi": "Barname Hesab Resi"
+      "barnameHesabResi": "Barname Hesab Resi",
+      "bankEtelaati": "Bank Etelaati",
+      "rafeIradat": "Rafe Iradat",
+      "mostaKhreje": "Mosta Khreje",
+      "bilanSeSalGhabl": "Bilan Se Sal Ghabl",
+      "mohasebeHazineMamooriat": "Mohasebe Hazine Mamooriat",
+      "chekideGardeshKar": "Chekide Gardesh Kar",
+      "gozareshHozoor": "Gozaresh Hozoor",
+      "bilanSalGhabl": "Bilan Sal Ghabl",
+      "madarek": "Madarek",
+      "gardeshkarBarnameHesabresi": "Gardeshkar Barname Hesabresi",
+      "dastoorAmalEjraE": "Dastoor Amal Ejra E",
+      "nameh": "Nameh",
+      "kholaseGozaresh": "Kholase Gozaresh",
+      "gardeshKar": "Gardesh Kar"
     }
   }
 }

@@ -17,7 +17,7 @@ export const NegahbaniDeleteDialog = (props: INegahbaniDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/negahbani');
+    props.history.push('/negahbani' + props.location.search);
   };
 
   useEffect(() => {

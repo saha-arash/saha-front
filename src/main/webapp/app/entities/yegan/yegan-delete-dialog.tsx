@@ -17,7 +17,7 @@ export const YeganDeleteDialog = (props: IYeganDeleteDialogProps) => {
   }, []);
 
   const handleClose = () => {
-    props.history.push('/yegan');
+    props.history.push('/yegan' + props.location.search);
   };
 
   useEffect(() => {

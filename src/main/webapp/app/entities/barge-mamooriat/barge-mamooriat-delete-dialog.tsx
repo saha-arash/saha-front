@@ -17,7 +17,7 @@ export const BargeMamooriatDeleteDialog = (props: IBargeMamooriatDeleteDialogPro
   }, []);
 
   const handleClose = () => {
-    props.history.push('/barge-mamooriat');
+    props.history.push('/barge-mamooriat' + props.location.search);
   };
 
   useEffect(() => {
