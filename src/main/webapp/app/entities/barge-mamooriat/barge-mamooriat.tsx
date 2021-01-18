@@ -1,23 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { Button, Col, Row, Table } from 'reactstrap';
+import { Button, Row, Table, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Translate, ICrudGetAllAction, TextFormat, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import './barge-mamooriat.scss';
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './barge-mamooriat.reducer';
 import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
+import bargeMamuriatData from '../../../i18n/fa/vaziatBargeMamooriat.json';
+import loggerMiddleware from 'app/config/logger-middleware';
 
 export interface IBargeMamooriatProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const BargeMamooriat = (props: IBargeMamooriatProps) => {
   const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
+  const [vaziat, setVaziat] = useState(null);
+  const [sal, setSal] = useState(null);
+  const [hesabresiShode, setHesabresiShode] = useState(null);
+  const [isDropDownToggle, setDropDownToggle] = useState(false);
+  const [salInput, setSalInput] = useState(null);
 
   const getAllEntities = () => {
-    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+    //props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+    console.log("H EEEEE YYY",vaziat,sal);
+    props.getEntities(0,0,``,vaziat,sal);
   };
 
   const sortEntities = () => {
@@ -29,7 +38,7 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
 
   useEffect(() => {
     sortEntities();
-  }, [paginationState.activePage, paginationState.order, paginationState.sort]);
+  }, [paginationState.activePage, paginationState.order, paginationState.sort, vaziat, sal]);
 
   const sort = p => () => {
     setPaginationState({
@@ -45,50 +54,92 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
       activePage: currentPage
     });
 
+  const vaziatChanged = (selectedVaziat: string) => {
+    setVaziat(selectedVaziat);
+  };
+
+  const salChanged = (selectedSal?: string) => {
+    setSal(salInput);
+  };
+
+  const hesabresiShodeChanged = (selectedState: boolean) => {
+    setHesabresiShode(selectedState);
+  };
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggle = () => setDropdownOpen(prevState => !prevState);
+
   const { bargeMamooriatList, match, loading, totalItems } = props;
   return (
     <div>
+      <div className="horzontalList">
+        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+        <DropdownToggle caret className="dropbtn">
+          وضعیت
+        </DropdownToggle>
+        <DropdownMenu right caret>
+          <DropdownItem header caret>
+            انتخاب وضعیت
+          </DropdownItem>
+          {Object.keys(bargeMamuriatData.sahaApp.VaziatBargeMamooriat).map(item => (
+            <DropdownItem key={item} onClick={() => vaziatChanged(item)}>
+              {bargeMamuriatData.sahaApp.VaziatBargeMamooriat[item]}
+            </DropdownItem>
+          ))}
+        </DropdownMenu>
+        </Dropdown>
+        <input type="text" size="8" placeholder="سال" value={salInput} onChange={e => setSalInput(e.target.value)}/>
+        <button className="inputBtn" onClick={ () => salChanged()}>تایید</button>
+        {/* <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
+        <span> جهت بررسی </span>
+        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
+        <span>جهت پیگیری</span> */}
+      </div>
+      
+
       <h2 id="barge-mamooriat-heading">
-        <Translate contentKey="sahaApp.bargeMamooriat.home.title">Barge Mamooriats</Translate>
+        <span>برگه ماموریت ها</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.bargeMamooriat.home.createLabel">Create new Barge Mamooriat</Translate>
+          <span>ایجاد برگه ماموریت</span>
         </Link>
       </h2>
       <div className="table-responsive">
-        {bargeMamooriatList && bargeMamooriatList.length > 0 ? (
-          <Table responsive>
-            <thead>
-              <tr>
-                <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('vaziat')}>
-                  <Translate contentKey="sahaApp.bargeMamooriat.vaziat">Vaziat</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('saleMamooriat')}>
-                  <Translate contentKey="sahaApp.bargeMamooriat.saleMamooriat">Sale Mamooriat</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('shorooMamooriat')}>
-                  <Translate contentKey="sahaApp.bargeMamooriat.shorooMamooriat">Shoroo Mamooriat</Translate>{' '}
-                  <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('payanMamooriat')}>
-                  <Translate contentKey="sahaApp.bargeMamooriat.payanMamooriat">Payan Mamooriat</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.bargeMamooriat.sarparast">Sarparast</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.bargeMamooriat.yegan">Yegan</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.bargeMamooriat.hesabResi">Hesab Resi</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th />
-              </tr>
-            </thead>
+        {/*  a list of barge mamuraits */}
+        <Table responsive>
+          <thead>
+            <tr>
+              <th>
+                <span>شناسه</span>
+              </th>
+              <th>
+                <div className="dropdown">
+                  <span>وضعیت</span>
+                </div>
+              </th>
+              <th>
+                <span>سال</span>
+              </th>
+              <th>
+                <span>شروع ماموریت</span>
+              </th>
+              <th>
+                <span> پایان ماموریت</span>
+              </th>
+              <th>
+                <span>سرپرست</span>
+              </th>
+              <th>
+                <span>یگان</span>
+              </th>
+              {/* <th>
+                  <span>Hesab Resi</span>
+                </th> */}
+              <th />
+            </tr>
+          </thead>
+          {bargeMamooriatList && bargeMamooriatList.length > 0 ? (
             <tbody>
               {bargeMamooriatList.map((bargeMamooriat, i) => (
                 <tr key={`entity-${i}`}>
@@ -108,16 +159,16 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
                     <TextFormat type="date" value={bargeMamooriat.payanMamooriat} format={APP_DATE_FORMAT} />
                   </td>
                   <td>
-                    {bargeMamooriat.sarparastId ? (
-                      <Link to={`karbar/${bargeMamooriat.sarparastId}`}>{bargeMamooriat.sarparastId}</Link>
+                    {bargeMamooriat.sarparast ? (
+                      <Link to={`karbar/${bargeMamooriat.sarparast.id}`}>{bargeMamooriat.sarparast.id}</Link>
                     ) : (
                       ''
                     )}
                   </td>
-                  <td>{bargeMamooriat.yeganId ? <Link to={`yegan/${bargeMamooriat.yeganId}`}>{bargeMamooriat.yeganId}</Link> : ''}</td>
+                  <td>{bargeMamooriat.yegan ? <Link to={`yegan/${bargeMamooriat.yegan.id}`}>{bargeMamooriat.yegan.id}</Link> : ''}</td>
                   <td>
-                    {bargeMamooriat.hesabResiId ? (
-                      <Link to={`hesab-resi/${bargeMamooriat.hesabResiId}`}>{bargeMamooriat.hesabResiId}</Link>
+                    {bargeMamooriat.hesabResi ? (
+                      <Link to={`hesab-resi/${bargeMamooriat.hesabResi.id}`}>{bargeMamooriat.hesabResi.id}</Link>
                     ) : (
                       ''
                     )}
@@ -127,29 +178,19 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
                       <Button tag={Link} to={`${match.url}/${bargeMamooriat.id}`} color="info" size="sm">
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.view">View</Translate>
+                          <span>مشاهده</span>
                         </span>
                       </Button>
-                      <Button
-                        tag={Link}
-                        to={`${match.url}/${bargeMamooriat.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
-                        color="primary"
-                        size="sm"
-                      >
+                      <Button tag={Link} to={`${match.url}/${bargeMamooriat.id}/edit`} color="primary" size="sm">
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.edit">Edit</Translate>
+                          <span>ویرایش</span>
                         </span>
                       </Button>
-                      <Button
-                        tag={Link}
-                        to={`${match.url}/${bargeMamooriat.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
-                        color="danger"
-                        size="sm"
-                      >
+                      <Button tag={Link} to={`${match.url}/${bargeMamooriat.id}/delete`} color="danger" size="sm">
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.delete">Delete</Translate>
+                          <span>حذف</span>
                         </span>
                       </Button>
                     </div>
@@ -157,28 +198,11 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
                 </tr>
               ))}
             </tbody>
-          </Table>
-        ) : (
-          !loading && (
-            <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.bargeMamooriat.home.notFound">No Barge Mamooriats found</Translate>
-            </div>
-          )
-        )}
-      </div>
-      <div className={bargeMamooriatList && bargeMamooriatList.length > 0 ? '' : 'd-none'}>
-        <Row className="justify-content-center">
-          <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
-        </Row>
-        <Row className="justify-content-center">
-          <JhiPagination
-            activePage={paginationState.activePage}
-            onSelect={handlePagination}
-            maxButtons={5}
-            itemsPerPage={paginationState.itemsPerPage}
-            totalItems={props.totalItems}
-          />
-        </Row>
+          ) : (
+            // no barge mamuriat
+            !loading && <div className="alert alert-warning centered">!برگه ماموریتی یافت نشد</div>
+          )}
+        </Table>
       </div>
     </div>
   );

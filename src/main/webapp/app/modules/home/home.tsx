@@ -16,13 +16,13 @@ export const Home = (props: IHomeProp) => {
   const history = useHistory();
 
   return (
-    <div className="">
-      <Row className="">
-        <Col md="7" className="">
+    <div>
+      <Row>
+        <Col md="7">
           {/* TODO: how to detect user is logged in an after loggin and reloading the page */}
           {account && account.login ? (
             <div>
-              <Alert color="success" className="">
+              <Alert color="success">
                 <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
                   You are logged in as user {account.login}.
                 </Translate>
@@ -53,8 +53,8 @@ export const Home = (props: IHomeProp) => {
               </div>
             </div>
           ) : (
-            <div className="">
-              <Row className="">
+            <div>
+              <Row>
                 <Col className="horzontalList">
                   <span className="arteshLogo" />
                   <span className="title"> ورود به سامانه حسابرسی</span>

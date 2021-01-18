@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction, ICrudDeleteAction } from 'react-jhipster';
-
+import { appendQuery } from 'app/shared/global methods/validators';
 import { cleanEntity } from 'app/shared/util/entity-utils';
 import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
 
@@ -98,14 +98,21 @@ export default (state: BargeMamooriatState = initialState, action): BargeMamoori
 };
 
 const apiUrl = 'api/barge-mamooriats';
-
+const getUrl = (vaziat, saleMamooriat) => {
+  let url = `${apiUrl}/user?cacheBuster=${new Date().getTime()}`;
+  //url = appendQuery(url, 'page', page);
+  //url = appendQuery(url, 'size', size);
+  url = appendQuery(url, 'vaziatBargeMamooriat', vaziat);
+  url = appendQuery(url, 'saleMamooriat', saleMamooriat);
+  return url;
+};
 // Actions
 
-export const getEntities: ICrudGetAllAction<IBargeMamooriat> = (page, size, sort) => {
+export const getEntities: ICrudGetAllAction<IBargeMamooriat> = (page, size, sort, vaziat, saleMamooriat) => {
   const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
   return {
     type: ACTION_TYPES.FETCH_BARGEMAMOORIAT_LIST,
-    payload: axios.get<IBargeMamooriat>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+    payload: axios.get<IBargeMamooriat>(getUrl(vaziat, saleMamooriat))
   };
 };
 
