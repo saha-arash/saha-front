@@ -22,23 +22,23 @@ export const YeganDetail = (props: IYeganDetailProps) => {
     <Row>
       <Col md="8">
         <h2>
-          <Translate contentKey="sahaApp.yegan.detail.title">Yegan</Translate> [<b>{yeganEntity.id}</b>]
+          شناسه [<b>{yeganEntity.id}</b>]
         </h2>
         <dl className="jh-entity-details">
           <dt>
             <span id="name">
-              <Translate contentKey="sahaApp.yegan.name">Name</Translate>
+              نام یگان
             </span>
           </dt>
           <dd>{yeganEntity.name}</dd>
           <dt>
             <span id="code">
-              <Translate contentKey="sahaApp.yegan.code">Code</Translate>
+              کد یگان
             </span>
           </dt>
           <dd>{yeganEntity.code}</dd>
           <dt>
-            <Translate contentKey="sahaApp.yegan.zirYegan">Zir Yegan</Translate>
+            <span> زیریگان ها</span>
           </dt>
           <dd>
             {yeganEntity.zirYegans
@@ -51,29 +51,29 @@ export const YeganDetail = (props: IYeganDetailProps) => {
               : null}
           </dd>
           <dt>
-            <Translate contentKey="sahaApp.yegan.nirooCode">Niroo Code</Translate>
+            نیرو
           </dt>
           <dd>{yeganEntity.nirooCodeId ? yeganEntity.nirooCodeId : ''}</dd>
           <dt>
-            <Translate contentKey="sahaApp.yegan.shahr">Shahr</Translate>
+            شهر
           </dt>
           <dd>{yeganEntity.shahrId ? yeganEntity.shahrId : ''}</dd>
           <dt>
-            <Translate contentKey="sahaApp.yegan.yeganType">Yegan Type</Translate>
+            نوع یگان
           </dt>
           <dd>{yeganEntity.yeganTypeId ? yeganEntity.yeganTypeId : ''}</dd>
         </dl>
         <Button tag={Link} to="/yegan" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}
           <span className="d-none d-md-inline">
-            <Translate contentKey="entity.action.back">Back</Translate>
+            بازگشت
           </span>
         </Button>
         &nbsp;
         <Button tag={Link} to={`/yegan/${yeganEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" />{' '}
           <span className="d-none d-md-inline">
-            <Translate contentKey="entity.action.edit">Edit</Translate>
+            ویرایش
           </span>
         </Button>
       </Col>

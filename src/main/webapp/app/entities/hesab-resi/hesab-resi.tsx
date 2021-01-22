@@ -49,11 +49,11 @@ export const HesabResi = (props: IHesabResiProps) => {
   return (
     <div>
       <h2 id="hesab-resi-heading">
-        <Translate contentKey="sahaApp.hesabResi.home.title">Hesab Resis</Translate>
+        حسابرسی ها
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.hesabResi.home.createLabel">Create new Hesab Resi</Translate>
+          ایجاد حسابرسی جدید
         </Link>
       </h2>
       <div className="table-responsive">
@@ -62,16 +62,16 @@ export const HesabResi = (props: IHesabResiProps) => {
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  شناسه <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('sal')}>
-                  <Translate contentKey="sahaApp.hesabResi.sal">Sal</Translate> <FontAwesomeIcon icon="sort" />
+                  سال <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('vaziateHesabResi')}>
-                  <Translate contentKey="sahaApp.hesabResi.vaziateHesabResi">Vaziate Hesab Resi</Translate> <FontAwesomeIcon icon="sort" />
+                  وضعیت حسابرسی <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.hesabResi.gozaresh">Gozaresh</Translate> <FontAwesomeIcon icon="sort" />
+                  gozaresh <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
                   <Translate contentKey="sahaApp.hesabResi.bankEtelaati">Bank Etelaati</Translate> <FontAwesomeIcon icon="sort" />
@@ -227,7 +227,7 @@ export const HesabResi = (props: IHesabResiProps) => {
                       <Button tag={Link} to={`${match.url}/${hesabResi.id}`} color="info" size="sm">
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.view">View</Translate>
+                          بازکردن
                         </span>
                       </Button>
                       <Button
@@ -238,7 +238,7 @@ export const HesabResi = (props: IHesabResiProps) => {
                       >
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.edit">Edit</Translate>
+                          به روز رسانی وضعیت
                         </span>
                       </Button>
                       <Button
@@ -249,7 +249,7 @@ export const HesabResi = (props: IHesabResiProps) => {
                       >
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.delete">Delete</Translate>
+                          حذف حسابرسی
                         </span>
                       </Button>
                     </div>
@@ -261,7 +261,7 @@ export const HesabResi = (props: IHesabResiProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.hesabResi.home.notFound">No Hesab Resis found</Translate>
+              حسابرسی ای یافت نشد
             </div>
           )
         )}

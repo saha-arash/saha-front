@@ -6,7 +6,6 @@ import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstr
 import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
-
 import { IKarbar } from 'app/shared/model/karbar.model';
 import { getEntities as getKarbars } from 'app/entities/karbar/karbar.reducer';
 import { IYegan } from 'app/shared/model/yegan.model';
@@ -24,12 +23,17 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
   const [sarparastId, setSarparastId] = useState('0');
   const [nafarId, setNafarId] = useState('0');
   const [binandeId, setBinandeId] = useState('0');
+  const [shorooMamooriat, setShorooMamooriat] = useState('0');
+  const [payanMamooriat, setPayanMamooriat] = useState('0');
   const [yeganId, setYeganId] = useState('0');
   const [hesabResiId, setHesabResiId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
+  const [searchedKarbars, setSearchedKarbars] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const subjectRef = React.useRef();
   const { bargeMamooriatEntity, karbars, yegans, hesabResis, loading, updating } = props;
-
+  const [selectedDay, setSelectedDay] = useState(null);
   const handleClose = () => {
     props.history.push('/barge-mamooriat' + props.location.search);
   };
@@ -75,7 +79,7 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.bargeMamooriat.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.bargeMamooriat.home.createOrEditLabel">Create or edit a BargeMamooriat</Translate>
+            <span>ایجاد/ویرایش برگه ماموریت</span>
           </h2>
         </Col>
       </Row>
@@ -87,16 +91,12 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
             <AvForm model={isNew ? {} : bargeMamooriatEntity} onSubmit={saveEntity}>
               {!isNew ? (
                 <AvGroup>
-                  <Label for="barge-mamooriat-id">
-                    <Translate contentKey="global.field.id">ID</Translate>
-                  </Label>
+                    <span>شناسه</span>
                   <AvInput id="barge-mamooriat-id" type="text" className="form-control" name="id" required readOnly />
                 </AvGroup>
               ) : null}
               <AvGroup>
-                <Label id="vaziatLabel" for="barge-mamooriat-vaziat">
-                  <Translate contentKey="sahaApp.bargeMamooriat.vaziat">Vaziat</Translate>
-                </Label>
+                  <span>وضعیت</span>
                 <AvInput
                   id="barge-mamooriat-vaziat"
                   type="select"
@@ -123,15 +123,11 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
                 </AvInput>
               </AvGroup>
               <AvGroup>
-                <Label id="saleMamooriatLabel" for="barge-mamooriat-saleMamooriat">
-                  <Translate contentKey="sahaApp.bargeMamooriat.saleMamooriat">Sale Mamooriat</Translate>
-                </Label>
+                  <span>سال ماموریت</span>
                 <AvField id="barge-mamooriat-saleMamooriat" type="string" className="form-control" name="saleMamooriat" />
               </AvGroup>
               <AvGroup>
-                <Label id="shorooMamooriatLabel" for="barge-mamooriat-shorooMamooriat">
-                  <Translate contentKey="sahaApp.bargeMamooriat.shorooMamooriat">Shoroo Mamooriat</Translate>
-                </Label>
+                  <span>شروع ماموریت</span>
                 <AvInput
                   id="barge-mamooriat-shorooMamooriat"
                   type="datetime-local"
@@ -140,10 +136,11 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
                   placeholder={'YYYY-MM-DD HH:mm'}
                   value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.bargeMamooriatEntity.shorooMamooriat)}
                 />
+                
               </AvGroup>
               <AvGroup>
                 <Label id="payanMamooriatLabel" for="barge-mamooriat-payanMamooriat">
-                  <Translate contentKey="sahaApp.bargeMamooriat.payanMamooriat">Payan Mamooriat</Translate>
+                  <span>پایان ماموریت</span>
                 </Label>
                 <AvInput
                   id="barge-mamooriat-payanMamooriat"
@@ -156,12 +153,12 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
               </AvGroup>
               <AvGroup>
                 <Label for="barge-mamooriat-sarparast">
-                  <Translate contentKey="sahaApp.bargeMamooriat.sarparast">Sarparast</Translate>
+                  <span>سرپرست</span>
                 </Label>
                 <AvInput id="barge-mamooriat-sarparast" type="select" className="form-control" name="sarparastId">
                   <option value="" key="0" />
-                  {karbars
-                    ? karbars.map(otherEntity => (
+                  {searchedKarbars
+                    ? searchedKarbars.map(otherEntity => (
                         <option value={otherEntity.id} key={otherEntity.id}>
                           {otherEntity.id}
                         </option>
@@ -171,7 +168,7 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
               </AvGroup>
               <AvGroup>
                 <Label for="barge-mamooriat-yegan">
-                  <Translate contentKey="sahaApp.bargeMamooriat.yegan">Yegan</Translate>
+                  <span>یگان</span>
                 </Label>
                 <AvInput id="barge-mamooriat-yegan" type="select" className="form-control" name="yeganId">
                   <option value="" key="0" />
@@ -186,7 +183,7 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
               </AvGroup>
               <AvGroup>
                 <Label for="barge-mamooriat-hesabResi">
-                  <Translate contentKey="sahaApp.bargeMamooriat.hesabResi">Hesab Resi</Translate>
+                  <span>حسابرسی</span>
                 </Label>
                 <AvInput id="barge-mamooriat-hesabResi" type="select" className="form-control" name="hesabResiId">
                   <option value="" key="0" />
@@ -203,7 +200,7 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
-                  <Translate contentKey="entity.action.back">Back</Translate>
+                  <span>بازگشت</span>
                 </span>
               </Button>
               &nbsp;

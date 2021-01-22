@@ -172,5 +172,5 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "امتیاز حقوقی این محصول برای سازمان حسابرسی ارتش محفوظ است."
+  "footer": ".امتیاز حقوقی این محصول برای سازمان حسابرسی ارتش محفوظ است"
 }

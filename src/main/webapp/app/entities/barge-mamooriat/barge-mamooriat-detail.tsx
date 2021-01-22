@@ -33,7 +33,7 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
           <dd>{bargeMamooriatEntity.vaziat}</dd>
           <dt>
             <span id="saleMamooriat">
-              <Translate contentKey="sahaApp.bargeMamooriat.saleMamooriat">Sale Mamooriat</Translate>
+              <span>سال ماموریت</span>
             </span>
           </dt>
           <dd>{bargeMamooriatEntity.saleMamooriat}</dd>

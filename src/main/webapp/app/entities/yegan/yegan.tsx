@@ -49,11 +49,11 @@ export const Yegan = (props: IYeganProps) => {
   return (
     <div>
       <h2 id="yegan-heading">
-        <Translate contentKey="sahaApp.yegan.home.title">Yegans</Translate>
+        <span>یگان ها</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.yegan.home.createLabel">Create new Yegan</Translate>
+          <span>ایجاد یگان جدید</span>
         </Link>
       </h2>
       <div className="table-responsive">
@@ -62,22 +62,22 @@ export const Yegan = (props: IYeganProps) => {
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>شناسه</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="sahaApp.yegan.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>نام یگان</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('code')}>
-                  <Translate contentKey="sahaApp.yegan.code">Code</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>کد یگان</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.yegan.nirooCode">Niroo Code</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>نیرو</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.yegan.shahr">Shahr</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>شهر</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.yegan.yeganType">Yegan Type</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>نوع یگان</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>

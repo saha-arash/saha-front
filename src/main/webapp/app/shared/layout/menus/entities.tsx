@@ -75,71 +75,68 @@ export const EntitiesMenu = props => (
     {/* <MenuItem icon="asterisk" to="/gozaresh">
       <Translate contentKey="global.menu.entities.gozaresh" />
     </MenuItem> */}
-    <MenuItem icon="asterisk" to="/karbar">
-      <Translate contentKey="global.menu.entities.karbar" />
-    </MenuItem>
     <MenuItem icon="asterisk" to="/semat">
-      <Translate contentKey="global.menu.entities.semat" />
+      <span>سمت ها</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/daraje">
-      <Translate contentKey="global.menu.entities.daraje" />
+      <span>درجه</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/yegan-type">
-      <Translate contentKey="global.menu.entities.yeganType" />
+      <span>نوع یگان</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/yegan">
-      <Translate contentKey="global.menu.entities.yegan" />
+    <span> یگان ها</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/mohasebe-hazine-mamooriat">
-      <Translate contentKey="global.menu.entities.mohasebeHazineMamooriat" />
+    <span>هزینه ماموریت</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/dastoor-amal-ejra-e">
-      <Translate contentKey="global.menu.entities.dastoorAmalEjraE" />
+      <span>دستور العمل اجرایی</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/gardeshkar-barname-hesabresi">
-      <Translate contentKey="global.menu.entities.gardeshkarBarnameHesabresi" />
+    <span>گردش کار</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/madarek">
-      <Translate contentKey="global.menu.entities.madarek" />
+    <span>مدارک حسابرسی</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/bilan-sal-ghabl">
-      <Translate contentKey="global.menu.entities.bilanSalGhabl" />
+    <span>بیلان سال قبل</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/gozaresh-hozoor">
-      <Translate contentKey="global.menu.entities.gozareshHozoor" />
+    <span>گزارش حضور</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/chekide-gardesh-kar">
-      <Translate contentKey="global.menu.entities.chekideGardeshKar" />
+    <span>چکیده گردش کار</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/bilan-se-sal-ghabl">
-      <Translate contentKey="global.menu.entities.bilanSeSalGhabl" />
+    <span>بیلان سه سال قبل</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/mosta-khreje">
-      <Translate contentKey="global.menu.entities.mostaKhreje" />
+    <span>مستخرجه</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/rafe-iradat">
-      <Translate contentKey="global.menu.entities.rafeIradat" />
+    <span>رفع ایرادات</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/bank-etelaati">
-      <Translate contentKey="global.menu.entities.bankEtelaati" />
+    <span>بانک اطلاعاتی</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/nameh">
-      <Translate contentKey="global.menu.entities.nameh" />
+    <span>نامه ها</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/kholase-gozaresh">
-      <Translate contentKey="global.menu.entities.kholaseGozaresh" />
+    <span>خلاصه گزارش</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/gardesh-kar">
-      <Translate contentKey="global.menu.entities.gardeshKar" />
+    <span>گردش کار</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/mantaghe">
-      <Translate contentKey="global.menu.entities.mantaghe" />
+    <span>منطقه</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/ostan">
-      <Translate contentKey="global.menu.entities.ostan" />
+    <span>استان</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/shahr">
-      <Translate contentKey="global.menu.entities.shahr" />
+    <span>شهر</span>
     </MenuItem>
     {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
   </NavDropdown>

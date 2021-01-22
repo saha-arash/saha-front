@@ -36,10 +36,10 @@ export const ManageMenu = props => (
       برگه ماموریت ها
     </MenuItem>
     <MenuItem icon="asterisk" to="/hesab-resi">
-      برنامه های سالانه
+      حسابرسی ها
     </MenuItem>
     <MenuItem icon="asterisk" to="/barname-hesab-resi">
-      برنامه حسابرسی
+      برنامه های حسابرسی سالانه
     </MenuItem>
     {/* <MenuItem icon="asterisk" to="/file-barge-mamooriat">
       <Translate contentKey="global.menu.entities.fileBargeMamooriat" />

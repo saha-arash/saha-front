@@ -141,8 +141,8 @@ export const HesabResiUpdate = (props: IHesabResiUpdateProps) => {
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="sahaApp.hesabResi.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.hesabResi.home.createOrEditLabel">Create or edit a HesabResi</Translate>
+          <h2>
+            ایجاد یا به روز رسانی حسابرسی
           </h2>
         </Col>
       </Row>
@@ -162,13 +162,13 @@ export const HesabResiUpdate = (props: IHesabResiUpdateProps) => {
               ) : null}
               <AvGroup>
                 <Label id="salLabel" for="hesab-resi-sal">
-                  <Translate contentKey="sahaApp.hesabResi.sal">Sal</Translate>
+                  سال
                 </Label>
                 <AvField id="hesab-resi-sal" type="string" className="form-control" name="sal" />
               </AvGroup>
               <AvGroup>
                 <Label id="vaziateHesabResiLabel" for="hesab-resi-vaziateHesabResi">
-                  <Translate contentKey="sahaApp.hesabResi.vaziateHesabResi">Vaziate Hesab Resi</Translate>
+                  وضعیت
                 </Label>
                 <AvInput
                   id="hesab-resi-vaziateHesabResi"
