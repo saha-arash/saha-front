@@ -155,7 +155,7 @@ export const HesabResiUpdate = (props: IHesabResiUpdateProps) => {
               {!isNew ? (
                 <AvGroup>
                   <Label for="hesab-resi-id">
-                    <Translate contentKey="global.field.id">ID</Translate>
+                    شناسه
                   </Label>
                   <AvInput id="hesab-resi-id" type="text" className="form-control" name="id" required readOnly />
                 </AvGroup>
