@@ -18,6 +18,7 @@ export const Login = (props: ILoginProps) => {
   const handleLogin = (username, password, rememberMe = false) => props.login(username, password, rememberMe);
 
   const handleClose = () => {
+    
     setShowModal(false);
     props.history.push('/');
   };

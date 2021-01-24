@@ -19,6 +19,7 @@ import ErrorBoundary from 'app/shared/error/error-boundary';
 import { AUTHORITIES } from 'app/config/constants';
 import AppRoutes from 'app/routes';
 import moment from 'moment-jalaali';
+import Axios from 'axios';
 
 // moment.loadPersian({
 //   usePersianDigits: true,
@@ -37,6 +38,7 @@ export const App = (props: IAppProps) => {
     props.getSession();
     props.getProfile();
   }, []);
+
 
   const paddingTop = '60px';
   return (

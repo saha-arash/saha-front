@@ -115,7 +115,11 @@ export const getSession = () => async (dispatch, getState) => {
 export const login = (username, password, rememberMe = false) => async (dispatch, getState) => {
   const result = await dispatch({
     type: ACTION_TYPES.LOGIN,
-    payload: axios.post('api/authenticate', { username, password, rememberMe })
+    payload: axios.post('api/authenticate', { username, password, rememberMe }).then(data => {
+      console.log(data);
+      localStorage.setItem('Token', data.data.id_token);
+      localStorage.setItem('role', data.data.roles.split(',')[0]);
+    })
   });
   const bearerToken = result.value.headers.authorization;
   if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {

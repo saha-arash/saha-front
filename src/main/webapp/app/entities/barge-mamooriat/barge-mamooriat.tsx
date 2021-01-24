@@ -13,6 +13,7 @@ import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 import bargeMamuriatData from '../../../i18n/fa/vaziatBargeMamooriat.json';
 import loggerMiddleware from 'app/config/logger-middleware';
 
+
 export interface IBargeMamooriatProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const BargeMamooriat = (props: IBargeMamooriatProps) => {

@@ -1,6 +1,6 @@
 import './home.scss';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
 import { connect } from 'react-redux';
@@ -15,6 +15,56 @@ export const Home = (props: IHomeProp) => {
   const { account } = props;
   const history = useHistory();
 
+  const [role, setRole] = useState(localStorage.getItem('role'));
+
+  const render = () => {
+    let res;
+    if (role === 'ROLE_ADMIN') {
+      return (
+        <>
+          <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
+            برگه ماموریت{' '}
+          </button>
+          <button className="cardd-1" onClick={() => history.push('/barname-hesab-resi')}>
+            برنامه سالانه
+          </button>
+          <button className="cardd-1" onClick={() => history.push('/barname-hesab-resi')}>
+            فرایند انجام حسابرسی
+          </button>
+          <button className="cardd-1" onClick={() => history.push('/payam')}>
+            پیام ها
+          </button>
+          <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
+            فرم های مورد نیاز
+          </button>
+          <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
+            لوح قوانین
+          </button>
+          <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
+            دستور العمل ها و بازبینه ها
+          </button>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
+            برگه ماموریت{' '}
+          </button>
+          <button className="cardd-1" onClick={() => history.push('/barname-hesab-resi')}>
+            فرایند انجام حسابرسی
+          </button>
+          <button className="cardd-1" onClick={() => history.push('/payam')}>
+            پیام ها
+          </button>
+          <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
+            فرم های مورد نیاز
+          </button>
+        </>
+      );
+    }
+  };
+
   return (
     <div>
       <Row>
@@ -22,34 +72,19 @@ export const Home = (props: IHomeProp) => {
           {/* TODO: how to detect user is logged in an after loggin and reloading the page */}
           {account && account.login ? (
             <div>
-              <Alert color="success">
+              <Alert className='d-flex align-items-center justify-content-center' color="success">
                 <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
                   You are logged in as user {account.login}.
                 </Translate>
               </Alert>
 
+              {role === 'ROLE_ADMIN'}
+
               <div className="horzontalList">
-                <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
-                  برگه ماموریت{' '}
-                </button>
-                <button className="cardd-1" onClick={() => history.push('/barname-hesab-resi')}>
-                  برنامه سالانه
-                </button>
-                <button className="cardd-1" onClick={() => history.push('/barname-hesab-resi')}>
-                  فرایند انجام حسابرسی
-                </button>
-                <button className="cardd-1" onClick={() => history.push('/payam')}>
-                  پیام ها
-                </button>
-                <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
-                  فرم های مورد نیاز
-                </button>
-                <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
-                  لوح قوانین
-                </button>
-                <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
-                  دستور العمل ها و بازبینه ها
-                </button>
+
+                {render()}
+         
+
               </div>
             </div>
           ) : (

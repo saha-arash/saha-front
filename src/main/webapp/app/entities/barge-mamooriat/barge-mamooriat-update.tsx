@@ -16,6 +16,10 @@ import { getEntity, updateEntity, createEntity, reset } from './barge-mamooriat.
 import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
+import { AkbariDatePicker } from 'akbari-react-date-picker';
+import 'akbari-react-date-picker/dist/index.css';
+import { ReactSearchAutocomplete } from 'react-search-autocomplete'
+
 
 export interface IBargeMamooriatUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -28,12 +32,19 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
   const [yeganId, setYeganId] = useState('0');
   const [hesabResiId, setHesabResiId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
+  const [state, setState] = useState({
+    startDate: '',
+    endDate: '',
+  })
 
   const [searchedKarbars, setSearchedKarbars] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const subjectRef = React.useRef();
   const { bargeMamooriatEntity, karbars, yegans, hesabResis, loading, updating } = props;
   const [selectedDay, setSelectedDay] = useState(null);
+
+
+
   const handleClose = () => {
     props.history.push('/barge-mamooriat' + props.location.search);
   };
@@ -74,6 +85,53 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
     }
   };
 
+  const changeStartDate = (e)=>{
+       state.startDate = e;
+       setState({...state})
+  }
+  const changeEndDate = (e)=>{
+    state.endDate = e;
+    setState({...state})
+  }
+
+  const items = [
+    {
+      id: 0,
+      name: 'Cobol'
+    },
+    {
+      id: 1,
+      name: 'JavaScript'
+    },
+    {
+      id: 2,
+      name: 'Basic'
+    },
+    {
+      id: 3,
+      name: 'PHP'
+    },
+    {
+      id: 4,
+      name: 'Java'
+    }
+  ]
+
+  const handleOnSearch = (string, results) => {
+    // onSearch will have as the first callback parameter
+    // the string searched and for the second the results.
+    console.log(string, results)
+  }
+
+  const handleOnSelect = (item) => {
+    // the item selected
+    console.log(item)
+  }
+
+  const handleOnFocus = () => {
+    console.log('Focused')
+  }
+
   return (
     <div>
       <Row className="justify-content-center">
@@ -91,12 +149,12 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
             <AvForm model={isNew ? {} : bargeMamooriatEntity} onSubmit={saveEntity}>
               {!isNew ? (
                 <AvGroup>
-                    <span>شناسه</span>
+                  <span>شناسه</span>
                   <AvInput id="barge-mamooriat-id" type="text" className="form-control" name="id" required readOnly />
                 </AvGroup>
               ) : null}
               <AvGroup>
-                  <span>وضعیت</span>
+                <span>وضعیت</span>
                 <AvInput
                   id="barge-mamooriat-vaziat"
                   type="select"
@@ -123,38 +181,32 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
                 </AvInput>
               </AvGroup>
               <AvGroup>
-                  <span>سال ماموریت</span>
+                <span>سال ماموریت</span>
                 <AvField id="barge-mamooriat-saleMamooriat" type="string" className="form-control" name="saleMamooriat" />
               </AvGroup>
               <AvGroup>
-                  <span>شروع ماموریت</span>
-                <AvInput
-                  id="barge-mamooriat-shorooMamooriat"
-                  type="datetime-local"
-                  className="form-control"
-                  name="shorooMamooriat"
-                  placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.bargeMamooriatEntity.shorooMamooriat)}
-                />
-                
+                <span>شروع ماموریت</span>
+                <AkbariDatePicker min_date="1370/1/1" max_date="1450/1/1" input_type="jalali"  on_change_date={(e) => changeStartDate(e)} />
               </AvGroup>
               <AvGroup>
                 <Label id="payanMamooriatLabel" for="barge-mamooriat-payanMamooriat">
                   <span>پایان ماموریت</span>
                 </Label>
-                <AvInput
-                  id="barge-mamooriat-payanMamooriat"
-                  type="datetime-local"
-                  className="form-control"
-                  name="payanMamooriat"
-                  placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.bargeMamooriatEntity.payanMamooriat)}
-                />
+                <AkbariDatePicker min_date="1370/1/1" max_date="1450/1/1" input_type="jalali"  on_change_date={(e) => changeEndDate(e)}/>
               </AvGroup>
               <AvGroup>
                 <Label for="barge-mamooriat-sarparast">
                   <span>سرپرست</span>
                 </Label>
+
+                <ReactSearchAutocomplete
+            items={items}
+            onSearch={handleOnSearch}
+            onSelect={handleOnSelect}
+            onFocus={handleOnFocus}
+            autoFocus
+          />
+
                 <AvInput id="barge-mamooriat-sarparast" type="select" className="form-control" name="sarparastId">
                   <option value="" key="0" />
                   {searchedKarbars
