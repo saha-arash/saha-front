@@ -19,7 +19,9 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 import { AkbariDatePicker } from 'akbari-react-date-picker';
 import 'akbari-react-date-picker/dist/index.css';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
-
+import Select from 'react-select';
+import axios from 'axios';
+import moment from 'jalali-moment';
 
 export interface IBargeMamooriatUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -42,7 +44,135 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
   const subjectRef = React.useRef();
   const { bargeMamooriatEntity, karbars, yegans, hesabResis, loading, updating } = props;
   const [selectedDay, setSelectedDay] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [units, setUnits] = useState([]);
+  const [s_users, set_users] = useState({} as any);
+  const [s_nafars, set_nafarat] = useState([]);
+  const [s_units, set_units] = useState({} as any);
+  const [s_binandegan, set_binandegan] = useState([]);
 
+
+
+
+  useEffect(() => {
+    let data = [];
+     if(props.bargeMamooriatEntity?.binandegan?.length > 0){
+       props.bargeMamooriatEntity.binandegan.map(item => {
+           users?.map(u => {
+             if(Number(u.value) === Number(item)){
+               data.push(u);
+             }
+           })
+       })
+       set_binandegan([...data]);
+     }
+ 
+
+     data = [];
+     if(props.bargeMamooriatEntity?.nafarat?.length > 0){
+      props.bargeMamooriatEntity.nafarat.map(item => {
+          users?.map(u => {
+            if(Number(u.value) === Number(item)){
+              data.push(u);
+            }
+          })
+      })
+      set_nafarat([...data]);
+    }
+
+    if(props.bargeMamooriatEntity?.yeganId){
+      users?.map(u => {
+        if(Number(u.value) === Number(props.bargeMamooriatEntity.yeganId)){
+          set_units(u)
+        }
+      })
+    }
+
+    if(props.bargeMamooriatEntity?.sarparastId){
+      users?.map(u => {
+        if(Number(u.value) === Number(props.bargeMamooriatEntity.sarparastId)){
+          set_users(u)
+        }
+      })
+   }
+
+   if(props.bargeMamooriatEntity?.shorooMamooriat){
+     const dates = props.bargeMamooriatEntity.shorooMamooriat
+     state.startDate = moment(String(dates), 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD');
+     state.endDate = moment(String(props.bargeMamooriatEntity.payanMamooriat), 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD');
+     setState({...state})
+   }
+     
+ 
+
+
+
+
+  }, [users])
+
+  const searchKarbars = () => {
+       const params = {} as any;
+       params.name = '';
+       axios.get('/api/karbars/search', {params}).then(data => {
+         const arr = [];
+         data.data.map(item => {
+           const a = {} as any;
+           a.value = item.id;
+           a.label = item.name;
+           arr.push(a);
+         })
+         setUsers([...arr]);
+       })
+  }
+
+  const searchUnits = () => {
+    const params = {} as any;
+    params.name = '';
+    axios.get('/api/yegans/serach', {params}).then(data => {
+      const arr = [];
+      data.data.map(item => {
+        const a = {} as any;
+        a.value = item.id;
+        a.label = item.name;
+        arr.push(a);
+      })
+      setUnits([...arr]);
+    })
+}
+
+const changeUnit = (item) => {
+   set_units(item.value);
+
+}
+const changeKarbar = (item) => {
+  set_users(item.value);
+
+}
+const changenafar = (data, s) => {
+  const n = [];
+  data.map(item => {
+    n.push(item.value);
+  })
+  set_nafarat(n);
+
+}
+
+const changeBinandegan = (data) => {
+
+  const n = [];
+  data.map(item => {
+    n.push(item.value);
+  })
+  set_binandegan(n);
+}
+
+
+
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
 
 
   const handleClose = () => {
@@ -59,6 +189,9 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
     props.getKarbars();
     props.getYegans();
     props.getHesabResis();
+    searchKarbars();
+    searchUnits();
+    console.log(props , 78789)
   }, []);
 
   useEffect(() => {
@@ -70,6 +203,20 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
   const saveEntity = (event, errors, values) => {
     values.shorooMamooriat = convertDateTimeToServer(values.shorooMamooriat);
     values.payanMamooriat = convertDateTimeToServer(values.payanMamooriat);
+    values.sarparastId = s_users.value;
+    values.nafarat = []; 
+    s_nafars.map(item => {
+      values.nafarat.push(item.value)
+    });
+    values.yeganId = s_units.value;
+    values.shorooMamooriat = new Date(state.startDate);
+    values.payanMamooriat = new Date(state.endDate);
+    values.binandegan = [];
+    s_binandegan.map(item => {
+      values.binandegan.push(item.value)
+    });
+
+
 
     if (errors.length === 0) {
       const entity = {
@@ -86,13 +233,16 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
   };
 
   const changeStartDate = (e)=>{
-       state.startDate = e;
+    
+       state.startDate = moment.from(e, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD');
        setState({...state})
   }
   const changeEndDate = (e)=>{
-    state.endDate = e;
+    state.endDate = moment.from(e, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD');
     setState({...state})
   }
+
+
 
   const items = [
     {
@@ -117,20 +267,14 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
     }
   ]
 
-  const handleOnSearch = (string, results) => {
-    // onSearch will have as the first callback parameter
-    // the string searched and for the second the results.
-    console.log(string, results)
+  const sarparastChange = (string, results) => {
   }
-
-  const handleOnSelect = (item) => {
+  const sarparastSelect = (item) => {
     // the item selected
     console.log(item)
   }
 
-  const handleOnFocus = () => {
-    console.log('Focused')
-  }
+
 
   return (
     <div>
@@ -186,52 +330,52 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
               </AvGroup>
               <AvGroup>
                 <span>شروع ماموریت</span>
-                <AkbariDatePicker min_date="1370/1/1" max_date="1450/1/1" input_type="jalali"  on_change_date={(e) => changeStartDate(e)} />
+                <AkbariDatePicker min_date="1370/1/1" max_date="1450/1/1" current_date={state.startDate} input_type="jalali"  on_change_date={(e) => changeStartDate(e)} />
               </AvGroup>
               <AvGroup>
                 <Label id="payanMamooriatLabel" for="barge-mamooriat-payanMamooriat">
                   <span>پایان ماموریت</span>
                 </Label>
-                <AkbariDatePicker min_date="1370/1/1" max_date="1450/1/1" input_type="jalali"  on_change_date={(e) => changeEndDate(e)}/>
+                <AkbariDatePicker min_date="1370/1/1" max_date="1450/1/1" current_date={state.endDate} input_type="jalali"  on_change_date={(e) => changeEndDate(e)}/>
               </AvGroup>
               <AvGroup>
                 <Label for="barge-mamooriat-sarparast">
                   <span>سرپرست</span>
                 </Label>
-
-                <ReactSearchAutocomplete
-            items={items}
-            onSearch={handleOnSearch}
-            onSelect={handleOnSelect}
-            onFocus={handleOnFocus}
-            autoFocus
-          />
-
-                <AvInput id="barge-mamooriat-sarparast" type="select" className="form-control" name="sarparastId">
-                  <option value="" key="0" />
-                  {searchedKarbars
-                    ? searchedKarbars.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
+                {/* <Select options={users}  onChange={changeKarbar}/> */}
+                {!props.bargeMamooriatEntity?.sarparastId || Object.keys(s_users).length > 0 ? (
+                <Select defaultValue={s_users} options={users}  onChange={changeKarbar} />
+                ):null}
               </AvGroup>
               <AvGroup>
                 <Label for="barge-mamooriat-yegan">
                   <span>یگان</span>
                 </Label>
-                <AvInput id="barge-mamooriat-yegan" type="select" className="form-control" name="yeganId">
-                  <option value="" key="0" />
-                  {yegans
-                    ? yegans.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
+
+                {!props.bargeMamooriatEntity?.yeganId || Object.keys(s_nafars).length > 0 ? (
+                <Select defaultValue={s_units} options={units}  onChange={changeUnit} />
+                ):null}
+
+                {/* <Select options={units} onChange={changeUnit} /> */}
+
+       
+              </AvGroup>
+              <AvGroup>
+                <Label for="barge-mamooriat-sarparast">
+                  <span>نفرات</span>
+                </Label>
+                {!props.bargeMamooriatEntity?.binandegan || s_nafars.length > 0 ? (
+                <Select defaultValue={s_nafars} options={users} isMulti onChange={changenafar} />
+                ):null}
+              </AvGroup>
+
+              <AvGroup>
+                <Label for="barge-mamooriat-sarparast">
+                  <span>بینندگان</span>
+                </Label>
+                {!props.bargeMamooriatEntity?.binandegan || s_binandegan.length > 0 ? (
+                <Select defaultValue={s_binandegan} options={users} isMulti onChange={changeBinandegan} />
+                ): null}
               </AvGroup>
               <AvGroup>
                 <Label for="barge-mamooriat-hesabResi">

@@ -14,7 +14,9 @@ export interface IBargeMamooriat {
   yeganId?: number;
   hesabResiId?: number;
   nafars?: IKarbar[];
+  nafarat?: IKarbar[];
   binandes?: IKarbar[];
+  binandegan?: IKarbar[];
 }
 
 export const defaultValue: Readonly<IBargeMamooriat> = {};
