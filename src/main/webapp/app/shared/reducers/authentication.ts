@@ -146,6 +146,7 @@ export const clearAuthToken = () => {
 
 export const logout = () => dispatch => {
   clearAuthToken();
+  localStorage.clear();
   dispatch({
     type: ACTION_TYPES.LOGOUT
   });
