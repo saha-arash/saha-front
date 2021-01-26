@@ -113,8 +113,11 @@ const apiUrl = 'api/file-barge-mamooriats';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IFileBargeMamooriat> = (page, size, sort) => {
-  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+export const getEntities: ICrudGetAllAction<IFileBargeMamooriat> = (page, size, sort, id) => {
+  let requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  if (id) {
+    requestUrl = `${apiUrl}/barge-mamooriat/${id}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  }
   return {
     type: ACTION_TYPES.FETCH_FILEBARGEMAMOORIAT_LIST,
     payload: axios.get<IFileBargeMamooriat>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)

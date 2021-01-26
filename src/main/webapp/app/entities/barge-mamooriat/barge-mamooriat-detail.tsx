@@ -66,6 +66,24 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
           </dt>
           <dd>{bargeMamooriatEntity.hesabResiId ? bargeMamooriatEntity.hesabResiId : ''}</dd>
         </dl>
+        <div className="mb-3">
+        <Button 
+          tag={Link} 
+          to={{
+            pathname: '/file-barge-mamooriat',
+            state: { id: bargeMamooriatEntity.id }
+          }} 
+          color="warning" 
+          className="px-4">
+          <FontAwesomeIcon icon='file' />{' '}
+          <span className="d-none d-md-inline">
+            <span>
+              فایل‌ها
+            </span>
+          </span>
+        </Button>
+        </div>
+
         <Button tag={Link} to="/barge-mamooriat" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}
           <span className="d-none d-md-inline">
