@@ -25,7 +25,7 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
   const [salInput, setSalInput] = useState(null);
 
   const getAllEntities = () => {
-    //props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+    // props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
     console.log("H EEEEE YYY",vaziat,sal);
     props.getEntities(0,0,``,vaziat,sal);
   };

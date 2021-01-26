@@ -209,7 +209,7 @@ export interface IRootState {
   readonly loadingBar: any;
 }
 
-//TODO: wanna know more about this
+// TODO: wanna know more about this
 const rootReducer = combineReducers<IRootState>({
   authentication,
   locale,

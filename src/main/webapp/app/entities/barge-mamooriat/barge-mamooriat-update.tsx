@@ -16,11 +16,13 @@ import { getEntity, updateEntity, createEntity, reset } from './barge-mamooriat.
 import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
-import { AkbariDatePicker } from 'akbari-react-date-picker';
-import 'akbari-react-date-picker/dist/index.css';
+// import { AkbariDatePicker } from 'akbari-react-date-picker'
+// import 'akbari-react-date-picker/dist/index.css';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import Select from 'react-select';
 import axios from 'axios';
+// import moment from 'jalali-moment';
+import DatePicker from 'react-datepicker2';
 import moment from 'jalali-moment';
 
 export interface IBargeMamooriatUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
@@ -34,10 +36,9 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
   const [yeganId, setYeganId] = useState('0');
   const [hesabResiId, setHesabResiId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
-  const [state, setState] = useState({
-    startDate: '',
-    endDate: '',
-  })
+
+  const [startDate, setStartDate] = useState<any>();
+  const [endDate, setEndDate] = useState<any>();
 
   const [searchedKarbars, setSearchedKarbars] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -95,18 +96,17 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
         }
       })
    }
-
+   // TODO: Change this to jalali date
    if(props.bargeMamooriatEntity?.shorooMamooriat){
-     const dates = props.bargeMamooriatEntity.shorooMamooriat
-     state.startDate = moment(String(dates), 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD');
-     state.endDate = moment(String(props.bargeMamooriatEntity.payanMamooriat), 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD');
-     setState({...state})
+     const date = moment(String(props.bargeMamooriatEntity?.shorooMamooriat))
+     console.log('state date from props => ', date.format('jYYYY/jMM/jDD'))
+     setStartDate(date)
    }
-     
- 
 
-
-
+   if(props.bargeMamooriatEntity?.payanMamooriat) {
+     const date = moment(String(props.bargeMamooriatEntity.payanMamooriat))
+    setEndDate(date)
+   }
 
   }, [users])
 
@@ -209,8 +209,8 @@ const changeBinandegan = (data) => {
       values.nafarat.push(item.value)
     });
     values.yeganId = s_units.value;
-    values.shorooMamooriat = new Date(state.startDate);
-    values.payanMamooriat = new Date(state.endDate);
+    values.shorooMamooriat = new Date(startDate);
+    values.payanMamooriat = new Date(endDate);
     values.binandegan = [];
     s_binandegan.map(item => {
       values.binandegan.push(item.value)
@@ -233,13 +233,10 @@ const changeBinandegan = (data) => {
   };
 
   const changeStartDate = (e)=>{
-    
-       state.startDate = moment.from(e, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD');
-       setState({...state})
+       setStartDate(e)
   }
   const changeEndDate = (e)=>{
-    state.endDate = moment.from(e, 'fa', 'YYYY/MM/DD').format('YYYY/MM/DD');
-    setState({...state})
+      setEndDate(e)
   }
 
 
@@ -274,7 +271,8 @@ const changeBinandegan = (data) => {
     console.log(item)
   }
 
-
+  console.log('start ====>', startDate ? startDate.format('jYYYY/jMM/jDD'): 'None');
+  console.log('end ====>', endDate ? endDate.format('jYYYY/jMM/jDD'): 'None');
 
   return (
     <div>
@@ -330,13 +328,28 @@ const changeBinandegan = (data) => {
               </AvGroup>
               <AvGroup>
                 <span>شروع ماموریت</span>
-                <AkbariDatePicker min_date="1370/1/1" max_date="1450/1/1" current_date={state.startDate} input_type="jalali"  on_change_date={(e) => changeStartDate(e)} />
+                <DatePicker
+
+                  isGregorian={false}
+                  timePicker={false}
+                  onChange={(e) => setStartDate(e)}
+                  value={startDate}
+                  persianDigits
+                />
+                {/* <AkbariDatePicker min_date="1370/1/1" max_date="1450/1/1" current_date={state.startDate} input_type="jalali"  on_change_date={(e) => changeStartDate(e)} /> */}
               </AvGroup>
               <AvGroup>
                 <Label id="payanMamooriatLabel" for="barge-mamooriat-payanMamooriat">
                   <span>پایان ماموریت</span>
                 </Label>
-                <AkbariDatePicker min_date="1370/1/1" max_date="1450/1/1" current_date={state.endDate} input_type="jalali"  on_change_date={(e) => changeEndDate(e)}/>
+                <DatePicker
+                  isGregorian={false}
+                  timePicker={false}
+                  onChange={(e) => setEndDate(e)}
+                  value={endDate}
+                  persianDigits
+                />
+                {/* <AkbariDatePicker min_date="1370/1/1" max_date="1450/1/1" current_date={state.endDate} input_type="jalali"  on_change_date={(e) => changeEndDate(e)}/> */}
               </AvGroup>
               <AvGroup>
                 <Label for="barge-mamooriat-sarparast">

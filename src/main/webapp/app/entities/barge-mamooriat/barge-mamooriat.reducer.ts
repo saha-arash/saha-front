@@ -100,8 +100,8 @@ export default (state: BargeMamooriatState = initialState, action): BargeMamoori
 const apiUrl = 'api/barge-mamooriats';
 const getUrl = (vaziat, saleMamooriat) => {
   let url = `${apiUrl}/user?cacheBuster=${new Date().getTime()}`;
-  //url = appendQuery(url, 'page', page);
-  //url = appendQuery(url, 'size', size);
+  // url = appendQuery(url, 'page', page);
+  // url = appendQuery(url, 'size', size);
   url = appendQuery(url, 'vaziatBargeMamooriat', vaziat);
   url = appendQuery(url, 'saleMamooriat', saleMamooriat);
   return url;
