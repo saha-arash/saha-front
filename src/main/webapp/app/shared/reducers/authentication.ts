@@ -1,3 +1,4 @@
+import { getProfile } from './application-profile';
 import axios from 'axios';
 import { Storage } from 'react-jhipster';
 
@@ -112,16 +113,16 @@ export const getSession = () => async (dispatch, getState) => {
   }
 };
 
-export const login = (username, password, rememberMe = false) => async (dispatch, getState) => {
-  const result = await dispatch({
-    type: ACTION_TYPES.LOGIN,
-    payload: axios.post('api/authenticate', { username, password, rememberMe }).then(data => {
-      console.log(data);
-      localStorage.setItem('Token', data.data.id_token);
-      localStorage.setItem('role', data.data.roles.split(',')[0]);
-    })
+export const login = (username, password, history, rememberMe = false) => async (dispatch, getState) => {
+  const result = await axios.post('api/authenticate', { username, password, rememberMe });
+  console.log(result);
+  localStorage.setItem('Token', result.data.id_token);
+  localStorage.setItem('role', result.data.roles.split(',')[0]);
+
+  const bearerToken = result.data.id_token;
+  dispatch({
+    type: ACTION_TYPES.LOGIN
   });
-  const bearerToken = result.value.headers.authorization;
   if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
     const jwt = bearerToken.slice(7, bearerToken.length);
     if (rememberMe) {
@@ -130,6 +131,7 @@ export const login = (username, password, rememberMe = false) => async (dispatch
       Storage.session.set(AUTH_TOKEN_KEY, jwt);
     }
   }
+  dispatch(getProfile());
   await dispatch(getSession());
 };
 
