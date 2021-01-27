@@ -49,11 +49,13 @@ export const Karbar = (props: IKarbarProps) => {
   return (
     <div>
       <h2 id="karbar-heading">
-        <Translate contentKey="sahaApp.karbar.home.title">Karbars</Translate>
+        کاربرها
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.karbar.home.createLabel">Create new Karbar</Translate>
+          <span>
+            ایحاد کاربر جدید
+          </span>
         </Link>
       </h2>
       <div className="table-responsive">
@@ -62,45 +64,45 @@ export const Karbar = (props: IKarbarProps) => {
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  شناسه <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="sahaApp.karbar.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                  نام <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('shoghlSazmani')}>
-                  <Translate contentKey="sahaApp.karbar.shoghlSazmani">Shoghl Sazmani</Translate> <FontAwesomeIcon icon="sort" />
+                  شغل سازمانی <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('shoghlAmali')}>
-                  <Translate contentKey="sahaApp.karbar.shoghlAmali">Shoghl Amali</Translate> <FontAwesomeIcon icon="sort" />
+                  شغل عملی <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('codePerseneli')}>
-                  <Translate contentKey="sahaApp.karbar.codePerseneli">Code Perseneli</Translate> <FontAwesomeIcon icon="sort" />
+                  کد پرسنلی <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('bezaneshate')}>
-                  <Translate contentKey="sahaApp.karbar.bezaneshate">Bezaneshate</Translate> <FontAwesomeIcon icon="sort" />
+                  بازنشسته <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('sazmani')}>
-                  <Translate contentKey="sahaApp.karbar.sazmani">Sazmani</Translate> <FontAwesomeIcon icon="sort" />
+                  سازمانی <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('tarikhBazneshastegi')}>
-                  <Translate contentKey="sahaApp.karbar.tarikhBazneshastegi">Tarikh Bazneshastegi</Translate>{' '}
+                  تاریخ بازنشستگی{' '}
                   <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('tarikhEstekhdam')}>
-                  <Translate contentKey="sahaApp.karbar.tarikhEstekhdam">Tarikh Estekhdam</Translate> <FontAwesomeIcon icon="sort" />
+                  تاریخ استخدام<FontAwesomeIcon icon="sort" />
+                </th>
+                {/* <th>
+                  یگان <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.karbar.yegan">Yegan</Translate> <FontAwesomeIcon icon="sort" />
+                  کد یگان<FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.karbar.yeganCode">Yegan Code</Translate> <FontAwesomeIcon icon="sort" />
+                  درجه <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.karbar.daraje">Daraje</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.karbar.semat">Semat</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
+                  سمت <FontAwesomeIcon icon="sort" />
+                </th> */}
                 <th />
               </tr>
             </thead>
@@ -124,10 +126,10 @@ export const Karbar = (props: IKarbarProps) => {
                   <td>
                     <TextFormat type="date" value={karbar.tarikhEstekhdam} format={APP_DATE_FORMAT} />
                   </td>
-                  <td>{karbar.yeganId ? <Link to={`yegan/${karbar.yeganId}`}>{karbar.yeganId}</Link> : ''}</td>
+                  {/* <td>{karbar.yeganId ? <Link to={`yegan/${karbar.yeganId}`}>{karbar.yeganId}</Link> : ''}</td>
                   <td>{karbar.yeganCodeId ? <Link to={`yegan-code/${karbar.yeganCodeId}`}>{karbar.yeganCodeId}</Link> : ''}</td>
                   <td>{karbar.darajeId ? <Link to={`daraje/${karbar.darajeId}`}>{karbar.darajeId}</Link> : ''}</td>
-                  <td>{karbar.sematId ? <Link to={`semat/${karbar.sematId}`}>{karbar.sematId}</Link> : ''}</td>
+                  <td>{karbar.sematId ? <Link to={`semat/${karbar.sematId}`}>{karbar.sematId}</Link> : ''}</td> */}
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${karbar.id}`} color="info" size="sm">
