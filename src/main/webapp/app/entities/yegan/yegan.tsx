@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { Button, Col, Row, Table } from 'reactstrap';
+import { Button, Col, Row, Table, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import { Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -10,11 +10,51 @@ import { getEntities } from './yegan.reducer';
 import { IYegan } from 'app/shared/model/yegan.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
+import { ReactSearchAutocomplete } from 'react-search-autocomplete'
+import Select from 'react-select';
+import axios from 'axios';
+
+const statusOption = [
+  {
+    label: 'حسابرسی نشده',
+    value: 'hesabresiShode'
+  },{
+    label: 'جهت حسابرسی',
+    value: 'jahateHesabResi'
+  },{
+    label: 'حسابرسی شده',
+    value: 'hesabresiNashodeShode'
+  },
+  {
+    label: 'جهت پیگیری',
+    value: 'jahatePeygiri'
+  }
+]
 
 export interface IYeganProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const Yegan = (props: IYeganProps) => {
   const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
+
+  const [ostans, setOstans] = useState();
+  const [mantaghes, setMantaghes] = useState();
+
+  const [filters, setFilters] = useState();
+
+  useEffect(() => {
+    const getOstans = async () => {
+      const res = await axios.get('/api/ostans');
+      setOstans(res.data.map(item => ({value: item.id, label: item.name})));
+    };
+
+    const getMantaghes = async () => {
+      const res = await axios.get('/api/mantaghes');
+      setMantaghes(res.data.map(item => ({value: item.id, label: item.name})));
+    };
+
+    getMantaghes();
+    getOstans();
+  }, [])
 
   const getAllEntities = () => {
     props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
@@ -56,6 +96,57 @@ export const Yegan = (props: IYeganProps) => {
           <span>ایجاد یگان جدید</span>
         </Link>
       </h2>
+      <Container style={{direction: 'rtl'}}>
+        <Form>
+        <FormGroup row>
+        <Label for="status" sm={2} md={1}>
+          نام
+        </Label>
+        <Col sm={10} md={5}>
+          <Input type="email" name="email" id="exampleEmail" placeholder="نام یگان" />
+        </Col>
+        <Label for="status" sm={2} md={1}>
+          وضعیت
+        </Label>
+        <Col sm={10} md={5}>
+        <Select options={statusOption} placeholder="" isClearable/>
+        </Col>
+      </FormGroup>
+      <FormGroup row>
+      <Label for="mantaghe" sm={2} md={1}>
+          نیرو
+        </Label>
+        <Col sm={10} md={5}>
+        <Select options={mantaghes} />
+        </Col>
+        <Label for="mantaghe" sm={2} md={1}>
+          منطقه
+        </Label>
+        <Col sm={10} md={5}>
+          <Select options={mantaghes} placeholder="" isClearable/>
+        </Col>
+      </FormGroup>
+      <FormGroup row>
+      <Label sm={2} md={1}>
+          استان
+        </Label>
+        <Col sm={10} md={5}>
+        <Select options={ostans} placeholder="" isClearable/>
+        </Col>
+        <Label sm={2} md={1}>
+          شهر
+        </Label>
+        <Col sm={10} md={5}>
+        <Select />
+        </Col>
+        </FormGroup>
+        <FormGroup>
+        <Button color="info">
+          اعمال فیلتر
+        </Button>
+        </FormGroup>
+        </Form>
+      </Container>
       <div className="table-responsive">
         {yeganList && yeganList.length > 0 ? (
           <Table responsive>
