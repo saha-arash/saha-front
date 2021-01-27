@@ -219,7 +219,7 @@ export const Yegan = (props: IYeganProps) => {
         </Label>
             <Col sm={10} md={5}>
             <Input 
-            type="number" 
+            type="string" 
             id="code" 
             onChange={(e) => changeFilter('code', e.target.value)} />
             </Col>
