@@ -101,11 +101,13 @@ const apiUrl = 'api/yegans';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IYegan> = (page, size, sort) => {
+export const getEntities: ICrudGetAllAction<IYegan> = (page, size, sort, query: any) => {
   const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
   return {
     type: ACTION_TYPES.FETCH_YEGAN_LIST,
-    payload: axios.get<IYegan>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+    payload: axios.get<IYegan>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`, {
+      params: query
+    })
   };
 };
 

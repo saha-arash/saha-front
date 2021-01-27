@@ -13,15 +13,17 @@ import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 import Select from 'react-select';
 import axios from 'axios';
+import AsyncSelect from 'react-select/async';
+import omitEmpty from 'omit-empty';
 
 const statusOption = [
   {
     label: 'حسابرسی نشده',
     value: 'hesabresiShode'
-  },{
+  }, {
     label: 'جهت حسابرسی',
     value: 'jahateHesabResi'
-  },{
+  }, {
     label: 'حسابرسی شده',
     value: 'hesabresiNashodeShode'
   },
@@ -29,36 +31,67 @@ const statusOption = [
     label: 'جهت پیگیری',
     value: 'jahatePeygiri'
   }
-]
+];
 
-export interface IYeganProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
+const initialFilter = {
+  name: undefined,
+  code: undefined,
+  nirooCodeId: undefined,
+  shahrId: undefined,
+  ostanId: undefined,
+  mantagheId: undefined,
+  hesabresiShode: undefined,
+  jahateHesabResi: undefined,
+  jahatePeygiri: undefined,
+  hesabresiNashodeShode: undefined
+}
+
+export interface IYeganProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> { }
 
 export const Yegan = (props: IYeganProps) => {
   const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
 
   const [ostans, setOstans] = useState();
   const [mantaghes, setMantaghes] = useState();
+  const [niroos, setNiroos] = useState();
+  const [filters, setFilters] = useState(initialFilter);
 
-  const [filters, setFilters] = useState();
+  const changeFilter = (feildName: string, value: string | boolean | null) => {
+    setFilters((prev) => ({
+      ...prev,
+      [feildName]: value || undefined
+    }))
+  }
 
   useEffect(() => {
     const getOstans = async () => {
       const res = await axios.get('/api/ostans');
-      setOstans(res.data.map(item => ({value: item.id, label: item.name})));
+      setOstans(res.data.map(item => ({ value: item.id, label: item.name })));
+    };
+
+    const getNiroos = async () => {
+      const res = await axios.get('/api/niroo-codes');
+      setNiroos(res.data.map(item => ({ value: item.id, label: item.name })));
     };
 
     const getMantaghes = async () => {
       const res = await axios.get('/api/mantaghes');
-      setMantaghes(res.data.map(item => ({value: item.id, label: item.name})));
+      setMantaghes(res.data.map(item => ({ value: item.id, label: item.name })));
     };
 
+    getNiroos();
     getMantaghes();
     getOstans();
   }, [])
 
   const getAllEntities = () => {
-    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`, omitEmpty(filters));
   };
+
+  const getFilteredData = (e) => {
+    e.preventDefault();
+    getAllEntities();
+  }
 
   const sortEntities = () => {
     getAllEntities();
@@ -85,6 +118,23 @@ export const Yegan = (props: IYeganProps) => {
       activePage: currentPage
     });
 
+  const searchCities = (inputValue, callback) => {
+    setTimeout(() => {
+      axios.get('/api/shahrs/search', { params: { name: inputValue } }).then((res) => {
+        callback(res.data.map(item => ({ value: item.id, label: item.name })))
+      })
+    }, 1000)
+  };
+
+  const handleStatus = (name?: string) => {
+    statusOption.forEach((item) => {
+      changeFilter(item.value, false)
+    })
+    if(name) {
+      changeFilter(name, true)
+    }
+  };
+
   const { yeganList, match, loading, totalItems } = props;
   return (
     <div>
@@ -96,55 +146,89 @@ export const Yegan = (props: IYeganProps) => {
           <span>ایجاد یگان جدید</span>
         </Link>
       </h2>
-      <Container style={{direction: 'rtl'}}>
-        <Form>
-        <FormGroup row>
-        <Label for="status" sm={2} md={1}>
-          نام
+      <Container style={{ direction: 'rtl' }}>
+        <Form onSubmit={getFilteredData}>
+          <FormGroup row>
+            <Label for="status" sm={2} md={1}>
+              نام
         </Label>
-        <Col sm={10} md={5}>
-          <Input type="email" name="email" id="exampleEmail" placeholder="نام یگان" />
-        </Col>
-        <Label for="status" sm={2} md={1}>
-          وضعیت
+            <Col sm={10} md={5}>
+              <Input 
+              type="text" 
+              name="email" 
+              id="exampleEmail"
+              onChange={(e) => changeFilter('name', e.target.value)}
+                />
+            </Col>
+            <Label for="status" sm={2} md={1}>
+              وضعیت
         </Label>
-        <Col sm={10} md={5}>
-        <Select options={statusOption} placeholder="" isClearable/>
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-      <Label for="mantaghe" sm={2} md={1}>
-          نیرو
+            <Col sm={10} md={5}>
+              <Select 
+              options={statusOption} 
+              placeholder="" 
+              isClearable 
+              onChange={(e) => handleStatus(e?.value)}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="mantaghe" sm={2} md={1}>
+              نیرو
         </Label>
-        <Col sm={10} md={5}>
-        <Select options={mantaghes} />
-        </Col>
-        <Label for="mantaghe" sm={2} md={1}>
-          منطقه
+            <Col sm={10} md={5}>
+              <Select options={niroos} placeholder="" isClearable 
+              onChange={(e) => changeFilter('nirooCodeId', e?.value)}
+              />
+            </Col>
+            <Label for="mantaghe" sm={2} md={1}>
+              منطقه
         </Label>
-        <Col sm={10} md={5}>
-          <Select options={mantaghes} placeholder="" isClearable/>
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-      <Label sm={2} md={1}>
-          استان
+            <Col sm={10} md={5}>
+              <Select options={mantaghes} placeholder="" isClearable 
+              onChange={(e) => changeFilter('mantagheId', e?.value)}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label sm={2} md={1}>
+              استان
         </Label>
-        <Col sm={10} md={5}>
-        <Select options={ostans} placeholder="" isClearable/>
-        </Col>
-        <Label sm={2} md={1}>
-          شهر
+            <Col sm={10} md={5}>
+              <Select 
+              options={ostans} 
+              placeholder="" 
+              onChange={(e) => changeFilter('ostanId', e?.value)}
+              isClearable />
+            </Col>
+            <Label sm={2} md={1}>
+              شهر
         </Label>
-        <Col sm={10} md={5}>
-        <Select />
-        </Col>
-        </FormGroup>
-        <FormGroup>
-        <Button color="info">
-          اعمال فیلتر
+            <Col sm={10} md={5}>
+              <AsyncSelect
+                loadOptions={searchCities}
+                defaultOptions={true}
+                placeholder="" isClearable 
+                onChange={(e) => changeFilter('shahrId', e?.value)}
+              />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+          <Label sm={2} md={1}>
+              کد
+        </Label>
+            <Col sm={10} md={5}>
+            <Input 
+            type="number" 
+            id="code" 
+            onChange={(e) => changeFilter('code', e.target.value)} />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Button color="info" type="submit">
+              اعمال فیلتر
         </Button>
-        </FormGroup>
+          </FormGroup>
         </Form>
       </Container>
       <div className="table-responsive">
@@ -223,12 +307,12 @@ export const Yegan = (props: IYeganProps) => {
             </tbody>
           </Table>
         ) : (
-          !loading && (
-            <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.yegan.home.notFound">No Yegans found</Translate>
-            </div>
-          )
-        )}
+            !loading && (
+              <div className="alert alert-warning">
+                <Translate contentKey="sahaApp.yegan.home.notFound">No Yegans found</Translate>
+              </div>
+            )
+          )}
       </div>
       <div className={yeganList && yeganList.length > 0 ? '' : 'd-none'}>
         <Row className="justify-content-center">
