@@ -87,9 +87,9 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
         nirooCodeId,
         shahrId,
         yeganTypeId,
-        zirYegans: idszirYegan.map((item) => item.value)
+        zirYegans: idszirYegan.map((item) => ({id: item.value}))
       };
-
+      delete entity.address
       if (isNew) {
         props.createEntity(entity);
       } else {
@@ -145,6 +145,18 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
                   <AvInput id="yegan-id" type="text" className="form-control" name="id" required readOnly />
                 </AvGroup>
               ) : null}
+              <AvGroup>
+                <Label id="username-label" for="username">
+                 نام کاربری
+                </Label>
+                <AvField id="username" type="text" name="username" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="password-label" for="password">
+                 کلمه عبور
+                </Label>
+                <AvField id="password" type="password" name="password" />
+              </AvGroup>
               <AvGroup>
                 <Label id="nameLabel" for="yegan-name">
                  نام یگان
