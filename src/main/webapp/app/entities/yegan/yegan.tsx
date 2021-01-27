@@ -309,7 +309,7 @@ export const Yegan = (props: IYeganProps) => {
         ) : (
             !loading && (
               <div className="alert alert-warning">
-                <Translate contentKey="sahaApp.yegan.home.notFound">No Yegans found</Translate>
+                <Translate contentKey="sahaApp.yegan.home.notFound">یگانی یافت نشد</Translate>
               </div>
             )
           )}
