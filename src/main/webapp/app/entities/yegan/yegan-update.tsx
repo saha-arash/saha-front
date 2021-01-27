@@ -20,6 +20,10 @@ import { getEntity, updateEntity, createEntity, reset } from './yegan.reducer';
 import { IYegan } from 'app/shared/model/yegan.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
+import AsyncSelect from 'react-select/async';
+import axios from 'axios';
+import Select from 'react-select';
+import omitEmpty from 'omit-empty';
 
 export interface IYeganUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -31,7 +35,8 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
   const [shahrId, setShahrId] = useState('0');
   const [yeganTypeId, setYeganTypeId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
-
+  const [niroos, setNiroos] = useState();
+  const [yeganTypeList, setYeganTypeList] = useState();
   const { yeganEntity, yegans, yeganCodes, nirooCodes, shahrs, yeganTypes, loading, updating } = props;
 
   const handleClose = () => {
@@ -53,17 +58,36 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
   }, []);
 
   useEffect(() => {
+    const getNiroos = async () => {
+      const res = await axios.get('/api/niroo-codes');
+      setNiroos(res.data.map(item => ({ value: item.id, label: item.name })));
+    };
+
+    const getYeganTypeList = async () => {
+      const res = await axios.get('/api/yegan-types');
+      setYeganTypeList(res.data.map(item => ({ value: item.id, label: item.name })));
+    }
+    getYeganTypeList();
+    getNiroos();
+  }, [])
+
+  useEffect(() => {
     if (props.updateSuccess) {
       handleClose();
     }
   }, [props.updateSuccess]);
 
   const saveEntity = (event, errors, values) => {
+    console.log('shahr id',shahrId)
+    // return
     if (errors.length === 0) {
       const entity = {
         ...yeganEntity,
         ...values,
-        zirYegans: mapIdList(values.zirYegans)
+        nirooCodeId,
+        shahrId,
+        yeganTypeId,
+        zirYegans: idszirYegan.map((item) => item.value)
       };
 
       if (isNew) {
@@ -72,6 +96,30 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
         props.updateEntity(entity);
       }
     }
+  };
+
+  const searchCities = (inputValue, callback) => {
+    setTimeout(() => {
+      axios.get('/api/shahrs/search', { params: { name: inputValue } }).then((res) => {
+        callback(res.data.map(item => ({ value: item.id, label: item.name })))
+      })
+    }, 1000)
+  };
+
+  const searchYegans = (inputValue, callback) => {
+    setTimeout(() => {
+      axios.get('/api/yegans/serach', { params: { name: inputValue } }).then((res) => {
+        callback(res.data.map(item => ({ value: item.id, label: item.name })))
+      })
+    }, 1000)
+  };
+
+  const searchUsers = (inputValue, callback) => {
+    setTimeout(() => {
+      axios.get('/api/karbars/search', { params: { name: inputValue }}).then((res) => {
+        callback(res.data.map(item => ({ value: item.id, label: item.name })))
+      })
+    }, 1000)
   };
 
   return (
@@ -103,78 +151,72 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
                 </Label>
                 <AvField id="yegan-name" type="text" name="name" />
               </AvGroup>
-              <AvGroup>
+              {!isNew ?  (<AvGroup>
                 <Label id="codeLabel" for="yegan-code">
                   کدیگان
                 </Label>
-                <AvField id="yegan-code" type="text" name="code" />
-              </AvGroup>
+                <AvField id="yegan-code" type="text" name="code" disabled/>
+              </AvGroup>) : null}
               <AvGroup>
                 <Label for="yegan-zirYegan">
                   زیر یگان ها
                 </Label>
-                <AvInput
-                  id="yegan-zirYegan"
-                  type="select"
-                  multiple
-                  className="form-control"
-                  name="zirYegans"
-                  value={yeganEntity.zirYegans && yeganEntity.zirYegans.map(e => e.id)}
-                >
-                  <option value="" key="0" />
-                  {yegans
-                    ? yegans.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
+                <AsyncSelect
+                loadOptions={searchYegans}
+                defaultOptions={true}
+                placeholder="" isClearable 
+                isMulti
+                onChange={(e) => setIdszirYegan(e)}
+              />
               </AvGroup>
               <AvGroup>
                 <Label for="yegan-nirooCode">
                   نیرو ها
                 </Label>
-                <AvInput id="yegan-nirooCode" type="select" className="form-control" name="nirooCodeId">
-                  <option value="" key="0" />
-                  {nirooCodes
-                    ? nirooCodes.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
+                <Select 
+                options={niroos} 
+                placeholder="" 
+                isClearable
+                onChange={(e) => setNirooCodeId(e && e.value)}
+                ></Select>
+                
               </AvGroup>
               <AvGroup>
                 <Label for="yegan-shahr">
                   شهر
                 </Label>
-                <AvInput id="yegan-shahr" type="select" className="form-control" name="shahrId">
-                  <option value="" key="0" />
-                  {shahrs
-                    ? shahrs.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
+                <AsyncSelect
+                loadOptions={searchCities}
+                defaultOptions={true}
+                placeholder="" isClearable 
+                onChange={(e) => setShahrId(e.value)}
+              />
               </AvGroup>
               <AvGroup>
                 <Label for="yegan-yeganType">
                   نوع یگان
                 </Label>
-                <AvInput id="yegan-yeganType" type="select" className="form-control" name="yeganTypeId">
-                  <option value="" key="0" />
-                  {yeganTypes
-                    ? yeganTypes.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
+                <Select
+                 options={yeganTypeList} placeholder="" isClearable
+                 onChange={(e) => setYeganTypeId(e && e.value)}
+                ></Select>
+              </AvGroup>
+              <AvGroup>
+                <Label for="yegan-shahr">
+                  فرمانده
+                </Label>
+                <AsyncSelect
+                loadOptions={searchUsers}
+                defaultOptions={true}
+                placeholder="" isClearable 
+                onChange={(e) => false}
+              />
+              </AvGroup>
+              <AvGroup>
+                <Label id="nameLabel" for="address">
+                 آدرس
+                </Label>
+                <AvField id="address" type="text" name="address" />
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/yegan" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
