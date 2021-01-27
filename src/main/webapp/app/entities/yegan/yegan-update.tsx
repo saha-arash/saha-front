@@ -29,11 +29,11 @@ export interface IYeganUpdateProps extends StateProps, DispatchProps, RouteCompo
 
 export const YeganUpdate = (props: IYeganUpdateProps) => {
   const [idszirYegan, setIdszirYegan] = useState([]);
-  const [yeganId, setYeganId] = useState('0');
-  const [yeganCodeId, setYeganCodeId] = useState('0');
-  const [nirooCodeId, setNirooCodeId] = useState('0');
-  const [shahrId, setShahrId] = useState('0');
-  const [yeganTypeId, setYeganTypeId] = useState('0');
+  const [yeganId, setYeganId] = useState();
+  const [yeganCodeId, setYeganCodeId] = useState();
+  const [nirooCodeId, setNirooCodeId] = useState();
+  const [shahrId, setShahrId] = useState();
+  const [yeganTypeId, setYeganTypeId] = useState();
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
   const [niroos, setNiroos] = useState();
   const [yeganTypeList, setYeganTypeList] = useState();
@@ -60,16 +60,42 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
   useEffect(() => {
     const getNiroos = async () => {
       const res = await axios.get('/api/niroo-codes');
-      setNiroos(res.data.map(item => ({ value: item.id, label: item.name })));
+      const responseList = res.data.map(item => ({ value: item.id, label: item.name }))
+      setNiroos(responseList);
+      
     };
 
     const getYeganTypeList = async () => {
       const res = await axios.get('/api/yegan-types');
-      setYeganTypeList(res.data.map(item => ({ value: item.id, label: item.name })));
+      const responseList = res.data.map(item => ({ value: item.id, label: item.name }))
+      setYeganTypeList(responseList);
+
     }
-    getYeganTypeList();
-    getNiroos();
-  }, [])
+    
+      getYeganTypeList();
+      getNiroos();
+    
+  }, []);
+
+  useEffect(() => {
+    if(yeganEntity && yeganTypeList) {
+      setYeganTypeId(yeganTypeList?.find((item) => item.value === yeganEntity.yeganTypeId))
+    }
+  }, [yeganEntity, yeganTypeList])
+
+  useEffect(() => {
+    if(yeganEntity && niroos) {
+      setNirooCodeId(niroos?.find((item) => item.value === yeganEntity.nirooCodeId))
+    }
+  }, [yeganEntity, niroos]);
+
+  useEffect(() => {
+    if(yeganEntity && yeganEntity.zirYegans && yeganEntity.zirYegans.length) {
+      const zirY = yeganEntity.zirYegans;
+      console.log('zir yegans', zirY.map((name, id) => ({label: name, value: id})))
+      setIdszirYegan(zirY.map(({name, id}) => ({label: name, value: id})))
+    }
+  }, [yeganEntity])
 
   useEffect(() => {
     if (props.updateSuccess) {
@@ -84,24 +110,28 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
       const entity = {
         ...yeganEntity,
         ...values,
-        nirooCodeId,
-        shahrId,
-        yeganTypeId,
+        nirooCodeId: nirooCodeId && nirooCodeId.value,
+        shahrId: shahrId && shahrId.value,
+        yeganTypeId: yeganTypeId && yeganTypeId.value,
         zirYegans: idszirYegan.map((item) => ({id: item.value}))
       };
       delete entity.address
       if (isNew) {
         props.createEntity(entity);
       } else {
-        props.updateEntity(entity);
+        props.updateEntity(omitEmpty(entity));
       }
     }
   };
 
+  
+
   const searchCities = (inputValue, callback) => {
     setTimeout(() => {
       axios.get('/api/shahrs/search', { params: { name: inputValue } }).then((res) => {
-        callback(res.data.map(item => ({ value: item.id, label: item.name })))
+        const finalList = res.data.map(item => ({ value: item.id, label: item.name }))
+        callback(finalList)
+        setShahrId(finalList.find((item => item.value === yeganEntity.shahrId)))
       })
     }, 1000)
   };
@@ -155,7 +185,11 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
                 <Label id="password-label" for="password">
                  کلمه عبور
                 </Label>
-                <AvField id="password" type="password" name="password" />
+                <AvField 
+                id="password" 
+                type="password" 
+                placeholder={isNew || '****'}
+                name="password" />
               </AvGroup>
               <AvGroup>
                 <Label id="nameLabel" for="yegan-name">
@@ -179,6 +213,7 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
                 placeholder="" isClearable 
                 isMulti
                 onChange={(e) => setIdszirYegan(e)}
+                value={idszirYegan}
               />
               </AvGroup>
               <AvGroup>
@@ -189,7 +224,8 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
                 options={niroos} 
                 placeholder="" 
                 isClearable
-                onChange={(e) => setNirooCodeId(e && e.value)}
+                onChange={(e) => setNirooCodeId(e)}
+                value={nirooCodeId}
                 ></Select>
                 
               </AvGroup>
@@ -201,7 +237,8 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
                 loadOptions={searchCities}
                 defaultOptions={true}
                 placeholder="" isClearable 
-                onChange={(e) => setShahrId(e.value)}
+                onChange={(e) => setShahrId(e)}
+                value={shahrId}
               />
               </AvGroup>
               <AvGroup>
@@ -210,7 +247,8 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
                 </Label>
                 <Select
                  options={yeganTypeList} placeholder="" isClearable
-                 onChange={(e) => setYeganTypeId(e && e.value)}
+                 onChange={(e) => setYeganTypeId(e)}
+                 value={yeganTypeId}
                 ></Select>
               </AvGroup>
               <AvGroup>
@@ -222,6 +260,7 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
                 defaultOptions={true}
                 placeholder="" isClearable 
                 onChange={(e) => false}
+
               />
               </AvGroup>
               <AvGroup>
