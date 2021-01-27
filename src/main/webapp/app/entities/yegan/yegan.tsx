@@ -245,7 +245,7 @@ export const Yegan = (props: IYeganProps) => {
                 <th className="hand" onClick={sort('code')}>
                   <span>کد یگان</span> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th>
+                {/* <th>
                   <span>نیرو</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
@@ -253,7 +253,7 @@ export const Yegan = (props: IYeganProps) => {
                 </th>
                 <th>
                   <span>نوع یگان</span> <FontAwesomeIcon icon="sort" />
-                </th>
+                </th> */}
                 <th />
               </tr>
             </thead>
@@ -267,9 +267,9 @@ export const Yegan = (props: IYeganProps) => {
                   </td>
                   <td>{yegan.name}</td>
                   <td>{yegan.code}</td>
-                  <td>{yegan.nirooCodeId ? <Link to={`niroo-code/${yegan.nirooCodeId}`}>{yegan.nirooCodeId}</Link> : ''}</td>
+                  {/* <td>{yegan.nirooCodeId ? <Link to={`niroo-code/${yegan.nirooCodeId}`}>{yegan.nirooCodeId}</Link> : ''}</td>
                   <td>{yegan.shahrId ? <Link to={`shahr/${yegan.shahrId}`}>{yegan.shahrId}</Link> : ''}</td>
-                  <td>{yegan.yeganTypeId ? <Link to={`yegan-type/${yegan.yeganTypeId}`}>{yegan.yeganTypeId}</Link> : ''}</td>
+                  <td>{yegan.yeganTypeId ? <Link to={`yegan-type/${yegan.yeganTypeId}`}>{yegan.yeganTypeId}</Link> : ''}</td> */}
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${yegan.id}`} color="info" size="sm">
