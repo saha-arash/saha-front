@@ -36,8 +36,8 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
   const [darajeId, setDarajeId] = useState('0');
   const [sematId, setSematId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
-  const [estekhdamDate, setEstekhdamDate] = useState();
-  const [bazneshastegiDate, setBazneshasegiDate] = useState();
+  const [estekhdamDate, setEstekhdamDate] = useState<any>();
+  const [bazneshastegiDate, setBazneshasegiDate] = useState<any>();
   const { karbarEntity, bargeMamooriats, yegans, yeganCodes, darajes, semats, loading, updating } = props;
 
   const handleClose = () => {
@@ -58,6 +58,15 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
     props.getSemats();
   }, []);
 
+  useEffect(() => {
+    if(karbarEntity) {
+      setSematId(karbarEntity.sematId?.toString());
+      setDarajeId(karbarEntity.darajeId?.toString());
+      setYeganId(karbarEntity.yeganId?.toString());
+      setEstekhdamDate(moment(karbarEntity.tarikhEstekhdam?.toString()));
+      setBazneshasegiDate(moment(karbarEntity.tarikhBazneshastegi?.toString()))
+    }
+  }, [karbarEntity])
   useEffect(() => {
     if (props.updateSuccess) {
       handleClose();
@@ -190,7 +199,7 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
                 options={yegans.map(({id, name}) => ({label: name, value: id}))} 
                 placeholder=""
                 onChange={(e) => setYeganId(e && e.value)}
-                value={yegans.length && yegans.find(({id}) => id.toString() === yeganId)}
+                value={yegans.length && yegans.map(({id, name}) => ({label: name, value: id})).find(({value}) => value.toString() === yeganId)}
                 />
                 
               </AvGroup>
@@ -212,7 +221,7 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
                 options={darajes.map(({id, name}) => ({label: name, value: id}))} 
                 placeholder=""
                 onChange={(e) => setDarajeId(e && e.value)}
-                value={darajes.length && darajes.find(({id}) => id.toString() === darajeId)}
+                value={darajes.length && darajes.map(({id, name}) => ({label: name, value: id})).find(({value}) => value.toString() === darajeId.toString())}
                 ></Select>
                 
               </AvGroup>
@@ -224,7 +233,7 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
                 options={semats.map(({id, onvanShoghli}) => ({label: onvanShoghli, value: id}))} 
                 placeholder=""
                 onChange={(e) => setSematId(e && e.value)}
-                value={semats.length && semats.find(({id}) => id.toString() === sematId)}
+                value={semats.length && semats.map(({id, onvanShoghli}) => ({label: onvanShoghli, value: id})).find(({value}) => (value.toString() === sematId))}
                 ></Select>
               
               </AvGroup>
