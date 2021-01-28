@@ -28,7 +28,7 @@ export const Home = (props: IHomeProp) => {
           <button className="cardd-1" onClick={() => history.push('/barname-hesab-resi')}>
             برنامه سالانه
           </button>
-          <button className="cardd-1" onClick={() => history.push('/barname-hesab-resi')}>
+          <button className="cardd-1" onClick={() => history.push('/hesab-resi')}>
             فرایند انجام حسابرسی
           </button>
           <button className="cardd-1" onClick={() => history.push('/payam')}>

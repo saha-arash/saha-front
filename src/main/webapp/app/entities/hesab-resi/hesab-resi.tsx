@@ -13,6 +13,13 @@ import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IHesabResiProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
+const statusToFarsi = {
+  DAR_SHOROF_MAMOORIAT: 'در شرف ماموریت',
+  DAR_HALE_MAMOORIAT: 'در حال ماموریت',
+  SODOOR_BARGE_MAMOORIAT: 'صدور برگه ماموریت',
+  ETMAM_MAMOORIAT_HOZOOR_DARSAZMAN: 'اتمام ماموریت حضور در سازمان'
+}
+
 export const HesabResi = (props: IHesabResiProps) => {
   const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
 
@@ -58,6 +65,19 @@ export const HesabResi = (props: IHesabResiProps) => {
       </h2>
       <div className="table-responsive">
         {hesabResiList && hesabResiList.length > 0 ? (
+          //  <div>
+          //   {hesabResiList.map((hesabResi, i) => ( 
+          //    <button key={hesabResi.id} className="cardd-1" onClick={() =>false}>
+          //     <strong>
+          //       {hesabResi.vaziateHesabResi}
+          //     </strong>
+          //     <br></br>
+          //     <span>
+          //       {hesabResi.sal}
+          //     </span>
+          //   </button>
+          // ))}
+          // </div>
           <Table responsive>
             <thead>
               <tr>
@@ -70,57 +90,7 @@ export const HesabResi = (props: IHesabResiProps) => {
                 <th className="hand" onClick={sort('vaziateHesabResi')}>
                   وضعیت حسابرسی <FontAwesomeIcon icon="sort" />
                 </th>
-                <th>
-                  gozaresh <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.bankEtelaati">Bank Etelaati</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.rafeIradat">Rafe Iradat</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.mostaKhreje">Mosta Khreje</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.bilanSeSalGhabl">Bilan Se Sal Ghabl</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.mohasebeHazineMamooriat">Mohasebe Hazine Mamooriat</Translate>{' '}
-                  <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.chekideGardeshKar">Chekide Gardesh Kar</Translate>{' '}
-                  <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.gozareshHozoor">Gozaresh Hozoor</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.bilanSalGhabl">Bilan Sal Ghabl</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.madarek">Madarek</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.gardeshkarBarnameHesabresi">Gardeshkar Barname Hesabresi</Translate>{' '}
-                  <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.dastoorAmalEjraE">Dastoor Amal Ejra E</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.nameh">Nameh</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.kholaseGozaresh">Kholase Gozaresh</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.gardeshKar">Gardesh Kar</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.hesabResi.barnameHesabResi">Barname Hesab Resi</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
+                
                 <th />
               </tr>
             </thead>
@@ -134,93 +104,7 @@ export const HesabResi = (props: IHesabResiProps) => {
                   </td>
                   <td>{hesabResi.sal}</td>
                   <td>
-                    <Translate contentKey={`sahaApp.VaziateHesabResi.${hesabResi.vaziateHesabResi}`} />
-                  </td>
-                  <td>{hesabResi.gozareshId ? <Link to={`gozaresh/${hesabResi.gozareshId}`}>{hesabResi.gozareshId}</Link> : ''}</td>
-                  <td>
-                    {hesabResi.bankEtelaatiId ? (
-                      <Link to={`bank-etelaati/${hesabResi.bankEtelaatiId}`}>{hesabResi.bankEtelaatiId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {hesabResi.rafeIradatId ? <Link to={`rafe-iradat/${hesabResi.rafeIradatId}`}>{hesabResi.rafeIradatId}</Link> : ''}
-                  </td>
-                  <td>
-                    {hesabResi.mostaKhrejeId ? <Link to={`mosta-khreje/${hesabResi.mostaKhrejeId}`}>{hesabResi.mostaKhrejeId}</Link> : ''}
-                  </td>
-                  <td>
-                    {hesabResi.bilanSeSalGhablId ? (
-                      <Link to={`bilan-se-sal-ghabl/${hesabResi.bilanSeSalGhablId}`}>{hesabResi.bilanSeSalGhablId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {hesabResi.mohasebeHazineMamooriatId ? (
-                      <Link to={`mohasebe-hazine-mamooriat/${hesabResi.mohasebeHazineMamooriatId}`}>
-                        {hesabResi.mohasebeHazineMamooriatId}
-                      </Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {hesabResi.chekideGardeshKarId ? (
-                      <Link to={`chekide-gardesh-kar/${hesabResi.chekideGardeshKarId}`}>{hesabResi.chekideGardeshKarId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {hesabResi.gozareshHozoorId ? (
-                      <Link to={`gozaresh-hozoor/${hesabResi.gozareshHozoorId}`}>{hesabResi.gozareshHozoorId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {hesabResi.bilanSalGhablId ? (
-                      <Link to={`bilan-sal-ghabl/${hesabResi.bilanSalGhablId}`}>{hesabResi.bilanSalGhablId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>{hesabResi.madarekId ? <Link to={`madarek/${hesabResi.madarekId}`}>{hesabResi.madarekId}</Link> : ''}</td>
-                  <td>
-                    {hesabResi.gardeshkarBarnameHesabresiId ? (
-                      <Link to={`gardeshkar-barname-hesabresi/${hesabResi.gardeshkarBarnameHesabresiId}`}>
-                        {hesabResi.gardeshkarBarnameHesabresiId}
-                      </Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {hesabResi.dastoorAmalEjraEId ? (
-                      <Link to={`dastoor-amal-ejra-e/${hesabResi.dastoorAmalEjraEId}`}>{hesabResi.dastoorAmalEjraEId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>{hesabResi.namehId ? <Link to={`nameh/${hesabResi.namehId}`}>{hesabResi.namehId}</Link> : ''}</td>
-                  <td>
-                    {hesabResi.kholaseGozareshId ? (
-                      <Link to={`kholase-gozaresh/${hesabResi.kholaseGozareshId}`}>{hesabResi.kholaseGozareshId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {hesabResi.gardeshKarId ? <Link to={`gardesh-kar/${hesabResi.gardeshKarId}`}>{hesabResi.gardeshKarId}</Link> : ''}
-                  </td>
-                  <td>
-                    {hesabResi.barnameHesabResiId ? (
-                      <Link to={`barname-hesab-resi/${hesabResi.barnameHesabResiId}`}>{hesabResi.barnameHesabResiId}</Link>
-                    ) : (
-                      ''
-                    )}
+                  {statusToFarsi[hesabResi.vaziateHesabResi] || hesabResi.vaziateHesabResi}
                   </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
@@ -230,7 +114,7 @@ export const HesabResi = (props: IHesabResiProps) => {
                           بازکردن
                         </span>
                       </Button>
-                      <Button
+                      {/* <Button
                         tag={Link}
                         to={`${match.url}/${hesabResi.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
                         color="primary"
@@ -240,7 +124,7 @@ export const HesabResi = (props: IHesabResiProps) => {
                         <span className="d-none d-md-inline">
                           به روز رسانی وضعیت
                         </span>
-                      </Button>
+                      </Button> */}
                       <Button
                         tag={Link}
                         to={`${match.url}/${hesabResi.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
