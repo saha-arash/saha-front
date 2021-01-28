@@ -21,6 +21,9 @@ import { getEntity, updateEntity, createEntity, reset } from './karbar.reducer';
 import { IKarbar } from 'app/shared/model/karbar.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
+import Select from "react-select";
+import DatePicker from 'react-datepicker2';
+import moment from 'jalali-moment';
 
 export interface IKarbarUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -33,7 +36,8 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
   const [darajeId, setDarajeId] = useState('0');
   const [sematId, setSematId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
-
+  const [estekhdamDate, setEstekhdamDate] = useState();
+  const [bazneshastegiDate, setBazneshasegiDate] = useState();
   const { karbarEntity, bargeMamooriats, yegans, yeganCodes, darajes, semats, loading, updating } = props;
 
   const handleClose = () => {
@@ -61,15 +65,16 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
   }, [props.updateSuccess]);
 
   const saveEntity = (event, errors, values) => {
-    values.tarikhBazneshastegi = convertDateTimeToServer(values.tarikhBazneshastegi);
-    values.tarikhEstekhdam = convertDateTimeToServer(values.tarikhEstekhdam);
-
     if (errors.length === 0) {
       const entity = {
         ...karbarEntity,
         ...values,
-        bargeMamoorits: mapIdList(values.bargeMamoorits),
-        binanadeBargeMamoorits: mapIdList(values.binanadeBargeMamoorits)
+        darajeId,
+        sematId,
+        yeganId,
+        tarikhBazneshastegi: convertDateTimeToServer(bazneshastegiDate),
+        tarikhEstekhdam: convertDateTimeToServer(estekhdamDate),
+        // yeganCodeId: 1
       };
 
       if (isNew) {
@@ -85,7 +90,7 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.karbar.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.karbar.home.createOrEditLabel">Create or edit a Karbar</Translate>
+            ایجاد و ویرایش کاربر
           </h2>
         </Col>
       </Row>
@@ -98,189 +103,143 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
               {!isNew ? (
                 <AvGroup>
                   <Label for="karbar-id">
-                    <Translate contentKey="global.field.id">ID</Translate>
+                    شناسه
                   </Label>
                   <AvInput id="karbar-id" type="text" className="form-control" name="id" required readOnly />
                 </AvGroup>
               ) : null}
               <AvGroup>
+                <Label id="usernameLabel" for="karbar-username">
+                  نام کاربری
+                </Label>
+                <AvField id="karbar-username" type="text" name="username" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="passwordLabel" for="karbar-password">
+                  کلمه عبور
+                </Label>
+                <AvField id="karbar-password" type="password" name="password" placeholder="****" />
+              </AvGroup>
+              <AvGroup>
                 <Label id="nameLabel" for="karbar-name">
-                  <Translate contentKey="sahaApp.karbar.name">Name</Translate>
+                  نام
                 </Label>
                 <AvField id="karbar-name" type="text" name="name" />
               </AvGroup>
               <AvGroup>
                 <Label id="shoghlSazmaniLabel" for="karbar-shoghlSazmani">
-                  <Translate contentKey="sahaApp.karbar.shoghlSazmani">Shoghl Sazmani</Translate>
+                  شغل سازمانی
                 </Label>
                 <AvField id="karbar-shoghlSazmani" type="text" name="shoghlSazmani" />
               </AvGroup>
               <AvGroup>
                 <Label id="shoghlAmaliLabel" for="karbar-shoghlAmali">
-                  <Translate contentKey="sahaApp.karbar.shoghlAmali">Shoghl Amali</Translate>
+                  شغل عملی
                 </Label>
                 <AvField id="karbar-shoghlAmali" type="text" name="shoghlAmali" />
               </AvGroup>
               <AvGroup>
                 <Label id="codePerseneliLabel" for="karbar-codePerseneli">
-                  <Translate contentKey="sahaApp.karbar.codePerseneli">Code Perseneli</Translate>
+                  کد پرسنلی
                 </Label>
                 <AvField id="karbar-codePerseneli" type="text" name="codePerseneli" />
               </AvGroup>
               <AvGroup check>
                 <Label id="bezaneshateLabel">
                   <AvInput id="karbar-bezaneshate" type="checkbox" className="form-check-input" name="bezaneshate" />
-                  <Translate contentKey="sahaApp.karbar.bezaneshate">Bezaneshate</Translate>
+                  بازنشسته
                 </Label>
               </AvGroup>
               <AvGroup check>
                 <Label id="sazmaniLabel">
                   <AvInput id="karbar-sazmani" type="checkbox" className="form-check-input" name="sazmani" />
-                  <Translate contentKey="sahaApp.karbar.sazmani">Sazmani</Translate>
+                  سازمانی
                 </Label>
               </AvGroup>
               <AvGroup>
                 <Label id="tarikhBazneshastegiLabel" for="karbar-tarikhBazneshastegi">
-                  <Translate contentKey="sahaApp.karbar.tarikhBazneshastegi">Tarikh Bazneshastegi</Translate>
+                  تاریخ بازنشستگی
                 </Label>
-                <AvInput
-                  id="karbar-tarikhBazneshastegi"
-                  type="datetime-local"
-                  className="form-control"
-                  name="tarikhBazneshastegi"
-                  placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.karbarEntity.tarikhBazneshastegi)}
+                <DatePicker
+
+                  isGregorian={false}
+                  timePicker={false}
+                  onChange={(e) => setBazneshasegiDate(e)}
+                  value={bazneshastegiDate}
+                  persianDigits
                 />
               </AvGroup>
               <AvGroup>
                 <Label id="tarikhEstekhdamLabel" for="karbar-tarikhEstekhdam">
-                  <Translate contentKey="sahaApp.karbar.tarikhEstekhdam">Tarikh Estekhdam</Translate>
+                  تاریخ استخدام
                 </Label>
-                <AvInput
-                  id="karbar-tarikhEstekhdam"
-                  type="datetime-local"
-                  className="form-control"
-                  name="tarikhEstekhdam"
-                  placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.karbarEntity.tarikhEstekhdam)}
+                <DatePicker
+                  isGregorian={false}
+                  timePicker={false}
+                  onChange={(e) => setEstekhdamDate(e)}
+                  value={estekhdamDate}
+                  persianDigits
                 />
               </AvGroup>
-              <AvGroup>
-                <Label for="karbar-bargeMamoorit">
-                  <Translate contentKey="sahaApp.karbar.bargeMamoorit">Barge Mamoorit</Translate>
-                </Label>
-                <AvInput
-                  id="karbar-bargeMamoorit"
-                  type="select"
-                  multiple
-                  className="form-control"
-                  name="bargeMamoorits"
-                  value={karbarEntity.bargeMamoorits && karbarEntity.bargeMamoorits.map(e => e.id)}
-                >
-                  <option value="" key="0" />
-                  {bargeMamooriats
-                    ? bargeMamooriats.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="karbar-binanadeBargeMamoorit">
-                  <Translate contentKey="sahaApp.karbar.binanadeBargeMamoorit">Binanade Barge Mamoorit</Translate>
-                </Label>
-                <AvInput
-                  id="karbar-binanadeBargeMamoorit"
-                  type="select"
-                  multiple
-                  className="form-control"
-                  name="binanadeBargeMamoorits"
-                  value={karbarEntity.binanadeBargeMamoorits && karbarEntity.binanadeBargeMamoorits.map(e => e.id)}
-                >
-                  <option value="" key="0" />
-                  {bargeMamooriats
-                    ? bargeMamooriats.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
+              
               <AvGroup>
                 <Label for="karbar-yegan">
-                  <Translate contentKey="sahaApp.karbar.yegan">Yegan</Translate>
+                  یگان
                 </Label>
-                <AvInput id="karbar-yegan" type="select" className="form-control" name="yeganId">
-                  <option value="" key="0" />
-                  {yegans
-                    ? yegans.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
+                <Select 
+                options={yegans.map(({id, name}) => ({label: name, value: id}))} 
+                placeholder=""
+                onChange={(e) => setYeganId(e && e.value)}
+                value={yegans.length && yegans.find(({id}) => id.toString() === yeganId)}
+                />
+                
               </AvGroup>
-              <AvGroup>
+              {/* <AvGroup>
                 <Label for="karbar-yeganCode">
-                  <Translate contentKey="sahaApp.karbar.yeganCode">Yegan Code</Translate>
+                  کد یگان
                 </Label>
-                <AvInput id="karbar-yeganCode" type="select" className="form-control" name="yeganCodeId">
-                  <option value="" key="0" />
-                  {yeganCodes
-                    ? yeganCodes.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
+                <Select 
+                options={yeganCodes.map(({id, name}) => ({label: name, value: id}))}
+                placeholder=""
+                ></Select>
+                
+              </AvGroup> */}
               <AvGroup>
                 <Label for="karbar-daraje">
-                  <Translate contentKey="sahaApp.karbar.daraje">Daraje</Translate>
+                  درجه
                 </Label>
-                <AvInput id="karbar-daraje" type="select" className="form-control" name="darajeId">
-                  <option value="" key="0" />
-                  {darajes
-                    ? darajes.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
+                <Select 
+                options={darajes.map(({id, name}) => ({label: name, value: id}))} 
+                placeholder=""
+                onChange={(e) => setDarajeId(e && e.value)}
+                value={darajes.length && darajes.find(({id}) => id.toString() === darajeId)}
+                ></Select>
+                
               </AvGroup>
               <AvGroup>
                 <Label for="karbar-semat">
-                  <Translate contentKey="sahaApp.karbar.semat">Semat</Translate>
+                  سمت
                 </Label>
-                <AvInput id="karbar-semat" type="select" className="form-control" name="sematId">
-                  <option value="" key="0" />
-                  {semats
-                    ? semats.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
+                <Select 
+                options={semats.map(({id, onvanShoghli}) => ({label: onvanShoghli, value: id}))} 
+                placeholder=""
+                onChange={(e) => setSematId(e && e.value)}
+                value={semats.length && semats.find(({id}) => id.toString() === sematId)}
+                ></Select>
+              
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/karbar" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
-                  <Translate contentKey="entity.action.back">Back</Translate>
+                  بازگشت
                 </span>
               </Button>
               &nbsp;
               <Button color="primary" id="save-entity" type="submit" disabled={updating}>
                 <FontAwesomeIcon icon="save" />
                 &nbsp;
-                <Translate contentKey="entity.action.save">Save</Translate>
+                ذخیره
               </Button>
             </AvForm>
           )}
