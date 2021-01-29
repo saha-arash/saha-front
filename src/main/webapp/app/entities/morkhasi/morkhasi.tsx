@@ -49,11 +49,11 @@ export const Morkhasi = (props: IMorkhasiProps) => {
   return (
     <div>
       <h2 id="morkhasi-heading">
-        <Translate contentKey="sahaApp.morkhasi.home.title">Morkhasis</Translate>
+        مرخصی‌ها
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.morkhasi.home.createLabel">Create new Morkhasi</Translate>
+          ایجاد مرخصی‌ جدید
         </Link>
       </h2>
       <div className="table-responsive">
@@ -62,17 +62,17 @@ export const Morkhasi = (props: IMorkhasiProps) => {
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  شناسه <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('begin')}>
-                  <Translate contentKey="sahaApp.morkhasi.begin">Begin</Translate> <FontAwesomeIcon icon="sort" />
+                  شروع <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('end')}>
-                  <Translate contentKey="sahaApp.morkhasi.end">End</Translate> <FontAwesomeIcon icon="sort" />
+                  پایان <FontAwesomeIcon icon="sort" />
                 </th>
-                <th>
+                {/* <th>
                   <Translate contentKey="sahaApp.morkhasi.karbar">Karbar</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
+                </th> */}
                 <th />
               </tr>
             </thead>
@@ -90,7 +90,7 @@ export const Morkhasi = (props: IMorkhasiProps) => {
                   <td>
                     <TextFormat type="date" value={morkhasi.end} format={APP_DATE_FORMAT} />
                   </td>
-                  <td>{morkhasi.karbarId ? <Link to={`karbar/${morkhasi.karbarId}`}>{morkhasi.karbarId}</Link> : ''}</td>
+                  {/* <td>{morkhasi.karbarId ? <Link to={`karbar/${morkhasi.karbarId}`}>{morkhasi.karbarId}</Link> : ''}</td> */}
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${morkhasi.id}`} color="info" size="sm">
@@ -99,7 +99,7 @@ export const Morkhasi = (props: IMorkhasiProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button
+                      {/* <Button
                         tag={Link}
                         to={`${match.url}/${morkhasi.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
                         color="primary"
@@ -109,7 +109,7 @@ export const Morkhasi = (props: IMorkhasiProps) => {
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
-                      </Button>
+                      </Button> */}
                       <Button
                         tag={Link}
                         to={`${match.url}/${morkhasi.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
@@ -130,7 +130,7 @@ export const Morkhasi = (props: IMorkhasiProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.morkhasi.home.notFound">No Morkhasis found</Translate>
+              اطلاعاتی وجود ندارد
             </div>
           )
         )}

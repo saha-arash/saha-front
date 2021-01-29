@@ -13,11 +13,16 @@ import { getEntity, updateEntity, createEntity, reset } from './morkhasi.reducer
 import { IMorkhasi } from 'app/shared/model/morkhasi.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
+import Select from 'react-select';
+import DatePicker from 'react-datepicker2';
+import {toast} from 'react-toastify';
 
 export interface IMorkhasiUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const MorkhasiUpdate = (props: IMorkhasiUpdateProps) => {
   const [karbarId, setKarbarId] = useState('0');
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
   const { morkhasiEntity, karbars, loading, updating } = props;
@@ -46,10 +51,13 @@ export const MorkhasiUpdate = (props: IMorkhasiUpdateProps) => {
     values.begin = convertDateTimeToServer(values.begin);
     values.end = convertDateTimeToServer(values.end);
 
-    if (errors.length === 0) {
+    if (startDate && endDate && karbarId !== '0') {
       const entity = {
         ...morkhasiEntity,
-        ...values
+        ...values,
+        begin: convertDateTimeToServer(startDate),
+        end: convertDateTimeToServer(endDate),
+        karbarId
       };
 
       if (isNew) {
@@ -57,6 +65,8 @@ export const MorkhasiUpdate = (props: IMorkhasiUpdateProps) => {
       } else {
         props.updateEntity(entity);
       }
+    } else {
+      toast('لطفا همه‌ی اطلاعات را وارد کنید', {type: 'error'})
     }
   };
 
@@ -85,44 +95,38 @@ export const MorkhasiUpdate = (props: IMorkhasiUpdateProps) => {
               ) : null}
               <AvGroup>
                 <Label id="beginLabel" for="morkhasi-begin">
-                  <Translate contentKey="sahaApp.morkhasi.begin">Begin</Translate>
+                  شروع
                 </Label>
-                <AvInput
-                  id="morkhasi-begin"
-                  type="datetime-local"
-                  className="form-control"
-                  name="begin"
-                  placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.morkhasiEntity.begin)}
-                />
+                
+                <DatePicker
+                isGregorian={false}
+                timePicker={false}
+                onChange={(e) => setStartDate(e)}
+                value={startDate}
+                persianDigits
+              />
               </AvGroup>
               <AvGroup>
                 <Label id="endLabel" for="morkhasi-end">
-                  <Translate contentKey="sahaApp.morkhasi.end">End</Translate>
+                  پایان
                 </Label>
-                <AvInput
-                  id="morkhasi-end"
-                  type="datetime-local"
-                  className="form-control"
-                  name="end"
-                  placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.morkhasiEntity.end)}
+                <DatePicker
+                  isGregorian={false}
+                  timePicker={false}
+                  onChange={(e) => setEndDate(e)}
+                  value={endDate}
+                  persianDigits
                 />
               </AvGroup>
               <AvGroup>
                 <Label for="morkhasi-karbar">
-                  <Translate contentKey="sahaApp.morkhasi.karbar">Karbar</Translate>
+                  کاربر
                 </Label>
-                <AvInput id="morkhasi-karbar" type="select" className="form-control" name="karbarId">
-                  <option value="" key="0" />
-                  {karbars
-                    ? karbars.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
+                <Select 
+                options={karbars.map(({name, id}) => ({label: name, value: id}))} 
+                placeholder=""
+                onChange={(e) => setKarbarId(e && e.value)}
+                />
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/morkhasi" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />

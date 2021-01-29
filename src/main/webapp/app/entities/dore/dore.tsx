@@ -49,11 +49,11 @@ export const Dore = (props: IDoreProps) => {
   return (
     <div>
       <h2 id="dore-heading">
-        <Translate contentKey="sahaApp.dore.home.title">Dores</Translate>
+        دوره‌ها
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.dore.home.createLabel">Create new Dore</Translate>
+          ایجاد دوره جدید
         </Link>
       </h2>
       <div className="table-responsive">
@@ -62,17 +62,17 @@ export const Dore = (props: IDoreProps) => {
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  شناسه <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('begin')}>
-                  <Translate contentKey="sahaApp.dore.begin">Begin</Translate> <FontAwesomeIcon icon="sort" />
+                  شروع <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('end')}>
-                  <Translate contentKey="sahaApp.dore.end">End</Translate> <FontAwesomeIcon icon="sort" />
+                  پایان <FontAwesomeIcon icon="sort" />
                 </th>
-                <th>
+                {/* <th>
                   <Translate contentKey="sahaApp.dore.karbar">Karbar</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
+                </th> */}
                 <th />
               </tr>
             </thead>
@@ -90,7 +90,7 @@ export const Dore = (props: IDoreProps) => {
                   <td>
                     <TextFormat type="date" value={dore.end} format={APP_DATE_FORMAT} />
                   </td>
-                  <td>{dore.karbarId ? <Link to={`karbar/${dore.karbarId}`}>{dore.karbarId}</Link> : ''}</td>
+                  {/* <td>{dore.karbarId ? <Link to={`karbar/${dore.karbarId}`}>{dore.karbarId}</Link> : ''}</td> */}
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${dore.id}`} color="info" size="sm">
@@ -99,7 +99,7 @@ export const Dore = (props: IDoreProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button
+                      {/* <Button
                         tag={Link}
                         to={`${match.url}/${dore.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
                         color="primary"
@@ -109,7 +109,7 @@ export const Dore = (props: IDoreProps) => {
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
-                      </Button>
+                      </Button> */}
                       <Button
                         tag={Link}
                         to={`${match.url}/${dore.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
@@ -130,7 +130,7 @@ export const Dore = (props: IDoreProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.dore.home.notFound">No Dores found</Translate>
+              دوره‌ای یافت نشد
             </div>
           )
         )}

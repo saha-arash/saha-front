@@ -50,7 +50,7 @@ export const NegahbaniUpdate = (props: INegahbaniUpdateProps) => {
     values.begin = convertDateTimeToServer(values.begin);
     values.end = convertDateTimeToServer(values.end);
 
-    if (startDate && endDate && karbarId) {
+    if (startDate && endDate && karbarId !== '0') {
       const entity = {
         ...negahbaniEntity,
         ...values,

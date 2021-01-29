@@ -13,11 +13,16 @@ import { getEntity, updateEntity, createEntity, reset } from './dore.reducer';
 import { IDore } from 'app/shared/model/dore.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
+import Select from 'react-select';
+import DatePicker from 'react-datepicker2';
+import {toast} from 'react-toastify';
 
 export interface IDoreUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const DoreUpdate = (props: IDoreUpdateProps) => {
   const [karbarId, setKarbarId] = useState('0');
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
   const { doreEntity, karbars, loading, updating } = props;
@@ -46,10 +51,13 @@ export const DoreUpdate = (props: IDoreUpdateProps) => {
     values.begin = convertDateTimeToServer(values.begin);
     values.end = convertDateTimeToServer(values.end);
 
-    if (errors.length === 0) {
+    if (startDate && endDate && karbarId !== '0') {
       const entity = {
         ...doreEntity,
-        ...values
+        ...values,
+        begin: convertDateTimeToServer(startDate),
+        end: convertDateTimeToServer(endDate),
+        karbarId
       };
 
       if (isNew) {
@@ -57,6 +65,8 @@ export const DoreUpdate = (props: IDoreUpdateProps) => {
       } else {
         props.updateEntity(entity);
       }
+    } else {
+      toast('لطفا همه‌ی اطلاعات را وارد کنید', {type: 'error'})
     }
   };
 
@@ -65,7 +75,7 @@ export const DoreUpdate = (props: IDoreUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.dore.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.dore.home.createOrEditLabel">Create or edit a Dore</Translate>
+            ایجاد دوره جدید
           </h2>
         </Col>
       </Row>
@@ -78,51 +88,44 @@ export const DoreUpdate = (props: IDoreUpdateProps) => {
               {!isNew ? (
                 <AvGroup>
                   <Label for="dore-id">
-                    <Translate contentKey="global.field.id">ID</Translate>
+                    شناسه
                   </Label>
                   <AvInput id="dore-id" type="text" className="form-control" name="id" required readOnly />
                 </AvGroup>
               ) : null}
               <AvGroup>
                 <Label id="beginLabel" for="dore-begin">
-                  <Translate contentKey="sahaApp.dore.begin">Begin</Translate>
+                  شروع
                 </Label>
-                <AvInput
-                  id="dore-begin"
-                  type="datetime-local"
-                  className="form-control"
-                  name="begin"
-                  placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.doreEntity.begin)}
+                <DatePicker
+                  isGregorian={false}
+                  timePicker={false}
+                  onChange={(e) => setStartDate(e)}
+                  value={startDate}
+                  persianDigits
                 />
               </AvGroup>
               <AvGroup>
                 <Label id="endLabel" for="dore-end">
-                  <Translate contentKey="sahaApp.dore.end">End</Translate>
+                  پایان
                 </Label>
-                <AvInput
-                  id="dore-end"
-                  type="datetime-local"
-                  className="form-control"
-                  name="end"
-                  placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.doreEntity.end)}
+                <DatePicker
+                  isGregorian={false}
+                  timePicker={false}
+                  onChange={(e) => setEndDate(e)}
+                  value={endDate}
+                  persianDigits
                 />
               </AvGroup>
               <AvGroup>
                 <Label for="dore-karbar">
-                  <Translate contentKey="sahaApp.dore.karbar">Karbar</Translate>
+                  کاربر
                 </Label>
-                <AvInput id="dore-karbar" type="select" className="form-control" name="karbarId">
-                  <option value="" key="0" />
-                  {karbars
-                    ? karbars.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
+                <Select 
+                options={karbars.map(({name, id}) => ({label: name, value: id}))} 
+                placeholder=""
+                onChange={(e) => setKarbarId(e && e.value)}
+                />
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/dore" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
