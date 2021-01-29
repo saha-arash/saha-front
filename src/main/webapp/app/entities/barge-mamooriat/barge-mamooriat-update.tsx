@@ -329,7 +329,6 @@ const changeBinandegan = (data) => {
               <AvGroup>
                 <span>شروع ماموریت</span>
                 <DatePicker
-
                   isGregorian={false}
                   timePicker={false}
                   onChange={(e) => setStartDate(e)}

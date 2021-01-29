@@ -13,13 +13,17 @@ import { getEntity, updateEntity, createEntity, reset } from './negahbani.reduce
 import { INegahbani } from 'app/shared/model/negahbani.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
+import Select from 'react-select';
+import DatePicker from 'react-datepicker2';
+import {toast} from 'react-toastify';
 
 export interface INegahbaniUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const NegahbaniUpdate = (props: INegahbaniUpdateProps) => {
   const [karbarId, setKarbarId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
-
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
   const { negahbaniEntity, karbars, loading, updating } = props;
 
   const handleClose = () => {
@@ -46,10 +50,13 @@ export const NegahbaniUpdate = (props: INegahbaniUpdateProps) => {
     values.begin = convertDateTimeToServer(values.begin);
     values.end = convertDateTimeToServer(values.end);
 
-    if (errors.length === 0) {
+    if (startDate && endDate && karbarId) {
       const entity = {
         ...negahbaniEntity,
-        ...values
+        ...values,
+        begin: convertDateTimeToServer(startDate),
+        end: convertDateTimeToServer(endDate),
+        karbarId
       };
 
       if (isNew) {
@@ -57,6 +64,8 @@ export const NegahbaniUpdate = (props: INegahbaniUpdateProps) => {
       } else {
         props.updateEntity(entity);
       }
+    } else {
+      toast('لطفا همه‌ی اطلاعات را وارد کنید', {type: 'error'})
     }
   };
 
@@ -65,7 +74,7 @@ export const NegahbaniUpdate = (props: INegahbaniUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.negahbani.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.negahbani.home.createOrEditLabel">Create or edit a Negahbani</Translate>
+            ایجاد نگهبانی‌ جدید
           </h2>
         </Col>
       </Row>
@@ -85,44 +94,37 @@ export const NegahbaniUpdate = (props: INegahbaniUpdateProps) => {
               ) : null}
               <AvGroup>
                 <Label id="beginLabel" for="negahbani-begin">
-                  <Translate contentKey="sahaApp.negahbani.begin">Begin</Translate>
+                  شروع
                 </Label>
-                <AvInput
-                  id="negahbani-begin"
-                  type="datetime-local"
-                  className="form-control"
-                  name="begin"
-                  placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.negahbaniEntity.begin)}
+                <DatePicker
+                  isGregorian={false}
+                  timePicker={false}
+                  onChange={(e) => setStartDate(e)}
+                  value={startDate}
+                  persianDigits
                 />
               </AvGroup>
               <AvGroup>
                 <Label id="endLabel" for="negahbani-end">
-                  <Translate contentKey="sahaApp.negahbani.end">End</Translate>
+                  پایان
                 </Label>
-                <AvInput
-                  id="negahbani-end"
-                  type="datetime-local"
-                  className="form-control"
-                  name="end"
-                  placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.negahbaniEntity.end)}
+                <DatePicker
+                  isGregorian={false}
+                  timePicker={false}
+                  onChange={(e) => setEndDate(e)}
+                  value={endDate}
+                  persianDigits
                 />
               </AvGroup>
               <AvGroup>
                 <Label for="negahbani-karbar">
-                  <Translate contentKey="sahaApp.negahbani.karbar">Karbar</Translate>
+                  کاربر
                 </Label>
-                <AvInput id="negahbani-karbar" type="select" className="form-control" name="karbarId">
-                  <option value="" key="0" />
-                  {karbars
-                    ? karbars.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
+                <Select 
+                options={karbars.map(({name, id}) => ({label: name, value: id}))} 
+                placeholder=""
+                onChange={(e) => setKarbarId(e && e.value)}
+                />
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/negahbani" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />

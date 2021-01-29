@@ -49,11 +49,11 @@ export const Negahbani = (props: INegahbaniProps) => {
   return (
     <div>
       <h2 id="negahbani-heading">
-        <Translate contentKey="sahaApp.negahbani.home.title">Negahbanis</Translate>
+        نگهبانی‌ها
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.negahbani.home.createLabel">Create new Negahbani</Translate>
+          ایجاد نگهبانی‌ جدید
         </Link>
       </h2>
       <div className="table-responsive">
@@ -62,17 +62,17 @@ export const Negahbani = (props: INegahbaniProps) => {
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  شناسه <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('begin')}>
-                  <Translate contentKey="sahaApp.negahbani.begin">Begin</Translate> <FontAwesomeIcon icon="sort" />
+                  شروع <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('end')}>
-                  <Translate contentKey="sahaApp.negahbani.end">End</Translate> <FontAwesomeIcon icon="sort" />
+                  پایان <FontAwesomeIcon icon="sort" />
                 </th>
-                <th>
+                {/* <th>
                   <Translate contentKey="sahaApp.negahbani.karbar">Karbar</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
+                </th> */}
                 <th />
               </tr>
             </thead>
@@ -90,7 +90,7 @@ export const Negahbani = (props: INegahbaniProps) => {
                   <td>
                     <TextFormat type="date" value={negahbani.end} format={APP_DATE_FORMAT} />
                   </td>
-                  <td>{negahbani.karbarId ? <Link to={`karbar/${negahbani.karbarId}`}>{negahbani.karbarId}</Link> : ''}</td>
+                  {/* <td>{negahbani.karbarId ? <Link to={`karbar/${negahbani.karbarId}`}>{negahbani.karbarId}</Link> : ''}</td> */}
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${negahbani.id}`} color="info" size="sm">
@@ -99,7 +99,7 @@ export const Negahbani = (props: INegahbaniProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button
+                      {/* <Button
                         tag={Link}
                         to={`${match.url}/${negahbani.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
                         color="primary"
@@ -109,7 +109,7 @@ export const Negahbani = (props: INegahbaniProps) => {
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
-                      </Button>
+                      </Button> */}
                       <Button
                         tag={Link}
                         to={`${match.url}/${negahbani.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
@@ -130,7 +130,7 @@ export const Negahbani = (props: INegahbaniProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.negahbani.home.notFound">No Negahbanis found</Translate>
+              هیج اطلاعاتی وجود ندارد
             </div>
           )
         )}

@@ -161,7 +161,7 @@ export const Payam = (props: IPayamProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button
+                      {/* <Button
                         tag={Link}
                         to={`${match.url}/${payam.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
                         color="primary"
@@ -171,7 +171,7 @@ export const Payam = (props: IPayamProps) => {
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
-                      </Button>
+                      </Button> */}
                       <Button
                         tag={Link}
                         to={`${match.url}/${payam.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
