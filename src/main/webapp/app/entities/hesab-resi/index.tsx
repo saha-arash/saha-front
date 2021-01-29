@@ -7,6 +7,7 @@ import HesabResi from './hesab-resi';
 import HesabResiDetail from './hesab-resi-detail';
 import HesabResiUpdate from './hesab-resi-update';
 import HesabResiDeleteDialog from './hesab-resi-delete-dialog';
+import HesabResiItemDetail from './hesab-resi-item-detail';
 
 const Routes = ({ match }) => (
   <>
@@ -15,6 +16,7 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute exact path={`${match.url}/new`} component={HesabResiUpdate} />
       <ErrorBoundaryRoute exact path={`${match.url}/:id/edit`} component={HesabResiUpdate} />
       <ErrorBoundaryRoute exact path={`${match.url}/:id`} component={HesabResiDetail} />
+      <ErrorBoundaryRoute exact path={`${match.url}/:id/:item`} component={HesabResiItemDetail} />
       <ErrorBoundaryRoute path={match.url} component={HesabResi} />
     </Switch>
   </>

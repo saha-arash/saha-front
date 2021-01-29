@@ -45,7 +45,7 @@ const Routes = () => (
       <Route path="/barge-mamooriat" component={BargeMamooriat} />
       <Route path="/barname-hesab-resi" component={BarnameHesabResi} />
       <Route path="/payam" component={Payam} />
-
+      
       {/* TODO: barnameSalane comp should be fixed */}
       <Route path="/barnameSalane" component={BarnameHesabResi} />
       <Route path="/barge-mamooriat" component={BargeMamooriat} />
