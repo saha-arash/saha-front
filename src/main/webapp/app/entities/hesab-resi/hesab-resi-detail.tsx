@@ -10,6 +10,13 @@ import { getEntity } from './hesab-resi.reducer';
 import { IHesabResi } from 'app/shared/model/hesab-resi.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 
+const statusToFarsi = {
+  DAR_SHOROF_MAMOORIAT: 'در شرف ماموریت',
+  DAR_HALE_MAMOORIAT: 'در حال ماموریت',
+  SODOOR_BARGE_MAMOORIAT: 'صدور برگه ماموریت',
+  ETMAM_MAMOORIAT_HOZOOR_DARSAZMAN: 'اتمام ماموریت حضور در سازمان'
+}
+
 export interface IHesabResiDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> { }
 
 export const HesabResiDetail = (props: IHesabResiDetailProps) => {
@@ -38,7 +45,9 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
               وضعیت حسابرسی
             </span>
           </dt>
-          <dd>{hesabResiEntity.vaziateHesabResi}</dd>
+          <dd>
+            {statusToFarsi[hesabResiEntity.vaziateHesabResi] || hesabResiEntity.vaziateHesabResi}
+            </dd>
           <dl className="d-flex flex-wrap">
             <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
               مدارک

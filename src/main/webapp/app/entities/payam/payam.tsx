@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { Button, Col, Row, Table } from 'reactstrap';
+import { Button, Col, Row, Table, Nav, NavLink, NavItem } from 'reactstrap';
 import { byteSize, Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -10,15 +10,28 @@ import { getEntities } from './payam.reducer';
 import { IPayam } from 'app/shared/model/payam.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
+import classnames from 'classnames';
 
 export interface IPayamProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const Payam = (props: IPayamProps) => {
+
+  const [activeTab, setActiveTab] = useState('inbox');
+
+  const toggle = tab => {
+    if(activeTab !== tab) setActiveTab(tab);
+  }
+
+
   const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
 
   const getAllEntities = () => {
-    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`, activeTab === 'sent');
   };
+
+  useEffect(() => {
+    getAllEntities()
+  } ,[activeTab])
 
   const sortEntities = () => {
     getAllEntities();
@@ -39,38 +52,57 @@ export const Payam = (props: IPayamProps) => {
     });
   };
 
-  const handlePagination = currentPage =>
+  const handlePagination = currentPage => {
     setPaginationState({
       ...paginationState,
       activePage: currentPage
     });
-
+  }
+    
   const { payamList, match, loading, totalItems } = props;
   return (
     <div>
       <h2 id="payam-heading">
-        <Translate contentKey="sahaApp.payam.home.title">Payams</Translate>
+        پیام‌ها
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.payam.home.createLabel">Create new Payam</Translate>
+          ارسال پیام
         </Link>
       </h2>
+      <Nav tabs>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === 'inbox' })}
+            onClick={() => { toggle('inbox'); }}
+          >
+            صندوق ورودی
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === 'sent' })}
+            onClick={() => { toggle('sent'); }}
+          >
+            صندوق خروجی
+          </NavLink>
+        </NavItem>
+      </Nav>
       <div className="table-responsive">
         {payamList && payamList.length > 0 ? (
           <Table responsive>
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                    شناسه <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('onvan')}>
-                  <Translate contentKey="sahaApp.payam.onvan">Onvan</Translate> <FontAwesomeIcon icon="sort" />
+                  عنوان <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('matn')}>
-                  <Translate contentKey="sahaApp.payam.matn">Matn</Translate> <FontAwesomeIcon icon="sort" />
+                  متن <FontAwesomeIcon icon="sort" />
                 </th>
-                <th>
+                {/* <th>
                   <Translate contentKey="sahaApp.payam.karbarErsalKonande">Karbar Ersal Konande</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
@@ -83,7 +115,7 @@ export const Payam = (props: IPayamProps) => {
                 <th>
                   <Translate contentKey="sahaApp.payam.yeganDaryaftKonanade">Yegan Daryaft Konanade</Translate>{' '}
                   <FontAwesomeIcon icon="sort" />
-                </th>
+                </th> */}
                 <th />
               </tr>
             </thead>
@@ -97,7 +129,7 @@ export const Payam = (props: IPayamProps) => {
                   </td>
                   <td>{payam.onvan}</td>
                   <td>{payam.matn}</td>
-                  <td>
+                  {/* <td>
                     {payam.karbarErsalKonandeId ? (
                       <Link to={`karbar/${payam.karbarErsalKonandeId}`}>{payam.karbarErsalKonandeId}</Link>
                     ) : (
@@ -120,7 +152,7 @@ export const Payam = (props: IPayamProps) => {
                     ) : (
                       ''
                     )}
-                  </td>
+                  </td> */}
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${payam.id}`} color="info" size="sm">
@@ -160,7 +192,7 @@ export const Payam = (props: IPayamProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.payam.home.notFound">No Payams found</Translate>
+              پیامی یافت نشد
             </div>
           )
         )}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { Button, Row, Col, Label } from 'reactstrap';
+import { Button, Row, Col, Label, Input } from 'reactstrap';
 import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
 import { Translate, translate, ICrudGetAction, ICrudGetAllAction, setFileData, byteSize, ICrudPutAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,8 +15,9 @@ import { getEntity, updateEntity, createEntity, setBlob, reset } from './payam.r
 import { IPayam } from 'app/shared/model/payam.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
+import Select from 'react-select';
 
-export interface IPayamUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
+export interface IPayamUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> { }
 
 export const PayamUpdate = (props: IPayamUpdateProps) => {
   const [karbarErsalKonandeId, setKarbarErsalKonandeId] = useState('0');
@@ -24,7 +25,7 @@ export const PayamUpdate = (props: IPayamUpdateProps) => {
   const [yeganErsalKonanadeId, setYeganErsalKonanadeId] = useState('0');
   const [yeganDaryaftKonanadeId, setYeganDaryaftKonanadeId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
-
+  const [receiver, setReceiver] = useState<'karbar' | 'yegan'>('karbar');
   const { payamEntity, karbars, yegans, loading, updating } = props;
 
   const { matn } = payamEntity;
@@ -48,6 +49,9 @@ export const PayamUpdate = (props: IPayamUpdateProps) => {
     setFileData(event, (contentType, data) => props.setBlob(name, data, contentType), isAnImage);
   };
 
+  const [selectedYegan, setSelectedYegan] = useState('0');
+  const [selectedKarbar, setSelectedKarbar] = useState('0');
+
   const clearBlob = name => () => {
     props.setBlob(name, undefined, undefined);
   };
@@ -65,6 +69,12 @@ export const PayamUpdate = (props: IPayamUpdateProps) => {
         ...values
       };
 
+      if(receiver === 'karbar') {
+        entity.karbarDaryaftKonandId = selectedKarbar
+      } else {
+        entity.yeganDaryaftKonandId = selectedYegan
+      }
+
       if (isNew) {
         props.createEntity(entity);
       } else {
@@ -78,7 +88,7 @@ export const PayamUpdate = (props: IPayamUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.payam.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.payam.home.createOrEditLabel">Create or edit a Payam</Translate>
+            ایجاد پیام
           </h2>
         </Col>
       </Row>
@@ -87,28 +97,53 @@ export const PayamUpdate = (props: IPayamUpdateProps) => {
           {loading ? (
             <p>Loading...</p>
           ) : (
-            <AvForm model={isNew ? {} : payamEntity} onSubmit={saveEntity}>
-              {!isNew ? (
-                <AvGroup>
-                  <Label for="payam-id">
-                    <Translate contentKey="global.field.id">ID</Translate>
+              <AvForm model={isNew ? {} : payamEntity} onSubmit={saveEntity}>
+                {!isNew ? (
+                  <AvGroup>
+                    <Label for="payam-id">
+                      شناسه
                   </Label>
-                  <AvInput id="payam-id" type="text" className="form-control" name="id" required readOnly />
+                    <AvInput id="payam-id" type="text" className="form-control" name="id" required readOnly />
+                  </AvGroup>
+                ) : null}
+                <AvGroup>
+                  <Label id="onvanLabel" for="payam-onvan">
+                    عنوان
+                </Label>
+                  <AvField id="payam-onvan" type="text" name="onvan" />
                 </AvGroup>
-              ) : null}
-              <AvGroup>
-                <Label id="onvanLabel" for="payam-onvan">
-                  <Translate contentKey="sahaApp.payam.onvan">Onvan</Translate>
+                <AvGroup>
+                  <Label id="matnLabel" for="payam-matn">
+                    متن پیام
                 </Label>
-                <AvField id="payam-onvan" type="text" name="onvan" />
-              </AvGroup>
-              <AvGroup>
-                <Label id="matnLabel" for="payam-matn">
-                  <Translate contentKey="sahaApp.payam.matn">Matn</Translate>
-                </Label>
-                <AvInput id="payam-matn" type="textarea" name="matn" />
-              </AvGroup>
-              <AvGroup>
+                  <AvInput id="payam-matn" type="textarea" name="matn" />
+                </AvGroup>
+                <AvGroup>
+                  <span>
+                    دریافت کننده:
+                </span>
+                  <Label className="d-block">
+                    <Input 
+                    type="radio" 
+                    name="receiver" 
+                    value="karbar" 
+                    checked={receiver === 'karbar'} 
+                    onChange={(e) => setReceiver(e.currentTarget.value)}
+                    />{' '}
+                    کاربر
+                  </Label>
+                  <Label className="d-block">
+                    <Input 
+                    type="radio" 
+                    name="receiver" 
+                    value="yegan" 
+                    checked={receiver === 'yegan'}
+                    onChange={(e) => setReceiver(e.currentTarget.value)}
+                    />{' '}
+                    یگان
+                  </Label>
+                </AvGroup>
+                {/* <AvGroup>
                 <Label for="payam-karbarErsalKonande">
                   <Translate contentKey="sahaApp.payam.karbarErsalKonande">Karbar Ersal Konande</Translate>
                 </Label>
@@ -122,23 +157,34 @@ export const PayamUpdate = (props: IPayamUpdateProps) => {
                       ))
                     : null}
                 </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="payam-karbarDaryaftKonand">
-                  <Translate contentKey="sahaApp.payam.karbarDaryaftKonand">Karbar Daryaft Konand</Translate>
+              </AvGroup> */}
+              {
+                receiver === 'karbar' ? (
+                <AvGroup>
+                  <Label for="payam-karbarDaryaftKonand">
+                    کاربر دریافت کننده
                 </Label>
-                <AvInput id="payam-karbarDaryaftKonand" type="select" className="form-control" name="karbarDaryaftKonandId">
-                  <option value="" key="0" />
-                  {karbars
-                    ? karbars.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
+                  <Select 
+                  options={karbars.map(({ name, id }) => ({ label: name, value: id }))} 
+                  onChange={(e) => setSelectedKarbar(e && e.value)}
+                  placeholder="" />
+                  
+                </AvGroup>
+                ) : (
+                <AvGroup>
+                  <Label for="payam-yeganDaryaftKonanade">
+                    یگان دریافت کننده
+                </Label>
+                  <Select 
+                  options={yegans.map(({ name, id }) => ({ label: name, value: id }))} 
+                  onChange={(e) => setSelectedYegan(e && e.value)}
+                  placeholder="" />
+                </AvGroup>
+                )
+              }
+                
+                
+                {/* <AvGroup>
                 <Label for="payam-yeganErsalKonanade">
                   <Translate contentKey="sahaApp.payam.yeganErsalKonanade">Yegan Ersal Konanade</Translate>
                 </Label>
@@ -152,37 +198,23 @@ export const PayamUpdate = (props: IPayamUpdateProps) => {
                       ))
                     : null}
                 </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="payam-yeganDaryaftKonanade">
-                  <Translate contentKey="sahaApp.payam.yeganDaryaftKonanade">Yegan Daryaft Konanade</Translate>
-                </Label>
-                <AvInput id="payam-yeganDaryaftKonanade" type="select" className="form-control" name="yeganDaryaftKonanadeId">
-                  <option value="" key="0" />
-                  {yegans
-                    ? yegans.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <Button tag={Link} id="cancel-save" to="/payam" replace color="info">
-                <FontAwesomeIcon icon="arrow-left" />
+              </AvGroup> */}
+                
+                <Button tag={Link} id="cancel-save" to="/payam" replace color="info">
+                  <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
-                  <Translate contentKey="entity.action.back">Back</Translate>
-                </span>
-              </Button>
+                    <Translate contentKey="entity.action.back">Back</Translate>
+                  </span>
+                </Button>
               &nbsp;
-              <Button color="primary" id="save-entity" type="submit" disabled={updating}>
-                <FontAwesomeIcon icon="save" />
+                <Button color="primary" id="save-entity" type="submit" disabled={updating}>
+                  <FontAwesomeIcon icon="save" />
                 &nbsp;
                 <Translate contentKey="entity.action.save">Save</Translate>
-              </Button>
-            </AvForm>
-          )}
+                </Button>
+              </AvForm>
+            )}
         </Col>
       </Row>
     </div>

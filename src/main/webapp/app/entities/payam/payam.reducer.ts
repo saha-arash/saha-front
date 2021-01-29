@@ -110,11 +110,14 @@ export default (state: PayamState = initialState, action): PayamState => {
 };
 
 const apiUrl = 'api/payams';
-
+const inboxUrl = 'api/karbars/sandoghvoroodi';
+const sentUrl = 'api/karbars/sandoghkhorooji';
 // Actions
 
-export const getEntities: ICrudGetAllAction<IPayam> = (page, size, sort) => {
-  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+export const getEntities: ICrudGetAllAction<IPayam> = (page, size, sort, sent = false) => {
+  const reqUrl = sent ? sentUrl : inboxUrl;
+
+  const requestUrl = `${reqUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
   return {
     type: ACTION_TYPES.FETCH_PAYAM_LIST,
     payload: axios.get<IPayam>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
