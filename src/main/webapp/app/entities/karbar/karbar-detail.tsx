@@ -136,7 +136,9 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
         </Button>
       </Col>
       <Col md="8">
-        <Row>
+        {
+          karbarEntity.id && (
+            <Row>
           <Col>
           <Button tag={Link} to={`/morkhasi/new/${karbarEntity.id}`} replace color="success">
           ایجاد مرخصی‌ جدید
@@ -153,6 +155,8 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
         </Button>
         </Col>
         </Row>
+          )
+        }
         <div className="mb-5">
           <h4 className="mb-3">
             مرخصی‌ها
