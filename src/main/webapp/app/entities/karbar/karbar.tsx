@@ -79,19 +79,19 @@ export const Karbar = (props: IKarbarProps) => {
                 <th className="hand" onClick={sort('codePerseneli')}>
                   کد پرسنلی <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={sort('bezaneshate')}>
+                {/* <th className="hand" onClick={sort('bezaneshate')}>
                   بازنشسته <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('sazmani')}>
                   سازمانی <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('tarikhBazneshastegi')}>
+                </th> */}
+                {/* <th className="hand" onClick={sort('tarikhBazneshastegi')}>
                   تاریخ بازنشستگی{' '}
                   <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('tarikhEstekhdam')}>
                   تاریخ استخدام<FontAwesomeIcon icon="sort" />
-                </th>
+                </th> */}
                 {/* <th>
                   یگان <FontAwesomeIcon icon="sort" />
                 </th>
@@ -119,14 +119,14 @@ export const Karbar = (props: IKarbarProps) => {
                   <td>{karbar.shoghlSazmani}</td>
                   <td>{karbar.shoghlAmali}</td>
                   <td>{karbar.codePerseneli}</td>
-                  <td>{karbar.bezaneshate ? 'true' : 'false'}</td>
-                  <td>{karbar.sazmani ? 'true' : 'false'}</td>
-                  <td>
+                  {/* <td>{karbar.bezaneshate ? 'true' : 'false'}</td>
+                  <td>{karbar.sazmani ? 'true' : 'false'}</td> */}
+                  {/* <td>
                     <TimeToText type="date" value={karbar.tarikhBazneshastegi} format={APP_DATE_FORMAT} />
                   </td>
                   <td>
                     <TimeToText type="date" value={karbar.tarikhEstekhdam} format={APP_DATE_FORMAT} />
-                  </td>
+                  </td> */}
                   {/* <td>{karbar.yeganId ? <Link to={`yegan/${karbar.yeganId}`}>{karbar.yeganId}</Link> : ''}</td>
                   <td>{karbar.yeganCodeId ? <Link to={`yegan-code/${karbar.yeganCodeId}`}>{karbar.yeganCodeId}</Link> : ''}</td>
                   <td>{karbar.darajeId ? <Link to={`daraje/${karbar.darajeId}`}>{karbar.darajeId}</Link> : ''}</td>
