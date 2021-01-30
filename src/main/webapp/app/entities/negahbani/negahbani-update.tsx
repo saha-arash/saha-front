@@ -27,7 +27,11 @@ export const NegahbaniUpdate = (props: INegahbaniUpdateProps) => {
   const { negahbaniEntity, karbars, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/negahbani' + props.location.search);
+    if(props.match.params.kId) {
+      props.history.push(`/karbar/${props.match.params.kId}`)
+    } else {
+      props.history.push('/negahbani' + props.location.search);
+    }
   };
 
   useEffect(() => {

@@ -28,7 +28,11 @@ export const MorkhasiUpdate = (props: IMorkhasiUpdateProps) => {
   const { morkhasiEntity, karbars, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/morkhasi' + props.location.search);
+    if(props.match.params.kId) {
+      props.history.push(`/karbar/${props.match.params.kId}`)
+    } else {
+      props.history.push('/morkhasi' + props.location.search);
+    }
   };
 
   useEffect(() => {

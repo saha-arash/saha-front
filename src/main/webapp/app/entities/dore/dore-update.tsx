@@ -28,7 +28,12 @@ export const DoreUpdate = (props: IDoreUpdateProps) => {
   const { doreEntity, karbars, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/dore' + props.location.search);
+    if(props.match.params.kId) {
+      props.history.push(`/karbar/${props.match.params.kId}`)
+    } else {
+      props.history.push('/dore' + props.location.search);
+    }
+    // props.history.push('/dore' + props.location.search);
   };
 
   useEffect(() => {
