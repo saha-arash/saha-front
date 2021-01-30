@@ -179,13 +179,16 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
               karbarEntity.morkhasiDTOS && karbarEntity.morkhasiDTOS.map((item) => (
                 <tr key={item.id}>
                   <td>
+                    
                     {item.id}
                   </td>
                   <td>
-                    {item.begin}
+                  <TimeToText value={item.begin} type="date" format={APP_DATE_FORMAT} />
+                    
                   </td>
                   <td>
-                    {item.end}
+                  <TimeToText value={item.end} type="date" format={APP_DATE_FORMAT} />
+                    
                   </td>
                 </tr>
               ))
@@ -217,10 +220,12 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
                     {item.id}
                   </td>
                   <td>
-                    {item.begin}
+                  <TimeToText value={item.begin} type="date" format={APP_DATE_FORMAT} />
+                    
                   </td>
                   <td>
-                    {item.end}
+                  <TimeToText value={item.end} type="date" format={APP_DATE_FORMAT} />
+                    
                   </td>
                 </tr>
               ))
@@ -252,10 +257,12 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
                     {item.id}
                   </td>
                   <td>
-                    {item.begin}
+                  <TimeToText value={item.begin} type="date" format={APP_DATE_FORMAT} />
+                    
                   </td>
                   <td>
-                    {item.end}
+                  <TimeToText value={item.end} type="date" format={APP_DATE_FORMAT} />
+                    
                   </td>
                 </tr>
               ))
