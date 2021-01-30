@@ -123,13 +123,14 @@ export const MorkhasiUpdate = (props: IMorkhasiUpdateProps) => {
                   کاربر
                 </Label>
                 <Select 
+                isDisabled={props.match.params.kId}
                 options={karbars.map(({name, id}) => ({label: name, value: id}))} 
                 placeholder=""
                 onChange={(e) => setKarbarId(e && e.value)}
                 value={karbars.map(({name, id}) => ({label: name, value: id})).find(({value}) => String(value) === karbarId)}
                 />
               </AvGroup>
-              <Button tag={Link} id="cancel-save" to="/morkhasi" replace color="info">
+              <Button tag={Link} id="cancel-save" to={props.match.params.kId ? `/karbar/${props.match.params.kId}` : "/morkhasi"} replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">

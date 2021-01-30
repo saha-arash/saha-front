@@ -132,7 +132,7 @@ export const Karbar = (props: IKarbarProps) => {
                   <td>{karbar.sematId ? <Link to={`semat/${karbar.sematId}`}>{karbar.sematId}</Link> : ''}</td> */}
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${karbar.id}`} color="info" size="sm">
+                      <Button tag={Link} to={`${match.url}/${karbar.id}`} replace color="info" size="sm">
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.view">View</Translate>
