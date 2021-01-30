@@ -12,7 +12,7 @@ const TimeToText: FC<ITimeToTextProps> = ({
   value,
   format
 }) => {
-  const clearVal = typeof value === 'string' ?  new Date(value) : value;
+  const clearVal = value ? new Date(value as string) : new Date();
   return (
     <span>
       {moment(clearVal, format).locale('fa').format(format)}
