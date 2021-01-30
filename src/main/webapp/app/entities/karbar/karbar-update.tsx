@@ -221,7 +221,7 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
                 options={darajes.map(({id, name}) => ({label: name, value: id}))} 
                 placeholder=""
                 onChange={(e) => setDarajeId(e && e.value)}
-                value={darajes.length && darajes.map(({id, name}) => ({label: name, value: id})).find(({value}) => value.toString() === darajeId.toString())}
+                value={darajes.length && darajes.map(({id, name}) => ({label: name, value: id})).find(({value}) => value.toString() === darajeId?.toString())}
                 ></Select>
                 
               </AvGroup>
