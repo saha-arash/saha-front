@@ -9,6 +9,7 @@ import { IRootState } from 'app/shared/reducers';
 import { getEntity } from './morkhasi.reducer';
 import { IMorkhasi } from 'app/shared/model/morkhasi.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface IMorkhasiDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -31,7 +32,7 @@ export const MorkhasiDetail = (props: IMorkhasiDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={morkhasiEntity.begin} type="date" format={APP_DATE_FORMAT} />
+            <TimeToText value={morkhasiEntity.begin} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
             <span id="end">
@@ -39,7 +40,7 @@ export const MorkhasiDetail = (props: IMorkhasiDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={morkhasiEntity.end} type="date" format={APP_DATE_FORMAT} />
+            <TimeToText value={morkhasiEntity.end} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
             <Translate contentKey="sahaApp.morkhasi.karbar">Karbar</Translate>

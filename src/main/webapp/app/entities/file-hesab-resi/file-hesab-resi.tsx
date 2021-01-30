@@ -20,6 +20,7 @@ import { getEntities } from './file-hesab-resi.reducer';
 import { IFileHesabResi } from 'app/shared/model/file-hesab-resi.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface IFileHesabResiProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
@@ -169,7 +170,7 @@ export const FileHesabResi = (props: IFileHesabResiProps) => {
                   </td>
                   <td>{fileHesabResi.shomare}</td>
                   <td>
-                    <TextFormat type="date" value={fileHesabResi.tarikhName} format={APP_DATE_FORMAT} />
+                    <TimeToText type="date" value={fileHesabResi.tarikhName} format={APP_DATE_FORMAT} />
                   </td>
                   <td>{fileHesabResi.mozoo}</td>
                   <td>

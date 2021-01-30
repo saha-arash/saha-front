@@ -9,6 +9,7 @@ import { IRootState } from 'app/shared/reducers';
 import { getEntity } from './karbar.reducer';
 import { IKarbar } from 'app/shared/model/karbar.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface IKarbarDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -68,7 +69,7 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={karbarEntity.tarikhBazneshastegi} type="date" format={APP_DATE_FORMAT} />
+            <TimeToText value={karbarEntity.tarikhBazneshastegi} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
             <span id="tarikhEstekhdam">
@@ -76,7 +77,7 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={karbarEntity.tarikhEstekhdam} type="date" format={APP_DATE_FORMAT} />
+            <TimeToText value={karbarEntity.tarikhEstekhdam} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
             برگه ماموریت

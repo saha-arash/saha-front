@@ -10,6 +10,7 @@ import { getEntities } from './morkhasi.reducer';
 import { IMorkhasi } from 'app/shared/model/morkhasi.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface IMorkhasiProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
@@ -85,10 +86,10 @@ export const Morkhasi = (props: IMorkhasiProps) => {
                     </Button>
                   </td>
                   <td>
-                    <TextFormat type="date" value={morkhasi.begin} format={APP_DATE_FORMAT} />
+                    <TimeToText type="date" value={morkhasi.begin} format={APP_DATE_FORMAT} />
                   </td>
                   <td>
-                    <TextFormat type="date" value={morkhasi.end} format={APP_DATE_FORMAT} />
+                    <TimeToText type="date" value={morkhasi.end} format={APP_DATE_FORMAT} />
                   </td>
                   {/* <td>{morkhasi.karbarId ? <Link to={`karbar/${morkhasi.karbarId}`}>{morkhasi.karbarId}</Link> : ''}</td> */}
                   <td className="text-right">

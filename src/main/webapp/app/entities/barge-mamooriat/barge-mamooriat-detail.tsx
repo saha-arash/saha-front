@@ -9,7 +9,7 @@ import { IRootState } from 'app/shared/reducers';
 import { getEntity } from './barge-mamooriat.reducer';
 import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
-
+import TimeToText from '../../shared/timeToText/TimeToText';
 export interface IBargeMamooriatDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
@@ -43,7 +43,7 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={bargeMamooriatEntity.shorooMamooriat} type="date" format={APP_DATE_FORMAT} />
+            <TimeToText value={bargeMamooriatEntity.shorooMamooriat} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
             <span id="payanMamooriat">
@@ -51,7 +51,7 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={bargeMamooriatEntity.payanMamooriat} type="date" format={APP_DATE_FORMAT} />
+            <TimeToText value={bargeMamooriatEntity.payanMamooriat} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
             <Translate contentKey="sahaApp.bargeMamooriat.sarparast">Sarparast</Translate>

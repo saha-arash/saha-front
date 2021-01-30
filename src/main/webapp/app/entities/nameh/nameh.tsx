@@ -10,6 +10,7 @@ import { getEntities } from './nameh.reducer';
 import { INameh } from 'app/shared/model/nameh.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface INamehProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
@@ -83,7 +84,7 @@ export const Nameh = (props: INamehProps) => {
                   </td>
                   <td>{nameh.shomare}</td>
                   <td>
-                    <TextFormat type="date" value={nameh.tarikhEblagh} format={APP_DATE_FORMAT} />
+                    <TimeToText type="date" value={nameh.tarikhEblagh} format={APP_DATE_FORMAT} />
                   </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">

@@ -9,6 +9,7 @@ import { APP_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 import { getUsers, updateUser } from './user-management.reducer';
 import { IRootState } from 'app/shared/reducers';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface IUserManagementProps extends StateProps, DispatchProps, RouteComponentProps<{}> {}
 
@@ -118,11 +119,11 @@ export const UserManagement = (props: IUserManagementProps) => {
                   : null}
               </td>
               <td>
-                <TextFormat value={user.createdDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
+                <TimeToText value={user.createdDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
               </td>
               <td>{user.lastModifiedBy}</td>
               <td>
-                <TextFormat value={user.lastModifiedDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
+                <TimeToText value={user.lastModifiedDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
               </td>
               <td className="text-right">
                 <div className="btn-group flex-btn-group-container">

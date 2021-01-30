@@ -9,6 +9,7 @@ import { IRootState } from 'app/shared/reducers';
 import { getEntity } from './file-hesab-resi.reducer';
 import { IFileHesabResi } from 'app/shared/model/file-hesab-resi.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface IFileHesabResiDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -54,7 +55,7 @@ export const FileHesabResiDetail = (props: IFileHesabResiDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={fileHesabResiEntity.tarikhName} type="date" format={APP_DATE_FORMAT} />
+            <TimeToText value={fileHesabResiEntity.tarikhName} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
             <span id="mozoo">

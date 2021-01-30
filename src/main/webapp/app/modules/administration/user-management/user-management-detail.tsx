@@ -9,6 +9,7 @@ import { APP_DATE_FORMAT } from 'app/config/constants';
 import { languages } from 'app/config/translation';
 import { getUser } from './user-management.reducer';
 import { IRootState } from 'app/shared/reducers';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface IUserManagementDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ login: string }> {}
 
@@ -65,7 +66,7 @@ export const UserManagementDetail = (props: IUserManagementDetailProps) => {
             <Translate contentKey="userManagement.createdDate">Created Date</Translate>
           </dt>
           <dd>
-            <TextFormat value={user.createdDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
+            <TimeToText value={user.createdDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
           </dd>
           <dt>
             <Translate contentKey="userManagement.lastModifiedBy">Last Modified By</Translate>
@@ -75,7 +76,7 @@ export const UserManagementDetail = (props: IUserManagementDetailProps) => {
             <Translate contentKey="userManagement.lastModifiedDate">Last Modified Date</Translate>
           </dt>
           <dd>
-            <TextFormat value={user.lastModifiedDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
+            <TimeToText value={user.lastModifiedDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
           </dd>
           <dt>
             <Translate contentKey="userManagement.profiles">Profiles</Translate>

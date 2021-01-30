@@ -9,6 +9,7 @@ import { IRootState } from 'app/shared/reducers';
 import { getEntity } from './gardesh-kar.reducer';
 import { IGardeshKar } from 'app/shared/model/gardesh-kar.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface IGardeshKarDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -31,7 +32,7 @@ export const GardeshKarDetail = (props: IGardeshKarDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={gardeshKarEntity.tarikh} type="date" format={APP_DATE_FORMAT} />
+            <TimeToText value={gardeshKarEntity.tarikh} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
             <span id="mozoo">

@@ -10,6 +10,7 @@ import { getEntities } from './karbar.reducer';
 import { IKarbar } from 'app/shared/model/karbar.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface IKarbarProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
@@ -121,10 +122,10 @@ export const Karbar = (props: IKarbarProps) => {
                   <td>{karbar.bezaneshate ? 'true' : 'false'}</td>
                   <td>{karbar.sazmani ? 'true' : 'false'}</td>
                   <td>
-                    <TextFormat type="date" value={karbar.tarikhBazneshastegi} format={APP_DATE_FORMAT} />
+                    <TimeToText type="date" value={karbar.tarikhBazneshastegi} format={APP_DATE_FORMAT} />
                   </td>
                   <td>
-                    <TextFormat type="date" value={karbar.tarikhEstekhdam} format={APP_DATE_FORMAT} />
+                    <TimeToText type="date" value={karbar.tarikhEstekhdam} format={APP_DATE_FORMAT} />
                   </td>
                   {/* <td>{karbar.yeganId ? <Link to={`yegan/${karbar.yeganId}`}>{karbar.yeganId}</Link> : ''}</td>
                   <td>{karbar.yeganCodeId ? <Link to={`yegan-code/${karbar.yeganCodeId}`}>{karbar.yeganCodeId}</Link> : ''}</td>

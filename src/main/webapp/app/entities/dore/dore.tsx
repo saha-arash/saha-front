@@ -10,6 +10,7 @@ import { getEntities } from './dore.reducer';
 import { IDore } from 'app/shared/model/dore.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface IDoreProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
@@ -85,10 +86,10 @@ export const Dore = (props: IDoreProps) => {
                     </Button>
                   </td>
                   <td>
-                    <TextFormat type="date" value={dore.begin} format={APP_DATE_FORMAT} />
+                    <TimeToText type="date" value={dore.begin} format={APP_DATE_FORMAT} />
                   </td>
                   <td>
-                    <TextFormat type="date" value={dore.end} format={APP_DATE_FORMAT} />
+                    <TimeToText type="date" value={dore.end} format={APP_DATE_FORMAT} />
                   </td>
                   {/* <td>{dore.karbarId ? <Link to={`karbar/${dore.karbarId}`}>{dore.karbarId}</Link> : ''}</td> */}
                   <td className="text-right">

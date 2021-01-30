@@ -10,6 +10,7 @@ import { getEntities } from './negahbani.reducer';
 import { INegahbani } from 'app/shared/model/negahbani.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface INegahbaniProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
@@ -85,10 +86,10 @@ export const Negahbani = (props: INegahbaniProps) => {
                     </Button>
                   </td>
                   <td>
-                    <TextFormat type="date" value={negahbani.begin} format={APP_DATE_FORMAT} />
+                    <TimeToText type="date" value={negahbani.begin} format={APP_DATE_FORMAT} />
                   </td>
                   <td>
-                    <TextFormat type="date" value={negahbani.end} format={APP_DATE_FORMAT} />
+                    <TimeToText type="date" value={negahbani.end} format={APP_DATE_FORMAT} />
                   </td>
                   {/* <td>{negahbani.karbarId ? <Link to={`karbar/${negahbani.karbarId}`}>{negahbani.karbarId}</Link> : ''}</td> */}
                   <td className="text-right">

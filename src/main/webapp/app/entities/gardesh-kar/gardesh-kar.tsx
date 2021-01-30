@@ -10,6 +10,7 @@ import { getEntities } from './gardesh-kar.reducer';
 import { IGardeshKar } from 'app/shared/model/gardesh-kar.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface IGardeshKarProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
@@ -85,7 +86,7 @@ export const GardeshKar = (props: IGardeshKarProps) => {
                     </Button>
                   </td>
                   <td>
-                    <TextFormat type="date" value={gardeshKar.tarikh} format={APP_DATE_FORMAT} />
+                    <TimeToText type="date" value={gardeshKar.tarikh} format={APP_DATE_FORMAT} />
                   </td>
                   <td>{gardeshKar.mozoo}</td>
                   <td>{gardeshKar.shomare}</td>

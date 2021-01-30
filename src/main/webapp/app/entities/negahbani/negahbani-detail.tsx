@@ -9,6 +9,7 @@ import { IRootState } from 'app/shared/reducers';
 import { getEntity } from './negahbani.reducer';
 import { INegahbani } from 'app/shared/model/negahbani.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface INegahbaniDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -31,7 +32,7 @@ export const NegahbaniDetail = (props: INegahbaniDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={negahbaniEntity.begin} type="date" format={APP_DATE_FORMAT} />
+            <TimeToText value={negahbaniEntity.begin} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
             <span id="end">
@@ -39,7 +40,7 @@ export const NegahbaniDetail = (props: INegahbaniDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={negahbaniEntity.end} type="date" format={APP_DATE_FORMAT} />
+            <TimeToText value={negahbaniEntity.end} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
             <Translate contentKey="sahaApp.negahbani.karbar">Karbar</Translate>

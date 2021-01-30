@@ -10,6 +10,7 @@ import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 import { IRootState } from 'app/shared/reducers';
 import { getAudits } from '../administration.reducer';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface IAuditsPageProps extends StateProps, DispatchProps, RouteComponentProps<{}> {}
 
@@ -107,7 +108,7 @@ export const AuditsPage = (props: IAuditsPageProps) => {
           <tbody>
             {audits.map((audit, i) => (
               <tr key={`audit-${i}`}>
-                <td>{<TextFormat value={audit.timestamp} type="date" format={APP_TIMESTAMP_FORMAT} />}</td>
+                <td>{<TimeToText value={audit.timestamp} type="date" format={APP_TIMESTAMP_FORMAT} />}</td>
                 <td>{audit.principal}</td>
                 <td>{audit.type}</td>
                 <td>

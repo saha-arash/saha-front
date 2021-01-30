@@ -9,6 +9,7 @@ import { IRootState } from 'app/shared/reducers';
 import { getEntity } from './dore.reducer';
 import { IDore } from 'app/shared/model/dore.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface IDoreDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -31,7 +32,7 @@ export const DoreDetail = (props: IDoreDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={doreEntity.begin} type="date" format={APP_DATE_FORMAT} />
+            <TimeToText value={doreEntity.begin} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
             <span id="end">
@@ -39,7 +40,7 @@ export const DoreDetail = (props: IDoreDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={doreEntity.end} type="date" format={APP_DATE_FORMAT} />
+            <TimeToText value={doreEntity.end} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
             <Translate contentKey="sahaApp.dore.karbar">Karbar</Translate>

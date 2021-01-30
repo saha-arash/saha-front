@@ -9,6 +9,7 @@ import { IRootState } from 'app/shared/reducers';
 import { getEntity } from './nameh.reducer';
 import { INameh } from 'app/shared/model/nameh.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import TimeToText from 'app/shared/timeToText/TimeToText';
 
 export interface INamehDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -37,7 +38,7 @@ export const NamehDetail = (props: INamehDetailProps) => {
             </span>
           </dt>
           <dd>
-            <TextFormat value={namehEntity.tarikhEblagh} type="date" format={APP_DATE_FORMAT} />
+            <TimeToText value={namehEntity.tarikhEblagh} type="date" format={APP_DATE_FORMAT} />
           </dd>
         </dl>
         <Button tag={Link} to="/nameh" replace color="info">
