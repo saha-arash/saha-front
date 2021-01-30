@@ -63,8 +63,8 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
       setSematId(karbarEntity.sematId?.toString());
       setDarajeId(karbarEntity.darajeId?.toString());
       setYeganId(karbarEntity.yeganId?.toString());
-      setEstekhdamDate(moment(karbarEntity.tarikhEstekhdam?.toString()));
-      setBazneshasegiDate(moment(karbarEntity.tarikhBazneshastegi?.toString()))
+      setEstekhdamDate(karbarEntity.tarikhEstekhdam ? moment(karbarEntity.tarikhEstekhdam?.toString()) : null);
+      setBazneshasegiDate(karbarEntity.tarikhBazneshastegi ? moment(karbarEntity.tarikhBazneshastegi?.toString()) : null)
     }
   }, [karbarEntity])
   useEffect(() => {
@@ -174,7 +174,7 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
                   isGregorian={false}
                   timePicker={false}
                   onChange={(e) => setBazneshasegiDate(e)}
-                  value={bazneshastegiDate}
+                  value={bazneshastegiDate || null}
                   persianDigits
                 />
               </AvGroup>
@@ -186,7 +186,7 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
                   isGregorian={false}
                   timePicker={false}
                   onChange={(e) => setEstekhdamDate(e)}
-                  value={estekhdamDate}
+                  value={estekhdamDate || null}
                   persianDigits
                 />
               </AvGroup>
