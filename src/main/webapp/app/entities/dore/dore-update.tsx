@@ -20,7 +20,7 @@ import {toast} from 'react-toastify';
 export interface IDoreUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const DoreUpdate = (props: IDoreUpdateProps) => {
-  const [karbarId, setKarbarId] = useState('0');
+  const [karbarId, setKarbarId] = useState(props.match.params.kId || '0');
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
@@ -125,6 +125,7 @@ export const DoreUpdate = (props: IDoreUpdateProps) => {
                 options={karbars.map(({name, id}) => ({label: name, value: id}))} 
                 placeholder=""
                 onChange={(e) => setKarbarId(e && e.value)}
+                value={karbars.map(({name, id}) => ({label: name, value: id})).find(({value}) => String(value) === karbarId)}
                 />
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/dore" replace color="info">

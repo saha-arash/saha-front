@@ -237,7 +237,7 @@ describe('Authentication reducer tests', () => {
       const AUTH_TOKEN_KEY = 'jhi-authenticationToken';
       const loginResponse = { headers: { authorization: 'Bearer TestToken' } };
       axios.post = sinon.stub().returns(Promise.resolve(loginResponse));
-
+      // @ts-ignore
       await store.dispatch(login('test', 'test'));
       expect(Storage.session.get(AUTH_TOKEN_KEY)).toBe('TestToken');
       expect(Storage.local.get(AUTH_TOKEN_KEY)).toBe(undefined);

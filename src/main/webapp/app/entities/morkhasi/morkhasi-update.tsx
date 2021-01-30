@@ -20,7 +20,7 @@ import {toast} from 'react-toastify';
 export interface IMorkhasiUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const MorkhasiUpdate = (props: IMorkhasiUpdateProps) => {
-  const [karbarId, setKarbarId] = useState('0');
+  const [karbarId, setKarbarId] = useState(props.match.params.kId || '0');
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
@@ -75,7 +75,7 @@ export const MorkhasiUpdate = (props: IMorkhasiUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.morkhasi.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.morkhasi.home.createOrEditLabel">Create or edit a Morkhasi</Translate>
+            ایجاد مرخصی‌ جدید
           </h2>
         </Col>
       </Row>
@@ -126,6 +126,7 @@ export const MorkhasiUpdate = (props: IMorkhasiUpdateProps) => {
                 options={karbars.map(({name, id}) => ({label: name, value: id}))} 
                 placeholder=""
                 onChange={(e) => setKarbarId(e && e.value)}
+                value={karbars.map(({name, id}) => ({label: name, value: id})).find(({value}) => String(value) === karbarId)}
                 />
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/morkhasi" replace color="info">

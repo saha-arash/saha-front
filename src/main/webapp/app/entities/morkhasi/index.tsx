@@ -12,7 +12,7 @@ const Routes = ({ match }) => (
   <>
     <Switch>
       <ErrorBoundaryRoute exact path={`${match.url}/:id/delete`} component={MorkhasiDeleteDialog} />
-      <ErrorBoundaryRoute exact path={`${match.url}/new`} component={MorkhasiUpdate} />
+      <ErrorBoundaryRoute exact path={`${match.url}/new/:kId?`} component={MorkhasiUpdate} />
       <ErrorBoundaryRoute exact path={`${match.url}/:id/edit`} component={MorkhasiUpdate} />
       <ErrorBoundaryRoute exact path={`${match.url}/:id`} component={MorkhasiDetail} />
       <ErrorBoundaryRoute path={match.url} component={Morkhasi} />

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { Button, Row, Col } from 'reactstrap';
+import { Button, Row, Col, Table } from 'reactstrap';
 import { Translate, ICrudGetAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -18,52 +18,53 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
   }, []);
 
   const { karbarEntity } = props;
+  console.log('karbar entity', karbarEntity)
   return (
     <Row>
-      <Col md="8">
+      <Col md="4">
         <h2>
-          <Translate contentKey="sahaApp.karbar.detail.title">Karbar</Translate> [<b>{karbarEntity.id}</b>]
+          کاربر [<b>{karbarEntity.id}</b>]
         </h2>
         <dl className="jh-entity-details">
           <dt>
             <span id="name">
-              <Translate contentKey="sahaApp.karbar.name">Name</Translate>
+              نام
             </span>
           </dt>
           <dd>{karbarEntity.name}</dd>
           <dt>
             <span id="shoghlSazmani">
-              <Translate contentKey="sahaApp.karbar.shoghlSazmani">Shoghl Sazmani</Translate>
+              شغل سازمانی
             </span>
           </dt>
           <dd>{karbarEntity.shoghlSazmani}</dd>
           <dt>
             <span id="shoghlAmali">
-              <Translate contentKey="sahaApp.karbar.shoghlAmali">Shoghl Amali</Translate>
+              شغل عملی
             </span>
           </dt>
           <dd>{karbarEntity.shoghlAmali}</dd>
           <dt>
             <span id="codePerseneli">
-              <Translate contentKey="sahaApp.karbar.codePerseneli">Code Perseneli</Translate>
+              کد پرسنلی
             </span>
           </dt>
           <dd>{karbarEntity.codePerseneli}</dd>
           <dt>
             <span id="bezaneshate">
-              <Translate contentKey="sahaApp.karbar.bezaneshate">Bezaneshate</Translate>
+              بازنشسته
             </span>
           </dt>
           <dd>{karbarEntity.bezaneshate ? 'true' : 'false'}</dd>
           <dt>
             <span id="sazmani">
-              <Translate contentKey="sahaApp.karbar.sazmani">Sazmani</Translate>
+              سازمانی
             </span>
           </dt>
           <dd>{karbarEntity.sazmani ? 'true' : 'false'}</dd>
           <dt>
             <span id="tarikhBazneshastegi">
-              <Translate contentKey="sahaApp.karbar.tarikhBazneshastegi">Tarikh Bazneshastegi</Translate>
+              تاریخ بازنشستگی
             </span>
           </dt>
           <dd>
@@ -71,14 +72,14 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
           </dd>
           <dt>
             <span id="tarikhEstekhdam">
-              <Translate contentKey="sahaApp.karbar.tarikhEstekhdam">Tarikh Estekhdam</Translate>
+              تاریخ استخدام
             </span>
           </dt>
           <dd>
             <TextFormat value={karbarEntity.tarikhEstekhdam} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
-            <Translate contentKey="sahaApp.karbar.bargeMamoorit">Barge Mamoorit</Translate>
+            برگه ماموریت
           </dt>
           <dd>
             {karbarEntity.bargeMamoorits
@@ -91,7 +92,7 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
               : null}
           </dd>
           <dt>
-            <Translate contentKey="sahaApp.karbar.binanadeBargeMamoorit">Binanade Barge Mamoorit</Translate>
+            بیننده‌ی برگه ماموریت
           </dt>
           <dd>
             {karbarEntity.binanadeBargeMamoorits
@@ -104,19 +105,19 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
               : null}
           </dd>
           <dt>
-            <Translate contentKey="sahaApp.karbar.yegan">Yegan</Translate>
+            یگان
           </dt>
           <dd>{karbarEntity.yeganId ? karbarEntity.yeganId : ''}</dd>
           <dt>
-            <Translate contentKey="sahaApp.karbar.yeganCode">Yegan Code</Translate>
+            کد یگان
           </dt>
           <dd>{karbarEntity.yeganCodeId ? karbarEntity.yeganCodeId : ''}</dd>
           <dt>
-            <Translate contentKey="sahaApp.karbar.daraje">Daraje</Translate>
+            درجه
           </dt>
           <dd>{karbarEntity.darajeId ? karbarEntity.darajeId : ''}</dd>
           <dt>
-            <Translate contentKey="sahaApp.karbar.semat">Semat</Translate>
+            سمت
           </dt>
           <dd>{karbarEntity.sematId ? karbarEntity.sematId : ''}</dd>
         </dl>
@@ -133,6 +134,130 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
             <Translate contentKey="entity.action.edit">Edit</Translate>
           </span>
         </Button>
+      </Col>
+      <Col md="8">
+        <Row>
+          <Col>
+          <Button tag={Link} to={`/morkhasi/new/${karbarEntity.id}`} replace color="success">
+          ایجاد مرخصی‌ جدید
+        </Button>
+        </Col>
+        <Col>
+        <Button tag={Link} to={`/dore/new/${karbarEntity.id}`} replace color="success">
+          ایجاد دوره جدید
+        </Button>
+        </Col>
+        <Col>
+        <Button tag={Link} to={`/negahbani/new/${karbarEntity.id}`} replace color="success">
+          ایجاد نگهبانی‌ جدید
+        </Button>
+        </Col>
+        </Row>
+        <div className="mb-5">
+          <h4 className="mb-3">
+            مرخصی‌ها
+          </h4>
+        <Table>
+          <thead>
+            <tr>
+              <th>
+                  شناسه مرخصی‌
+              </th>
+              <th>
+                شروع
+              </th>
+              <th>پایان</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              karbarEntity.morkhasiDTOS && karbarEntity.morkhasiDTOS.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    {item.id}
+                  </td>
+                  <td>
+                    {item.begin}
+                  </td>
+                  <td>
+                    {item.end}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </Table>
+        </div>
+        <div className="mb-5">
+          <h4 className="mb-3">
+            دوره‌ها
+          </h4>
+        <Table>
+          <thead>
+            <tr>
+              <th>
+                  شناسه دوره
+              </th>
+              <th>
+                شروع
+              </th>
+              <th>پایان</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              karbarEntity.doreDTOS && karbarEntity.doreDTOS.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    {item.id}
+                  </td>
+                  <td>
+                    {item.begin}
+                  </td>
+                  <td>
+                    {item.end}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </Table>
+        </div>
+        <div className="mb-5">
+          <h4 className="mb-3">
+            نگهبانی‌ها
+          </h4>
+        <Table>
+          <thead>
+            <tr>
+              <th>
+                  شناسه
+              </th>
+              <th>
+                شروع
+              </th>
+              <th>پایان</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              karbarEntity.negahbanis && karbarEntity.negahbanis.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    {item.id}
+                  </td>
+                  <td>
+                    {item.begin}
+                  </td>
+                  <td>
+                    {item.end}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </Table>
+        </div>
       </Col>
     </Row>
   );

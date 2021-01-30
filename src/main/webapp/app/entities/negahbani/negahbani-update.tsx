@@ -20,7 +20,7 @@ import {toast} from 'react-toastify';
 export interface INegahbaniUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const NegahbaniUpdate = (props: INegahbaniUpdateProps) => {
-  const [karbarId, setKarbarId] = useState('0');
+  const [karbarId, setKarbarId] = useState(props.match.params.kId || '0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
@@ -124,6 +124,7 @@ export const NegahbaniUpdate = (props: INegahbaniUpdateProps) => {
                 options={karbars.map(({name, id}) => ({label: name, value: id}))} 
                 placeholder=""
                 onChange={(e) => setKarbarId(e && e.value)}
+                value={karbars.map(({name, id}) => ({label: name, value: id})).find(({value}) => String(value) === karbarId)}
                 />
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/negahbani" replace color="info">
