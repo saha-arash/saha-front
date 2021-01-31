@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import DatePicker from 'react-datepicker2';
 import { RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col, Label, Input } from 'reactstrap';
+import translateToFa from './translate';
 const HesabResiItemDetail: FC<RouteComponentProps> = ({ match }) => {
   const { id, item }: any = match.params;
 
@@ -9,7 +10,7 @@ const HesabResiItemDetail: FC<RouteComponentProps> = ({ match }) => {
     <Row>
       <Col lg={12}>
         <h3 className="my-5">
-          جزییات حسابرسی
+          {translateToFa[item] || item} [ {id} ]
       </h3>
         <div className="mb-4">
           <h5 className="mb-3">

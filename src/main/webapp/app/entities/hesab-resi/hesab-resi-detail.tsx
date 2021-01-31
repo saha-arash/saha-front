@@ -48,89 +48,107 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
           <dd>
             {statusToFarsi[hesabResiEntity.vaziateHesabResi] || hesabResiEntity.vaziateHesabResi}
             </dd>
-          <dl className="d-flex flex-wrap">
-            <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
-              مدارک
-          </dt>
-            <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
-              رفع ایرادات
-          </dt>
-            <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
-              برگه ماموریت‌ها
-          </dt>
-
+            <dl className="d-flex flex-wrap">
+            {
+              (role === 'ROLE_YEGAN' || role === 'ROLE_ZIR_YEGAN') && (
+                <>
+                <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                    برگه ماموریت‌ها
+                </Button>
+                <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                    مدارک
+                </Button>
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                    رفع ایرادات
+                </Button>
+                </>
+              )
+            }
+          
             {
               (role === 'ROLE_ADMIN' || role === 'ROLE_KARBAR') && (
                 <>
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
-                    بیلان سه سال قبل
-                  </dt>
-
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     بیلان سال قبل
-                  </dt>
+                  </Button>
 
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSeSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                    بیلان سه سال قبل
+                  </Button>
+
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/BarnameHesabResi`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     برنامه حسابرسی
-                  </dt>
+                  </Button>
 
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     لیست یگان‌های گزینش شده
-                  </dt>
+                  </Button>
 
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     لیست یگان‌های جهت پیگیری
-                  </dt>
+                  </Button>
 
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     لیست یگان‌های خارج از مرکز
-                  </dt>
+                  </Button>
 
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/MohasebeHazineMamooriat`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     هزینه ماموریت
-                  </dt>
+                  </Button>
 
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/DastoorAmalEjraE`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     دستور العمل اجرایی
-                  </dt>
+                  </Button>
 
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/GardeshKar`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     گردش کار
-                  </dt>
+                  </Button>
 
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                    برگه ماموریت‌ها
+                  </Button>
+
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/Madarek`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                    مدارک
+                  </Button>
+
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/MadarekGozaresh`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     گزارش
-                  </dt>
+                  </Button>
 
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     گزارش حضور
-                  </dt>
+                  </Button>
 
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/KholaseGozaresh`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     خلاصه گزارش
-                  </dt>
+                  </Button>
 
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/MostaKhreje`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     مستخرجه
-                  </dt>
+                  </Button>
 
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/RafeIradat`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                    رفع ایرادات
+                  </Button>
+
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/BankEtelaati`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     بانک اطلاعاتی
-                  </dt>
+                  </Button>
 
-                  <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
-                    نامه
-                  </dt>
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/Nameh`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                    نامه‌ها
+                  </Button>
                 </>
               )
             }
 
-            {/* <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+            {/* <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
               چکیده گردش کار
-          </dt>
-            <dt className="cardd-1 d-flex text-center justify-content-center align-items-center">
+          </Button>
+            <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
               گردش کار برنامه حسابرسی
-            </dt> */}
+            </Button> */}
           </dl>
 
         </dl>
@@ -141,7 +159,7 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
           </span>
         </Button>
         &nbsp;
-        <Button tag={Link} to={`/hesab-resi/${hesabResiEntity.id}/edit`} replace color="primary">
+        <Button tag={Link} to={`./hesab-resi/${hesabResiEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.edit">Edit</Translate>
