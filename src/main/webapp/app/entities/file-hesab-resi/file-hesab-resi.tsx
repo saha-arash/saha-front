@@ -22,6 +22,22 @@ import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 import TimeToText from 'app/shared/timeToText/TimeToText';
 
+const translateToFa = {
+  VoroodiBilanSalGhabl: 'بیلان سال قبل',
+  VoroodiBilanSeSalGhabl: 'بیلان سه سال قبل',
+  BarnameHesabResi: 'برنامه حسابرسی',
+  MohasebeHazineMamooriat: 'هزینه ماموریت',
+  DastoorAmalEjraE: 'دستورالعمل اجرایی',
+  Madarek: 'مدارک',
+  MadarekGozaresh: 'گزارش',
+  GardeshKar: 'گردش کار',
+  MostaKhreje: 'مستخرجه',
+  KholaseGozaresh: 'خلاصه گزارش',
+  BankEtelaati: 'بانک اطلاعاتی',
+  RafeIradat: 'رفع ایرادات',
+  Nameh: 'نامه‌ها'
+};
+
 export interface IFileHesabResiProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const FileHesabResi = (props: IFileHesabResiProps) => {
@@ -66,11 +82,13 @@ export const FileHesabResi = (props: IFileHesabResiProps) => {
   return (
     <div>
       <h2 id="file-hesab-resi-heading">
-        <Translate contentKey="sahaApp.fileHesabResi.home.title">File Hesab Resis</Translate>
+        {
+          translateToFa[fileType] || 'فایل حسابرسی'
+        }
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.fileHesabResi.home.createLabel">Create new File Hesab Resi</Translate>
+          ایجاد فایل حسابرسی جدید
         </Link>
       </h2>
       <div className="table-responsive">
@@ -325,7 +343,7 @@ export const FileHesabResi = (props: IFileHesabResiProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.fileHesabResi.home.notFound">No File Hesab Resis found</Translate>
+              هیچ فایلی پیدا نشد
             </div>
           )
         )}

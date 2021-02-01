@@ -43,10 +43,14 @@ import { getEntity, updateEntity, createEntity, setBlob, reset } from './file-he
 import { IFileHesabResi } from 'app/shared/model/file-hesab-resi.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
+import translateToFa from '../hesab-resi/translate';
 
 export interface IFileHesabResiUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
+
+  const { fileType, hesabresiId }: any = props.match.params;
+
   const [hesabResiId, setHesabResiId] = useState('0');
   const [barnameHesabResiId, setBarnameHesabResiId] = useState('0');
   const [bankEtelaatiId, setBankEtelaatiId] = useState('0');
@@ -90,7 +94,7 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
   const { file, fileContentType } = fileHesabResiEntity;
 
   const handleClose = () => {
-    props.history.push('/file-hesab-resi' + props.location.search);
+    props.history.push(`/file-hesab-resi/${fileType}/${hesabresiId}` + props.location.search);
   };
 
   useEffect(() => {
@@ -100,22 +104,22 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
       props.getEntity(props.match.params.id);
     }
 
-    props.getHesabResis();
-    props.getBarnameHesabResis();
-    props.getBankEtelaatis();
-    props.getRafeIradats();
-    props.getMostaKhrejes();
-    props.getBilanSeSalGhabls();
-    props.getMohasebeHazineMamooriats();
-    props.getChekideGardeshKars();
-    props.getGozareshHozoors();
-    props.getBilanSalGhabls();
-    props.getMadareks();
-    props.getGardeshkarBarnameHesabresis();
-    props.getDastoorAmalEjraEs();
-    props.getNamehs();
-    props.getKholaseGozareshes();
-    props.getGardeshKars();
+    // props.getHesabResis();
+    // props.getBarnameHesabResis();
+    // props.getBankEtelaatis();
+    // props.getRafeIradats();
+    // props.getMostaKhrejes();
+    // props.getBilanSeSalGhabls();
+    // props.getMohasebeHazineMamooriats();
+    // props.getChekideGardeshKars();
+    // props.getGozareshHozoors();
+    // props.getBilanSalGhabls();
+    // props.getMadareks();
+    // props.getGardeshkarBarnameHesabresis();
+    // props.getDastoorAmalEjraEs();
+    // props.getNamehs();
+    // props.getKholaseGozareshes();
+    // props.getGardeshKars();
   }, []);
 
   const onBlobChange = (isAnImage, name) => event => {
@@ -133,12 +137,14 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
   }, [props.updateSuccess]);
 
   const saveEntity = (event, errors, values) => {
-    values.tarikhName = convertDateTimeToServer(values.tarikhName);
+    // values.tarikhName = convertDateTimeToServer(values.tarikhName);
 
     if (errors.length === 0) {
       const entity = {
         ...fileHesabResiEntity,
-        ...values
+        ...values,
+        bankEtelaatiId: hesabresiId,
+        fileType
       };
 
       if (isNew) {
@@ -149,12 +155,13 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
     }
   };
 
+  
   return (
     <div>
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.fileHesabResi.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.fileHesabResi.home.createOrEditLabel">Create or edit a FileHesabResi</Translate>
+            ایجاد {translateToFa[fileType]}
           </h2>
         </Col>
       </Row>
@@ -167,7 +174,7 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
               {!isNew ? (
                 <AvGroup>
                   <Label for="file-hesab-resi-id">
-                    <Translate contentKey="global.field.id">ID</Translate>
+                    شناسه
                   </Label>
                   <AvInput id="file-hesab-resi-id" type="text" className="form-control" name="id" required readOnly />
                 </AvGroup>
@@ -175,13 +182,13 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
               <AvGroup>
                 <AvGroup>
                   <Label id="fileLabel" for="file">
-                    <Translate contentKey="sahaApp.fileHesabResi.file">File</Translate>
+                    فایل
                   </Label>
                   <br />
                   {file ? (
                     <div>
                       <a onClick={openFile(fileContentType, file)}>
-                        <Translate contentKey="entity.action.open">Open</Translate>
+                        باز کردن
                       </a>
                       <br />
                       <Row>
@@ -201,7 +208,8 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
                   <input id="file_file" type="file" onChange={onBlobChange(false, 'file')} />
                   <AvInput type="hidden" name="file" value={file} />
                 </AvGroup>
-              </AvGroup>
+                </AvGroup>
+              {/* 
               <AvGroup>
                 <Label id="shomareLabel" for="file-hesab-resi-shomare">
                   <Translate contentKey="sahaApp.fileHesabResi.shomare">Shomare</Translate>
@@ -507,7 +515,7 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
                       ))
                     : null}
                 </AvInput>
-              </AvGroup>
+              </AvGroup> */}
               <Button tag={Link} id="cancel-save" to="/file-hesab-resi" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
