@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import DatePicker from 'react-datepicker2';
-import { RouteComponentProps } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col, Label, Input } from 'reactstrap';
 import translateToFa from './translate';
 const HesabResiItemDetail: FC<RouteComponentProps> = ({ match }) => {
@@ -12,7 +12,7 @@ const HesabResiItemDetail: FC<RouteComponentProps> = ({ match }) => {
         <h3 className="my-5">
           {translateToFa[item] || item} [ {id} ]
       </h3>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <h5 className="mb-3">
             فایل
         </h5>
@@ -47,17 +47,20 @@ const HesabResiItemDetail: FC<RouteComponentProps> = ({ match }) => {
             شماره گردش
         </h5>
           <Input />
-        </div>
+        </div> */}
       </Col>
       <Col lg={12} className="mb-4">
-        <Button color="warning" className="px-4">
+        <Button tag={Link} to={{
+          pathname: `/file-hesab-resi/${item}/${id}`,
+          
+        }} color="warning" className="px-4">
           فایل‌ها
         </Button>
       </Col>
       <Col lg={12} className="mb-4">
-        <Button color="primary" className="px-4">
+        {/* <Button color="primary" className="px-4">
           ثبت
-        </Button>
+        </Button> */}
       </Col>
     </Row>
   )

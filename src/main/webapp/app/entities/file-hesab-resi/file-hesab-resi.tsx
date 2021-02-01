@@ -26,9 +26,15 @@ export interface IFileHesabResiProps extends StateProps, DispatchProps, RouteCom
 
 export const FileHesabResi = (props: IFileHesabResiProps) => {
   const [paginationState, setPaginationState] = useState(getSortState(props.location, ITEMS_PER_PAGE));
-
+  const {fileType, hesabresiId}: any = props.match.params;
   const getAllEntities = () => {
-    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
+    props.getEntities(
+      paginationState.activePage - 1, 
+      paginationState.itemsPerPage, 
+      `${paginationState.sort},${paginationState.order}`,
+      fileType , 
+      hesabresiId
+      );
   };
 
   const sortEntities = () => {

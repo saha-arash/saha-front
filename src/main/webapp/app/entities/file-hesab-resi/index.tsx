@@ -15,7 +15,7 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute exact path={`${match.url}/new`} component={FileHesabResiUpdate} />
       <ErrorBoundaryRoute exact path={`${match.url}/:id/edit`} component={FileHesabResiUpdate} />
       <ErrorBoundaryRoute exact path={`${match.url}/:id`} component={FileHesabResiDetail} />
-      <ErrorBoundaryRoute path={match.url} component={FileHesabResi} />
+      <ErrorBoundaryRoute path={`${match.url}/:fileType?/:hesabresiId?`} component={FileHesabResi} />
     </Switch>
   </>
 );

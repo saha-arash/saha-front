@@ -113,8 +113,10 @@ const apiUrl = 'api/file-hesab-resis';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IFileHesabResi> = (page, size, sort) => {
-  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+export const getEntities: ICrudGetAllAction<IFileHesabResi> = (page, size, sort, fileType, hesabresiId) => {
+  const requestUrl = `${apiUrl}?${fileType && hesabresiId ? `fileType=${fileType}&hesabresiId=${hesabresiId}` : ''}${
+    sort ? `&page=${page}&size=${size}&sort=${sort}` : ''
+  }`;
   return {
     type: ACTION_TYPES.FETCH_FILEHESABRESI_LIST,
     payload: axios.get<IFileHesabResi>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)

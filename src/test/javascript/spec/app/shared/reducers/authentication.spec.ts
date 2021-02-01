@@ -223,7 +223,7 @@ describe('Authentication reducer tests', () => {
           locale: 'fa'
         }
       ];
-      await store.dispatch(login('test', 'test'));
+      // await store.dispatch(login('test', 'test'));
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
