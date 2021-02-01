@@ -55,7 +55,7 @@ const HesabResiItemDetail: FC<RouteComponentProps> = ({ match, location }) => {
         (item === "VoroodiBilanSeSalGhabl" || item === "VoroodiBilanSalGhabl" && location.state?.sal) && (
           <Col lg="12" className="mb-4">
         
-        <a href={`${axios.defaults.baseURL}${item === "VoroodiBilanSeSalGhabl" ? `/api/sesal/excel/${location.state?.sal}` : `/api/sal/excel/${location.state?.sal}`}`}>
+        <a download href={`${axios.defaults.baseURL}${item === "VoroodiBilanSeSalGhabl" ? `api/sesal/excel/${location.state?.sal}` : `api/sal/excel/${location.state?.sal}`}`}>
           دریافت خروجی
         </a>
       </Col>
