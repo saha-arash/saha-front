@@ -68,11 +68,17 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
             {
               (role === 'ROLE_ADMIN' || role === 'ROLE_KARBAR') && (
                 <>
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={{
+                    pathname: `./${props.match.params.id}/VoroodiBilanSalGhabl`,
+                    state: {sal: hesabResiEntity.sal}
+                  }} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     بیلان سال قبل
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSeSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={{
+                    pathname: `./${props.match.params.id}/VoroodiBilanSeSalGhabl`,
+                    state: {sal: hesabResiEntity.sal}
+                  }} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     بیلان سه سال قبل
                   </Button>
 

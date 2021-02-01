@@ -3,7 +3,9 @@ import DatePicker from 'react-datepicker2';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col, Label, Input } from 'reactstrap';
 import translateToFa from './translate';
-const HesabResiItemDetail: FC<RouteComponentProps> = ({ match }) => {
+import axios from "axios";
+
+const HesabResiItemDetail: FC<RouteComponentProps> = ({ match, location }) => {
   const { id, item }: any = match.params;
 
   return (
@@ -49,6 +51,16 @@ const HesabResiItemDetail: FC<RouteComponentProps> = ({ match }) => {
           <Input />
         </div> */}
       </Col>
+      {
+        (item === "VoroodiBilanSeSalGhabl" || item === "VoroodiBilanSalGhabl" && location.state?.sal) && (
+          <Col lg="12" className="mb-4">
+        
+        <a href={`${axios.defaults.baseURL}${item === "VoroodiBilanSeSalGhabl" ? `/api/sesal/excel/${location.state?.sal}` : `/api/sal/excel/${location.state?.sal}`}`}>
+          دریافت خروجی
+        </a>
+      </Col>
+        )
+      }
       <Col lg={12} className="mb-4">
         <Button tag={Link} to={{
           pathname: `/file-hesab-resi/${item}/${id}`,
