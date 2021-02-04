@@ -106,7 +106,7 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
                     دستور العمل اجرایی
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`gardeshkar-barname-hesabresi/${props.match.params.id}/${hesabResiEntity.gardeshkarBarnameHesabresiId}`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`/gardesh-kar/${hesabResiEntity.gardeshkarBarnameHesabresiId}/edit`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     گردش کار
                   </Button>
 

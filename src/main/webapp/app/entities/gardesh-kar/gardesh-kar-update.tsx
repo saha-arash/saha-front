@@ -13,13 +13,15 @@ import { getEntity, updateEntity, createEntity, reset } from './gardesh-kar.redu
 import { IGardeshKar } from 'app/shared/model/gardesh-kar.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
+import DatePicker from 'react-datepicker2';
+import moment from 'jalali-moment';
 
 export interface IGardeshKarUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const GardeshKarUpdate = (props: IGardeshKarUpdateProps) => {
   const [hesabResiId, setHesabResiId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
-
+  const [date, setDate] = useState();
   const { gardeshKarEntity, hesabResis, loading, updating } = props;
 
   const handleClose = () => {
@@ -43,7 +45,7 @@ export const GardeshKarUpdate = (props: IGardeshKarUpdateProps) => {
   }, [props.updateSuccess]);
 
   const saveEntity = (event, errors, values) => {
-    values.tarikh = convertDateTimeToServer(values.tarikh);
+    values.tarikh = convertDateTimeToServer(date);
 
     if (errors.length === 0) {
       const entity = {
@@ -64,7 +66,7 @@ export const GardeshKarUpdate = (props: IGardeshKarUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.gardeshKar.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.gardeshKar.home.createOrEditLabel">Create or edit a GardeshKar</Translate>
+            گردش کار
           </h2>
         </Col>
       </Row>
@@ -77,36 +79,55 @@ export const GardeshKarUpdate = (props: IGardeshKarUpdateProps) => {
               {!isNew ? (
                 <AvGroup>
                   <Label for="gardesh-kar-id">
-                    <Translate contentKey="global.field.id">ID</Translate>
+                    شناسه
                   </Label>
                   <AvInput id="gardesh-kar-id" type="text" className="form-control" name="id" required readOnly />
                 </AvGroup>
               ) : null}
               <AvGroup>
                 <Label id="tarikhLabel" for="gardesh-kar-tarikh">
-                  <Translate contentKey="sahaApp.gardeshKar.tarikh">Tarikh</Translate>
+                  تاریخ
                 </Label>
-                <AvInput
+                <DatePicker
+                  isGregorian={false}
+                  timePicker={false}
+                  onChange={(e) => setDate(e)}
+                  value={date || (props.gardeshKarEntity.tarikh ? moment(props.gardeshKarEntity.tarikh?.toString()): null)}
+                  persianDigits
+                />
+                {/* <AvInput
                   id="gardesh-kar-tarikh"
                   type="datetime-local"
                   className="form-control"
                   name="tarikh"
                   placeholder={'YYYY-MM-DD HH:mm'}
                   value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.gardeshKarEntity.tarikh)}
-                />
+                /> */}
               </AvGroup>
               <AvGroup>
                 <Label id="mozooLabel" for="gardesh-kar-mozoo">
-                  <Translate contentKey="sahaApp.gardeshKar.mozoo">Mozoo</Translate>
+                  موضوع
                 </Label>
                 <AvField id="gardesh-kar-mozoo" type="text" name="mozoo" />
               </AvGroup>
               <AvGroup>
                 <Label id="shomareLabel" for="gardesh-kar-shomare">
-                  <Translate contentKey="sahaApp.gardeshKar.shomare">Shomare</Translate>
+                  شماره
                 </Label>
                 <AvField id="gardesh-kar-shomare" type="string" className="form-control" name="shomare" />
               </AvGroup>
+              <div className='mb-4'>
+              <Button 
+                tag={Link} 
+                id="cancel-save" 
+                to={`/file-hesab-resi/GardeshKar/${gardeshKarEntity.id}`} 
+                replace 
+                color="warning"
+                className="px-4"
+              >
+                فایل‌ها
+              </Button>
+              </div>
               <Button tag={Link} id="cancel-save" to="/gardesh-kar" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
