@@ -25,7 +25,7 @@ export const GardeshKarUpdate = (props: IGardeshKarUpdateProps) => {
   const { gardeshKarEntity, hesabResis, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/gardesh-kar' + props.location.search);
+    props.history.goBack();
   };
 
   useEffect(() => {
@@ -128,7 +128,7 @@ export const GardeshKarUpdate = (props: IGardeshKarUpdateProps) => {
                 فایل‌ها
               </Button>
               </div>
-              <Button tag={Link} id="cancel-save" to="/gardesh-kar" replace color="info">
+              <Button tag={Link} onClick={props.history.goBack} replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
