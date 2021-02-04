@@ -91,6 +91,8 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
     updating
   } = props;
 
+  const [fileName, setFileName] = useState()
+
   const { file, fileContentType } = fileHesabResiEntity;
 
   const handleClose = () => {
@@ -123,6 +125,8 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
   }, []);
 
   const onBlobChange = (isAnImage, name) => event => {
+    event.persist()
+    setFileName(event.target.files[0].name)
     setFileData(event, (contentType, data) => props.setBlob(name, data, contentType), isAnImage);
   };
 
@@ -145,7 +149,7 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
         ...values,
         hesabresiId: parseInt(hesabresiId),
         fileType,
-        fileName: 'mm.png'
+        fileName
       };
 
       if (isNew) {
