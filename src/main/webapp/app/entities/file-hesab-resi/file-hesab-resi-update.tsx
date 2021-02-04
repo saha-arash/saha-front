@@ -94,7 +94,7 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
   const { file, fileContentType } = fileHesabResiEntity;
 
   const handleClose = () => {
-    props.history.push(`/file-hesab-resi/${fileType}/${hesabresiId}` + props.location.search);
+    props.history.goBack();
   };
 
   useEffect(() => {
@@ -144,7 +144,8 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
         ...fileHesabResiEntity,
         ...values,
         hesabresiId: parseInt(hesabresiId),
-        fileType
+        fileType,
+        fileName: 'mm.png'
       };
 
       if (isNew) {
@@ -516,7 +517,7 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
                     : null}
                 </AvInput>
               </AvGroup> */}
-              <Button tag={Link} id="cancel-save" to="/file-hesab-resi" replace color="info">
+              <Button tag={Link} id="cancel-save" to={`/file-hesab-resi${fileType}/${hesabresiId}`} replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
