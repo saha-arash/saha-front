@@ -21,6 +21,8 @@ import { IFileHesabResi } from 'app/shared/model/file-hesab-resi.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 import TimeToText from 'app/shared/timeToText/TimeToText';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const translateToFa = {
   VoroodiBilanSalGhabl: 'بیلان سال قبل',
@@ -59,6 +61,15 @@ export const FileHesabResi = (props: IFileHesabResiProps) => {
     //   `${props.location.pathname}?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`
     // );
   };
+
+  const deleteItem = async (id) => {
+    try {
+      await axios.delete(`/api/file-hesab-resis/${id}`)
+      getAllEntities()
+    } catch(e) {
+      toast.error('خطا در حذف فایل')
+    }
+  }
 
   useEffect(() => {
     sortEntities();
@@ -132,10 +143,11 @@ export const FileHesabResi = (props: IFileHesabResiProps) => {
                     <div className="btn-group flex-btn-group-container">
                       
                       <Button
-                        tag={Link}
-                        to={`${match.url}/${fileHesabResi.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                        // tag={Link}
+                        // to={`${match.url}/${fileHesabResi.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
                         color="danger"
                         size="sm"
+                        onClick={() => deleteItem(fileHesabResi.id)}
                       >
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
