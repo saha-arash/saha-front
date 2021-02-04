@@ -166,7 +166,7 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.fileHesabResi.home.createOrEditLabel">
-            ایجاد {translateToFa[fileType]}
+            ایجاد فایل
           </h2>
         </Col>
       </Row>

@@ -88,7 +88,7 @@ export const FileHesabResi = (props: IFileHesabResiProps) => {
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          ایجاد فایل حسابرسی جدید
+          ایجاد فایل
         </Link>
       </h2>
       <div className="table-responsive">
@@ -97,77 +97,12 @@ export const FileHesabResi = (props: IFileHesabResiProps) => {
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  شناسه <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('file')}>
-                  <Translate contentKey="sahaApp.fileHesabResi.file">File</Translate> <FontAwesomeIcon icon="sort" />
+                  فایل <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={sort('shomare')}>
-                  <Translate contentKey="sahaApp.fileHesabResi.shomare">Shomare</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('tarikhName')}>
-                  <Translate contentKey="sahaApp.fileHesabResi.tarikhName">Tarikh Name</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('mozoo')}>
-                  <Translate contentKey="sahaApp.fileHesabResi.mozoo">Mozoo</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('fileType')}>
-                  <Translate contentKey="sahaApp.fileHesabResi.fileType">File Type</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.hesabResi">Hesab Resi</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.barnameHesabResi">Barname Hesab Resi</Translate>{' '}
-                  <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.bankEtelaati">Bank Etelaati</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.rafeIradat">Rafe Iradat</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.mostaKhreje">Mosta Khreje</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.bilanSeSalGhabl">Bilan Se Sal Ghabl</Translate>{' '}
-                  <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.mohasebeHazineMamooriat">Mohasebe Hazine Mamooriat</Translate>{' '}
-                  <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.chekideGardeshKar">Chekide Gardesh Kar</Translate>{' '}
-                  <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.gozareshHozoor">Gozaresh Hozoor</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.bilanSalGhabl">Bilan Sal Ghabl</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.madarek">Madarek</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.gardeshkarBarnameHesabresi">Gardeshkar Barname Hesabresi</Translate>{' '}
-                  <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.dastoorAmalEjraE">Dastoor Amal Ejra E</Translate>{' '}
-                  <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.nameh">Nameh</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.kholaseGozaresh">Kholase Gozaresh</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="sahaApp.fileHesabResi.gardeshKar">Gardesh Kar</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
+               
                 <th />
               </tr>
             </thead>
@@ -192,137 +127,10 @@ export const FileHesabResi = (props: IFileHesabResiProps) => {
                       </div>
                     ) : null}
                   </td>
-                  <td>{fileHesabResi.shomare}</td>
-                  <td>
-                    <TimeToText type="date" value={fileHesabResi.tarikhName} format={APP_DATE_FORMAT} />
-                  </td>
-                  <td>{fileHesabResi.mozoo}</td>
-                  <td>
-                    <Translate contentKey={`sahaApp.FileType.${fileHesabResi.fileType}`} />
-                  </td>
-                  <td>
-                    {fileHesabResi.hesabResiId ? (
-                      <Link to={`hesab-resi/${fileHesabResi.hesabResiId}`}>{fileHesabResi.hesabResiId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {fileHesabResi.barnameHesabResiId ? (
-                      <Link to={`barname-hesab-resi/${fileHesabResi.barnameHesabResiId}`}>{fileHesabResi.barnameHesabResiId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {fileHesabResi.bankEtelaatiId ? (
-                      <Link to={`bank-etelaati/${fileHesabResi.bankEtelaatiId}`}>{fileHesabResi.bankEtelaatiId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {fileHesabResi.rafeIradatId ? (
-                      <Link to={`rafe-iradat/${fileHesabResi.rafeIradatId}`}>{fileHesabResi.rafeIradatId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {fileHesabResi.mostaKhrejeId ? (
-                      <Link to={`mosta-khreje/${fileHesabResi.mostaKhrejeId}`}>{fileHesabResi.mostaKhrejeId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {fileHesabResi.bilanSeSalGhablId ? (
-                      <Link to={`bilan-se-sal-ghabl/${fileHesabResi.bilanSeSalGhablId}`}>{fileHesabResi.bilanSeSalGhablId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {fileHesabResi.mohasebeHazineMamooriatId ? (
-                      <Link to={`mohasebe-hazine-mamooriat/${fileHesabResi.mohasebeHazineMamooriatId}`}>
-                        {fileHesabResi.mohasebeHazineMamooriatId}
-                      </Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {fileHesabResi.chekideGardeshKarId ? (
-                      <Link to={`chekide-gardesh-kar/${fileHesabResi.chekideGardeshKarId}`}>{fileHesabResi.chekideGardeshKarId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {fileHesabResi.gozareshHozoorId ? (
-                      <Link to={`gozaresh-hozoor/${fileHesabResi.gozareshHozoorId}`}>{fileHesabResi.gozareshHozoorId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {fileHesabResi.bilanSalGhablId ? (
-                      <Link to={`bilan-sal-ghabl/${fileHesabResi.bilanSalGhablId}`}>{fileHesabResi.bilanSalGhablId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>{fileHesabResi.madarekId ? <Link to={`madarek/${fileHesabResi.madarekId}`}>{fileHesabResi.madarekId}</Link> : ''}</td>
-                  <td>
-                    {fileHesabResi.gardeshkarBarnameHesabresiId ? (
-                      <Link to={`gardeshkar-barname-hesabresi/${fileHesabResi.gardeshkarBarnameHesabresiId}`}>
-                        {fileHesabResi.gardeshkarBarnameHesabresiId}
-                      </Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {fileHesabResi.dastoorAmalEjraEId ? (
-                      <Link to={`dastoor-amal-ejra-e/${fileHesabResi.dastoorAmalEjraEId}`}>{fileHesabResi.dastoorAmalEjraEId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>{fileHesabResi.namehId ? <Link to={`nameh/${fileHesabResi.namehId}`}>{fileHesabResi.namehId}</Link> : ''}</td>
-                  <td>
-                    {fileHesabResi.kholaseGozareshId ? (
-                      <Link to={`kholase-gozaresh/${fileHesabResi.kholaseGozareshId}`}>{fileHesabResi.kholaseGozareshId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
-                  <td>
-                    {fileHesabResi.gardeshKarId ? (
-                      <Link to={`gardesh-kar/${fileHesabResi.gardeshKarId}`}>{fileHesabResi.gardeshKarId}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
+                  
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${fileHesabResi.id}`} color="info" size="sm">
-                        <FontAwesomeIcon icon="eye" />{' '}
-                        <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.view">View</Translate>
-                        </span>
-                      </Button>
-                      <Button
-                        tag={Link}
-                        to={`${match.url}/${fileHesabResi.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
-                        color="primary"
-                        size="sm"
-                      >
-                        <FontAwesomeIcon icon="pencil-alt" />{' '}
-                        <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.edit">Edit</Translate>
-                        </span>
-                      </Button>
+                      
                       <Button
                         tag={Link}
                         to={`${match.url}/${fileHesabResi.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
