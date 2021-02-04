@@ -101,8 +101,8 @@ const apiUrl = 'api/namehs';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<INameh> = (page, size, sort) => {
-  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+export const getEntities: ICrudGetAllAction<INameh> = (page, size, sort, id) => {
+  const requestUrl = `${apiUrl}?${id ? `hesabresiId=${id}&` : ''}${sort ? `page=${page}&size=${size}&sort=${sort}` : ''}`;
   return {
     type: ACTION_TYPES.FETCH_NAMEH_LIST,
     payload: axios.get<INameh>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)

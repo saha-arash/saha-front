@@ -53,8 +53,8 @@ export const DoreUpdate = (props: IDoreUpdateProps) => {
   }, [props.updateSuccess]);
 
   const saveEntity = (event, errors, values) => {
-    values.begin = convertDateTimeToServer(values.begin);
-    values.end = convertDateTimeToServer(values.end);
+    // values.begin = convertDateTimeToServer(values.begin);
+    // values.end = convertDateTimeToServer(values.end);
 
     if (startDate && endDate && karbarId !== '0') {
       const entity = {

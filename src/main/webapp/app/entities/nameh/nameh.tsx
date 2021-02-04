@@ -50,11 +50,11 @@ export const Nameh = (props: INamehProps) => {
   return (
     <div>
       <h2 id="nameh-heading">
-        <Translate contentKey="sahaApp.nameh.home.title">Namehs</Translate>
+        نامه‌ها
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.nameh.home.createLabel">Create new Nameh</Translate>
+          ایجاد نامه جدید
         </Link>
       </h2>
       <div className="table-responsive">
@@ -63,13 +63,13 @@ export const Nameh = (props: INamehProps) => {
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  شناسه <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('shomare')}>
-                  <Translate contentKey="sahaApp.nameh.shomare">Shomare</Translate> <FontAwesomeIcon icon="sort" />
+                  شماره <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('tarikhEblagh')}>
-                  <Translate contentKey="sahaApp.nameh.tarikhEblagh">Tarikh Eblagh</Translate> <FontAwesomeIcon icon="sort" />
+                  تاریخ ابلاغ <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>

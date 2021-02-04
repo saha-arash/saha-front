@@ -13,13 +13,15 @@ import { getEntity, updateEntity, createEntity, reset } from './nameh.reducer';
 import { INameh } from 'app/shared/model/nameh.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
+import DatePicker from 'react-datepicker2';
+import moment from 'jalali-moment';
 
 export interface INamehUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const NamehUpdate = (props: INamehUpdateProps) => {
   const [hesabResiId, setHesabResiId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
-
+  const [eblaghDate, setEblaghDate] = useState();
   const { namehEntity, hesabResis, loading, updating } = props;
 
   const handleClose = () => {
@@ -43,12 +45,13 @@ export const NamehUpdate = (props: INamehUpdateProps) => {
   }, [props.updateSuccess]);
 
   const saveEntity = (event, errors, values) => {
-    values.tarikhEblagh = convertDateTimeToServer(values.tarikhEblagh);
+    // values.tarikhEblagh = convertDateTimeToServer(values.tarikhEblagh);
 
     if (errors.length === 0) {
       const entity = {
         ...namehEntity,
-        ...values
+        ...values,
+        tarikhEblagh: convertDateTimeToServer(eblaghDate)
       };
 
       if (isNew) {
@@ -64,7 +67,7 @@ export const NamehUpdate = (props: INamehUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.nameh.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.nameh.home.createOrEditLabel">Create or edit a Nameh</Translate>
+            نامه
           </h2>
         </Col>
       </Row>
@@ -77,30 +80,49 @@ export const NamehUpdate = (props: INamehUpdateProps) => {
               {!isNew ? (
                 <AvGroup>
                   <Label for="nameh-id">
-                    <Translate contentKey="global.field.id">ID</Translate>
+                    شناسه
                   </Label>
                   <AvInput id="nameh-id" type="text" className="form-control" name="id" required readOnly />
                 </AvGroup>
               ) : null}
               <AvGroup>
                 <Label id="shomareLabel" for="nameh-shomare">
-                  <Translate contentKey="sahaApp.nameh.shomare">Shomare</Translate>
+                  شماره
                 </Label>
                 <AvField id="nameh-shomare" type="text" name="shomare" />
               </AvGroup>
               <AvGroup>
                 <Label id="tarikhEblaghLabel" for="nameh-tarikhEblagh">
-                  <Translate contentKey="sahaApp.nameh.tarikhEblagh">Tarikh Eblagh</Translate>
+                  تاریخ ابلاغ
                 </Label>
-                <AvInput
+                <DatePicker
+                  isGregorian={false}
+                  timePicker={false}
+                  onChange={(e) => setEblaghDate(e)}
+                  value={eblaghDate || (props.namehEntity.tarikhEblagh ? moment(props.namehEntity.tarikhEblagh?.toString()): null)}
+                  persianDigits
+                />
+                {/* <AvInput
                   id="nameh-tarikhEblagh"
                   type="datetime-local"
                   className="form-control"
                   name="tarikhEblagh"
                   placeholder={'YYYY-MM-DD HH:mm'}
                   value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.namehEntity.tarikhEblagh)}
-                />
+                /> */}
               </AvGroup>
+              <div className='mb-4'>
+              <Button 
+                tag={Link} 
+                id="cancel-save" 
+                to={`/file-hesab-resi/Nameh/${namehEntity.id}`} 
+                replace 
+                color="warning"
+                className="px-4"
+              >
+                فایل‌ها
+              </Button>
+              </div>
               <Button tag={Link} id="cancel-save" to="/nameh" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
