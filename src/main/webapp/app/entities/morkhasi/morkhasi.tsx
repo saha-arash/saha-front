@@ -23,9 +23,9 @@ export const Morkhasi = (props: IMorkhasiProps) => {
 
   const sortEntities = () => {
     getAllEntities();
-    props.history.push(
-      `${props.location.pathname}?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`
-    );
+    // props.history.push(
+    //   `${props.location.pathname}?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`
+    // );
   };
 
   useEffect(() => {
@@ -94,12 +94,12 @@ export const Morkhasi = (props: IMorkhasiProps) => {
                   {/* <td>{morkhasi.karbarId ? <Link to={`karbar/${morkhasi.karbarId}`}>{morkhasi.karbarId}</Link> : ''}</td> */}
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${morkhasi.id}`} color="info" size="sm">
+                      {/* <Button tag={Link} to={`${match.url}/${morkhasi.id}`} color="info" size="sm">
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
-                      </Button>
+                      </Button> */}
                       {/* <Button
                         tag={Link}
                         to={`${match.url}/${morkhasi.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}

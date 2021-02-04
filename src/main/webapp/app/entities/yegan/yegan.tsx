@@ -115,9 +115,9 @@ export const Yegan = (props: IYeganProps) => {
 
   const sortEntities = () => {
     getAllEntities();
-    props.history.push(
-      `${props.location.pathname}?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`
-    );
+    // props.history.push(
+    //   `${props.location.pathname}?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`
+    // );
   };
 
   useEffect(() => {
@@ -165,11 +165,15 @@ export const Yegan = (props: IYeganProps) => {
     <div>
       <h2 id="yegan-heading">
         <span>یگان ها</span>
-        <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
+        {
+          props.match.params?.hesabresiId ? null : (
+            <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
           <span>ایجاد یگان جدید</span>
         </Link>
+          )
+        }
       </h2>
       {
         props.match.params?.hesabresiId ? null : (
@@ -315,7 +319,10 @@ export const Yegan = (props: IYeganProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button
+                      {
+                        props.match.params?.hesabresiId ? null : (
+                          <>
+                            <Button
                         tag={Link}
                         to={`${match.url}/${yegan.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
                         color="primary"
@@ -337,6 +344,9 @@ export const Yegan = (props: IYeganProps) => {
                           <Translate contentKey="entity.action.delete">Delete</Translate>
                         </span>
                       </Button>
+                          </>
+                        )
+                      }
                     </div>
                   </td>
                 </tr>
