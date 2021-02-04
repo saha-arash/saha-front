@@ -15,7 +15,7 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute exact path={`${match.url}/new`} component={YeganUpdate} />
       <ErrorBoundaryRoute exact path={`${match.url}/:id/edit`} component={YeganUpdate} />
       <ErrorBoundaryRoute exact path={`${match.url}/:id`} component={YeganDetail} />
-      <ErrorBoundaryRoute path={match.url} component={Yegan} />
+      <ErrorBoundaryRoute path={`${match.url}/:hesabresiId?/:status?`} component={Yegan} />
     </Switch>
   </>
 );

@@ -85,7 +85,26 @@ export const Yegan = (props: IYeganProps) => {
   }, [])
 
   const getAllEntities = () => {
-    props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`, omitEmpty(filters));
+    const {hesabresiId, status} = props.match.params || {}
+    if(hesabresiId && status) {
+      const preFilter = {
+        hesabresiId,
+        [status]: true
+      }
+      props.getEntities(
+        paginationState.activePage - 1, 
+        paginationState.itemsPerPage, 
+        `${paginationState.sort},${paginationState.order}`, 
+        preFilter
+        );
+    } else {
+      props.getEntities(
+        paginationState.activePage - 1, 
+        paginationState.itemsPerPage, 
+        `${paginationState.sort},${paginationState.order}`, 
+        omitEmpty(filters));
+    }
+
   };
 
   const getFilteredData = (e) => {
@@ -146,7 +165,9 @@ export const Yegan = (props: IYeganProps) => {
           <span>ایجاد یگان جدید</span>
         </Link>
       </h2>
-      <Container style={{ direction: 'rtl' }}>
+      {
+        props.match.params?.hesabresiId ? null : (
+          <Container style={{ direction: 'rtl' }}>
         <Form onSubmit={getFilteredData}>
           <FormGroup row>
             <Label for="status" sm={2} md={1}>
@@ -231,6 +252,8 @@ export const Yegan = (props: IYeganProps) => {
           </FormGroup>
         </Form>
       </Container>
+        )
+      }
       <div className="table-responsive">
         {yeganList && yeganList.length > 0 ? (
           <Table responsive>
@@ -309,7 +332,7 @@ export const Yegan = (props: IYeganProps) => {
         ) : (
             !loading && (
               <div className="alert alert-warning">
-                <Translate contentKey="sahaApp.yegan.home.notFound">یگانی یافت نشد</Translate>
+                یگانی یافت نشد
               </div>
             )
           )}

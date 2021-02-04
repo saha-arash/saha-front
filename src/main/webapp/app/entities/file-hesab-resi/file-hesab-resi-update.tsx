@@ -147,7 +147,7 @@ export const FileHesabResiUpdate = (props: IFileHesabResiUpdateProps) => {
       const entity = {
         ...fileHesabResiEntity,
         ...values,
-        hesabResiId: parseInt(hesabresiId),
+        hesabResiId: parseInt(hesabresiId, 10),
         fileType,
         fileName
       };

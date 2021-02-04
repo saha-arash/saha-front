@@ -86,15 +86,15 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
                     برنامه حسابرسی
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`/yegan/${props.match.params.id}/jahateHesabResi`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     لیست یگان‌های گزینش شده
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`/yegan/${props.match.params.id}/jahatePeygiri`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     لیست یگان‌های جهت پیگیری
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`/yegan/${props.match.params.id}/kharejAzMarkaz`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     لیست یگان‌های خارج از مرکز
                   </Button>
 
