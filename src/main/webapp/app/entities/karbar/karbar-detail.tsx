@@ -79,7 +79,7 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
           <dd>
             <TimeToText value={karbarEntity.tarikhEstekhdam} type="date" format={APP_DATE_FORMAT} />
           </dd>
-          <dt>
+          {/* <dt>
             برگه ماموریت
           </dt>
           <dd>
@@ -91,8 +91,8 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
                   </span>
                 ))
               : null}
-          </dd>
-          <dt>
+          </dd> */}
+          {/* <dt>
             بیننده‌ی برگه ماموریت
           </dt>
           <dd>
@@ -104,7 +104,7 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
                   </span>
                 ))
               : null}
-          </dd>
+          </dd> */}
           <dt>
             یگان
           </dt>
