@@ -22,12 +22,12 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
     <Row>
       <Col md="8">
         <h2>
-          <Translate contentKey="sahaApp.bargeMamooriat.detail.title">BargeMamooriat</Translate> [<b>{bargeMamooriatEntity.id}</b>]
+          برگه ماموریت [<b>{bargeMamooriatEntity.id}</b>]
         </h2>
         <dl className="jh-entity-details">
           <dt>
             <span id="vaziat">
-              <Translate contentKey="sahaApp.bargeMamooriat.vaziat">Vaziat</Translate>
+              وضعیت
             </span>
           </dt>
           <dd>{bargeMamooriatEntity.vaziat}</dd>
@@ -39,7 +39,7 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
           <dd>{bargeMamooriatEntity.saleMamooriat}</dd>
           <dt>
             <span id="shorooMamooriat">
-              <Translate contentKey="sahaApp.bargeMamooriat.shorooMamooriat">Shoroo Mamooriat</Translate>
+              شروع ماموریت
             </span>
           </dt>
           <dd>
@@ -47,22 +47,22 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
           </dd>
           <dt>
             <span id="payanMamooriat">
-              <Translate contentKey="sahaApp.bargeMamooriat.payanMamooriat">Payan Mamooriat</Translate>
+              پایان ماموریت
             </span>
           </dt>
           <dd>
             <TimeToText value={bargeMamooriatEntity.payanMamooriat} type="date" format={APP_DATE_FORMAT} />
           </dd>
           <dt>
-            <Translate contentKey="sahaApp.bargeMamooriat.sarparast">Sarparast</Translate>
+            سرپرست
           </dt>
           <dd>{bargeMamooriatEntity.sarparastId ? bargeMamooriatEntity.sarparastId : ''}</dd>
           <dt>
-            <Translate contentKey="sahaApp.bargeMamooriat.yegan">Yegan</Translate>
+            یگان
           </dt>
           <dd>{bargeMamooriatEntity.yeganId ? bargeMamooriatEntity.yeganId : ''}</dd>
           <dt>
-            <Translate contentKey="sahaApp.bargeMamooriat.hesabResi">Hesab Resi</Translate>
+            حسابرسی
           </dt>
           <dd>{bargeMamooriatEntity.hesabResiId ? bargeMamooriatEntity.hesabResiId : ''}</dd>
         </dl>

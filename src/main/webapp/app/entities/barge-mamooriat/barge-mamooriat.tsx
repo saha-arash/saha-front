@@ -184,19 +184,19 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
                   </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${bargeMamooriat.id}`} color="info" size="sm">
+                      <Button tag={Link} to={`/barge-mamooriat/${bargeMamooriat.id}`} color="info" size="sm">
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
                           <span>مشاهده</span>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${bargeMamooriat.id}/edit`} color="primary" size="sm">
+                      <Button tag={Link} to={`/barge-mamooriat/${bargeMamooriat.id}/edit`} color="primary" size="sm">
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
                           <span>ویرایش</span>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${bargeMamooriat.id}/delete`} color="danger" size="sm">
+                      <Button tag={Link} to={`/barge-mamooriat/${bargeMamooriat.id}/delete`} color="danger" size="sm">
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
                           <span>حذف</span>
