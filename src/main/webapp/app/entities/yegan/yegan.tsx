@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table, Container, Form, FormGroup, Input, Label } from 'reactstrap';
@@ -15,6 +15,7 @@ import Select from 'react-select';
 import axios from 'axios';
 import AsyncSelect from 'react-select/async';
 import omitEmpty from 'omit-empty';
+import { useReactToPrint } from 'react-to-print';
 
 const statusOption = [
   {
@@ -155,6 +156,10 @@ export const Yegan = (props: IYeganProps) => {
   };
 
   const { yeganList, match, loading, totalItems } = props;
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
   return (
     <div>
       <h2 id="yegan-heading">
@@ -254,9 +259,17 @@ export const Yegan = (props: IYeganProps) => {
       </Container>
         )
       }
-      <div className="table-responsive">
+      
         {yeganList && yeganList.length > 0 ? (
-          <Table responsive>
+          <>
+          <Button color="success" className="mb-4 px-4" onClick={handlePrint}>
+            پرینت
+            
+            </Button>
+        <div className="table-responsive" ref={componentRef}>
+          
+
+          <Table responsive >
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
@@ -329,6 +342,8 @@ export const Yegan = (props: IYeganProps) => {
               ))}
             </tbody>
           </Table>
+          </div>
+          </>
         ) : (
             !loading && (
               <div className="alert alert-warning">
@@ -336,7 +351,7 @@ export const Yegan = (props: IYeganProps) => {
               </div>
             )
           )}
-      </div>
+      
       <div className={yeganList && yeganList.length > 0 ? '' : 'd-none'}>
         <Row className="justify-content-center">
           <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />

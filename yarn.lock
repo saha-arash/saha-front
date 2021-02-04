@@ -10913,6 +10913,13 @@ react-tether@^2.0.0:
     prop-types "^15.6.2"
     tether "^1.4.5"
 
+react-to-print@^2.12.2:
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-2.12.2.tgz#1c6323ed6d2eafab4b833a66d1ff83ae74881a62"
+  integrity sha512-uF5tRTmwG9pnakb0Eko1O/+7plrUc3vcG3hKPkT1R7pGqvA9eDmilkRaV+WT66iD9Ii+3WZojlvgEdoPs/+aMw==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-toastify@4.5.2:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-4.5.2.tgz#a75b5f8b6219f62d4aacd0455d578a53341e37ca"
