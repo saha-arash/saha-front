@@ -23,22 +23,9 @@ import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 import TimeToText from 'app/shared/timeToText/TimeToText';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import translateToFa from '../hesab-resi/translate';
 
-const translateToFa = {
-  VoroodiBilanSalGhabl: 'بیلان سال قبل',
-  VoroodiBilanSeSalGhabl: 'بیلان سه سال قبل',
-  BarnameHesabResi: 'برنامه حسابرسی',
-  MohasebeHazineMamooriat: 'هزینه ماموریت',
-  DastoorAmalEjraE: 'دستورالعمل اجرایی',
-  Madarek: 'مدارک',
-  MadarekGozaresh: 'گزارش',
-  GardeshKar: 'گردش کار',
-  MostaKhreje: 'مستخرجه',
-  KholaseGozaresh: 'خلاصه گزارش',
-  BankEtelaati: 'بانک اطلاعاتی',
-  RafeIradat: 'رفع ایرادات',
-  Nameh: 'نامه‌ها'
-};
+
 
 export interface IFileHesabResiProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 

@@ -123,7 +123,7 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
                     گزارش
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/GOZARESH_HOZOOR`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     گزارش حضور
                   </Button>
 

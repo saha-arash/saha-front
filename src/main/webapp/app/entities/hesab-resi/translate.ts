@@ -11,7 +11,8 @@ const translateToFa = {
   KholaseGozaresh: 'خلاصه گزارش',
   BankEtelaati: 'بانک اطلاعاتی',
   RafeIradat: 'رفع ایرادات',
-  Nameh: 'نامه‌ها'
+  Nameh: 'نامه‌ها',
+  GOZARESH_HOZOOR: 'گزارش حضور'
 };
 
 export default translateToFa;
