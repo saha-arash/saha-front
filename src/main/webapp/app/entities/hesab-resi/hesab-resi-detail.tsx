@@ -53,13 +53,13 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
             {
               (role === 'ROLE_YEGAN' || role === 'ROLE_ZIR_YEGAN') && (
                 <>
-                <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                <Button tag={Link} color="primary" to={`/barge-mamooriat/${props.match.params.id}/${hesabResiEntity.sal}`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     برگه ماموریت‌ها
                 </Button>
-                <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                <Button tag={Link} color="primary" to={`./${props.match.params.id}/Madarek`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     مدارک
                 </Button>
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/RafeIradat`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     رفع ایرادات
                 </Button>
                 </>
