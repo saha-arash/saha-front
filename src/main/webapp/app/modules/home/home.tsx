@@ -34,13 +34,13 @@ export const Home = (props: IHomeProp) => {
           <button className="cardd-1" onClick={() => history.push('/payam')}>
             پیام ها
           </button>
-          <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
+          <button className="cardd-1" onClick={() => alert('بزودی')}>
             فرم های مورد نیاز
           </button>
-          <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
+          <button className="cardd-1" onClick={() => alert('بزودی')}>
             لوح قوانین
           </button>
-          <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
+          <button className="cardd-1" onClick={() => alert('بزودی')}>
             دستور العمل ها و بازبینه ها
           </button>
         </>
@@ -57,7 +57,7 @@ export const Home = (props: IHomeProp) => {
           <button className="cardd-1" onClick={() => history.push('/payam')}>
             پیام ها
           </button>
-          <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
+          <button className="cardd-1" onClick={() => alert('بزودی')}>
             فرم های مورد نیاز
           </button>
         </>

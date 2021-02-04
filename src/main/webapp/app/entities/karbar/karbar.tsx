@@ -170,7 +170,7 @@ export const Karbar = (props: IKarbarProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.karbar.home.notFound">No Karbars found</Translate>
+              کاربری یافت نشد
             </div>
           )
         )}

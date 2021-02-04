@@ -108,7 +108,7 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
           <dt>
             یگان
           </dt>
-          <dd>{karbarEntity.yeganId ? karbarEntity.yeganId : ''}</dd>
+          <dd>{karbarEntity.yeganDTO ? karbarEntity.yeganDTO.name : ''}</dd>
           <dt>
             کد یگان
           </dt>
@@ -116,11 +116,11 @@ export const KarbarDetail = (props: IKarbarDetailProps) => {
           <dt>
             درجه
           </dt>
-          <dd>{karbarEntity.darajeId ? karbarEntity.darajeId : ''}</dd>
+          <dd>{karbarEntity.darajeDTO ? karbarEntity.darajeDTO.name : ''}</dd>
           <dt>
             سمت
           </dt>
-          <dd>{karbarEntity.sematId ? karbarEntity.sematId : ''}</dd>
+          <dd>{karbarEntity.sematDTO ? karbarEntity.sematDTO.onvanShoghli : ''}</dd>
         </dl>
         <Button tag={Link} to="/karbar" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}
