@@ -1,13 +1,41 @@
+
 import React, { FC } from 'react';
 import DatePicker from 'react-datepicker2';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col, Label, Input } from 'reactstrap';
 import translateToFa from './translate';
 import axios from "axios";
+import { openFile } from 'react-jhipster';
 
 const HesabResiItemDetail: FC<RouteComponentProps> = ({ match, location }) => {
   const { id, item }: any = match.params;
+  const downloadFile = (url) => {
+    axios
+      .request({
+        url,
+        method: 'GET',
+        responseType: 'blob', // important
+      })
 
+      .then(({ data }) => {
+        console.log('data', data)
+
+        const downloadUrl = window.URL.createObjectURL(new Blob([data]));
+
+        const link = document.createElement('a');
+
+        link.href = downloadUrl;
+
+        link.setAttribute('download', true); // any other extension
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        link.remove();
+
+      });
+  }
   return (
     <Row>
       <Col lg={12}>
@@ -52,10 +80,9 @@ const HesabResiItemDetail: FC<RouteComponentProps> = ({ match, location }) => {
         </div> */}
       </Col>
       {
-        (item === "VoroodiBilanSeSalGhabl" || item === "VoroodiBilanSalGhabl" && location.state?.sal) && (
+        ((item === "VoroodiBilanSeSalGhabl" || item === "VoroodiBilanSalGhabl") && location.state?.sal) && (
           <Col lg="12" className="mb-4">
-        
-        <a download href={`${axios.defaults.baseURL}${item === "VoroodiBilanSeSalGhabl" ? `api/sesal/excel/${location.state?.sal}` : `api/sal/excel/${location.state?.sal}`}`}>
+        <a onClick={() => downloadFile(`${item === "VoroodiBilanSeSalGhabl" ? `api/sesal/excel/${location.state?.sal}` : `api/sal/excel/${location.state?.sal}`}`)}>
           دریافت خروجی
         </a>
       </Col>
