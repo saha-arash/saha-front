@@ -9,6 +9,7 @@ import { IRootState } from 'app/shared/reducers';
 import { getEntity } from './hesab-resi.reducer';
 import { IHesabResi } from 'app/shared/model/hesab-resi.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import gardeshKar from '../gardesh-kar/gardesh-kar';
 
 const statusToFarsi = {
   DAR_SHOROF_MAMOORIAT: 'در شرف ماموریت',
@@ -110,7 +111,7 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
                     گردش کار
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`/barge-mamooriat/${props.match.params.id}/${hesabResiEntity.sal}`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     برگه ماموریت‌ها
                   </Button>
 

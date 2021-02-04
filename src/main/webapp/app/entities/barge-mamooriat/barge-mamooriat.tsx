@@ -24,11 +24,14 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
   const [hesabresiShode, setHesabresiShode] = useState(null);
   const [isDropDownToggle, setDropDownToggle] = useState(false);
   const [salInput, setSalInput] = useState(null);
-
+  const {hesabresiId, saleMamooriat} = props.match.params || {}
   const getAllEntities = () => {
     // props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
-    console.log("H EEEEE YYY",vaziat,sal);
-    props.getEntities(0,0,``,vaziat,sal);
+    if(saleMamooriat) {
+      props.getEntities(0,0,``, '', saleMamooriat);
+    } else {
+      props.getEntities(0,0,``,vaziat,sal);
+    }
   };
 
   const sortEntities = () => {
@@ -74,7 +77,9 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
   const { bargeMamooriatList, match, loading, totalItems } = props;
   return (
     <div>
-      <div className="horzontalList">
+      {
+        saleMamooriat ? null : (
+          <div className="horzontalList">
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle caret className="dropbtn">
           وضعیت
@@ -97,6 +102,8 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
         <span>جهت پیگیری</span> */}
       </div>
+        )
+      }
       
 
       <h2 id="barge-mamooriat-heading">

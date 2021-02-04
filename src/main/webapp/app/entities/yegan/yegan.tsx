@@ -159,6 +159,7 @@ export const Yegan = (props: IYeganProps) => {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
+    suppressErrors: false
   });
   return (
     <div>
