@@ -56,15 +56,15 @@ export const YeganTypeUpdate = (props: IYeganTypeUpdateProps) => {
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="sahaApp.yeganType.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.yeganType.home.createOrEditLabel">Create or edit a YeganType</Translate>
+          <h2 >
+            <span>ایجاد یا ویرایش نوع یگان</span>
           </h2>
         </Col>
       </Row>
       <Row className="justify-content-center">
         <Col md="8">
           {loading ? (
-            <p>Loading...</p>
+            <p>در حال بارگیری...</p>
           ) : (
             <AvForm model={isNew ? {} : yeganTypeEntity} onSubmit={saveEntity}>
               {!isNew ? (
@@ -77,7 +77,7 @@ export const YeganTypeUpdate = (props: IYeganTypeUpdateProps) => {
               ) : null}
               <AvGroup>
                 <Label id="nameLabel" for="yegan-type-name">
-                  <Translate contentKey="sahaApp.yeganType.name">Name</Translate>
+                  <span>نام</span>
                 </Label>
                 <AvField id="yegan-type-name" type="text" name="name" />
               </AvGroup>

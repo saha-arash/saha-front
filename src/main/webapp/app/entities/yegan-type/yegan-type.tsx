@@ -49,11 +49,11 @@ export const YeganType = (props: IYeganTypeProps) => {
   return (
     <div>
       <h2 id="yegan-type-heading">
-        <Translate contentKey="sahaApp.yeganType.home.title">Yegan Types</Translate>
+        <span>نوع یگان</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.yeganType.home.createLabel">Create new Yegan Type</Translate>
+          <span>ایجاد نوع یگان جدید</span>
         </Link>
       </h2>
       <div className="table-responsive">
@@ -65,7 +65,7 @@ export const YeganType = (props: IYeganTypeProps) => {
                   <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="sahaApp.yeganType.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>نام</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -87,7 +87,7 @@ export const YeganType = (props: IYeganTypeProps) => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button
+                      {/* <Button
                         tag={Link}
                         to={`${match.url}/${yeganType.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
                         color="primary"
@@ -97,7 +97,7 @@ export const YeganType = (props: IYeganTypeProps) => {
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
-                      </Button>
+                      </Button> */}
                       <Button
                         tag={Link}
                         to={`${match.url}/${yeganType.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
@@ -118,7 +118,7 @@ export const YeganType = (props: IYeganTypeProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.yeganType.home.notFound">No Yegan Types found</Translate>
+              <span>نوع یگان  تعریف نشده است</span>
             </div>
           )
         )}

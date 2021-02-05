@@ -62,14 +62,14 @@ export const OstanUpdate = (props: IOstanUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.ostan.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.ostan.home.createOrEditLabel">Create or edit a Ostan</Translate>
+            <span>ایجاد یا ویرایش استان</span>
           </h2>
         </Col>
       </Row>
       <Row className="justify-content-center">
         <Col md="8">
           {loading ? (
-            <p>Loading...</p>
+            <p>در حال بارگیری...</p>
           ) : (
             <AvForm model={isNew ? {} : ostanEntity} onSubmit={saveEntity}>
               {!isNew ? (
@@ -82,13 +82,13 @@ export const OstanUpdate = (props: IOstanUpdateProps) => {
               ) : null}
               <AvGroup>
                 <Label id="nameLabel" for="ostan-name">
-                  <Translate contentKey="sahaApp.ostan.name">Name</Translate>
+                  <span>نام</span>
                 </Label>
                 <AvField id="ostan-name" type="text" name="name" />
               </AvGroup>
               <AvGroup>
                 <Label for="ostan-mantaghe">
-                  <Translate contentKey="sahaApp.ostan.mantaghe">Mantaghe</Translate>
+                  <span>منطقه</span>
                 </Label>
                 <AvInput id="ostan-mantaghe" type="select" className="form-control" name="mantagheId">
                   <option value="" key="0" />

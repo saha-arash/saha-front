@@ -57,14 +57,14 @@ export const SematUpdate = (props: ISematUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.semat.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.semat.home.createOrEditLabel">Create or edit a Semat</Translate>
+            <span>ایجاد یا ویرایش سمت جدید</span>
           </h2>
         </Col>
       </Row>
       <Row className="justify-content-center">
         <Col md="8">
           {loading ? (
-            <p>Loading...</p>
+            <p>در حال بارگیری...</p>
           ) : (
             <AvForm model={isNew ? {} : sematEntity} onSubmit={saveEntity}>
               {!isNew ? (
@@ -77,7 +77,7 @@ export const SematUpdate = (props: ISematUpdateProps) => {
               ) : null}
               <AvGroup>
                 <Label id="onvanShoghliLabel" for="semat-onvanShoghli">
-                  <Translate contentKey="sahaApp.semat.onvanShoghli">Onvan Shoghli</Translate>
+                  <span>عنوان شغلی</span>
                 </Label>
                 <AvField id="semat-onvanShoghli" type="text" name="onvanShoghli" />
               </AvGroup>

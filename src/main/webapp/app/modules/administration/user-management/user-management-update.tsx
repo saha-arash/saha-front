@@ -53,7 +53,7 @@ export const UserManagementUpdate = (props: IUserManagementUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           {loading ? (
-            <p>Loading...</p>
+            <p>در حال بارگیری...</p>
           ) : (
             <AvForm onValidSubmit={saveUser}>
               {user.id ? (

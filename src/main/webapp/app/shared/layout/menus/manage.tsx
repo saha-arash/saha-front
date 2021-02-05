@@ -38,9 +38,9 @@ export const ManageMenu = props => (
     <MenuItem icon="asterisk" to="/hesab-resi">
       حسابرسی ها
     </MenuItem>
-    <MenuItem icon="asterisk" to="/barname-hesab-resi">
+    {/* <MenuItem icon="asterisk" to="/barname-hesab-resi">
       برنامه های حسابرسی سالانه
-    </MenuItem>
+    </MenuItem> */}
     {/* <MenuItem icon="asterisk" to="/file-barge-mamooriat">
       <Translate contentKey="global.menu.entities.fileBargeMamooriat" />
     </MenuItem> */}
@@ -71,9 +71,9 @@ export const ManageMenu = props => (
     <MenuItem icon="asterisk" to="/shahr">
       <Translate contentKey="global.menu.entities.shahr" />
     </MenuItem> */}
-    <MenuItem icon="asterisk" to="/gozaresh">
+    {/* <MenuItem icon="asterisk" to="/gozaresh">
       گزارش ها
-    </MenuItem>
+    </MenuItem> */}
     {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
   </NavDropdown>
 );

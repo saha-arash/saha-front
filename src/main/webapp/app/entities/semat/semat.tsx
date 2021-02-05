@@ -49,11 +49,11 @@ export const Semat = (props: ISematProps) => {
   return (
     <div>
       <h2 id="semat-heading">
-        <Translate contentKey="sahaApp.semat.home.title">Semats</Translate>
+        <span>سمت ها</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.semat.home.createLabel">Create new Semat</Translate>
+          <span>ایجاد سمت جدید</span>
         </Link>
       </h2>
       <div className="table-responsive">
@@ -65,7 +65,7 @@ export const Semat = (props: ISematProps) => {
                   <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('onvanShoghli')}>
-                  <Translate contentKey="sahaApp.semat.onvanShoghli">Onvan Shoghli</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>عنوان شغلی</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>

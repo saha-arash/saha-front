@@ -49,11 +49,11 @@ export const Daraje = (props: IDarajeProps) => {
   return (
     <div>
       <h2 id="daraje-heading">
-        <Translate contentKey="sahaApp.daraje.home.title">Darajes</Translate>
+        <span>درجه ها</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.daraje.home.createLabel">Create new Daraje</Translate>
+          <span>ایجاد درجه جدید</span>
         </Link>
       </h2>
       <div className="table-responsive">
@@ -65,10 +65,10 @@ export const Daraje = (props: IDarajeProps) => {
                   <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="sahaApp.daraje.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>نام</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('description')}>
-                  <Translate contentKey="sahaApp.daraje.description">Description</Translate> <FontAwesomeIcon icon="sort" />
+                  <span >توضیحات</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -122,7 +122,7 @@ export const Daraje = (props: IDarajeProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.daraje.home.notFound">No Darajes found</Translate>
+              <span>درجه ای تعریف نشده است</span>
             </div>
           )
         )}

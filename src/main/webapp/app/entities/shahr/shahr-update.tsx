@@ -62,14 +62,14 @@ export const ShahrUpdate = (props: IShahrUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.shahr.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.shahr.home.createOrEditLabel">Create or edit a Shahr</Translate>
+            <span>ایجاد یا ویرایش شهر</span>
           </h2>
         </Col>
       </Row>
       <Row className="justify-content-center">
         <Col md="8">
           {loading ? (
-            <p>Loading...</p>
+            <p>در حال بارگیری...</p>
           ) : (
             <AvForm model={isNew ? {} : shahrEntity} onSubmit={saveEntity}>
               {!isNew ? (
@@ -82,31 +82,31 @@ export const ShahrUpdate = (props: IShahrUpdateProps) => {
               ) : null}
               <AvGroup>
                 <Label id="nameLabel" for="shahr-name">
-                  <Translate contentKey="sahaApp.shahr.name">Name</Translate>
+                  <span>نام</span>
                 </Label>
                 <AvField id="shahr-name" type="text" name="name" />
               </AvGroup>
               <AvGroup>
                 <Label id="zaribAboHavaLabel" for="shahr-zaribAboHava">
-                  <Translate contentKey="sahaApp.shahr.zaribAboHava">Zarib Abo Hava</Translate>
+                  <span>ضریب آبی و هوا</span>
                 </Label>
                 <AvField id="shahr-zaribAboHava" type="string" className="form-control" name="zaribAboHava" />
               </AvGroup>
               <AvGroup>
                 <Label id="zaribTashilatLabel" for="shahr-zaribTashilat">
-                  <Translate contentKey="sahaApp.shahr.zaribTashilat">Zarib Tashilat</Translate>
+                  <span>ضریب تسهیلات</span>
                 </Label>
                 <AvField id="shahr-zaribTashilat" type="string" className="form-control" name="zaribTashilat" />
               </AvGroup>
               <AvGroup>
                 <Label id="masafatTaMarkazLabel" for="shahr-masafatTaMarkaz">
-                  <Translate contentKey="sahaApp.shahr.masafatTaMarkaz">Masafat Ta Markaz</Translate>
+                  <span>مسافت از مرکز</span>
                 </Label>
                 <AvField id="shahr-masafatTaMarkaz" type="string" className="form-control" name="masafatTaMarkaz" />
               </AvGroup>
               <AvGroup>
                 <Label for="shahr-ostan">
-                  <Translate contentKey="sahaApp.shahr.ostan">Ostan</Translate>
+                  <span>استان</span>
                 </Label>
                 <AvInput id="shahr-ostan" type="select" className="form-control" name="ostanId">
                   <option value="" key="0" />

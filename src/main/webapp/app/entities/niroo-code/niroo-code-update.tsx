@@ -64,7 +64,7 @@ export const NirooCodeUpdate = (props: INirooCodeUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           {loading ? (
-            <p>Loading...</p>
+            <p>در حال بارگیری...</p>
           ) : (
             <AvForm model={isNew ? {} : nirooCodeEntity} onSubmit={saveEntity}>
               {!isNew ? (

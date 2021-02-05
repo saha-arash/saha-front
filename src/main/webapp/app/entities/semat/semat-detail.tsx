@@ -22,12 +22,12 @@ export const SematDetail = (props: ISematDetailProps) => {
     <Row>
       <Col md="8">
         <h2>
-          <Translate contentKey="sahaApp.semat.detail.title">Semat</Translate> [<b>{sematEntity.id}</b>]
+          <span>سمت</span> [<b>{sematEntity.id}</b>]
         </h2>
         <dl className="jh-entity-details">
           <dt>
             <span id="onvanShoghli">
-              <Translate contentKey="sahaApp.semat.onvanShoghli">Onvan Shoghli</Translate>
+              <span>عنوان شغلی</span>
             </span>
           </dt>
           <dd>{sematEntity.onvanShoghli}</dd>

@@ -49,11 +49,11 @@ export const Shahr = (props: IShahrProps) => {
   return (
     <div>
       <h2 id="shahr-heading">
-        <Translate contentKey="sahaApp.shahr.home.title">Shahrs</Translate>
+        <span>شهر ها</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.shahr.home.createLabel">Create new Shahr</Translate>
+          <span>ایجاد شهر جدید</span>
         </Link>
       </h2>
       <div className="table-responsive">
@@ -65,20 +65,20 @@ export const Shahr = (props: IShahrProps) => {
                   <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="sahaApp.shahr.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>نام</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('zaribAboHava')}>
-                  <Translate contentKey="sahaApp.shahr.zaribAboHava">Zarib Abo Hava</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>ضریب آب و هوا</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('zaribTashilat')}>
-                  <Translate contentKey="sahaApp.shahr.zaribTashilat">Zarib Tashilat</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>ضریب تسهیلات</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('masafatTaMarkaz')}>
-                  <Translate contentKey="sahaApp.shahr.masafatTaMarkaz">Masafat Ta Markaz</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>مسافت از مرکز</span> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th>
+                {/* <th>
                   <Translate contentKey="sahaApp.shahr.ostan">Ostan</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
+                </th> */}
                 <th />
               </tr>
             </thead>
@@ -97,12 +97,12 @@ export const Shahr = (props: IShahrProps) => {
                   <td>{shahr.ostanId ? <Link to={`ostan/${shahr.ostanId}`}>{shahr.ostanId}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${shahr.id}`} color="info" size="sm">
+                      {/* <Button tag={Link} to={`${match.url}/${shahr.id}`} color="info" size="sm">
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
-                      </Button>
+                      </Button> */}
                       <Button
                         tag={Link}
                         to={`${match.url}/${shahr.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
@@ -134,7 +134,7 @@ export const Shahr = (props: IShahrProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.shahr.home.notFound">No Shahrs found</Translate>
+              <span>شهری تعریف نشده است</span>
             </div>
           )
         )}

@@ -49,11 +49,11 @@ export const Mantaghe = (props: IMantagheProps) => {
   return (
     <div>
       <h2 id="mantaghe-heading">
-        <Translate contentKey="sahaApp.mantaghe.home.title">Mantaghes</Translate>
+        <span>منطقه ها</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.mantaghe.home.createLabel">Create new Mantaghe</Translate>
+          <span>ایجاد منطقه جدید</span>
         </Link>
       </h2>
       <div className="table-responsive">
@@ -65,7 +65,7 @@ export const Mantaghe = (props: IMantagheProps) => {
                   <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="sahaApp.mantaghe.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>نام</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -81,12 +81,12 @@ export const Mantaghe = (props: IMantagheProps) => {
                   <td>{mantaghe.name}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${mantaghe.id}`} color="info" size="sm">
+                      {/* <Button tag={Link} to={`${match.url}/${mantaghe.id}`} color="info" size="sm">
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
-                      </Button>
+                      </Button> */}
                       <Button
                         tag={Link}
                         to={`${match.url}/${mantaghe.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
@@ -118,7 +118,7 @@ export const Mantaghe = (props: IMantagheProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.mantaghe.home.notFound">No Mantaghes found</Translate>
+              <span>منطقه ای تعریف نشده است</span>
             </div>
           )
         )}

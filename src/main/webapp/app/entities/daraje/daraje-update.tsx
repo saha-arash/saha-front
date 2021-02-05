@@ -56,15 +56,15 @@ export const DarajeUpdate = (props: IDarajeUpdateProps) => {
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="sahaApp.daraje.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.daraje.home.createOrEditLabel">Create or edit a Daraje</Translate>
+          <h2>
+            <span>ایجاد یا ویرایش درجه</span>
           </h2>
         </Col>
       </Row>
       <Row className="justify-content-center">
         <Col md="8">
           {loading ? (
-            <p>Loading...</p>
+            <p>در حال بارگیری...</p>
           ) : (
             <AvForm model={isNew ? {} : darajeEntity} onSubmit={saveEntity}>
               {!isNew ? (
@@ -77,13 +77,13 @@ export const DarajeUpdate = (props: IDarajeUpdateProps) => {
               ) : null}
               <AvGroup>
                 <Label id="nameLabel" for="daraje-name">
-                  <Translate contentKey="sahaApp.daraje.name">Name</Translate>
+                  <span>نام</span>
                 </Label>
                 <AvField id="daraje-name" type="text" name="name" />
               </AvGroup>
               <AvGroup>
                 <Label id="descriptionLabel" for="daraje-description">
-                  <Translate contentKey="sahaApp.daraje.description">Description</Translate>
+                  <span>توضیحات</span>
                 </Label>
                 <AvField id="daraje-description" type="text" name="description" />
               </AvGroup>

@@ -57,14 +57,14 @@ export const MantagheUpdate = (props: IMantagheUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.mantaghe.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.mantaghe.home.createOrEditLabel">Create or edit a Mantaghe</Translate>
+            <span>ایجاد یا ویرایش منطقه</span>
           </h2>
         </Col>
       </Row>
       <Row className="justify-content-center">
         <Col md="8">
           {loading ? (
-            <p>Loading...</p>
+            <p>در حال بارگیری...</p>
           ) : (
             <AvForm model={isNew ? {} : mantagheEntity} onSubmit={saveEntity}>
               {!isNew ? (
@@ -77,7 +77,7 @@ export const MantagheUpdate = (props: IMantagheUpdateProps) => {
               ) : null}
               <AvGroup>
                 <Label id="nameLabel" for="mantaghe-name">
-                  <Translate contentKey="sahaApp.mantaghe.name">Name</Translate>
+                  <span>نام</span>
                 </Label>
                 <AvField id="mantaghe-name" type="text" name="name" />
               </AvGroup>

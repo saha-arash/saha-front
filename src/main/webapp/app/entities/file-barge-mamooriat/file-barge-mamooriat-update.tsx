@@ -72,14 +72,14 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="sahaApp.fileBargeMamooriat.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.fileBargeMamooriat.home.createOrEditLabel">Create or edit a FileBargeMamooriat</Translate>
+            <span>ایجاد فایل برگه ماموریت</span>
           </h2>
         </Col>
       </Row>
       <Row className="justify-content-center">
         <Col md="8">
           {loading ? (
-            <p>Loading...</p>
+            <p>در حال بارگیری...</p>
           ) : (
             <AvForm model={isNew ? {} : fileBargeMamooriatEntity} onSubmit={saveEntity}>
               {!isNew ? (
@@ -92,9 +92,9 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
               ) : null}
               <AvGroup>
                 <AvGroup>
-                  <Label id="madarekLabel" for="madarek">
+                  {/* <Label id="madarekLabel" for="madarek">
                     <Translate contentKey="sahaApp.fileBargeMamooriat.madarek">Madarek</Translate>
-                  </Label>
+                  </Label> */}
                   <br />
                   {madarek ? (
                     <div>

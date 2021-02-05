@@ -58,11 +58,11 @@ export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
   return (
     <div>
       <h2 id="file-barge-mamooriat-heading">
-        <Translate contentKey="sahaApp.fileBargeMamooriat.home.title">File Barge Mamooriats</Translate>
+        <span>فایل برگه ماموریت</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.fileBargeMamooriat.home.createLabel">Create new File Barge Mamooriat</Translate>
+          <span>ایجاد برگه ماموریت</span>
         </Link>
       </h2>
       <div className="table-responsive">
@@ -74,10 +74,10 @@ export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
                   <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('madarek')}>
-                  <Translate contentKey="sahaApp.fileBargeMamooriat.madarek">Madarek</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>مدارک</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th>
-                  <Translate contentKey="sahaApp.fileBargeMamooriat.bargeMamooriat">Barge Mamooriat</Translate>{' '}
+                  <span contentKey="sahaApp.fileBargeMamooriat.bargeMamooriat">شناسه برگه ماموریت</span>{' '}
                   <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
@@ -150,7 +150,7 @@ export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.fileBargeMamooriat.home.notFound">No File Barge Mamooriats found</Translate>
+              <span>فایل برگه ماموریتی یافت نشد</span>
             </div>
           )
         )}

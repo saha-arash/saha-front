@@ -75,19 +75,10 @@ export const EntitiesMenu = props => (
     {/* <MenuItem icon="asterisk" to="/gozaresh">
       <Translate contentKey="global.menu.entities.gozaresh" />
     </MenuItem> */}
-    <MenuItem icon="asterisk" to="/semat">
-      <span>سمت ها</span>
-    </MenuItem>
     <MenuItem icon="asterisk" to="/daraje">
       <span>درجه</span>
     </MenuItem>
-    <MenuItem icon="asterisk" to="/yegan-type">
-      <span>نوع یگان</span>
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/yegan">
-    <span> یگان ها</span>
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/mohasebe-hazine-mamooriat">
+    {/* <MenuItem icon="asterisk" to="/mohasebe-hazine-mamooriat">
     <span>هزینه ماموریت</span>
     </MenuItem>
     <MenuItem icon="asterisk" to="/dastoor-amal-ejra-e">
@@ -128,16 +119,7 @@ export const EntitiesMenu = props => (
     </MenuItem>
     <MenuItem icon="asterisk" to="/gardesh-kar">
     <span>گردش کار</span>
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/mantaghe">
-    <span>منطقه</span>
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/ostan">
-    <span>استان</span>
-    </MenuItem>
-    <MenuItem icon="asterisk" to="/shahr">
-    <span>شهر</span>
-    </MenuItem>
+    </MenuItem> */}
     {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
   </NavDropdown>
 );

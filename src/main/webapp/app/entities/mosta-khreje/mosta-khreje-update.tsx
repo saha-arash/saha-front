@@ -69,7 +69,7 @@ export const MostaKhrejeUpdate = (props: IMostaKhrejeUpdateProps) => {
       <Row className="justify-content-center">
         <Col md="8">
           {loading ? (
-            <p>Loading...</p>
+            <p>در حال بارگیری...</p>
           ) : (
             <AvForm model={isNew ? {} : mostaKhrejeEntity} onSubmit={saveEntity}>
               {!isNew ? (
