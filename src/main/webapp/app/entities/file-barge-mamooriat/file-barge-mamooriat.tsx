@@ -62,7 +62,7 @@ export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
         <Link to={`${match.url}/new${props.location.state ? `/${props.location.state?.id}` : ''}`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <span>ایجاد برگه ماموریت</span>
+          <span>ایحاد فایل برگه ماموریت</span>
         </Link>
       </h2>
       <div className="table-responsive">
@@ -113,12 +113,12 @@ export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
                   </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${fileBargeMamooriat.id}`} color="info" size="sm">
+                      {/* <Button tag={Link} to={`${match.url}/${fileBargeMamooriat.id}`} color="info" size="sm">
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
-                      </Button>
+                      </Button> */}
                       <Button
                         tag={Link}
                         to={`${match.url}/${fileBargeMamooriat.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
