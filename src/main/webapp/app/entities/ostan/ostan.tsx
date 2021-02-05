@@ -82,7 +82,7 @@ export const Ostan = (props: IOstanProps) => {
                     </Button>
                   </td>
                   <td>{ostan.name}</td>
-                  <td>{ostan.mantagheId ? <Link to={`mantaghe/${ostan.mantagheId}`}>{ostan.mantagheId}</Link> : ''}</td>
+                  {/* <td>{ostan.mantagheId ? <Link to={`mantaghe/${ostan.mantagheId}`}>{ostan.mantagheId}</Link> : ''}</td> */}
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       {/* <Button tag={Link} to={`${match.url}/${ostan.id}`} color="info" size="sm">

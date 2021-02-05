@@ -13,6 +13,7 @@ import { getEntity, updateEntity, createEntity, reset } from './ostan.reducer';
 import { IOstan } from 'app/shared/model/ostan.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
+import Select from 'react-select';
 
 export interface IOstanUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -46,7 +47,8 @@ export const OstanUpdate = (props: IOstanUpdateProps) => {
     if (errors.length === 0) {
       const entity = {
         ...ostanEntity,
-        ...values
+        ...values,
+        mantagheId
       };
 
       if (isNew) {
@@ -90,7 +92,15 @@ export const OstanUpdate = (props: IOstanUpdateProps) => {
                 <Label for="ostan-mantaghe">
                   <span>منطقه</span>
                 </Label>
-                <AvInput id="ostan-mantaghe" type="select" className="form-control" name="mantagheId">
+                <Select
+                options={mantaghes.map(ostan => ({label: ostan.name, value: ostan.id}))}
+                value={mantaghes.map(({name, id}) => ({label: name, value: id})).find(({value}) => String(value) === mantagheId || String(value) === ostanEntity.mantagheId?.toString())}
+                onChange={(e) => setMantagheId(e && e.value)}
+                placeholder=""
+                >
+
+                </Select>
+                {/* <AvInput id="ostan-mantaghe" type="select" className="form-control" name="mantagheId">
                   <option value="" key="0" />
                   {mantaghes
                     ? mantaghes.map(otherEntity => (
@@ -99,7 +109,7 @@ export const OstanUpdate = (props: IOstanUpdateProps) => {
                         </option>
                       ))
                     : null}
-                </AvInput>
+                </AvInput> */}
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/ostan" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />

@@ -59,7 +59,7 @@ export const FileBargeMamooriat = (props: IFileBargeMamooriatProps) => {
     <div>
       <h2 id="file-barge-mamooriat-heading">
         <span>فایل برگه ماموریت</span>
-        <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
+        <Link to={`${match.url}/new${props.location.state ? `/${props.location.state?.id}` : ''}`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
           <span>ایجاد برگه ماموریت</span>

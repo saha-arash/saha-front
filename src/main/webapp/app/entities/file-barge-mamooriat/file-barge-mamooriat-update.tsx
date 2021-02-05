@@ -23,6 +23,7 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
   const { fileBargeMamooriatEntity, bargeMamooriats, loading, updating } = props;
 
   const { madarek, madarekContentType } = fileBargeMamooriatEntity;
+  const {bmId} = props.match.params || {};
 
   const handleClose = () => {
     props.history.push('/file-barge-mamooriat' + props.location.search);
@@ -56,9 +57,12 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
     if (errors.length === 0) {
       const entity = {
         ...fileBargeMamooriatEntity,
-        ...values
+        ...values,
+        
       };
-
+      if(bmId) {
+        entity.bargeMamooriatId =  bmId
+      }
       if (isNew) {
         props.createEntity(entity);
       } else {
@@ -121,10 +125,8 @@ export const FileBargeMamooriatUpdate = (props: IFileBargeMamooriatUpdateProps) 
                 </AvGroup>
               </AvGroup>
               <AvGroup>
-                <Label for="file-barge-mamooriat-bargeMamooriat">
-                  <Translate contentKey="sahaApp.fileBargeMamooriat.bargeMamooriat">Barge Mamooriat</Translate>
-                </Label>
-                <AvInput id="file-barge-mamooriat-bargeMamooriat" type="select" className="form-control" name="bargeMamooriatId">
+                شناسه برگه ماموریت
+                <AvInput id="file-barge-mamooriat-bargeMamooriat" value={bmId} disabled={bmId} type="select" className="form-control" name="bargeMamooriatId">
                   <option value="" key="0" />
                   {bargeMamooriats
                     ? bargeMamooriats.map(otherEntity => (

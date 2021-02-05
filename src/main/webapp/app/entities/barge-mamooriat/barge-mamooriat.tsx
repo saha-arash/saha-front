@@ -175,13 +175,13 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
                     )}
                   </td>
                   <td>{bargeMamooriat.yegan ? <Link to={`yegan/${bargeMamooriat.yegan.id}`}>{bargeMamooriat.yegan.id}</Link> : ''}</td>
-                  <td>
+                  {/* <td>
                     {bargeMamooriat.hesabResi ? (
                       <Link to={`hesab-resi/${bargeMamooriat.hesabResi.id}`}>{bargeMamooriat.hesabResi.id}</Link>
                     ) : (
                       ''
                     )}
-                  </td>
+                  </td> */}
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/barge-mamooriat/${bargeMamooriat.id}`} color="info" size="sm">
