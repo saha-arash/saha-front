@@ -13,11 +13,12 @@ import { getEntity, updateEntity, createEntity, reset } from './shahr.reducer';
 import { IShahr } from 'app/shared/model/shahr.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
+import Select from 'react-select';
 
 export interface IShahrUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const ShahrUpdate = (props: IShahrUpdateProps) => {
-  const [ostanId, setOstanId] = useState('0');
+  const [ostanId, setOstanId] = useState();
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
   const { shahrEntity, ostans, loading, updating } = props;
@@ -46,7 +47,8 @@ export const ShahrUpdate = (props: IShahrUpdateProps) => {
     if (errors.length === 0) {
       const entity = {
         ...shahrEntity,
-        ...values
+        ...values,
+        ostanId,
       };
 
       if (isNew) {
@@ -108,7 +110,15 @@ export const ShahrUpdate = (props: IShahrUpdateProps) => {
                 <Label for="shahr-ostan">
                   <span>استان</span>
                 </Label>
-                <AvInput id="shahr-ostan" type="select" className="form-control" name="ostanId">
+                <Select
+                options={ostans.map(ostan => ({label: ostan.name, value: ostan.id}))}
+                value={ostans.map(({name, id}) => ({label: name, value: id})).find(({value}) => String(value) === ostanId || String(value) === shahrEntity.ostanId?.toString())}
+                onChange={(e) => setOstanId(e && e.value)}
+                placeholder=""
+                >
+
+                </Select>
+                {/* <AvInput id="shahr-ostan" type="select" className="form-control" name="ostanId">
                   <option value="" key="0" />
                   {ostans
                     ? ostans.map(otherEntity => (
@@ -117,7 +127,7 @@ export const ShahrUpdate = (props: IShahrUpdateProps) => {
                         </option>
                       ))
                     : null}
-                </AvInput>
+                </AvInput> */}
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/shahr" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />

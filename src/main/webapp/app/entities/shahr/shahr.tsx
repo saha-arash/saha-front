@@ -94,7 +94,7 @@ export const Shahr = (props: IShahrProps) => {
                   <td>{shahr.zaribAboHava}</td>
                   <td>{shahr.zaribTashilat}</td>
                   <td>{shahr.masafatTaMarkaz}</td>
-                  <td>{shahr.ostanId ? <Link to={`ostan/${shahr.ostanId}`}>{shahr.ostanId}</Link> : ''}</td>
+                  {/* <td>{shahr.ostanId ? <Link to={`ostan/${shahr.ostanId}`}>{shahr.ostanId}</Link> : ''}</td> */}
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       {/* <Button tag={Link} to={`${match.url}/${shahr.id}`} color="info" size="sm">
