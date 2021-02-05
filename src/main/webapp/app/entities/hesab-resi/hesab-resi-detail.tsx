@@ -34,6 +34,11 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
         <h2>
           حسابرسی [<b>{hesabResiEntity.id}</b>]
         </h2>
+        <div>
+          <Button tag={Link} color="success" to={`${props.match.url}/edit`}>
+            به روز رسانی
+          </Button>
+        </div>
         <dl className="jh-entity-details">
           <dt>
             <span id="sal">
@@ -173,6 +178,7 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
           </span>
         </Button>
       </Col>
+    
     </Row>
   );
 };

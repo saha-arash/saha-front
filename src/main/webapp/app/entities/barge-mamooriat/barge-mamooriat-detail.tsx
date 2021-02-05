@@ -56,11 +56,11 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
           <dt>
             سرپرست
           </dt>
-          <dd>{bargeMamooriatEntity.sarparastId ? bargeMamooriatEntity.sarparastId : ''}</dd>
+          <dd>{bargeMamooriatEntity.sarparatDTO ? bargeMamooriatEntity.sarparatDTO.name : ''}</dd>
           <dt>
             یگان
           </dt>
-          <dd>{bargeMamooriatEntity.yeganId ? bargeMamooriatEntity.yeganId : ''}</dd>
+          <dd>{bargeMamooriatEntity.yeganDTO ? bargeMamooriatEntity.yeganDTO.name : ''}</dd>
           <dt>
             حسابرسی
           </dt>

@@ -159,8 +159,27 @@ export const Yegan = (props: IYeganProps) => {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-    suppressErrors: false
+    // suppressErrors: false
   });
+
+  function PrintElem(elem) {
+    const mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+    mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write('<h1>' + document.title  + '</h1>');
+    mywindow.document.write(document.getElementById(elem).innerHTML);
+    mywindow.document.write('</body></html>');
+
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.focus(); // necessary for IE >= 10*/
+
+    mywindow.print();
+    mywindow.close();
+
+    return true;
+}
+
   return (
     <div>
       <h2 id="yegan-heading">
@@ -271,7 +290,7 @@ export const Yegan = (props: IYeganProps) => {
             پرینت
             
             </Button>
-        <div className="table-responsive" ref={componentRef}>
+        <div className="table-responsive" id="yeganTabel" ref={componentRef}>
           
 
           <Table responsive >

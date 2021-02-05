@@ -88,7 +88,7 @@ export const HesabResiUpdate = (props: IHesabResiUpdateProps) => {
   } = props;
 
   const handleClose = () => {
-    props.history.push('/hesab-resi' + props.location.search);
+    props.history.push(`/hesab-resi/${props.match.params.id}`);
   };
 
   useEffect(() => {
@@ -98,22 +98,22 @@ export const HesabResiUpdate = (props: IHesabResiUpdateProps) => {
       props.getEntity(props.match.params.id);
     }
 
-    props.getGozareshes();
-    props.getBankEtelaatis();
-    props.getRafeIradats();
-    props.getMostaKhrejes();
-    props.getBilanSeSalGhabls();
-    props.getMohasebeHazineMamooriats();
-    props.getChekideGardeshKars();
-    props.getGozareshHozoors();
-    props.getBilanSalGhabls();
-    props.getMadareks();
-    props.getGardeshkarBarnameHesabresis();
-    props.getDastoorAmalEjraEs();
-    props.getNamehs();
-    props.getKholaseGozareshes();
-    props.getGardeshKars();
-    props.getBarnameHesabResis();
+    // props.getGozareshes();
+    // props.getBankEtelaatis();
+    // props.getRafeIradats();
+    // props.getMostaKhrejes();
+    // props.getBilanSeSalGhabls();
+    // props.getMohasebeHazineMamooriats();
+    // props.getChekideGardeshKars();
+    // props.getGozareshHozoors();
+    // props.getBilanSalGhabls();
+    // props.getMadareks();
+    // props.getGardeshkarBarnameHesabresis();
+    // props.getDastoorAmalEjraEs();
+    // props.getNamehs();
+    // props.getKholaseGozareshes();
+    // props.getGardeshKars();
+    // props.getBarnameHesabResis();
   }, []);
 
   useEffect(() => {
@@ -164,7 +164,7 @@ export const HesabResiUpdate = (props: IHesabResiUpdateProps) => {
                 <Label id="salLabel" for="hesab-resi-sal">
                   سال
                 </Label>
-                <AvField id="hesab-resi-sal" type="string" className="form-control" name="sal" />
+                <AvField disabled id="hesab-resi-sal" type="string" className="form-control" name="sal" />
               </AvGroup>
               <AvGroup>
                 <Label id="vaziateHesabResiLabel" for="hesab-resi-vaziateHesabResi">
@@ -177,260 +177,27 @@ export const HesabResiUpdate = (props: IHesabResiUpdateProps) => {
                   name="vaziateHesabResi"
                   value={(!isNew && hesabResiEntity.vaziateHesabResi) || 'SODOOR_BARGE_MAMOORIAT'}
                 >
-                  <option value="SODOOR_BARGE_MAMOORIAT">{translate('sahaApp.VaziateHesabResi.SODOOR_BARGE_MAMOORIAT')}</option>
-                  <option value="DAR_SHOROF_MAMOORIAT">{translate('sahaApp.VaziateHesabResi.DAR_SHOROF_MAMOORIAT')}</option>
-                  <option value="DAR_HALE_MAMOORIAT">{translate('sahaApp.VaziateHesabResi.DAR_HALE_MAMOORIAT')}</option>
+                  <option value="SODOOR_BARGE_MAMOORIAT">
+                    شروع برگه ماموریت
+                  </option>
+                  <option value="DAR_SHOROF_MAMOORIAT">
+                    در شرف ماموریت
+                  </option>
+                  <option value="DAR_HALE_MAMOORIAT">
+                    در حال ماموریت
+                  </option>
                   <option value="ETMAM_MAMOORIAT_HOZOOR_DARSAZMAN">
-                    {translate('sahaApp.VaziateHesabResi.ETMAM_MAMOORIAT_HOZOOR_DARSAZMAN')}
+                    اتمام ماموریت حضور در سازمان
                   </option>
                 </AvInput>
               </AvGroup>
               <AvGroup>
-                <Label for="hesab-resi-gozaresh">
-                  <Translate contentKey="sahaApp.hesabResi.gozaresh">Gozaresh</Translate>
+                <Label id="tatilLabel" for="tedadRoozayeTatilSal">
+                  تعداد روزهای تعطیل سال
                 </Label>
-                <AvInput id="hesab-resi-gozaresh" type="select" className="form-control" name="gozareshId">
-                  <option value="" key="0" />
-                  {gozareshes
-                    ? gozareshes.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
+                <AvField id="tedadRoozayeTatilSal" type="number" className="form-control" name="tedadRoozayeTatilSal" />
               </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-bankEtelaati">
-                  <Translate contentKey="sahaApp.hesabResi.bankEtelaati">Bank Etelaati</Translate>
-                </Label>
-                <AvInput id="hesab-resi-bankEtelaati" type="select" className="form-control" name="bankEtelaatiId">
-                  <option value="" key="0" />
-                  {bankEtelaatis
-                    ? bankEtelaatis.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-rafeIradat">
-                  <Translate contentKey="sahaApp.hesabResi.rafeIradat">Rafe Iradat</Translate>
-                </Label>
-                <AvInput id="hesab-resi-rafeIradat" type="select" className="form-control" name="rafeIradatId">
-                  <option value="" key="0" />
-                  {rafeIradats
-                    ? rafeIradats.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-mostaKhreje">
-                  <Translate contentKey="sahaApp.hesabResi.mostaKhreje">Mosta Khreje</Translate>
-                </Label>
-                <AvInput id="hesab-resi-mostaKhreje" type="select" className="form-control" name="mostaKhrejeId">
-                  <option value="" key="0" />
-                  {mostaKhrejes
-                    ? mostaKhrejes.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-bilanSeSalGhabl">
-                  <Translate contentKey="sahaApp.hesabResi.bilanSeSalGhabl">Bilan Se Sal Ghabl</Translate>
-                </Label>
-                <AvInput id="hesab-resi-bilanSeSalGhabl" type="select" className="form-control" name="bilanSeSalGhablId">
-                  <option value="" key="0" />
-                  {bilanSeSalGhabls
-                    ? bilanSeSalGhabls.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-mohasebeHazineMamooriat">
-                  <Translate contentKey="sahaApp.hesabResi.mohasebeHazineMamooriat">Mohasebe Hazine Mamooriat</Translate>
-                </Label>
-                <AvInput id="hesab-resi-mohasebeHazineMamooriat" type="select" className="form-control" name="mohasebeHazineMamooriatId">
-                  <option value="" key="0" />
-                  {mohasebeHazineMamooriats
-                    ? mohasebeHazineMamooriats.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-chekideGardeshKar">
-                  <Translate contentKey="sahaApp.hesabResi.chekideGardeshKar">Chekide Gardesh Kar</Translate>
-                </Label>
-                <AvInput id="hesab-resi-chekideGardeshKar" type="select" className="form-control" name="chekideGardeshKarId">
-                  <option value="" key="0" />
-                  {chekideGardeshKars
-                    ? chekideGardeshKars.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-gozareshHozoor">
-                  <Translate contentKey="sahaApp.hesabResi.gozareshHozoor">Gozaresh Hozoor</Translate>
-                </Label>
-                <AvInput id="hesab-resi-gozareshHozoor" type="select" className="form-control" name="gozareshHozoorId">
-                  <option value="" key="0" />
-                  {gozareshHozoors
-                    ? gozareshHozoors.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-bilanSalGhabl">
-                  <Translate contentKey="sahaApp.hesabResi.bilanSalGhabl">Bilan Sal Ghabl</Translate>
-                </Label>
-                <AvInput id="hesab-resi-bilanSalGhabl" type="select" className="form-control" name="bilanSalGhablId">
-                  <option value="" key="0" />
-                  {bilanSalGhabls
-                    ? bilanSalGhabls.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-madarek">
-                  <Translate contentKey="sahaApp.hesabResi.madarek">Madarek</Translate>
-                </Label>
-                <AvInput id="hesab-resi-madarek" type="select" className="form-control" name="madarekId">
-                  <option value="" key="0" />
-                  {madareks
-                    ? madareks.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-gardeshkarBarnameHesabresi">
-                  <Translate contentKey="sahaApp.hesabResi.gardeshkarBarnameHesabresi">Gardeshkar Barname Hesabresi</Translate>
-                </Label>
-                <AvInput
-                  id="hesab-resi-gardeshkarBarnameHesabresi"
-                  type="select"
-                  className="form-control"
-                  name="gardeshkarBarnameHesabresiId"
-                >
-                  <option value="" key="0" />
-                  {gardeshkarBarnameHesabresis
-                    ? gardeshkarBarnameHesabresis.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-dastoorAmalEjraE">
-                  <Translate contentKey="sahaApp.hesabResi.dastoorAmalEjraE">Dastoor Amal Ejra E</Translate>
-                </Label>
-                <AvInput id="hesab-resi-dastoorAmalEjraE" type="select" className="form-control" name="dastoorAmalEjraEId">
-                  <option value="" key="0" />
-                  {dastoorAmalEjraES
-                    ? dastoorAmalEjraES.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-nameh">
-                  <Translate contentKey="sahaApp.hesabResi.nameh">Nameh</Translate>
-                </Label>
-                <AvInput id="hesab-resi-nameh" type="select" className="form-control" name="namehId">
-                  <option value="" key="0" />
-                  {namehs
-                    ? namehs.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-kholaseGozaresh">
-                  <Translate contentKey="sahaApp.hesabResi.kholaseGozaresh">Kholase Gozaresh</Translate>
-                </Label>
-                <AvInput id="hesab-resi-kholaseGozaresh" type="select" className="form-control" name="kholaseGozareshId">
-                  <option value="" key="0" />
-                  {kholaseGozareshes
-                    ? kholaseGozareshes.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-gardeshKar">
-                  <Translate contentKey="sahaApp.hesabResi.gardeshKar">Gardesh Kar</Translate>
-                </Label>
-                <AvInput id="hesab-resi-gardeshKar" type="select" className="form-control" name="gardeshKarId">
-                  <option value="" key="0" />
-                  {gardeshKars
-                    ? gardeshKars.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="hesab-resi-barnameHesabResi">
-                  <Translate contentKey="sahaApp.hesabResi.barnameHesabResi">Barname Hesab Resi</Translate>
-                </Label>
-                <AvInput id="hesab-resi-barnameHesabResi" type="select" className="form-control" name="barnameHesabResiId">
-                  <option value="" key="0" />
-                  {barnameHesabResis
-                    ? barnameHesabResis.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <Button tag={Link} id="cancel-save" to="/hesab-resi" replace color="info">
+              <Button tag={Link} id="cancel-save" to={`/hesab-resi/${props.match.params.id}`} replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
