@@ -4,8 +4,8 @@ const config = {
 
 export default config;
 
-// export const SERVER_API_URL = process.env.SERVER_API_URL;
-export const SERVER_API_URL = 'http://67dfb0e49348.ngrok.io/';
+export const SERVER_API_URL = process.env.SERVER_API_URL;
+//export const SERVER_API_URL = 'http://67dfb0e49348.ngrok.io/';
 
 export const AUTHORITIES = {
   ADMIN: 'ROLE_ADMIN',
