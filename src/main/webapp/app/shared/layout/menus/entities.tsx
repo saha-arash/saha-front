@@ -62,9 +62,9 @@ export const EntitiesMenu = props => (
      <MenuItem icon="asterisk" to="/file-barge-mamooriat">
       <Translate contentKey="global.menu.entities.fileBargeMamooriat" />
     </MenuItem>  */}
-    {/* <MenuItem icon="asterisk" to="/niroo-code">
-      <Translate contentKey="global.menu.entities.nirooCode" />
-    </MenuItem> */}
+    <MenuItem icon="asterisk" to="/niroo-code">
+      نیرو ها
+    </MenuItem> 
     {/* <MenuItem icon="asterisk" to="/file-hesab-resi">
       <Translate contentKey="global.menu.entities.fileHesabResi" />
     </MenuItem> */}

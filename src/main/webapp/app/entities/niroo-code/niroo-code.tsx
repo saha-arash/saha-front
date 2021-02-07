@@ -49,11 +49,11 @@ export const NirooCode = (props: INirooCodeProps) => {
   return (
     <div>
       <h2 id="niroo-code-heading">
-        <Translate contentKey="sahaApp.nirooCode.home.title">Niroo Codes</Translate>
+        <span>نیرو ها</span>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.nirooCode.home.createLabel">Create new Niroo Code</Translate>
+          <Translate contentKey="sahaApp.nirooCode.home.createLabel">ایجاد نیروی جدید</Translate>
         </Link>
       </h2>
       <div className="table-responsive">
@@ -65,11 +65,11 @@ export const NirooCode = (props: INirooCodeProps) => {
                   <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="sahaApp.nirooCode.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                  <Translate contentKey="sahaApp.nirooCode.name">نام</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={sort('code')}>
+                {/* <th className="hand" onClick={sort('code')}>
                   <Translate contentKey="sahaApp.nirooCode.code">Code</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
+                </th> */}
                 <th />
               </tr>
             </thead>
