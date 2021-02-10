@@ -56,8 +56,8 @@ export const NirooCodeUpdate = (props: INirooCodeUpdateProps) => {
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="sahaApp.nirooCode.home.createOrEditLabel">
-            <Translate contentKey="sahaApp.nirooCode.home.createOrEditLabel">Create or edit a NirooCode</Translate>
+          <h2>
+            ایجاد یا ویرایش نیرو
           </h2>
         </Col>
       </Row>
@@ -70,20 +70,20 @@ export const NirooCodeUpdate = (props: INirooCodeUpdateProps) => {
               {!isNew ? (
                 <AvGroup>
                   <Label for="niroo-code-id">
-                    <Translate contentKey="global.field.id">ID</Translate>
+                    شناسه
                   </Label>
                   <AvInput id="niroo-code-id" type="text" className="form-control" name="id" required readOnly />
                 </AvGroup>
               ) : null}
               <AvGroup>
-                <Label id="nameLabel" for="niroo-code-name">
-                  <Translate contentKey="sahaApp.nirooCode.name">Name</Translate>
+                <Label >
+                  نام
                 </Label>
                 <AvField id="niroo-code-name" type="text" name="name" />
               </AvGroup>
               <AvGroup>
-                <Label id="codeLabel" for="niroo-code-code">
-                  <Translate contentKey="sahaApp.nirooCode.code">Code</Translate>
+                <Label>
+                  کد
                 </Label>
                 <AvField id="niroo-code-code" type="text" name="code" />
               </AvGroup>
@@ -91,14 +91,14 @@ export const NirooCodeUpdate = (props: INirooCodeUpdateProps) => {
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
-                  <Translate contentKey="entity.action.back">Back</Translate>
+                  بازگشت
                 </span>
               </Button>
               &nbsp;
               <Button color="primary" id="save-entity" type="submit" disabled={updating}>
                 <FontAwesomeIcon icon="save" />
                 &nbsp;
-                <Translate contentKey="entity.action.save">Save</Translate>
+                ذخیره
               </Button>
             </AvForm>
           )}

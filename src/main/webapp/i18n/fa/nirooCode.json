@@ -2,9 +2,9 @@
   "sahaApp": {
     "nirooCode": {
       "home": {
-        "title": "Niroo Codes",
-        "createLabel": "Create a new Niroo Code",
-        "createOrEditLabel": "Create or edit a Niroo Code",
+        "title": "نیرو ها",
+        "createLabel": "ایجاد نیروی جدید",
+        "createOrEditLabel": "ایجاد یا ویرایش نیرو",
         "notFound": "No Niroo Codes found"
       },
       "created": "A new Niroo Code is created with identifier {{ param }}",

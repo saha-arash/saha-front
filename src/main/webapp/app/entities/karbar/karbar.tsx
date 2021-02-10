@@ -50,7 +50,7 @@ export const Karbar = (props: IKarbarProps) => {
   return (
     <div>
       <h2 id="karbar-heading">
-        کاربرها
+        کاربران
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
@@ -150,7 +150,7 @@ export const Karbar = (props: IKarbarProps) => {
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
                       </Button>
-                      <Button
+                      {/* <Button
                         tag={Link}
                         to={`${match.url}/${karbar.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
                         color="danger"
@@ -160,7 +160,7 @@ export const Karbar = (props: IKarbarProps) => {
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
                         </span>
-                      </Button>
+                      </Button> */}
                     </div>
                   </td>
                 </tr>

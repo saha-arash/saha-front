@@ -53,7 +53,7 @@ export const NirooCode = (props: INirooCodeProps) => {
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="sahaApp.nirooCode.home.createLabel">ایجاد نیروی جدید</Translate>
+          <span>ایجاد نیروی جدید</span>
         </Link>
       </h2>
       <div className="table-responsive">
@@ -62,14 +62,14 @@ export const NirooCode = (props: INirooCodeProps) => {
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>شناسه</span> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="sahaApp.nirooCode.name">نام</Translate> <FontAwesomeIcon icon="sort" />
+                  <span>نام</span> <FontAwesomeIcon icon="sort" />
                 </th>
-                {/* <th className="hand" onClick={sort('code')}>
-                  <Translate contentKey="sahaApp.nirooCode.code">Code</Translate> <FontAwesomeIcon icon="sort" />
-                </th> */}
+                <th className="hand" onClick={sort('code')}>
+                  کد <FontAwesomeIcon icon="sort" />
+                </th>
                 <th />
               </tr>
             </thead>
@@ -85,12 +85,12 @@ export const NirooCode = (props: INirooCodeProps) => {
                   <td>{nirooCode.code}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${nirooCode.id}`} color="info" size="sm">
+                      {/* <Button tag={Link} to={`${match.url}/${nirooCode.id}`} color="info" size="sm">
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
-                      </Button>
+                      </Button> */}
                       <Button
                         tag={Link}
                         to={`${match.url}/${nirooCode.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
@@ -110,7 +110,7 @@ export const NirooCode = (props: INirooCodeProps) => {
                       >
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.delete">Delete</Translate>
+                          حذف
                         </span>
                       </Button>
                     </div>
@@ -122,7 +122,7 @@ export const NirooCode = (props: INirooCodeProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="sahaApp.nirooCode.home.notFound">No Niroo Codes found</Translate>
+              نیرویی یافت نشد!
             </div>
           )
         )}
