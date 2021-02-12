@@ -24,6 +24,7 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 import Select from "react-select";
 import DatePicker from 'react-datepicker2';
 import moment from 'jalali-moment';
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 export interface IKarbarUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -85,6 +86,10 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
         tarikhEstekhdam: convertDateTimeToServer(estekhdamDate),
         // yeganCodeId: 1
       };
+
+      // if(bazneshastegiDate) {
+      //   entity.tarikhBazneshastegi = convertDateTimeToServer(bazneshastegiDate)
+      // }
 
       if (isNew) {
         props.createEntity(entity);
@@ -169,14 +174,32 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
                 <Label id="tarikhBazneshastegiLabel" for="karbar-tarikhBazneshastegi">
                   تاریخ بازنشستگی
                 </Label>
+                <div className="position-relative">
                 <DatePicker
-
                   isGregorian={false}
                   timePicker={false}
                   onChange={(e) => setBazneshasegiDate(e)}
                   value={bazneshastegiDate || null}
                   persianDigits
                 />
+                {
+                  bazneshastegiDate && (
+                    <FontAwesomeIcon 
+                      className="position-absolute" 
+                      onClick={() => setBazneshasegiDate(null)}
+                      style={{
+                            top: 0,
+                            bottom: 0,
+                            margin: 'auto',
+                            right: '20px',
+                            cursor: 'pointer'
+                      }} 
+                      icon={faTimes} 
+                      />
+                  )
+                }
+                
+                </div>
               </AvGroup>
               <AvGroup>
                 <Label id="tarikhEstekhdamLabel" for="karbar-tarikhEstekhdam">
