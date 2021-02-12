@@ -145,13 +145,12 @@ const changeUnit = (item) => {
 
 }
 const changeKarbar = (item) => {
-  set_users(item.value);
+  set_users(item);
 
 }
 const changenafar = (data, s) => {
-  const n = [];
-  data.map(item => {
-    n.push(item.value);
+  const n = data.map(item => {
+    return item
   })
   set_nafarat(n);
 
@@ -159,9 +158,8 @@ const changenafar = (data, s) => {
 
 const changeBinandegan = (data) => {
 
-  const n = [];
-  data.map(item => {
-    n.push(item.value);
+  const n = data.map(item => {
+    return item
   })
   set_binandegan(n);
 }
@@ -204,17 +202,15 @@ const changeBinandegan = (data) => {
     values.shorooMamooriat = convertDateTimeToServer(values.shorooMamooriat);
     values.payanMamooriat = convertDateTimeToServer(values.payanMamooriat);
     values.sarparastId = s_users.value;
-    values.nafarat = []; 
-    s_nafars.map(item => {
-      values.nafarat.push(item.value)
-    });
+    values.nafarat = s_nafars.map((e) => e.value); 
+
     values.yeganId = s_units.value;
     values.shorooMamooriat = new Date(startDate);
     values.payanMamooriat = new Date(endDate);
-    values.binandegan = [];
-    s_binandegan.map(item => {
-      values.binandegan.push(item.value)
-    });
+    values.binandegan = s_binandegan.map((e) => e.value);
+    // s_binandegan.map(item => {
+    //   values.binandegan.push(item.value)
+    // });
 
 
 
@@ -355,18 +351,17 @@ const changeBinandegan = (data) => {
                   <span>سرپرست</span>
                 </Label>
                 {/* <Select options={users}  onChange={changeKarbar}/> */}
-                {!props.bargeMamooriatEntity?.sarparastId || Object.keys(s_users).length > 0 ? (
-                <Select defaultValue={s_users} options={users}  onChange={changeKarbar} />
-                ):null}
+                
+                <Select value={s_users} options={users}  onChange={changeKarbar} />
+             
               </AvGroup>
               <AvGroup>
                 <Label for="barge-mamooriat-yegan">
                   <span>یگان</span>
                 </Label>
 
-                {!props.bargeMamooriatEntity?.yeganId || Object.keys(s_nafars).length > 0 ? (
-                <Select defaultValue={s_units} options={units}  onChange={changeUnit} />
-                ):null}
+                
+                <Select value={units} options={units}  onChange={changeUnit} />
 
                 {/* <Select options={units} onChange={changeUnit} /> */}
 
@@ -376,18 +371,17 @@ const changeBinandegan = (data) => {
                 <Label for="barge-mamooriat-sarparast">
                   <span>نفرات</span>
                 </Label>
-                {!props.bargeMamooriatEntity?.binandegan || s_nafars.length > 0 ? (
-                <Select defaultValue={s_nafars} options={users} isMulti onChange={changenafar} />
-                ):null}
+
+                <Select value={s_nafars} options={users} isMulti onChange={changenafar} />
               </AvGroup>
 
               <AvGroup>
                 <Label for="barge-mamooriat-sarparast">
                   <span>بینندگان</span>
                 </Label>
-                {!props.bargeMamooriatEntity?.binandegan || s_binandegan.length > 0 ? (
-                <Select defaultValue={s_binandegan} options={users} isMulti onChange={changeBinandegan} />
-                ): null}
+                
+                <Select value={s_binandegan} options={users} isMulti onChange={changeBinandegan} />
+                
               </AvGroup>
               <AvGroup>
                 <Label for="barge-mamooriat-hesabResi">
@@ -398,7 +392,7 @@ const changeBinandegan = (data) => {
                   {hesabResis
                     ? hesabResis.map(otherEntity => (
                         <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
+                          {otherEntity.sal}
                         </option>
                       ))
                     : null}
