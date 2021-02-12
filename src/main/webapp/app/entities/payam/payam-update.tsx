@@ -72,7 +72,7 @@ export const PayamUpdate = (props: IPayamUpdateProps) => {
       if(receiver === 'karbar') {
         entity.karbarDaryaftKonandId = selectedKarbar
       } else {
-        entity.yeganDaryaftKonandId = selectedYegan
+        entity.yeganDaryaftKonanadeId = selectedYegan
       }
 
       if (isNew) {
