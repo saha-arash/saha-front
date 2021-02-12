@@ -192,6 +192,25 @@ export const HesabResiUpdate = (props: IHesabResiUpdateProps) => {
                 </AvInput>
               </AvGroup>
               <AvGroup>
+                <Label id="hesab-resi-noeBarnameHesabResi-label" for="hesab-resi-noeBarnameHesabResi">
+                  نوع برنامه حسابرسی
+                </Label>
+                <AvInput
+                  id="hesab-resi-noeBarnameHesabResi"
+                  type="select"
+                  className="form-control"
+                  name="noeBarnameHesabResi"
+                  value={hesabResiEntity.noeBarnameHesabResi}
+                >
+                  <option value="HESABRESI_BARNAMEE">
+                      حسابرسی برنامه‌ای
+                  </option>
+                  <option value="HESABRESI_PEYGIRI">
+                    حسابرسی پیگیری
+                  </option>
+                </AvInput>
+              </AvGroup>
+              <AvGroup>
                 <Label id="tatilLabel" for="tedadRoozayeTatilSal">
                   تعداد روزهای تعطیل سال
                 </Label>
