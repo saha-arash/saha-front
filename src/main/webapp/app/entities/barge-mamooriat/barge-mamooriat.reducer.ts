@@ -98,21 +98,21 @@ export default (state: BargeMamooriatState = initialState, action): BargeMamoori
 };
 
 const apiUrl = 'api/barge-mamooriats';
-const getUrl = (vaziat, saleMamooriat) => {
+const getUrl = (vaziat, saleMamooriat, hesabrediId) => {
   let url = `${apiUrl}/user?cacheBuster=${new Date().getTime()}`;
   // url = appendQuery(url, 'page', page);
-  // url = appendQuery(url, 'size', size);
+  url = appendQuery(url, 'hesabResiId', hesabrediId);
   url = appendQuery(url, 'vaziatBargeMamooriat', vaziat);
   url = appendQuery(url, 'saleMamooriat', saleMamooriat);
   return url;
 };
 // Actions
 
-export const getEntities: ICrudGetAllAction<IBargeMamooriat> = (page, size, sort, vaziat, saleMamooriat) => {
+export const getEntities: ICrudGetAllAction<IBargeMamooriat> = (page, size, sort, vaziat, saleMamooriat, hesabrediId) => {
   const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
   return {
     type: ACTION_TYPES.FETCH_BARGEMAMOORIAT_LIST,
-    payload: axios.get<IBargeMamooriat>(getUrl(vaziat, saleMamooriat))
+    payload: axios.get<IBargeMamooriat>(getUrl(vaziat, saleMamooriat, hesabrediId))
   };
 };
 

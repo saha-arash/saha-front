@@ -27,10 +27,10 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
   const {hesabresiId, saleMamooriat} = props.match.params || {}
   const getAllEntities = () => {
     // props.getEntities(paginationState.activePage - 1, paginationState.itemsPerPage, `${paginationState.sort},${paginationState.order}`);
-    if(saleMamooriat) {
-      props.getEntities(0,0,``, '', saleMamooriat);
+    if(hesabresiId && saleMamooriat) {
+      props.getEntities(0,0,``, '', saleMamooriat, hesabresiId);
     } else {
-      props.getEntities(0,0,``,vaziat,sal);
+      props.getEntities(0,0,``,vaziat,sal, hesabresiId);
     }
   };
 
