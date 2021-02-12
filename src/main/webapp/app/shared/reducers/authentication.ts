@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { getProfile } from './application-profile';
 import axios from 'axios';
 import { Storage } from 'react-jhipster';
@@ -114,25 +115,30 @@ export const getSession = () => async (dispatch, getState) => {
 };
 
 export const login = (username, password, history, rememberMe = false) => async (dispatch, getState) => {
-  const result = await axios.post('api/authenticate', { username, password, rememberMe });
-  console.log(result);
-  localStorage.setItem('Token', result.data.id_token);
-  localStorage.setItem('role', result.data.roles.split(',')[0]);
+  try {
+    const result = await axios.post('api/authenticate', { username, password, rememberMe });
+    console.log(result);
+    localStorage.setItem('Token', result.data.id_token);
+    localStorage.setItem('role', result.data.roles.split(',')[0]);
 
-  const bearerToken = result.data.id_token;
-  dispatch({
-    type: ACTION_TYPES.LOGIN
-  });
-  if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
-    const jwt = bearerToken.slice(7, bearerToken.length);
-    if (rememberMe) {
-      Storage.local.set(AUTH_TOKEN_KEY, jwt);
-    } else {
-      Storage.session.set(AUTH_TOKEN_KEY, jwt);
+    const bearerToken = result.data.id_token;
+    dispatch({
+      type: ACTION_TYPES.LOGIN
+    });
+    if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
+      const jwt = bearerToken.slice(7, bearerToken.length);
+      if (rememberMe) {
+        Storage.local.set(AUTH_TOKEN_KEY, jwt);
+      } else {
+        Storage.session.set(AUTH_TOKEN_KEY, jwt);
+      }
     }
+    dispatch(getProfile());
+    await dispatch(getSession());
+  } catch (error) {
+    toast.error('خطایی اتفاق افتاد دوباره تلاش کنید');
   }
-  dispatch(getProfile());
-  await dispatch(getSession());
+
   // const result = await dispatch({
   //   type: ACTION_TYPES.LOGIN,
   //   payload: axios.post('api/authenticate', { username, password, rememberMe })
