@@ -22,37 +22,55 @@ export const PayamDetail = (props: IPayamDetailProps) => {
     <Row>
       <Col md="8">
         <h2>
-          <Translate contentKey="sahaApp.payam.detail.title">Payam</Translate> [<b>{payamEntity.id}</b>]
+          پیام [<b>{payamEntity.id}</b>]
         </h2>
         <dl className="jh-entity-details">
           <dt>
             <span id="onvan">
-              <Translate contentKey="sahaApp.payam.onvan">Onvan</Translate>
+              عنوان
             </span>
           </dt>
           <dd>{payamEntity.onvan}</dd>
           <dt>
             <span id="matn">
-              <Translate contentKey="sahaApp.payam.matn">Matn</Translate>
+              متن
             </span>
           </dt>
           <dd>{payamEntity.matn}</dd>
+          {payamEntity.karbarErsalKonandeId ? (
+          <>
           <dt>
-            <Translate contentKey="sahaApp.payam.karbarErsalKonande">Karbar Ersal Konande</Translate>
+            کاربر ارسال کننده
           </dt>
-          <dd>{payamEntity.karbarErsalKonandeId ? payamEntity.karbarErsalKonandeId : ''}</dd>
+          <dd> {payamEntity.karbarErsalKonandeDTO?.name} </dd> 
+          </>
+          )  : ''}
+          {payamEntity.karbarDaryaftKonandId ? (
+            <>
+            <dt>
+            کاربر دریافت کننده
+          </dt>
+          <dd> {payamEntity.karbarDaryaftKonandDTO?.name} </dd>
+            </>
+          ) : '' }
+          
+          {payamEntity.yeganErsalKonanadeId ? (
+            <>
           <dt>
-            <Translate contentKey="sahaApp.payam.karbarDaryaftKonand">Karbar Daryaft Konand</Translate>
+           یگان ارسال کننده
           </dt>
-          <dd>{payamEntity.karbarDaryaftKonandId ? payamEntity.karbarDaryaftKonandId : ''}</dd>
+          <dd> {payamEntity.yeganErsalKonanadeDTO?.name} </dd>
+            </>
+          ) : '' }
+          {payamEntity.yeganDaryaftKonanadeId ? (
+            <>
           <dt>
-            <Translate contentKey="sahaApp.payam.yeganErsalKonanade">Yegan Ersal Konanade</Translate>
+            یگان دریافت کننده
           </dt>
-          <dd>{payamEntity.yeganErsalKonanadeId ? payamEntity.yeganErsalKonanadeId : ''}</dd>
-          <dt>
-            <Translate contentKey="sahaApp.payam.yeganDaryaftKonanade">Yegan Daryaft Konanade</Translate>
-          </dt>
-          <dd>{payamEntity.yeganDaryaftKonanadeId ? payamEntity.yeganDaryaftKonanadeId : ''}</dd>
+          <dd> {payamEntity.yeganDaryaftKonanadeDTO?.name}</dd>
+            </>
+          ) : ''}
+
         </dl>
         <Button tag={Link} to="/payam" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}
