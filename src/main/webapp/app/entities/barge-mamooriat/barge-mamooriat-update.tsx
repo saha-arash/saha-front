@@ -141,7 +141,7 @@ export const BargeMamooriatUpdate = (props: IBargeMamooriatUpdateProps) => {
 }
 
 const changeUnit = (item) => {
-   set_units(item.value);
+   set_units(item);
 
 }
 const changeKarbar = (item) => {
@@ -361,7 +361,7 @@ const changeBinandegan = (data) => {
                 </Label>
 
                 
-                <Select value={units} options={units}  onChange={changeUnit} />
+                <Select value={s_units} options={units}  onChange={changeUnit} />
 
                 {/* <Select options={units} onChange={changeUnit} /> */}
 
