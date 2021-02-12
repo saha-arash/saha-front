@@ -24,7 +24,8 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 import Select from "react-select";
 import DatePicker from 'react-datepicker2';
 import moment from 'jalali-moment';
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import omitEmpty from 'omit-empty';
 
 export interface IKarbarUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -94,7 +95,7 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
       if (isNew) {
         props.createEntity(entity);
       } else {
-        props.updateEntity(entity);
+        props.updateEntity(omitEmpty(entity));
       }
     }
   };
