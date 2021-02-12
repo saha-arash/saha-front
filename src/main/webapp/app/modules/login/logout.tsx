@@ -23,7 +23,9 @@ export const Logout = (props: ILogoutProps) => {
 
   return (
     <div className="p-5">
-      <h4>Logged out successfully!</h4>
+      <h4>
+        با موفقیت خارج شدید.
+      </h4>
     </div>
   );
 };
