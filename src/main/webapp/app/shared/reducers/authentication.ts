@@ -109,7 +109,7 @@ export const getSession = () => async (dispatch, getState) => {
 
   const { account } = getState().authentication;
   if (account && account.langKey) {
-    const langKey = Storage.session.get('locale', account.langKey);
+    const langKey = Storage.session.get('locale', 'fa');
     await dispatch(setLocale(langKey));
   }
 };
