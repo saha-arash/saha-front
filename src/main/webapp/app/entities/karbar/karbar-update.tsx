@@ -126,13 +126,13 @@ export const KarbarUpdate = (props: IKarbarUpdateProps) => {
                 <Label id="usernameLabel" for="karbar-username">
                   نام کاربری
                 </Label>
-                <AvField id="karbar-username" type="text" name="username" />
+                <AvField autocomplete="off" id="karbar-username" type="text" name="username" />
               </AvGroup>
               <AvGroup>
                 <Label id="passwordLabel" for="karbar-password">
                   کلمه عبور
                 </Label>
-                <AvField id="karbar-password" type="password" name="password" placeholder="****" />
+                <AvField autocomplete="off" id="karbar-password" type="password" name="password" placeholder="****" />
               </AvGroup>
               <AvGroup>
                 <Label id="nameLabel" for="karbar-name">

@@ -164,7 +164,7 @@ export const HesabResiUpdate = (props: IHesabResiUpdateProps) => {
                 <Label id="salLabel" for="hesab-resi-sal">
                   سال
                 </Label>
-                <AvField disabled id="hesab-resi-sal" type="string" className="form-control" name="sal" />
+                <AvField disabled={!isNew} id="hesab-resi-sal" type="string" className="form-control" name="sal" />
               </AvGroup>
               <AvGroup>
                 <Label id="vaziateHesabResiLabel" for="hesab-resi-vaziateHesabResi">
