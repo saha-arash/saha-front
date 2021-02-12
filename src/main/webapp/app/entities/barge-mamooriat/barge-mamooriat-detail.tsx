@@ -12,6 +12,15 @@ import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import TimeToText from '../../shared/timeToText/TimeToText';
 export interface IBargeMamooriatDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
+const translateStat = {
+  "null": "همه",
+  "SARPARAST_TIME_HESABRESI": "سرپرست تیم حسابرسی",
+  "DAR_ENTEZAR_TAEED_MODIR_HESABRESI": "در اتظار تایید مدیر حسابرسی",
+  "DAR_ENTEZAR_TAEED_MOAVEN_HESABRESI": "در انتظار تایید معاون حسابرسی",
+  "DAR_ENTEZAR_TAEED_JANESHIN_SAZMAN": "در انتظار تایید جانشین سازمان",
+  "DAR_ENTEZAR_TAEED_RIASATSAZMAN": "در انتظار تایید ریاست سازمان",
+  "DAR_ENTEZAR_TAEED_HEYAT_RAESE_AJA": "در انتظار تایید ریاست آجا"
+}
 export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
   useEffect(() => {
     props.getEntity(props.match.params.id);
@@ -30,7 +39,7 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
               وضعیت
             </span>
           </dt>
-          <dd>{bargeMamooriatEntity.vaziat}</dd>
+          <dd>{translateStat[bargeMamooriatEntity.vaziat]}</dd>
           <dt>
             <span id="saleMamooriat">
               <span>سال ماموریت</span>
@@ -64,7 +73,7 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
           <dt>
             حسابرسی
           </dt>
-          <dd>{bargeMamooriatEntity.hesabResiId ? bargeMamooriatEntity.hesabResiId : ''}</dd>
+          <dd>{bargeMamooriatEntity.hesabResiDTO ? bargeMamooriatEntity.hesabResiDTO.sal : ''}</dd>
         </dl>
         <div className="mb-3">
         <Button 
