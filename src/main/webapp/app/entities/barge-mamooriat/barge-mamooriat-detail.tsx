@@ -8,8 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 import { getEntity } from './barge-mamooriat.reducer';
 import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
-import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT, AUTHORITIES } from 'app/config/constants';
 import TimeToText from '../../shared/timeToText/TimeToText';
+import { hasAnyAuthority } from 'app/shared/auth/private-route';
 export interface IBargeMamooriatDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 const translateStat = {
@@ -100,19 +101,25 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
           </span>
         </Button>
         &nbsp;
-        <Button tag={Link} to={`/barge-mamooriat/${bargeMamooriatEntity.id}/edit`} replace color="primary">
+        {
+          props.isAdmin && (
+            <Button tag={Link} to={`/barge-mamooriat/${bargeMamooriatEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.edit">Edit</Translate>
           </span>
         </Button>
+          )
+          
+        }
       </Col>
     </Row>
   );
 };
 
-const mapStateToProps = ({ bargeMamooriat }: IRootState) => ({
-  bargeMamooriatEntity: bargeMamooriat.entity
+const mapStateToProps = ({ bargeMamooriat, authentication }: IRootState) => ({
+  bargeMamooriatEntity: bargeMamooriat.entity,
+  isAdmin: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.ADMIN]),
 });
 
 const mapDispatchToProps = { getEntity };

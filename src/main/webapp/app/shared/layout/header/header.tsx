@@ -57,7 +57,10 @@ const Header = (props: IHeaderProps) => {
             {props.isAuthenticated ? (
               <>
                 <ManageMenu />
-                <EntitiesMenu />
+                {
+                  props.isAdmin && <EntitiesMenu />
+                }
+                
               </>
             ) : null}
             {props.isAuthenticated && props.isAdmin && <AdminMenu showSwagger={props.isSwaggerEnabled} />}

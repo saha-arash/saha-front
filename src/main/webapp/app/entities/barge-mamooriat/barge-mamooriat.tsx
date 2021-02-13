@@ -8,11 +8,12 @@ import './barge-mamooriat.scss';
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './barge-mamooriat.reducer';
 import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
-import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT, AUTHORITIES } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 import bargeMamuriatData from '../../../i18n/fa/vaziatBargeMamooriat.json';
 import loggerMiddleware from 'app/config/logger-middleware';
 import TimeToText from 'app/shared/timeToText/TimeToText';
+import { hasAnyAuthority } from 'app/shared/auth/private-route';
 
 
 export interface IBargeMamooriatProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
@@ -190,7 +191,10 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
                           <span>مشاهده</span>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`/barge-mamooriat/${bargeMamooriat.id}/edit`} color="primary" size="sm">
+                      {
+                        props.isAdmin && (
+                          <>
+                            <Button tag={Link} to={`/barge-mamooriat/${bargeMamooriat.id}/edit`} color="primary" size="sm">
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
                           <span>ویرایش</span>
@@ -202,6 +206,9 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
                           <span>حذف</span>
                         </span>
                       </Button>
+                          </>
+                        )
+                      }
                     </div>
                   </td>
                 </tr>
@@ -217,10 +224,11 @@ export const BargeMamooriat = (props: IBargeMamooriatProps) => {
   );
 };
 
-const mapStateToProps = ({ bargeMamooriat }: IRootState) => ({
+const mapStateToProps = ({ bargeMamooriat, authentication }: IRootState) => ({
   bargeMamooriatList: bargeMamooriat.entities,
   loading: bargeMamooriat.loading,
-  totalItems: bargeMamooriat.totalItems
+  totalItems: bargeMamooriat.totalItems,
+  isAdmin: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.ADMIN]),
 });
 
 const mapDispatchToProps = {
