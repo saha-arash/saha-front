@@ -23,7 +23,7 @@ export const ManageMenu = props => (
     <MenuItem icon="asterisk" to="/semat">
       <Translate contentKey="global.menu.entities.semat" />
     </MenuItem> */}
-    <MenuItem icon="asterisk" to="/morkhasi">
+    {/* <MenuItem icon="asterisk" to="/morkhasi">
       مرخصی ها
     </MenuItem>
     <MenuItem icon="asterisk" to="/dore">
@@ -31,7 +31,7 @@ export const ManageMenu = props => (
     </MenuItem>
     <MenuItem icon="asterisk" to="/negahbani">
       نگهبانی ها
-    </MenuItem>
+    </MenuItem> */}
     <MenuItem icon="asterisk" to="/barge-mamooriat">
       برگه ماموریت ها
     </MenuItem>

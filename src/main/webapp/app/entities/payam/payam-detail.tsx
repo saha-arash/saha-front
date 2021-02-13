@@ -42,7 +42,7 @@ export const PayamDetail = (props: IPayamDetailProps) => {
           <dt>
             کاربر ارسال کننده
           </dt>
-          <dd> {payamEntity.karbarErsalKonandeDTO?.name} </dd> 
+          <dd> {payamEntity.karbarErsalKonande?.name} </dd> 
           </>
           )  : ''}
           {payamEntity.karbarDaryaftKonandId ? (
@@ -50,7 +50,7 @@ export const PayamDetail = (props: IPayamDetailProps) => {
             <dt>
             کاربر دریافت کننده
           </dt>
-          <dd> {payamEntity.karbarDaryaftKonandDTO?.name} </dd>
+          <dd> {payamEntity.karbarDaryaftKonandeKonande?.name} </dd>
             </>
           ) : '' }
           
@@ -59,7 +59,7 @@ export const PayamDetail = (props: IPayamDetailProps) => {
           <dt>
            یگان ارسال کننده
           </dt>
-          <dd> {payamEntity.yeganErsalKonanadeDTO?.name} </dd>
+          <dd> {payamEntity.yeganErsalKonanade?.name} </dd>
             </>
           ) : '' }
           {payamEntity.yeganDaryaftKonanadeId ? (
@@ -67,7 +67,7 @@ export const PayamDetail = (props: IPayamDetailProps) => {
           <dt>
             یگان دریافت کننده
           </dt>
-          <dd> {payamEntity.yeganDaryaftKonanadeDTO?.name}</dd>
+          <dd> {payamEntity.yeganDaryaftKonanade?.name}</dd>
             </>
           ) : ''}
 
