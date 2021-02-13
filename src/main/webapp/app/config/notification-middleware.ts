@@ -2,8 +2,9 @@ import { isPromise, translate } from 'react-jhipster';
 import { toast } from 'react-toastify';
 
 const addErrorAlert = (message, key?, data?) => {
-  key = key ? key : message;
-  toast.error(translate(key, data));
+  // key = key ? key : message;
+  // toast.error(translate(key, data));
+  toast.error(key);
 };
 export default () => next => action => {
   // If not a promise, continue on
@@ -19,7 +20,8 @@ export default () => next => action => {
   return next(action)
     .then(response => {
       if (action.meta && action.meta.successMessage) {
-        toast.success(action.meta.successMessage);
+        // toast.success(action.meta.successMessage);
+        toast.success('عملیات با موفقیت انجام شد.');
       } else if (response && response.action && response.action.payload && response.action.payload.headers) {
         const headers = response.action.payload.headers;
         let alert: string = null;
@@ -33,7 +35,8 @@ export default () => next => action => {
         });
         if (alert) {
           const alertParam = alertParams;
-          toast.success(translate(alert, { param: alertParam }));
+          // toast.success(translate(alert, { param: alertParam }));
+          toast.success('عملیات با موفقیت انجام شد.');
         }
       }
       return Promise.resolve(response);
@@ -49,7 +52,8 @@ export default () => next => action => {
           switch (response.status) {
             // connection refused, server not reachable
             case 0:
-              addErrorAlert('Server not reachable', 'error.server.not.reachable');
+              // addErrorAlert('Server not reachable', 'error.server.not.reachable');
+              addErrorAlert('سرور در دسترس نیست');
               break;
 
             case 400: {
@@ -65,7 +69,8 @@ export default () => next => action => {
               });
               if (errorHeader) {
                 const entityName = translate('global.menu.entities.' + entityKey);
-                addErrorAlert(errorHeader, errorHeader, { entityName });
+                addErrorAlert('خطایی رخ داده. دوباره تلاش کنید.');
+                // addErrorAlert(errorHeader, errorHeader, { entityName });
               } else if (data !== '' && data.fieldErrors) {
                 const fieldErrors = data.fieldErrors;
                 for (i = 0; i < fieldErrors.length; i++) {
@@ -76,7 +81,8 @@ export default () => next => action => {
                   // convert 'something[14].other[4].id' to 'something[].other[].id' so translations can be written to it
                   const convertedField = fieldError.field.replace(/\[\d*\]/g, '[]');
                   const fieldName = translate(`sahaApp.${fieldError.objectName}.${convertedField}`);
-                  addErrorAlert(`Error on field "${fieldName}"`, `error.${fieldError.message}`, { fieldName });
+                  addErrorAlert('خطایی رخ داده دوباره تلاش کنید.');
+                  // addErrorAlert(`Error on field "${fieldName}"`, `error.${fieldError.message}`, { fieldName });
                 }
               } else if (data !== '' && data.message) {
                 addErrorAlert(data.message, data.message, data.params);
@@ -86,14 +92,17 @@ export default () => next => action => {
               break;
             }
             case 404:
-              addErrorAlert('Not found', 'error.url.not.found');
+              // addErrorAlert('Not found', 'error.url.not.found');
+              addErrorAlert('صفحه‌ی مورد نظر یافت نشد');
               break;
 
             default:
               if (data !== '' && data.message) {
-                addErrorAlert(data.message);
+                addErrorAlert('خطا. دوباره تلاش کنید.');
+                // addErrorAlert(data.message);
               } else {
-                addErrorAlert(data);
+                addErrorAlert('خطا. دوباره تلاش کنید.');
+                // addErrorAlert(data);
               }
           }
         }
@@ -101,9 +110,11 @@ export default () => next => action => {
         /* eslint-disable no-console */
         console.log('Authentication Error: Trying to access url api/account with GET.');
       } else if (error && error.message) {
-        toast.error(error.message);
+        // toast.error(error.message);
+        addErrorAlert('خطا. دوباره تلاش کنید.');
       } else {
-        toast.error('Unknown error!');
+        // toast.error('Unknown error!');
+        addErrorAlert('خطا. دوباره تلاش کنید.');
       }
       return Promise.reject(error);
     });
