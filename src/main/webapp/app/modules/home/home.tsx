@@ -51,7 +51,7 @@ export const Home = (props: IHomeProp) => {
           <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
             برگه ماموریت{' '}
           </button>
-          <button className="cardd-1" onClick={() => history.push('/barname-hesab-resi')}>
+          <button className="cardd-1" onClick={() => history.push('/hesab-resi')}>
             فرایند انجام حسابرسی
           </button>
           <button className="cardd-1" onClick={() => history.push('/payam')}>

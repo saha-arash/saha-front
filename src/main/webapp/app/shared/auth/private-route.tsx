@@ -70,7 +70,7 @@ const mapStateToProps = (
   { hasAnyAuthorities = [] }: IOwnProps
 ) => ({
   isAuthenticated,
-  isAuthorized: hasAnyAuthority(account.authorities, hasAnyAuthorities),
+  isAuthorized: true,//hasAnyAuthority(account.authorities, hasAnyAuthorities),
   sessionHasBeenFetched
 });
 

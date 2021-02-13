@@ -2,11 +2,11 @@
   "error": {
     "title": "صفحه خطا!",
     "http": {
-      "400": "Bad request.",
+      "400": "خطا در ارسال اطلاعات",
       "403": "شما به صفحه مورد نظر دسترسی ندارید.",
       "404": "صفحه وجود ندارد",
-      "405": "The HTTP verb you used is not supported for this URL.",
-      "500": "Internal server error."
+      "405": "خطا در ارسال اطلاعات.",
+      "500": "خطا در برقراری ارتباط."
     },
     "concurrencyFailure": "Another user modified this data at the same time as you. Your changes were rejected.",
     "validation": "Validation error on the server."
