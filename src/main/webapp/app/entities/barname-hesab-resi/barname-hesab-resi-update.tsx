@@ -50,7 +50,12 @@ export const BarnameHesabResiUpdate = (props: IBarnameHesabResiUpdateProps) => {
       };
 
       if (isNew) {
-        props.createEntity(entity);
+        props.createEntity({
+          ...entity,
+          barnameHesabResiDTO: {
+            noeBarnameHesabResi: entity.noeBarnameHesabResi
+          }
+        });
       } else {
         props.updateEntity(entity);
       }
@@ -89,7 +94,8 @@ export const BarnameHesabResiUpdate = (props: IBarnameHesabResiUpdateProps) => {
                   type="select"
                   className="form-control"
                   name="noeBarnameHesabResi"
-                  value={(!isNew && barnameHesabResiEntity.noeBarnameHesabResi) || 'HESABRESI_BARNAMEE'}
+                  disabled={!isNew}
+                  value={(!isNew && barnameHesabResiEntity.barnameHesabResiDTO.noeBarnameHesabResi) || 'HESABRESI_BARNAMEE'}
                 >
                   <option value="HESABRESI_BARNAMEE">{translate('sahaApp.NoeBarnameHesabResi.HESABRESI_BARNAMEE')}</option>
                   <option value="HESABRESI_PEYGIRI">{translate('sahaApp.NoeBarnameHesabResi.HESABRESI_PEYGIRI')}</option>

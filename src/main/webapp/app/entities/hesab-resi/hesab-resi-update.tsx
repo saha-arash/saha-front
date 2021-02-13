@@ -88,7 +88,11 @@ export const HesabResiUpdate = (props: IHesabResiUpdateProps) => {
   } = props;
 
   const handleClose = () => {
-    props.history.push(`/hesab-resi/${props.match.params.id}`);
+    if(props.match.params.id) {
+      props.history.push(`/hesab-resi/${props.match.params.id}`);
+    } else {
+      props.history.push(`/hesab-resi`);
+    }
   };
 
   useEffect(() => {
@@ -130,7 +134,12 @@ export const HesabResiUpdate = (props: IHesabResiUpdateProps) => {
       };
 
       if (isNew) {
-        props.createEntity(entity);
+        props.createEntity({
+          ...entity,
+          barnameHesabResiDTO: {
+            noeBarnameHesabResi: entity.noeBarnameHesabResi
+          }
+        });
       } else {
         props.updateEntity(entity);
       }
@@ -200,7 +209,8 @@ export const HesabResiUpdate = (props: IHesabResiUpdateProps) => {
                   type="select"
                   className="form-control"
                   name="noeBarnameHesabResi"
-                  value={hesabResiEntity.noeBarnameHesabResi}
+                  disabled={!isNew}
+                  defaultValue={!isNew && hesabResiEntity.barnameHesabResiDTO?.noeBarnameHesabResi}
                 >
                   <option value="HESABRESI_BARNAMEE">
                       حسابرسی برنامه‌ای
