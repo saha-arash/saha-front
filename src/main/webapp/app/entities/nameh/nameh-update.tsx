@@ -25,7 +25,7 @@ export const NamehUpdate = (props: INamehUpdateProps) => {
   const { namehEntity, hesabResis, loading, updating } = props;
 
   const handleClose = () => {
-    props.history.push('/nameh' + props.location.search);
+    props.history.goBack();
   };
 
   useEffect(() => {

@@ -125,7 +125,7 @@ export const HesabResi = (props: IHesabResiProps) => {
                           به روز رسانی وضعیت
                         </span>
                       </Button> */}
-                      <Button
+                      {/* <Button
                         tag={Link}
                         to={`${match.url}/${hesabResi.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
                         color="danger"
@@ -135,7 +135,7 @@ export const HesabResi = (props: IHesabResiProps) => {
                         <span className="d-none d-md-inline">
                           حذف حسابرسی
                         </span>
-                      </Button>
+                      </Button> */}
                     </div>
                   </td>
                 </tr>
