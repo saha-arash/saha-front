@@ -115,7 +115,7 @@ export const NamehUpdate = (props: INamehUpdateProps) => {
               <Button 
                 tag={Link} 
                 id="cancel-save" 
-                to={`/file-hesab-resi/Nameh/${namehEntity.id}`} 
+                to={`/file-hesab-resi/Nameh/${props.match.params.hesabresiId}`} 
                 replace 
                 color="warning"
                 className="px-4"

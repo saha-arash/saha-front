@@ -112,7 +112,7 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
                     دستور العمل اجرایی
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`/gardesh-kar/${hesabResiEntity.gardeshkarBarnameHesabresiId}/edit`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`/gardesh-kar/${hesabResiEntity.gardeshkarBarnameHesabresiId}/${props.match.params.id}/edit`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     گردش کار
                   </Button>
 
@@ -148,7 +148,7 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
                     بانک اطلاعاتی
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`/nameh/${hesabResiEntity.namehId}/edit`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`/nameh/${hesabResiEntity.namehId}/${props.match.params.id}/edit`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
                     نامه‌ها
                   </Button>
                 </>

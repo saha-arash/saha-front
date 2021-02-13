@@ -120,7 +120,7 @@ export const GardeshKarUpdate = (props: IGardeshKarUpdateProps) => {
               <Button 
                 tag={Link} 
                 id="cancel-save" 
-                to={`/file-hesab-resi/GardeshKar/${gardeshKarEntity.id}`} 
+                to={`/file-hesab-resi/GardeshKar/${props.match.params.hesabresiId}`} 
                 replace 
                 color="warning"
                 className="px-4"
