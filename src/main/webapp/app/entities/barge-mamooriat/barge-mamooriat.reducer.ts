@@ -101,9 +101,8 @@ const apiUrl = 'api/barge-mamooriats';
 const getUrl = (vaziat, saleMamooriat, hesabrediId) => {
   let url = `${apiUrl}/user?cacheBuster=${new Date().getTime()}`;
   // url = appendQuery(url, 'page', page);
-  url = appendQuery(url, 'hesabResiId', hesabrediId);
+  url = appendQuery(url, 'hesabresiId', hesabrediId);
   url = appendQuery(url, 'vaziatBargeMamooriat', vaziat);
-  url = appendQuery(url, 'saleMamooriat', saleMamooriat);
   return url;
 };
 // Actions
