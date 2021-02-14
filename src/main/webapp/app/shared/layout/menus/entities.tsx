@@ -14,14 +14,14 @@ export const EntitiesMenu = props => (
     <MenuItem icon="asterisk" to="/karbar">
       کاربران
     </MenuItem>
-    <MenuItem icon="asterisk" to="/semat">
-      سمت ها
-    </MenuItem>
     <MenuItem icon="asterisk" to="/yegan">
       یگان
     </MenuItem>
     <MenuItem icon="asterisk" to="/yegan-type">
       نوع یگان ها
+    </MenuItem>
+    <MenuItem icon="asterisk" to="/semat">
+      سمت ها
     </MenuItem>
     <MenuItem icon="asterisk" to="/daraje">
       درجه ها

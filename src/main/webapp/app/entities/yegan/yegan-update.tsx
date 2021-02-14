@@ -199,7 +199,7 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
               </AvGroup>
               {!isNew ?  (<AvGroup>
                 <Label id="codeLabel" for="yegan-code">
-                  کدیگان
+                  کد یگان
                 </Label>
                 <AvField id="yegan-code" type="text" name="code" disabled/>
               </AvGroup>) : null}
@@ -218,7 +218,7 @@ export const YeganUpdate = (props: IYeganUpdateProps) => {
               </AvGroup>
               <AvGroup>
                 <Label for="yegan-nirooCode">
-                  نیرو ها
+             نیرو
                 </Label>
                 <Select 
                 options={niroos} 
