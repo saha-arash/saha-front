@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
 import { connect } from 'react-redux';
 import { Row, Col, Alert, Button } from 'reactstrap';
+import agha from '../../../content/images/agha.jpg'
 
 import { IRootState } from 'app/shared/reducers';
 import bargeMamooriat from 'app/entities/barge-mamooriat/barge-mamooriat';
@@ -71,7 +72,7 @@ export const Home = (props: IHomeProp) => {
         <Col md="7">
           {/* TODO: how to detect user is logged in an after loggin and reloading the page */}
           {account && account.login ? (
-            <div>
+            <div >
               <Alert className='d-flex align-items-center justify-content-center' color="success">
                 <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
                   You are logged in as user {account.login}.
@@ -88,8 +89,14 @@ export const Home = (props: IHomeProp) => {
               </div>
             </div>
           ) : (
-            <div>
+            <div >
               <Row>
+              <Col xs="4">
+                  <img className="w-100 rounded-circle border shadow" src={agha}></img>
+                </Col>
+              </Row>
+              <Row>
+                
                 <Col className="horzontalList">
                   <span className="arteshLogo" />
                   <span className="title"> ورود به سامانه حسابرسی</span>
