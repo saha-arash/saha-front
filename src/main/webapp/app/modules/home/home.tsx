@@ -75,8 +75,8 @@ export const Home = (props: IHomeProp) => {
           {account && account.login ? (
             <div >
              <Row>
-              <Col xs="4">
-                  <img className="w-100 rounded-circle border shadow" src={agha}></img>
+              <Col xs="4" className="text-center">
+                  <img className="agha m-auto rounded-circle border shadow" src={agha}></img>
                 </Col>
               </Row>
               <div className="d-flex">
@@ -104,8 +104,8 @@ export const Home = (props: IHomeProp) => {
           ) : (
             <div >
               <Row>
-              <Col xs="4">
-                  <img className="w-100 rounded-circle border shadow" src={agha}></img>
+              <Col xs="4" className="text-center">
+                  <img className="agha rounded-circle border shadow" src={agha}></img>
                 </Col>
               </Row>
               <div className="d-flex">
