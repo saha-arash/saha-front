@@ -74,11 +74,18 @@ export const Home = (props: IHomeProp) => {
           {/* TODO: how to detect user is logged in an after loggin and reloading the page */}
           {account && account.login ? (
             <div >
-             <div className="d-flex mr-auto">
-             <span className="arteshLogo" />
-                  
+             <Row>
+              <Col xs="4">
+                  <img className="w-100 rounded-circle border shadow" src={agha}></img>
+                </Col>
+              </Row>
+              <div className="d-flex">
+                
+                  <span className="arteshLogo" />
+               
                   <span className="logo mr-auto" />
-             </div>
+                
+              </div>
               <Alert className='d-flex align-items-center justify-content-center' color="success">
                 <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
                   You are logged in as user {account.login}.
