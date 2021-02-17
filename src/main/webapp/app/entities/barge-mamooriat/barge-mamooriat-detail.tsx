@@ -11,6 +11,7 @@ import { IBargeMamooriat } from 'app/shared/model/barge-mamooriat.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT, AUTHORITIES } from 'app/config/constants';
 import TimeToText from '../../shared/timeToText/TimeToText';
 import { hasAnyAuthority } from 'app/shared/auth/private-route';
+import { faFile } from '@fortawesome/free-solid-svg-icons';
 export interface IBargeMamooriatDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 const translateStat = {
@@ -85,7 +86,8 @@ export const BargeMamooriatDetail = (props: IBargeMamooriatDetailProps) => {
           }} 
           color="warning" 
           className="px-4">
-          <FontAwesomeIcon icon='file' />{' '}
+          <FontAwesomeIcon icon={faFile} />
+                &nbsp;
           <span className="d-none d-md-inline">
             <span>
               فایل‌ها

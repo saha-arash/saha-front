@@ -15,6 +15,7 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import DatePicker from 'react-datepicker2';
 import moment from 'jalali-moment';
+import { faFile } from '@fortawesome/free-solid-svg-icons';
 
 export interface IGardeshKarUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
@@ -125,6 +126,8 @@ export const GardeshKarUpdate = (props: IGardeshKarUpdateProps) => {
                 color="warning"
                 className="px-4"
               >
+                <FontAwesomeIcon icon={faFile} />
+                &nbsp;
                 فایل‌ها
               </Button>
               </div>
