@@ -69,7 +69,7 @@ export const saveAccountSettings = account => async (dispatch, getState) => {
 
   await dispatch(getSession());
 
-  document.querySelector('html').setAttribute('dir', isRTL(account.langKey) ? 'rtl' : 'ltr');
+  document.querySelector('html').setAttribute('dir', isRTL(account.langKey) ? 'rtl' : 'rtl');
 };
 
 export const reset = () => ({

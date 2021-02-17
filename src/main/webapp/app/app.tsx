@@ -1,6 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css';
 import './app.scss';
-
+import '../content/font/font.css';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'reactstrap';

@@ -22,13 +22,13 @@ export interface IHeaderProps {
 
 const Header = (props: IHeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  useEffect(() => document.querySelector('html').setAttribute('dir', isRTL(Storage.session.get('locale')) ? 'rtl' : 'ltr'));
+  useEffect(() => document.querySelector('html').setAttribute('dir', isRTL(Storage.session.get('locale')) ? 'rtl' : 'rtl'));
 
   const handleLocaleChange = event => {
     const langKey = event.target.value;
     Storage.session.set('locale', langKey);
     props.onLocaleChange(langKey);
-    document.querySelector('html').setAttribute('dir', isRTL(langKey) ? 'rtl' : 'ltr');
+    document.querySelector('html').setAttribute('dir', isRTL(langKey) ? 'rtl' : 'rtl');
   };
 
   const renderDevRibbon = () =>
@@ -52,7 +52,7 @@ const Header = (props: IHeaderProps) => {
         <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
         <Brand />
         <Collapse isOpen={menuOpen} navbar>
-          <Nav id="header-tabs" className="ml-auto" navbar>
+          <Nav id="header-tabs" className="mr-auto" navbar>
             <Home />
             {props.isAuthenticated ? (
               <>

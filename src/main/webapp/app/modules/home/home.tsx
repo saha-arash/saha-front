@@ -108,7 +108,7 @@ export const Home = (props: IHomeProp) => {
           )}
 
           <div className="list">
-            <h4 className="">:در موارد زیر با ادمین سامانه تماس بگیرید</h4>
+            <h4 className="">در موارد زیر با ادمین سامانه تماس بگیرید:</h4>
 
             <ul className="rightFloat">
               <li className="">در صورتی که در ورود به سیستم دچار مشکل شده اید.</li>

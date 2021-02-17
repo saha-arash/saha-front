@@ -16,6 +16,7 @@ a {
 * {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  font-family: 'font-bmi' !important;
   &:after,
   &::before {
     -moz-box-sizing: border-box;
@@ -330,4 +331,21 @@ http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
 
 .brand-icon img {
   border-radius: 50%;
+}
+
+.dropdown-menu-right {
+  left: 0;
+  right: auto;
+}
+
+.brand-title {
+  margin-right: 1rem;
+}
+
+.navbar-brand {
+  margin-right: 0;
+}
+
+.navbar-version {
+  display: none;
 }
