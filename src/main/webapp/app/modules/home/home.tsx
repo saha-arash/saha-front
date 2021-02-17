@@ -101,13 +101,19 @@ export const Home = (props: IHomeProp) => {
                   <img className="w-100 rounded-circle border shadow" src={agha}></img>
                 </Col>
               </Row>
-              <Row>
+              <div className="d-flex">
                 
-                <Col className="horzontalList">
                   <span className="arteshLogo" />
+               
+                  <span className="logo mr-auto" />
+                
+              </div>
+              <Row className="mt-3">
+                
+                <Col className="text-center">
                   <span className="title"> ورود به سامانه حسابرسی</span>
-                  <span className="logo" />
                 </Col>
+                
               </Row>
               <Alert color="success" className="alert-center">
                 <span>برای ورود به سیستم کلیک کنید:</span>
