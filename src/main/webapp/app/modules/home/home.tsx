@@ -9,6 +9,8 @@ import agha from '../../../content/images/agha.jpg'
 
 import { IRootState } from 'app/shared/reducers';
 import bargeMamooriat from 'app/entities/barge-mamooriat/barge-mamooriat';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAlignRight, faCalculator, faChalkboardTeacher, faComments, faFileAlt, faGavel } from '@fortawesome/free-solid-svg-icons';
 
 export type IHomeProp = StateProps;
 
@@ -24,24 +26,42 @@ export const Home = (props: IHomeProp) => {
       return (
         <>
           <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
+            <div className="display-4">
+            <FontAwesomeIcon icon={faFileAlt} />
+            </div>
             برگه ماموریت{' '}
           </button>
           {/* <button className="cardd-1" onClick={() => history.push('/barname-hesab-resi')}>
             برنامه سالانه
           </button> */}
           <button className="cardd-1" onClick={() => history.push('/hesab-resi')}>
+          <div className="display-4">
+            <FontAwesomeIcon icon={faCalculator} />
+            </div>
             فرایند انجام حسابرسی
           </button>
           <button className="cardd-1" onClick={() => history.push('/payam')}>
+          <div className="display-4">
+            <FontAwesomeIcon icon={faComments} />
+            </div>
             پیام ها
           </button>
           <button className="cardd-1" onClick={() => alert('بزودی')}>
+          <div className="display-4">
+            <FontAwesomeIcon icon={faAlignRight} />
+            </div>
             فرم های مورد نیاز
           </button>
           <button className="cardd-1" onClick={() => alert('بزودی')}>
+          <div className="display-4">
+            <FontAwesomeIcon icon={faGavel} />
+            </div>
             لوح قوانین
           </button>
           <button className="cardd-1" onClick={() => alert('بزودی')}>
+          <div className="display-4">
+            <FontAwesomeIcon icon={faChalkboardTeacher} />
+            </div>
             دستور العمل ها و بازبینه ها
           </button>
         </>
@@ -50,15 +70,27 @@ export const Home = (props: IHomeProp) => {
       return (
         <>
           <button className="cardd-1" onClick={() => history.push('/barge-mamooriat')}>
+          <div className="display-4">
+            <FontAwesomeIcon icon={faFileAlt} />
+            </div>
             برگه ماموریت{' '}
           </button>
           <button className="cardd-1" onClick={() => history.push('/hesab-resi')}>
+          <div className="display-4">
+            <FontAwesomeIcon icon={faCalculator} />
+            </div>
             فرایند انجام حسابرسی
           </button>
           <button className="cardd-1" onClick={() => history.push('/payam')}>
+          <div className="display-4">
+            <FontAwesomeIcon icon={faComments} />
+            </div>
             پیام ها
           </button>
           <button className="cardd-1" onClick={() => alert('بزودی')}>
+          <div className="display-4">
+            <FontAwesomeIcon icon={faAlignRight} />
+            </div>
             فرم های مورد نیاز
           </button>
         </>
