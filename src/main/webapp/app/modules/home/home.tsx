@@ -77,7 +77,7 @@ export const Home = (props: IHomeProp) => {
              <div className="d-flex mr-auto">
              <span className="arteshLogo" />
                   
-                  <span className="logo" />
+                  <span className="logo mr-auto" />
              </div>
               <Alert className='d-flex align-items-center justify-content-center' color="success">
                 <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>

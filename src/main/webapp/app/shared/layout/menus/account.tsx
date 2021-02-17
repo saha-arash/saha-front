@@ -8,9 +8,9 @@ import { NavDropdown } from './menu-components';
 
 const accountMenuItemsAuthenticated = (
   <>
-    <MenuItem icon="wrench" to="/account/settings">
+    {/* <MenuItem icon="wrench" to="/account/settings">
       <Translate contentKey="global.menu.account.settings">Settings</Translate>
-    </MenuItem>
+    </MenuItem> */}
     <MenuItem icon="lock" to="/account/password">
       <Translate contentKey="global.menu.account.password">Password</Translate>
     </MenuItem>
