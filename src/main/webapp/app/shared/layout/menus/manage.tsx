@@ -5,13 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Translate, translate } from 'react-jhipster';
 import { NavLink as Link } from 'react-router-dom';
 import { NavDropdown } from './menu-components';
+import { faCalculator, faComments, faFileAlt, faFileContract, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 
 export const ManageMenu = props => (
   <NavDropdown icon="th-list" name="مدیریت" id="entity-menu" style={{ maxHeight: '80vh', overflow: 'auto' }}>
     {/* <MenuItem icon="asterisk" to="/yegan-code">
       YeGancode
     </MenuItem> */}
-    <MenuItem icon="asterisk" to="/payam">
+    <MenuItem icon={faComments} to="/payam">
       پیام ها
     </MenuItem>
     {/* <MenuItem icon="asterisk" to="/file-name">
@@ -32,10 +33,10 @@ export const ManageMenu = props => (
     <MenuItem icon="asterisk" to="/negahbani">
       نگهبانی ها
     </MenuItem> */}
-    <MenuItem icon="asterisk" to="/barge-mamooriat">
+    <MenuItem icon={faFileAlt} to="/barge-mamooriat">
       برگه ماموریت ها
     </MenuItem>
-    <MenuItem icon="asterisk" to="/hesab-resi">
+    <MenuItem icon={faCalculator} to="/hesab-resi">
       حسابرسی ها
     </MenuItem>
     {/* <MenuItem icon="asterisk" to="/barname-hesab-resi">

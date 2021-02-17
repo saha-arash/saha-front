@@ -6,6 +6,8 @@ import { Button, Row, Col, Label, Input } from 'reactstrap';
 import translateToFa from './translate';
 import axios from "axios";
 import { openFile } from 'react-jhipster';
+import { faFile } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const HesabResiItemDetail: FC<RouteComponentProps> = ({ match, location }) => {
   const { id, item }: any = match.params;
@@ -93,6 +95,8 @@ const HesabResiItemDetail: FC<RouteComponentProps> = ({ match, location }) => {
           pathname: `/file-hesab-resi/${item}/${id}`,
           
         }} color="warning" className="px-4">
+          <FontAwesomeIcon icon={faFile} />
+                &nbsp;
           فایل‌ها
         </Button>
       </Col>
