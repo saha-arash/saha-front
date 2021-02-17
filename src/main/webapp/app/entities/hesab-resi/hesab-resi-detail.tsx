@@ -10,6 +10,7 @@ import { getEntity } from './hesab-resi.reducer';
 import { IHesabResi } from 'app/shared/model/hesab-resi.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import gardeshKar from '../gardesh-kar/gardesh-kar';
+import { faTable } from '@fortawesome/free-solid-svg-icons';
 
 const statusToFarsi = {
   DAR_SHOROF_MAMOORIAT: 'در شرف ماموریت',
@@ -58,13 +59,22 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
             {
               (role === 'ROLE_YEGAN' || role === 'ROLE_ZIR_YEGAN') && (
                 <>
-                <Button tag={Link} color="primary" to={`/barge-mamooriat/${props.match.params.id}/${hesabResiEntity.sal}`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                <Button tag={Link} color="primary" to={`/barge-mamooriat/${props.match.params.id}/${hesabResiEntity.sal}`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     برگه ماموریت‌ها
                 </Button>
-                <Button tag={Link} color="primary" to={`./${props.match.params.id}/Madarek`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                <Button tag={Link} color="primary" to={`./${props.match.params.id}/Madarek`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     مدارک
                 </Button>
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/RafeIradat`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/RafeIradat`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     رفع ایرادات
                 </Button>
                 </>
@@ -77,91 +87,145 @@ export const HesabResiDetail = (props: IHesabResiDetailProps) => {
                   <Button tag={Link} color="primary" to={{
                     pathname: `./${props.match.params.id}/VoroodiBilanSalGhabl`,
                     state: {sal: hesabResiEntity.sal}
-                  }} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  }} className="cardd-1 d-flex flex-column flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                    <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     بیلان سال قبل
                   </Button>
 
                   <Button tag={Link} color="primary" to={{
                     pathname: `./${props.match.params.id}/VoroodiBilanSeSalGhabl`,
                     state: {sal: hesabResiEntity.sal}
-                  }} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  }} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                    <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     بیلان سه سال قبل
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/BarnameHesabResi`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/BarnameHesabResi`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     برنامه حسابرسی
                   </Button>
                   {
                     hesabResiEntity?.barnameHesabResiDTO?.noeBarnameHesabResi === 'HESABRESI_BARNAMEE' ? (
-                      <Button tag={Link} color="primary" to={`/yegan/${props.match.params.id}/jahateHesabResi`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                      <Button tag={Link} color="primary" to={`/yegan/${props.match.params.id}/jahateHesabResi`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                        <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                         لیست یگان‌های گزینش شده
                       </Button>
                     ) : (
-                      <Button tag={Link} color="primary" to={`/yegan/${props.match.params.id}/jahatePeygiri`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                      <Button tag={Link} color="primary" to={`/yegan/${props.match.params.id}/jahatePeygiri`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                        <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                       لیست یگان‌های جهت پیگیری
                     </Button>
                     )
                   }
 
-                  <Button tag={Link} color="primary" to={`/yegan/${props.match.params.id}/kharejAzMarkaz`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`/yegan/${props.match.params.id}/kharejAzMarkaz`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     لیست یگان‌های خارج از مرکز
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/MohasebeHazineMamooriat`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/MohasebeHazineMamooriat`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     هزینه ماموریت
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/DastoorAmalEjraE`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/DastoorAmalEjraE`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     دستور العمل اجرایی
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`/gardesh-kar/${hesabResiEntity.gardeshkarBarnameHesabresiId}/${props.match.params.id}/edit`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`/gardesh-kar/${hesabResiEntity.gardeshkarBarnameHesabresiId}/${props.match.params.id}/edit`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     گردش کار
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`/barge-mamooriat/${props.match.params.id}/${hesabResiEntity.sal}`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`/barge-mamooriat/${props.match.params.id}/${hesabResiEntity.sal}`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     برگه ماموریت‌ها
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/Madarek`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/Madarek`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     مدارک
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/MadarekGozaresh`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/MadarekGozaresh`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     گزارش
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/GOZARESH_HOZOOR`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/GOZARESH_HOZOOR`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     گزارش حضور
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/KholaseGozaresh`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/KholaseGozaresh`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     خلاصه گزارش
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/MostaKhreje`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/MostaKhreje`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     مستخرجه
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/RafeIradat`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/RafeIradat`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     رفع ایرادات
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/BankEtelaati`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`./${props.match.params.id}/BankEtelaati`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     بانک اطلاعاتی
                   </Button>
 
-                  <Button tag={Link} color="primary" to={`/nameh/${hesabResiEntity.namehId}/${props.match.params.id}/edit`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+                  <Button tag={Link} color="primary" to={`/nameh/${hesabResiEntity.namehId}/${props.match.params.id}/edit`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
+                  <div className="display-4">
+                      <FontAwesomeIcon icon={faTable} />
+                    </div>
                     نامه‌ها
                   </Button>
                 </>
               )
             }
 
-            {/* <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+            {/* <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
               چکیده گردش کار
           </Button>
-            <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex text-center justify-content-center align-items-center text-dark bg-white">
+            <Button tag={Link} color="primary" to={`./${props.match.params.id}/VoroodiBilanSalGhabl`} className="cardd-1 d-flex flex-column text-center justify-content-center align-items-center text-dark bg-white">
               گردش کار برنامه حسابرسی
             </Button> */}
           </dl>
