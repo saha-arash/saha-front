@@ -117,8 +117,8 @@ export const getSession = () => async (dispatch, getState) => {
 export const login = (username, password, history, rememberMe = false) => async (dispatch, getState) => {
   try {
     const result = await axios.post('api/authenticate', { username, password, rememberMe });
-    console.log(result);
-    localStorage.setItem('Token', result.data.id_token);
+    // console.log(result);
+    sessionStorage.setItem('Token', result.data.id_token);
     localStorage.setItem('role', result.data.roles.split(',')[0]);
 
     const bearerToken = result.data.id_token;
@@ -128,7 +128,7 @@ export const login = (username, password, history, rememberMe = false) => async 
     if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
       const jwt = bearerToken.slice(7, bearerToken.length);
       if (rememberMe) {
-        Storage.local.set(AUTH_TOKEN_KEY, jwt);
+        Storage.session.set(AUTH_TOKEN_KEY, jwt);
       } else {
         Storage.session.set(AUTH_TOKEN_KEY, jwt);
       }
